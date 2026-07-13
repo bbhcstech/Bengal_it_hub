@@ -8,8 +8,8 @@
             <h1 class="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-6xl">{{ $title }}</h1>
             <p class="mt-5 text-xl leading-9 text-slate-600">{{ $intro }}</p>
             <div class="bih-card mt-8 p-6 text-sm leading-7 text-slate-600">
-                <strong class="text-slate-950">Office:</strong> {{ config('bengalhub.brand.address') }}<br>
-                <strong class="text-slate-950">Phone:</strong> {{ config('bengalhub.brand.phone') }}
+                <strong class="text-slate-950">Office:</strong> {{ $siteBrand['address'] ?? config('bengalhub.brand.address') }}<br>
+                <strong class="text-slate-950">Phone:</strong> {{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}
             </div>
         </div>
         <form class="bih-card grid gap-5 p-6" method="POST" action="{{ route('leads.store') }}">

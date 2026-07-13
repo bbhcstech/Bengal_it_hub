@@ -21,16 +21,40 @@
                             </details>
                         @endforeach
                     </div>
+                    @push('schema')
+                        <script type="application/ld+json">
+                            {!! json_encode([
+                                '@'.'context' => 'https://schema.org',
+                                '@type' => 'FAQPage',
+                                'mainEntity' => collect($faqs)->map(fn ($faq) => [
+                                    '@type' => 'Question',
+                                    'name' => $faq[0],
+                                    'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq[1]],
+                                ])->all(),
+                            ], JSON_UNESCAPED_SLASHES) !!}
+                        </script>
+                    @endpush
                 @elseif($slug === 'our-partners')
                     <h2 class="text-2xl font-black">Partner Ecosystem</h2>
                     <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
-                        @foreach(['Industry Experts','Academic Partners','Innovation Partners','Hiring Partners','Technology Partners','Community Partners'] as $partner)
-                            <div class="rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold">{{ $partner }}</div>
+                        @foreach($partners->isNotEmpty() ? $partners : collect(['Industry Experts','Academic Partners','Innovation Partners','Hiring Partners','Technology Partners','Community Partners']) as $partner)
+                            <div class="rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold">{{ is_string($partner) ? $partner : $partner->name }}</div>
                         @endforeach
                     </div>
                 @elseif($slug === 'blog')
                     <h2 class="text-2xl font-black">Blog CMS Ready</h2>
-                    <p class="mt-4 leading-8 text-slate-600">The SRS marks blog as a net-new module. This route is ready for posts, categories, tags, author attribution, RSS, and structured data.</p>
+                    @if($posts->isNotEmpty())
+                        <div class="mt-5 grid gap-4">
+                            @foreach($posts as $post)
+                                <article class="rounded-md border border-slate-200 p-4">
+                                    <h3 class="font-black">{{ $post->title }}</h3>
+                                    <p class="mt-2 text-sm leading-6 text-slate-600">{{ Str::limit(strip_tags($post->body), 140) }}</p>
+                                </article>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="mt-4 leading-8 text-slate-600">The SRS marks blog as a net-new module. This route is ready for posts, categories, tags, author attribution, RSS, and structured data.</p>
+                    @endif
                 @else
                     <h2 class="text-2xl font-black">Laravel Migration Page</h2>
                     <p class="mt-4 leading-8 text-slate-600">This page preserves the current WordPress URL inventory and gives the CMS build a clean place to migrate rich text, images, SEO metadata, and reusable content blocks.</p>

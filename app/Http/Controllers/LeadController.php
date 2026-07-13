@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Lead;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class LeadController extends Controller
 {
@@ -24,9 +26,14 @@ class LeadController extends Controller
             'website' => ['nullable', 'size:0'],
         ]);
 
+        $event = str_contains($validated['form_type'], 'hackfest') && Schema::hasTable('events')
+            ? Event::where('slug', 'hackfest-2026')->first()
+            : null;
+
         Lead::create([
             'form_type' => $validated['form_type'],
-            'event_slug' => str_contains($validated['form_type'], 'hackfest') ? 'hackfest-2026' : null,
+            'event_slug' => $event?->slug ?: (str_contains($validated['form_type'], 'hackfest') ? 'hackfest-2026' : null),
+            'event_id' => $event?->id,
             'name' => $validated['name'],
             'email' => $validated['email'] ?? null,
             'phone' => $validated['phone'] ?? null,

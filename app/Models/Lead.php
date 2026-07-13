@@ -9,6 +9,7 @@ class Lead extends Model
     protected $fillable = [
         'form_type',
         'event_slug',
+        'event_id',
         'name',
         'email',
         'phone',
@@ -16,6 +17,7 @@ class Lead extends Model
         'message',
         'payload',
         'status',
+        'notes',
         'source_page',
     ];
 
@@ -24,5 +26,10 @@ class Lead extends Model
         return [
             'payload' => 'array',
         ];
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
     }
 }

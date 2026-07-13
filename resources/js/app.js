@@ -8,4 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
         menu?.classList.toggle('hidden');
         button.setAttribute('aria-expanded', String(!menu?.classList.contains('hidden')));
     });
+
+    document.querySelector('[data-scroll-top]')?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelector('[data-scroll-bottom]')?.addEventListener('click', () => {
+        window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+    });
 });

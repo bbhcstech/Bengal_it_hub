@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'is_active',
+        'last_login_at',
     ];
 
     /**
@@ -43,7 +46,25 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'is_active' => 'boolean',
             'password' => 'hashed',
         ];
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === 'super_admin';
+    }
+
+    public function canManage(string $module): bool
+    {
+        return match ($this->role) {
+            'super_admin' => true,
+            'content_editor' => in_array($module, ['pages', 'services', 'blog', 'partners', 'faqs', 'media'], true),
+            'event_manager' => in_array($module, ['events', 'leads', 'media'], true),
+            'leads_manager' => $module === 'leads',
+            default => false,
+        };
     }
 }

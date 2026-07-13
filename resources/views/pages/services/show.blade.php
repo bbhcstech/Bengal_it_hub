@@ -12,7 +12,7 @@
         <div class="grid gap-5">
             <article class="bih-card p-7">
                 <h2 class="text-2xl font-black">What This Enables</h2>
-                <p class="mt-4 leading-8 text-slate-600">This page is powered by a reusable service data structure. In the full CMS phase, admins can edit the hero, body, benefit bullets, galleries, CTA, and SEO fields without code changes.</p>
+                <p class="mt-4 leading-8 text-slate-600">{{ $service['body'] ?? 'This page is powered by a reusable service data structure. In the full CMS phase, admins can edit the hero, body, benefit bullets, galleries, CTA, and SEO fields without code changes.' }}</p>
             </article>
             @foreach($service['features'] as $feature)
                 <div class="bih-card flex gap-4 p-5">
@@ -23,4 +23,16 @@
         </div>
     </div>
 </section>
+@push('schema')
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@'.'context' => 'https://schema.org',
+            '@type' => 'Service',
+            'name' => $service['title'],
+            'description' => $service['summary'],
+            'url' => url()->current(),
+            'provider' => ['@type' => 'Organization', 'name' => 'Bengal IT Hub', 'url' => url('/')],
+        ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 @endsection

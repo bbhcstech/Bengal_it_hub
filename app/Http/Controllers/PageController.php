@@ -14,6 +14,24 @@ use Illuminate\View\View;
 
 class PageController extends Controller
 {
+    /**
+     * Per-service section layout combination. Each service gets a distinct
+     * mix of hero/features/formats/flow/outcomes section variants (a/b/c)
+     * so pages built from the same shared content schema don't all look alike.
+     */
+    private const SERVICE_LAYOUTS = [
+        'tech-ed-fest' => ['hero' => 'a', 'features' => 'a', 'formats' => 'a', 'flow' => 'a', 'outcomes' => 'a'],
+        'educamp' => ['hero' => 'b', 'features' => 'b', 'formats' => 'b', 'flow' => 'b', 'outcomes' => 'b'],
+        'eduverse-2' => ['hero' => 'c', 'features' => 'c', 'formats' => 'c', 'flow' => 'c', 'outcomes' => 'c'],
+        'groomify' => ['hero' => 'b', 'features' => 'a', 'formats' => 'b', 'flow' => 'b', 'outcomes' => 'a'],
+        'ai-marketing' => ['hero' => 'a', 'features' => 'c', 'formats' => 'a', 'flow' => 'c', 'outcomes' => 'b'],
+        'biz-consultation' => ['hero' => 'c', 'features' => 'b', 'formats' => 'c', 'flow' => 'a', 'outcomes' => 'c'],
+        'biz-enablement' => ['hero' => 'b', 'features' => 'c', 'formats' => 'b', 'flow' => 'a', 'outcomes' => 'b'],
+        'e-collab-2' => ['hero' => 'a', 'features' => 'b', 'formats' => 'c', 'flow' => 'b', 'outcomes' => 'c'],
+        'staff-augmentation' => ['hero' => 'c', 'features' => 'a', 'formats' => 'a', 'flow' => 'c', 'outcomes' => 'a'],
+        'corporate-operations-outsourcing' => ['hero' => 'b', 'features' => 'b', 'formats' => 'a', 'flow' => 'c', 'outcomes' => 'b'],
+    ];
+
     public function home(): View
     {
         $services = $this->services();
@@ -42,10 +60,49 @@ class PageController extends Controller
         ]);
     }
 
+    public function products(): View
+    {
+        return view('pages.products.index', [
+            'seo' => $this->seo(
+                'Products | Bengal IT Hub',
+                'Software, web, app, IoT, AI, and digital marketing products built by Bengal IT Hub across modern, production-tested technology.',
+            ),
+            'products' => config('bengalhub.products'),
+        ]);
+    }
+
+    public function productShow(string $slug): View
+    {
+        $products = collect(config('bengalhub.products.items'));
+        $product = $products->firstWhere('slug', $slug);
+        abort_unless($product, 404);
+
+        return view('pages.products.show', [
+            'seo' => $this->seo(
+                $product['title'].' | Bengal IT Hub Products',
+                $product['summary'],
+            ),
+            'product' => $product,
+            'technologies' => config('bengalhub.products.technologies'),
+            'otherProducts' => $products->where('slug', '!=', $slug)->take(3),
+        ]);
+    }
+
+    public function techBiz(): View
+    {
+        return view('pages.techbiz', [
+            'seo' => $this->seo(
+                'TechBiz | Bengal IT Hub',
+                "TechBiz is Bengal IT Hub's technology newsroom, covering partnership meetings, product milestones, and industry collaboration.",
+            ),
+            'techbiz' => config('bengalhub.techbiz'),
+        ]);
+    }
+
     public function serviceShow(string $slug): View
     {
         $serviceModel = $this->cmsReady('services') ? Service::published()->where('slug', $slug)->first() : null;
-        $service = $serviceModel?->toPublicArray() ?? config('bengalhub.services')[$slug] ?? null;
+        $service = config('bengalhub.services')[$slug] ?? $serviceModel?->toPublicArray() ?? null;
         abort_unless($service, 404);
 
         return view('pages.services.show', [
@@ -57,6 +114,7 @@ class PageController extends Controller
             ),
             'service' => $service,
             'slug' => $slug,
+            'layout' => self::SERVICE_LAYOUTS[$slug] ?? null,
         ]);
     }
 
@@ -76,11 +134,73 @@ class PageController extends Controller
         ]);
     }
 
+    public function hackfestChiefGuest(): View
+    {
+        return view('pages.event.chief-guest', [
+            'seo' => $this->seo(
+                'Chief Guest | The Bengal HackFest PRAGATI 2026',
+                'Meet the distinguished Chief Guest of honor for The Bengal HackFest PRAGATI 2026.',
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+        ]);
+    }
+
+    public function hackfestChiefAdviser(): View
+    {
+        return view('pages.event.chief-adviser', [
+            'seo' => $this->seo(
+                'Chief Adviser | The Bengal HackFest PRAGATI 2026',
+                'Meet the Chief Adviser providing strategic guidance for The Bengal HackFest PRAGATI 2026.',
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+        ]);
+    }
+
+    public function hackfestSpeakers(): View
+    {
+        return view('pages.event.speakers', [
+            'seo' => $this->seo(
+                'Speakers & Panelists | The Bengal HackFest PRAGATI 2026',
+                "A showcase of the expert speakers, panelists, and industry leaders at The Bengal HackFest PRAGATI 2026.",
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+        ]);
+    }
+
+    public function hackfestFaq(): View
+    {
+        return view('pages.event.faq', [
+            'seo' => $this->seo(
+                'FAQ | The Bengal HackFest PRAGATI 2026',
+                'Answers to the most common questions about The Bengal HackFest PRAGATI 2026.',
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+        ]);
+    }
+
+    public function hackfestVenue(): View
+    {
+        return view('pages.event.venue', [
+            'seo' => $this->seo(
+                'Event Venue | The Bengal HackFest PRAGATI 2026',
+                'Venue details for The Bengal HackFest PRAGATI 2026 Grand Finale.',
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+        ]);
+    }
+
+    private function eventDataForFeaturePage(): array
+    {
+        $eventModel = $this->cmsReady('events') ? Event::with(['timelines', 'people'])->where('status', 'published')->orderByDesc('id')->first() : null;
+
+        return array_merge(config('bengalhub.event'), $eventModel?->toPublicArray() ?: []);
+    }
+
     public function form(string $type): View
     {
         $labels = [
             'contact' => ['Contact Us', 'Tell us what you want to build, partner, or discuss.'],
-            'participant' => ['Register With HackFest 2026', 'Submit your team or participant interest for PRAGATI 2026.'],
+            'participant' => ['HackFest 2026 Registration', 'Registrations for The Bengal HackFest PRAGATI 2026 closed on 30 April 2026.'],
             'sponsor' => ['Sponsors Request for Meeting', 'Start a sponsor or exclusive partner conversation.'],
             'academic' => ['Academic Partnership Enquiry', 'Invite your college or institution into the ecosystem.'],
         ];
@@ -98,6 +218,30 @@ class PageController extends Controller
     public function static(string $slug): View
     {
         $pageModel = $this->cmsReady('pages') ? Page::where('slug', $slug)->where('status', 'published')->first() : null;
+
+        if ($slug === 'vision-2030') {
+            return view('pages.vision-2030', [
+                'seo' => $this->seo(
+                    $pageModel?->meta_title ?: 'Vision 2030 | Bengal IT Hub',
+                    $pageModel?->meta_description ?: "Vision 2030 is Bengal IT Hub's mission to build India's first AI Gigafactory from Bengal, transforming West Bengal into India's leading AI talent and innovation ecosystem.",
+                    $pageModel?->meta_keywords,
+                    $pageModel?->meta_robots,
+                ),
+            ]);
+        }
+
+        if ($slug === 'about-us') {
+            return view('pages.about-us', [
+                'seo' => $this->seo(
+                    $pageModel?->meta_title ?: 'About Us | Bengal IT Hub',
+                    $pageModel?->meta_description ?: 'Bengal IT Hub is an IT company and AI talent ecosystem delivering software, cloud, digital transformation, AI solutions, skilling, and enterprise-ready technology execution from Bengal.',
+                    $pageModel?->meta_keywords,
+                    $pageModel?->meta_robots,
+                ),
+                'partners' => $this->cmsReady('partners') ? Partner::published()->whereIn('scope', ['home', 'about'])->orderBy('sort_order')->get() : collect(),
+            ]);
+        }
+
         $page = $pageModel
             ? [$pageModel->title, $pageModel->blocks['eyebrow'] ?? '', $pageModel->blocks['intro'] ?? '']
             : $this->fallbackPages()[$slug] ?? null;
@@ -183,6 +327,8 @@ class PageController extends Controller
             'download-sponsor-brochure' => ['Download Sponsor Brochure', 'Thank You For Your Interest', 'The sponsorship brochure download flow replaces the WordPress Download Manager plugin with a native Laravel-ready download page.'],
             'download-final-year-career-template-v1-0' => ['Download Final Year Career Template v1.0', 'Career Template Download', 'A native download confirmation page for future student and career resources.'],
             'sponsor-hackfest-2026' => ['Partner With Us', 'Sponsors & Exclusive Partners', 'Bengal HackFest PRAGATI 2026 invites visionary organizations, technology leaders, and innovation-driven companies to partner with one of Eastern India premier student innovation platforms.'],
+            'industries' => ['Industries', 'Industries We Serve', "Bengal IT Hub delivers technology, talent, and growth solutions across IT & Digital Services, SaaS & Cloud, FinTech, Healthcare, EdTech, Manufacturing, E-Commerce, and Corporate Operations."],
+            'awards-recognition' => ['Awards & Recognition', 'Recognized Excellence', 'Bengal IT Hub is building a track record of recognized achievement across innovation, education, and enterprise impact. This page is being prepared with our award and recognition milestones.'],
             'pricing' => ['Pricing', 'Custom Engagement Models', 'Pricing and engagement models can be configured by service, event, or partner requirement.'],
             'amenities' => ['Amenities', 'Spaces And Facilities', 'A flexible facilities page retained for migration compatibility.'],
             'ascend' => ['Ascend', 'Innovation Acceleration', 'A landing page for ideas, incubation, and market acceleration.'],

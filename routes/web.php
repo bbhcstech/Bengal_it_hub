@@ -9,8 +9,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/services', [PageController::class, 'serviceIndex'])->name('services.index');
+Route::get('/products', [PageController::class, 'products'])->name('products.index');
+Route::get('/products/{slug}', [PageController::class, 'productShow'])->name('products.show');
+Route::get('/tech-biz', [PageController::class, 'techBiz'])->name('techbiz.index');
 Route::get('/hackfest-2026', [PageController::class, 'event'])->name('event.show');
 Route::get('/hackfest-2026/register', fn () => app(PageController::class)->form('participant'))->name('event.register');
+Route::get('/hackfest-2026/chief-guest', [PageController::class, 'hackfestChiefGuest'])->name('event.chief-guest');
+Route::get('/hackfest-2026/chief-adviser', [PageController::class, 'hackfestChiefAdviser'])->name('event.chief-adviser');
+Route::get('/hackfest-2026/speakers', [PageController::class, 'hackfestSpeakers'])->name('event.speakers');
+Route::get('/hackfest-2026/faq', [PageController::class, 'hackfestFaq'])->name('event.faq');
+Route::get('/hackfest-2026/venue', [PageController::class, 'hackfestVenue'])->name('event.venue');
 Route::get('/sponsor-form-hackfest-2026', fn () => app(PageController::class)->form('sponsor'))->name('event.sponsor-form');
 Route::get('/sponsor-hackfest-2026', fn () => app(PageController::class)->static('sponsor-hackfest-2026'))->name('event.sponsor');
 Route::get('/contact', fn () => app(PageController::class)->form('contact'))->name('contact');

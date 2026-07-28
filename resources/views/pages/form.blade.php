@@ -12,9 +12,20 @@
                 <strong class="text-slate-950">Phone:</strong> {{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}
             </div>
         </div>
+        @if($type === 'participant')
+            <div class="bih-card p-8 text-center">
+                <p class="bih-eyebrow">Registrations Closed</p>
+                <h2 class="mt-3 text-2xl font-black leading-tight text-slate-950 md:text-3xl">The Bengal HackFest PRAGATI 2026 Has Concluded</h2>
+                <p class="mt-4 leading-7 text-slate-600">Participant registrations closed on 30 April 2026, and the event has now been held. Thank you to everyone who took part. Registration for the next HackFest is not open yet, follow our channels or reach out below to be notified as soon as it is.</p>
+                <div class="mt-7 flex flex-wrap justify-center gap-3">
+                    <a class="bih-button" href="/contact?interest=Next+HackFest+Notification">Get Notified for the Next HackFest</a>
+                    <a class="bih-button bih-button-secondary" href="/hackfest-2026">Back to Event Overview</a>
+                </div>
+            </div>
+        @else
         <form class="bih-card grid gap-5 p-6" method="POST" action="{{ route('leads.store') }}">
             @csrf
-            <input type="hidden" name="form_type" value="{{ $type === 'participant' ? 'hackfest_participant' : ($type === 'sponsor' ? 'hackfest_sponsor' : $type) }}">
+            <input type="hidden" name="form_type" value="{{ $type === 'sponsor' ? 'hackfest_sponsor' : $type }}">
             <input class="hidden" tabindex="-1" autocomplete="off" name="website">
             @if(session('status'))
                 <div class="rounded-md bg-teal-50 p-4 font-bold text-teal-800">{{ session('status') }}</div>
@@ -34,12 +45,6 @@
                     <input class="bih-field" id="phone" name="phone" value="{{ old('phone') }}">
                 </div>
             </div>
-            @if($type === 'participant')
-                <div class="grid gap-5 md:grid-cols-2">
-                    <input class="bih-field" name="college" placeholder="College / Institute">
-                    <input class="bih-field" name="team_size" type="number" min="1" max="10" placeholder="Team size">
-                </div>
-            @endif
             @if(in_array($type, ['sponsor', 'academic']))
                 <input class="bih-field" name="{{ $type === 'sponsor' ? 'company' : 'college' }}" placeholder="{{ $type === 'sponsor' ? 'Company / Organization' : 'College / Institution' }}">
             @endif
@@ -47,6 +52,7 @@
             <textarea class="bih-field min-h-36" name="message" placeholder="Tell us what you need"></textarea>
             <button class="bih-button justify-self-start" type="submit">Submit Enquiry</button>
         </form>
+        @endif
     </div>
 </section>
 @endsection

@@ -69,7 +69,7 @@
             @endforeach
         </nav>
         <div class="flex items-center gap-2">
-            <a class="bih-button hidden sm:inline-flex" href="tel:{{ preg_replace('/\s+/', '', $siteBrand['phone'] ?? config('bengalhub.brand.phone')) }}">Call {{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}</a>
+            <a class="bih-button hidden sm:inline-flex" href="{{ route('contact') }}">Get in Touch</a>
             <button data-menu-button class="grid h-11 w-11 place-items-center rounded-md border border-slate-200 lg:hidden" aria-label="Open menu" aria-expanded="false">Menu</button>
         </div>
     </div>
@@ -92,6 +92,10 @@
 <main>
     @yield('content')
 </main>
+
+<div class="fixed top-24 left-5 z-40">
+    <button data-back-button class="bih-scroll-button" type="button" aria-label="Go back to previous page" title="Go back">&larr;</button>
+</div>
 
 <div class="fixed bottom-5 right-5 z-50 grid gap-2">
     <button data-scroll-top class="bih-scroll-button" type="button" aria-label="Scroll to top" title="Scroll to top">&uarr;</button>

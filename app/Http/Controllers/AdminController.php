@@ -18,6 +18,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -132,7 +133,7 @@ class AdminController extends Controller
             'meta_title' => ['nullable', 'string', 'max:180'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
-            'meta_robots' => ['nullable', 'in:index, follow,noindex, follow,index, nofollow,noindex, nofollow'],
+            'meta_robots' => ['nullable', Rule::in(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'])],
             'status' => ['required', 'in:draft,published'],
         ]);
 
@@ -343,7 +344,7 @@ class AdminController extends Controller
             'meta_title' => ['nullable', 'string', 'max:180'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
-            'meta_robots' => ['nullable', 'in:index, follow,noindex, follow,index, nofollow,noindex, nofollow'],
+            'meta_robots' => ['nullable', Rule::in(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'])],
         ]);
 
         $slug = $data['slug'] ?: Str::slug($data['title']);
@@ -379,7 +380,7 @@ class AdminController extends Controller
             'meta_title' => ['nullable', 'string'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
-            'meta_robots' => ['nullable', 'in:index, follow,noindex, follow,index, nofollow,noindex, nofollow'],
+            'meta_robots' => ['nullable', Rule::in(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'])],
         ]);
 
         return [
@@ -447,7 +448,7 @@ class AdminController extends Controller
             'meta_title' => ['nullable', 'string'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
-            'meta_robots' => ['nullable', 'in:index, follow,noindex, follow,index, nofollow,noindex, nofollow'],
+            'meta_robots' => ['nullable', Rule::in(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'])],
         ]);
 
         $data['slug'] = $data['slug'] ?: Str::slug($data['title']);

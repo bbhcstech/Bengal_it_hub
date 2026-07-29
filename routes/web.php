@@ -34,6 +34,7 @@ Route::get('/hackfest-2026/chief-adviser', [PageController::class, 'hackfestChie
 Route::get('/hackfest-2026/speakers', [PageController::class, 'hackfestSpeakers'])->name('event.speakers');
 Route::get('/hackfest-2026/faq', [PageController::class, 'hackfestFaq'])->name('event.faq');
 Route::get('/hackfest-2026/venue', [PageController::class, 'hackfestVenue'])->name('event.venue');
+Route::get('/hackfest-2026/gallery', [PageController::class, 'hackfestGallery'])->name('event.gallery');
 Route::get('/sponsor-form-hackfest-2026', fn () => app(PageController::class)->form('sponsor'))->name('event.sponsor-form');
 Route::get('/sponsor-hackfest-2026', fn () => app(PageController::class)->static('sponsor-hackfest-2026'))->name('event.sponsor');
 Route::get('/contact', fn () => app(PageController::class)->form('contact'))->name('contact');

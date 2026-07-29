@@ -301,6 +301,17 @@
     </div>
 </section>
 
+<section class="bih-section bg-slate-50">
+    <div class="bih-container flex flex-wrap items-center justify-between gap-6 rounded-lg border border-slate-200 bg-white p-8 shadow-sm">
+        <div class="max-w-xl">
+            <p class="bih-eyebrow">Photos &amp; Videos</p>
+            <h2 class="bih-section-title mt-3 text-3xl leading-tight md:text-4xl">See More From PRAGATI 2026</h2>
+            <p class="bih-copy mt-3">Photos and videos from the event, added as real media becomes available.</p>
+        </div>
+        <a class="bih-button" href="{{ route('event.gallery') }}">Show More About HackFest</a>
+    </div>
+</section>
+
 @if($partners->isNotEmpty())
 <section class="bih-hackfest-section py-16">
     <div class="bih-container">

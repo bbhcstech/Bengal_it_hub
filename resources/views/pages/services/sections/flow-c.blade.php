@@ -17,7 +17,7 @@
                         </div>
                         <div class="pb-8 last:pb-0">
                             <h3 class="text-lg font-black text-slate-950">{{ $item['title'] }}</h3>
-                            <p class="bih-copy mt-2 text-sm">{{ $item['body'] }}</p>
+                            <p class="bih-copy mt-2">{{ $item['body'] }}</p>
                         </div>
                     </div>
                 @endforeach

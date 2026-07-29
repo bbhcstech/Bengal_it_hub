@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /bih-console
-Sitemap: https://bengalithub.com/sitemap.xml
+Sitemap: http://localhost/bengal-it-hub/public/sitemap.xml

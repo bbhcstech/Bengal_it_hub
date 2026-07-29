@@ -1,176 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://bengalithub.com/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="http://localhost/bengal-it-hub/public/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://bengalithub.com/</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/services</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/services</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/products</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/products</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/tech-biz</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/tech-biz</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/tech-innovation</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/tech-innovation</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/our-clients</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/our-clients</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/industries</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/industries</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/our-partners</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/our-partners</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/awards-recognition</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/awards-recognition</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/blog</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/blog</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026/chief-guest</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026/chief-guest</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026/chief-adviser</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026/chief-adviser</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026/speakers</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026/speakers</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026/faq</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026/faq</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/hackfest-2026/venue</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/hackfest-2026/venue</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/vision-2030</loc>
+        <loc>http://localhost/bengal-it-hub/public/vision-2030</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/about-us</loc>
+        <loc>http://localhost/bengal-it-hub/public/about-us</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/faq</loc>
+        <loc>http://localhost/bengal-it-hub/public/faq</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/tech-talk</loc>
+        <loc>http://localhost/bengal-it-hub/public/tech-talk</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/terms-conditions</loc>
+        <loc>http://localhost/bengal-it-hub/public/terms-conditions</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/privacy-policy</loc>
+        <loc>http://localhost/bengal-it-hub/public/privacy-policy</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/download-sponsor-brochure</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/download-sponsor-brochure</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/download-final-year-career-template-v1-0</loc>
-        <lastmod>2026-07-29T09:52:40+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/download-final-year-career-template-v1-0</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/sponsor-hackfest-2026</loc>
+        <loc>http://localhost/bengal-it-hub/public/sponsor-hackfest-2026</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/pricing</loc>
+        <loc>http://localhost/bengal-it-hub/public/pricing</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/amenities</loc>
+        <loc>http://localhost/bengal-it-hub/public/amenities</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/ascend</loc>
+        <loc>http://localhost/bengal-it-hub/public/ascend</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://bengalithub.com/vault</loc>
+        <loc>http://localhost/bengal-it-hub/public/vault</loc>
         <lastmod>2026-07-09T10:29:33+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>

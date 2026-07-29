@@ -196,6 +196,21 @@ class PageController extends Controller
         ]);
     }
 
+    public function hackfestGallery(): View
+    {
+        $eventModel = $this->cmsReady('events') ? Event::where('status', 'published')->orderByDesc('id')->first() : null;
+        $galleryItems = $eventModel ? $eventModel->galleryItems()->published()->get() : collect();
+
+        return view('pages.event.gallery', [
+            'seo' => $this->seo(
+                'Gallery | The Bengal HackFest PRAGATI 2026',
+                'Photos and videos from The Bengal HackFest PRAGATI 2026, added as real event media becomes available.',
+            ),
+            'event' => $this->eventDataForFeaturePage(),
+            'galleryItems' => $galleryItems,
+        ]);
+    }
+
     public function hackfestFaq(): View
     {
         return view('pages.event.faq', [

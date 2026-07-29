@@ -12,7 +12,7 @@
                         <article class="rounded-md border border-slate-200 bg-slate-50 p-5 shadow-sm">
                             <p class="text-2xl font-black text-teal-700">{{ $item['step'] }}</p>
                             <h3 class="mt-3 text-xl font-black text-slate-950">{{ $item['title'] }}</h3>
-                            <p class="bih-copy mt-2 text-sm">{{ $item['body'] }}</p>
+                            <p class="bih-copy mt-2">{{ $item['body'] }}</p>
                         </article>
                     @endforeach
                 </div>

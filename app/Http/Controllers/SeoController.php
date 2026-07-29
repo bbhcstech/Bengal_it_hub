@@ -79,6 +79,7 @@ class SeoController extends Controller
             ['loc' => '/hackfest-2026/speakers', 'lastmod' => $now],
             ['loc' => '/hackfest-2026/faq', 'lastmod' => $now],
             ['loc' => '/hackfest-2026/venue', 'lastmod' => $now],
+            ['loc' => '/hackfest-2026/gallery', 'lastmod' => $now],
         ]);
 
         $fallbackSlugs = array_keys(app(PageController::class)->fallbackPages());
@@ -197,8 +198,16 @@ class SeoController extends Controller
         return response($xml, 200)->header('Content-Type', 'application/xml');
     }
 
+    /**
+     * Same local-vs-production root the rest of the app already uses
+     * (AppServiceProvider, layouts/app.blade.php) — otherwise every sitemap
+     * URL would always point at the production domain even while testing
+     * locally, regardless of which host actually served the request.
+     */
     private function publicUrl(string $path): string
     {
-        return rtrim((string) config('bengalhub.public_url'), '/').'/'.ltrim($path, '/');
+        $root = app()->environment('local') ? config('app.url') : config('bengalhub.public_url');
+
+        return rtrim((string) $root, '/').'/'.ltrim($path, '/');
     }
 }

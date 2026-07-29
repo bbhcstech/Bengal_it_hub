@@ -21,6 +21,10 @@
     <label class="font-bold">Counters, one per line as Label|Value<textarea class="mt-2 min-h-28 w-full rounded border p-3" name="counters_text">{{ old('counters_text', collect($event->counters ?? [])->map(fn($v,$k)=>$k.'|'.$v)->implode("\n")) }}</textarea></label>
     <label class="font-bold">Timeline rows, one per line as Label|Date<textarea class="mt-2 min-h-32 w-full rounded border p-3" name="timeline_text">{{ old('timeline_text', $event->timelines?->map(fn($t)=>$t->label.'|'.$t->date)->implode("\n")) }}</textarea></label>
     <label class="font-bold">People rows, one per line as Role|Name|Bio<textarea class="mt-2 min-h-32 w-full rounded border p-3" name="people_text">{{ old('people_text', $event->people?->map(fn($p)=>$p->role_type.'|'.$p->name.'|'.$p->bio)->implode("\n")) }}</textarea></label>
+    <label class="font-bold">Gallery rows, one per line as Type (image or video)|Title|URL|Thumbnail (optional, video only)
+        <textarea class="mt-2 min-h-32 w-full rounded border p-3" name="gallery_text" placeholder="image|Opening Ceremony|https://example.com/photo.jpg|&#10;video|Grand Finale Highlights|https://www.youtube.com/watch?v=XXXXXXXXXXX|https://example.com/thumb.jpg">{{ old('gallery_text', $event->galleryItems?->map(fn($g)=>$g->type.'|'.$g->title.'|'.$g->url.'|'.$g->thumbnail)->implode("\n")) }}</textarea>
+        <span class="mt-1 block text-sm font-normal text-slate-500">Leave empty until you have real photos/videos from the event — the public Gallery page shows an honest "coming soon" state rather than fake placeholders.</span>
+    </label>
     <div class="grid gap-5 md:grid-cols-2">
         <label class="font-bold">SEO Title<input class="mt-2 w-full rounded border p-3" name="meta_title" value="{{ old('meta_title', $event->meta_title) }}"></label>
         <label class="font-bold">SEO Description<textarea class="mt-2 w-full rounded border p-3" name="meta_description">{{ old('meta_description', $event->meta_description) }}</textarea></label>

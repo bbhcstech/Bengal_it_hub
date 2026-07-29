@@ -68,6 +68,15 @@ class RssImportService
                     continue;
                 }
 
+                // Most feeds embed an image directly (media:content, enclosure,
+                // or an <img> in content:encoded), but a few (OpenAI's blog,
+                // Stack Overflow, TechCrunch, ZDNET, and others) publish
+                // text-only RSS with no image reference at all. Only for a
+                // genuinely new article — never for one we're about to skip
+                // as a duplicate — fetch its real page once and use the
+                // og:image it already declares for social sharing.
+                $image = $item['image'] ?: $this->fetchOgImage($item['original_url']);
+
                 TechNews::create([
                     'rss_source_id' => $source->id,
                     'tech_news_category_id' => $source->tech_news_category_id,
@@ -75,7 +84,7 @@ class RssImportService
                     'slug' => $this->uniqueSlug($item['title']),
                     'description' => $item['description'],
                     'content' => $item['content'],
-                    'image' => $item['image'],
+                    'image' => $image,
                     'author' => $item['author'],
                     'original_url' => $item['original_url'],
                     'guid' => $item['guid'],
@@ -217,6 +226,60 @@ class RssImportService
         }
 
         return null;
+    }
+
+    /**
+     * Fetches the real article page and reads the og:image (falling back to
+     * twitter:image) it already declares for its own social share previews —
+     * the real image the publisher uses for that exact article, not a guess.
+     * Bounded timeout and a capped read so one slow/huge page can't stall
+     * the whole sync; any failure just leaves the image blank.
+     */
+    public function fetchOgImage(?string $url): ?string
+    {
+        if (blank($url)) {
+            return null;
+        }
+
+        try {
+            $response = Http::withHeaders([
+                'User-Agent' => 'Mozilla/5.0 (compatible; BengalITHubBot/1.0; +https://bengalithub.com)',
+            ])->timeout(8)->get($url);
+
+            if (! $response->successful()) {
+                return null;
+            }
+
+            $html = substr($response->body(), 0, 300000);
+
+            if (preg_match_all('/<meta\s+[^>]*>/i', $html, $tags)) {
+                $ogImage = null;
+                $twitterImage = null;
+
+                foreach ($tags[0] as $tag) {
+                    if (! preg_match('/content=["\']([^"\']+)["\']/i', $tag, $contentMatch)) {
+                        continue;
+                    }
+
+                    if (preg_match('/(?:property|name)=["\']og:image["\']/i', $tag)) {
+                        $ogImage = $contentMatch[1];
+                        break;
+                    }
+
+                    if ($twitterImage === null && preg_match('/(?:property|name)=["\']twitter:image["\']/i', $tag)) {
+                        $twitterImage = $contentMatch[1];
+                    }
+                }
+
+                $found = $ogImage ?? $twitterImage;
+
+                return $found ? html_entity_decode($found, ENT_QUOTES | ENT_HTML5) : null;
+            }
+
+            return null;
+        } catch (Throwable) {
+            return null;
+        }
     }
 
     private function makeSummary(string $description, string $fallbackContent): ?string

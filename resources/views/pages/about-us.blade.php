@@ -92,6 +92,28 @@
         'Strong connection between technology services and talent development',
         'A Bengal-based team building for national and global opportunities',
     ];
+
+    $teamRoles = [
+        ['icon' => 'chip', 'title' => 'Software & Product Engineering', 'body' => 'Builds and maintains the web, app, and IoT platforms behind Bengal IT Hub\'s software and web development work.'],
+        ['icon' => 'target', 'title' => 'AI & Data Specialists', 'body' => 'Works on Generative AI, Agentic AI, and AI-Marketing — the applied AI capability behind our products and campaigns.'],
+        ['icon' => 'globe', 'title' => 'Design & User Experience', 'body' => 'Shapes the interfaces, UI systems, and product flows across every client build and internal platform.'],
+        ['icon' => 'briefcase', 'title' => 'Business Consulting & Growth', 'body' => 'Leads Biz-Consultation, Biz-Enablement, and Corporate Operations Outsourcing engagements with clients.'],
+        ['icon' => 'graduation', 'title' => 'Talent, Training & Education', 'body' => 'Runs Tech Ed/Fest, Educamp, Eduverse, Groomify, and Staff Augmentation — our skilling and talent pathways.'],
+        ['icon' => 'check', 'title' => 'Client Success & Delivery Operations', 'body' => 'Keeps projects, partnerships, and day-to-day operations running smoothly from kickoff to launch.'],
+    ];
+
+    $officeAddress = $siteBrand['address'] ?? config('bengalhub.brand.address');
+    $officePhone = $siteBrand['phone'] ?? config('bengalhub.brand.phone');
+    $officeMapEmbedUrl = 'https://www.google.com/maps?q='.urlencode($officeAddress).'&output=embed';
+    $officeMapDirectionsUrl = 'https://www.google.com/maps/search/?api=1&query='.urlencode($officeAddress);
+    $officeWhatsAppShareUrl = 'https://wa.me/?text='.urlencode("Bengal IT Hub office location:\n".$officeAddress."\n".$officeMapDirectionsUrl);
+
+    $exploreSections = [
+        ['eyebrow' => 'Services', 'title' => 'Services', 'body' => '10 services spanning technology education, talent development, AI-driven marketing, business consulting, and operations support.', 'icon' => 'chip', 'cta' => 'Explore Services', 'href' => route('services.index')],
+        ['eyebrow' => 'Products', 'title' => 'Products', 'body' => '8 product lines across software, web, app, IoT, personal products, and generative and agentic AI.', 'icon' => 'rocket', 'cta' => 'Explore Products', 'href' => route('products.index')],
+        ['eyebrow' => 'Industries', 'title' => 'Industries', 'body' => '10 industries with 64 specialized focus areas, from real estate and healthcare to banking, logistics, and retail.', 'icon' => 'globe', 'cta' => 'Explore Industries', 'href' => route('industries.index')],
+        ['eyebrow' => 'Our Partners', 'title' => 'Our Partners', 'body' => 'Industry, academic, innovation, hiring, technology, and community partners working alongside us.', 'icon' => 'partners', 'cta' => 'Explore Partners', 'href' => route('our-partners.index')],
+    ];
 @endphp
 
 @section('content')
@@ -196,6 +218,27 @@
     </div>
 </section>
 
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="max-w-3xl">
+            <p class="bih-eyebrow">Our People</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Roles That Power Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">Our team is organized around the work our clients and learners actually need — the roles below reflect the real capability behind our services, not just job titles.</p>
+        </div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach($teamRoles as $role)
+                <article class="bih-card p-6">
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
+                        @include('partials.icon', ['name' => $role['icon']])
+                    </span>
+                    <h3 class="mt-4 text-lg font-black leading-snug text-slate-950">{{ $role['title'] }}</h3>
+                    <p class="bih-copy mt-3 text-sm">{{ $role['body'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 <section class="bg-slate-950 py-16 text-white">
     <div class="bih-container">
         <div class="max-w-3xl">
@@ -238,6 +281,29 @@
     </div>
 </section>
 
+<section class="bih-section bg-slate-50">
+    <div class="bih-container grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+        <div>
+            <p class="bih-eyebrow">Visit Our Office</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Where To Find Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">{{ $officeAddress }}</p>
+            <p class="mt-3 flex items-center gap-2 text-sm font-bold text-slate-600">
+                @include('partials.icon', ['name' => 'chat', 'size' => 'h-4 w-4'])
+                {{ $officePhone }}
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a class="bih-button" href="{{ $officeMapDirectionsUrl }}" target="_blank" rel="noopener">Get Directions</a>
+                <a class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border-2 border-teal-700 px-4 py-3 font-extrabold text-teal-700 transition hover:bg-teal-700 hover:text-white" href="{{ $officeWhatsAppShareUrl }}" target="_blank" rel="noopener">
+                    Share via WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="overflow-hidden rounded-md border border-slate-200 shadow-xl">
+            <iframe class="h-80 w-full sm:h-96" src="{{ $officeMapEmbedUrl }}" title="Bengal IT Hub office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
 <section class="bih-section">
     <div class="bih-container">
         <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
@@ -253,6 +319,30 @@
                     </div>
                 @endforeach
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="max-w-3xl">
+            <p class="bih-eyebrow">Explore More</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Every Side of Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">Dive deeper into what we build, who we build it for, and who we build it with.</p>
+        </div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            @foreach($exploreSections as $item)
+                <article class="group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
+                    <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-700 text-white">
+                        @include('partials.icon', ['name' => $item['icon']])
+                    </span>
+                    <p class="bih-eyebrow mt-4">{{ $item['eyebrow'] }}</p>
+                    <h3 class="mt-1 text-lg font-black leading-snug text-slate-950">{{ $item['title'] }}</h3>
+                    <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">{{ $item['body'] }}</p>
+                    <a class="bih-button mt-5 inline-flex w-fit" href="{{ $item['href'] }}">{{ $item['cta'] }}</a>
+                </article>
+            @endforeach
         </div>
     </div>
 </section>

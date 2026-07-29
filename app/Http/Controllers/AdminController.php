@@ -6,6 +6,7 @@ use App\Models\ActivityLog;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
 use App\Models\Event;
+use App\Models\EventGalleryItem;
 use App\Models\EventTimeline;
 use App\Models\Faq;
 use App\Models\Lead;
@@ -103,7 +104,7 @@ class AdminController extends Controller
 
     public function editEvent(Event $event): View
     {
-        $event->load(['timelines', 'people']);
+        $event->load(['timelines', 'people', 'galleryItems']);
 
         return view('admin.events.form', ['event' => $event]);
     }
@@ -525,6 +526,19 @@ class AdminController extends Controller
         $event->people()->delete();
         foreach ($this->pipeRows($request->string('people_text')) as $index => $row) {
             Person::create(['event_id' => $event->id, 'role_type' => $row[0] ?? 'Speaker', 'name' => $row[1] ?? '', 'bio' => $row[2] ?? '', 'sort_order' => $index + 1]);
+        }
+
+        $event->galleryItems()->delete();
+        foreach ($this->pipeRows($request->string('gallery_text')) as $index => $row) {
+            $type = strtolower(trim($row[0] ?? 'image'));
+            EventGalleryItem::create([
+                'event_id' => $event->id,
+                'type' => in_array($type, ['image', 'video'], true) ? $type : 'image',
+                'title' => $row[1] ?? null,
+                'url' => $row[2] ?? '',
+                'thumbnail' => $row[3] ?? null,
+                'sort_order' => $index + 1,
+            ]);
         }
     }
 

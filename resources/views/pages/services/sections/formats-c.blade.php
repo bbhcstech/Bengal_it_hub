@@ -16,7 +16,7 @@
                         </div>
                         <div class="p-5">
                             <h3 class="bih-section-title text-xl">{{ $format['title'] }}</h3>
-                            <p class="bih-copy mt-2 text-sm">{{ $format['body'] }}</p>
+                            <p class="bih-copy mt-2">{{ $format['body'] }}</p>
                         </div>
                     </article>
                 @endforeach

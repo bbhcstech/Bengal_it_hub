@@ -16,7 +16,7 @@
                             @endif
                         </div>
                         <h3 class="mt-4 text-lg font-black text-slate-950">{{ $item['title'] }}</h3>
-                        <p class="bih-copy mt-2 text-sm">{{ $item['body'] }}</p>
+                        <p class="bih-copy mt-2">{{ $item['body'] }}</p>
                     </div>
                 @endforeach
             </div>

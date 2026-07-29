@@ -53,6 +53,11 @@ class Event extends Model
         return $this->hasMany(Faq::class, 'scope', 'slug')->orderBy('sort_order')->orderBy('id');
     }
 
+    public function galleryItems()
+    {
+        return $this->hasMany(EventGalleryItem::class)->orderBy('sort_order')->orderBy('id');
+    }
+
     public function toPublicArray(): array
     {
         return [

@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="https://bengalithub.com/sitemap-index.xsl"?>
+<?xml-stylesheet type="text/xsl" href="http://localhost/bengal-it-hub/public/sitemap-index.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>https://bengalithub.com/sitemap-pages.xml</loc>
-        <lastmod>2026-07-29T09:52:39+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/sitemap-pages.xml</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://bengalithub.com/sitemap-services.xml</loc>
-        <lastmod>2026-07-29T09:52:39+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/sitemap-services.xml</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://bengalithub.com/sitemap-industries.xml</loc>
-        <lastmod>2026-07-29T09:52:39+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/sitemap-industries.xml</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://bengalithub.com/sitemap-partners.xml</loc>
-        <lastmod>2026-07-29T09:52:39+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/sitemap-partners.xml</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
     </sitemap>
     <sitemap>
-        <loc>https://bengalithub.com/sitemap-tech-news-1.xml</loc>
-        <lastmod>2026-07-29T09:52:39+00:00</lastmod>
+        <loc>http://localhost/bengal-it-hub/public/sitemap-tech-news-1.xml</loc>
+        <lastmod>2026-07-29T10:10:43+00:00</lastmod>
     </sitemap>
 </sitemapindex>

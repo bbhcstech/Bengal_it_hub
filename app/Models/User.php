@@ -61,7 +61,7 @@ class User extends Authenticatable
     {
         return match ($this->role) {
             'super_admin' => true,
-            'content_editor' => in_array($module, ['pages', 'services', 'blog', 'partners', 'faqs', 'media'], true),
+            'content_editor' => in_array($module, ['pages', 'services', 'blog', 'partners', 'faqs', 'media', 'rss'], true),
             'event_manager' => in_array($module, ['events', 'leads', 'media'], true),
             'leads_manager' => $module === 'leads',
             default => false,

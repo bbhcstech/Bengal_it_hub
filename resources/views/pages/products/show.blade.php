@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@include('partials.internal-links', [
+    'links' => [],
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => 'Products', 'url' => route('products.index')],
+        ['name' => $product['title'], 'url' => url()->current()],
+    ],
+])
+
 <section class="relative overflow-hidden bg-slate-950 text-white">
     <img class="absolute inset-0 h-full w-full object-cover opacity-40" src="{{ $product['image'] }}" alt="{{ $product['title'] }} service at Bengal IT Hub">
     <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-slate-950/48"></div>
@@ -65,16 +74,35 @@
     </section>
 @endif
 
+@include('partials.internal-links', [
+    'links' => $internalLinks ?? [],
+    'title' => 'Related Services, Articles, And Case Studies',
+    'intro' => 'Use these links to move from this product line into connected services, topical reading, and Bengal IT Hub proof pages.',
+])
+
 @push('schema')
+    {{--
+        This is a B2B build service ("we build software/apps/AI for you"),
+        not a purchasable good with a price — Product schema without
+        offers/price is invalid for Google's Product rich result and
+        misrepresents what this page actually is. Service is the correct,
+        valid type here, matching services/show.blade.php's own pattern.
+    --}}
     <script type="application/ld+json">
         {!! json_encode([
             '@'.'context' => 'https://schema.org',
-            '@type' => 'Product',
+            '@type' => 'Service',
             'name' => $product['title'],
             'description' => $product['summary'],
             'url' => url()->current(),
-            'brand' => ['@type' => 'Organization', 'name' => 'Bengal IT Hub', 'url' => url('/')],
+            'serviceType' => $product['segment'],
+            'provider' => ['@type' => 'Organization', 'name' => 'Bengal IT Hub', 'url' => url('/')],
         ], JSON_UNESCAPED_SLASHES) !!}
     </script>
+    @include('partials.breadcrumb-schema', ['crumbs' => [
+        ['name' => 'Home', 'url' => url('/')],
+        ['name' => 'Products', 'url' => route('products.index')],
+        ['name' => $product['title'], 'url' => url()->current()],
+    ]])
 @endpush
 @endsection

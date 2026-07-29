@@ -331,19 +331,39 @@
 @endsection
 
 @push('schema')
+    {{--
+        Event.startDate must be ISO 8601 per Google's Event structured data
+        requirements — "20 April 2026" is not valid and would fail the Rich
+        Results Test. Parsed to a date-only ISO string since only the day,
+        not a specific time, is known.
+    --}}
     <script type="application/ld+json">
         {!! json_encode([
             '@'.'context' => 'https://schema.org',
             '@type' => 'Event',
             'name' => $event['name'],
             'description' => $event['tagline'],
-            'startDate' => $event['finale'],
+            'startDate' => \Carbon\Carbon::parse($event['finale'])->toDateString(),
             'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
             'eventStatus' => 'https://schema.org/EventScheduled',
-            'location' => ['@type' => 'Place', 'name' => $event['venue'], 'address' => $event['venue']],
+            'location' => [
+                '@type' => 'Place',
+                'name' => $event['venueDetails']['name'] ?? $event['venue'],
+                'address' => [
+                    '@type' => 'PostalAddress',
+                    'streetAddress' => $event['venueDetails']['campus'] ?? $event['venue'],
+                    'addressLocality' => 'Kolkata',
+                    'addressRegion' => 'West Bengal',
+                    'addressCountry' => 'IN',
+                ],
+            ],
             'organizer' => ['@type' => 'Organization', 'name' => 'Bengal IT Hub', 'url' => url('/')],
         ], JSON_UNESCAPED_SLASHES) !!}
     </script>
+    @include('partials.breadcrumb-schema', ['crumbs' => [
+        ['name' => 'Home', 'url' => url('/')],
+        ['name' => $event['name'], 'url' => url()->current()],
+    ]])
     @if(!empty($event['faqs']))
         <script type="application/ld+json">
             {!! json_encode([

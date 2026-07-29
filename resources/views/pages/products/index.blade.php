@@ -150,4 +150,41 @@
         </div>
     </div>
 </section>
+
+@php
+    $bihProductFaqs = [
+        ['What products does Bengal IT Hub build?', 'Bengal IT Hub builds '.count($products['items']).' product lines: '.collect($products['items'])->pluck('title')->join(', ', ', and ').'.'],
+        ['What technologies does Bengal IT Hub use?', 'Bengal IT Hub builds on '.count($products['technologies']).' core technologies, including '.collect($products['technologies'])->take(4)->join(', ', ', and ').', among others.'],
+        ['Does Bengal IT Hub build AI products?', 'Yes. Generative AI and Agentic AI are both dedicated product lines, covering AI content tools, chat interfaces, and AI agents that plan, call tools, and automate tasks.'],
+        ['Who does Bengal IT Hub build products for?', 'Bengal IT Hub works with startups, founders, institutions, MSMEs, and growing companies that need product planning, engineering, launch support, and long-term improvement.'],
+    ];
+@endphp
+<section class="bih-section bg-white">
+    <div class="bih-container max-w-3xl">
+        <p class="bih-eyebrow">Common Questions</p>
+        <h2 class="bih-section-title mt-3 text-3xl leading-tight md:text-4xl">Products FAQ</h2>
+        <div class="mt-8 grid gap-4">
+            @foreach($bihProductFaqs as [$question, $answer])
+                <details class="rounded-md border border-slate-200 bg-slate-50 p-4">
+                    <summary class="cursor-pointer font-extrabold">{{ $question }}</summary>
+                    <p class="mt-3 leading-7 text-slate-600">{{ $answer }}</p>
+                </details>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+@push('schema')
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@'.'context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => collect($bihProductFaqs)->map(fn ($faq) => [
+                '@type' => 'Question',
+                'name' => $faq[0],
+                'acceptedAnswer' => ['@type' => 'Answer', 'text' => $faq[1]],
+            ])->all(),
+        ], JSON_UNESCAPED_SLASHES) !!}
+    </script>
+@endpush
 @endsection

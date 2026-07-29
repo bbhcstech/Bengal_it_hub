@@ -162,7 +162,15 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        BlogCategory::updateOrCreate(['slug' => 'insights'], ['name' => 'Insights']);
+        foreach ([
+            'insights' => 'Insights',
+            'birthday-celebrations' => 'Birthday Celebrations',
+            'functional-posts' => 'Functional Posts',
+            'interviews' => 'Interview Posts',
+            'new-joiners' => 'New Joiner Posts',
+        ] as $slug => $name) {
+            BlogCategory::updateOrCreate(['slug' => $slug], ['name' => $name]);
+        }
 
         $this->command?->info('Admin login: /bih-console using admin@bengalithub.com / Bengal@12345');
     }

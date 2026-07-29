@@ -32,13 +32,14 @@
             @endif
             <div class="grid gap-2">
                 <label class="font-bold" for="name">Name</label>
-                <input class="bih-field" id="name" name="name" required value="{{ old('name') }}">
-                @error('name')<p class="text-sm text-red-600">{{ $message }}</p>@enderror
+                <input class="bih-field" id="name" name="name" required value="{{ old('name') }}" @error('name') aria-invalid="true" aria-describedby="name-error" @enderror>
+                @error('name')<p id="name-error" class="text-sm text-red-600" role="alert">{{ $message }}</p>@enderror
             </div>
             <div class="grid gap-5 md:grid-cols-2">
                 <div class="grid gap-2">
                     <label class="font-bold" for="email">Email</label>
-                    <input class="bih-field" id="email" name="email" type="email" value="{{ old('email') }}">
+                    <input class="bih-field" id="email" name="email" type="email" value="{{ old('email') }}" @error('email') aria-invalid="true" aria-describedby="email-error" @enderror>
+                    @error('email')<p id="email-error" class="text-sm text-red-600" role="alert">{{ $message }}</p>@enderror
                 </div>
                 <div class="grid gap-2">
                     <label class="font-bold" for="phone">Phone</label>
@@ -46,10 +47,19 @@
                 </div>
             </div>
             @if(in_array($type, ['sponsor', 'academic']))
-                <input class="bih-field" name="{{ $type === 'sponsor' ? 'company' : 'college' }}" placeholder="{{ $type === 'sponsor' ? 'Company / Organization' : 'College / Institution' }}">
+                <div class="grid gap-2">
+                    <label class="font-bold" for="{{ $type === 'sponsor' ? 'company' : 'college' }}">{{ $type === 'sponsor' ? 'Company / Organization' : 'College / Institution' }}</label>
+                    <input class="bih-field" id="{{ $type === 'sponsor' ? 'company' : 'college' }}" name="{{ $type === 'sponsor' ? 'company' : 'college' }}" value="{{ old($type === 'sponsor' ? 'company' : 'college') }}">
+                </div>
             @endif
-            <input class="bih-field" name="subject" placeholder="Subject / Interest" value="{{ request('interest') }}">
-            <textarea class="bih-field min-h-36" name="message" placeholder="Tell us what you need"></textarea>
+            <div class="grid gap-2">
+                <label class="font-bold" for="subject">Subject / Interest</label>
+                <input class="bih-field" id="subject" name="subject" value="{{ old('subject', request('interest')) }}">
+            </div>
+            <div class="grid gap-2">
+                <label class="font-bold" for="message">Message</label>
+                <textarea class="bih-field min-h-36" id="message" name="message" placeholder="Tell us what you need">{{ old('message') }}</textarea>
+            </div>
             <button class="bih-button justify-self-start" type="submit">Submit Enquiry</button>
         </form>
         @endif

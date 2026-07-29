@@ -17,7 +17,7 @@
                         @endforeach
                     </div>
                 @endif
-                @include('partials.section-heading', ['eyebrow' => 'Hosted at', 'title' => $event['venueDetails']['name'] ?? $event['venue'], 'intro' => 'Grand Finale: '.$event['finale']])
+                @include('partials.section-heading', ['level' => 'h1', 'eyebrow' => 'Hosted at', 'title' => $event['venueDetails']['name'] ?? $event['venue'], 'intro' => 'Grand Finale: '.$event['finale']])
                 @if(!empty($event['venueDetails']))
                     <p class="mt-2 font-bold text-slate-700">{{ $event['venueDetails']['campus'] }}, {{ $event['venueDetails']['address'] }}</p>
                     <p class="mt-3 leading-7 text-slate-600">{{ $event['venueDetails']['description'] }}</p>

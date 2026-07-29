@@ -5,6 +5,15 @@
 @endphp
 
 @section('content')
+@include('partials.internal-links', [
+    'links' => [],
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => 'Services', 'url' => route('services.index')],
+        ['name' => $service['title'], 'url' => url()->current()],
+    ],
+])
+
 @if(!empty($service['image']))
     <div class="bih-service-page bih-service-page-{{ $slug }}">
         @include('pages.services.sections.hero-'.$layout['hero'], ['service' => $service])
@@ -40,6 +49,12 @@
     </section>
 @endif
 
+@include('partials.internal-links', [
+    'links' => $internalLinks ?? [],
+    'title' => 'Explore Services, Articles, And Proof Around '.$service['title'],
+    'intro' => 'These internal links connect this service to adjacent offers, product builds, technology reading, and practical Bengal IT Hub proof pages.',
+])
+
 @push('schema')
     <script type="application/ld+json">
         {!! json_encode([
@@ -51,5 +66,10 @@
             'provider' => ['@type' => 'Organization', 'name' => 'Bengal IT Hub', 'url' => url('/')],
         ], JSON_UNESCAPED_SLASHES) !!}
     </script>
+    @include('partials.breadcrumb-schema', ['crumbs' => [
+        ['name' => 'Home', 'url' => url('/')],
+        ['name' => 'Services', 'url' => route('services.index')],
+        ['name' => $service['title'], 'url' => url()->current()],
+    ]])
 @endpush
 @endsection

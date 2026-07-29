@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /bih-console
+Sitemap: https://bengalithub.com/sitemap.xml

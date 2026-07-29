@@ -9,7 +9,7 @@
     <div class="bih-container">
         <a class="bih-link" href="/hackfest-2026">&larr; Back to The Bengal HackFest PRAGATI 2026</a>
         <div class="mt-4">
-            @include('partials.section-heading', ['eyebrow' => 'People', 'title' => 'The Speakers & Panelists', 'intro' => "A polished showcase of the event's expert speakers, panelists, and industry leaders."])
+            @include('partials.section-heading', ['level' => 'h1', 'eyebrow' => 'People', 'title' => 'The Speakers & Panelists', 'intro' => "A polished showcase of the event's expert speakers, panelists, and industry leaders."])
         </div>
 
         <div class="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -25,4 +25,23 @@
         </div>
     </div>
 </section>
+
+@push('schema')
+    @foreach($speakers as $speaker)
+        <script type="application/ld+json">
+            {!! json_encode([
+                '@'.'context' => 'https://schema.org',
+                '@type' => 'Person',
+                'name' => $speaker[1],
+                'jobTitle' => 'Speaker & Panelist, '.$event['name'],
+                'description' => $speaker[2],
+            ], JSON_UNESCAPED_SLASHES) !!}
+        </script>
+    @endforeach
+    @include('partials.breadcrumb-schema', ['crumbs' => [
+        ['name' => 'Home', 'url' => url('/')],
+        ['name' => $event['name'], 'url' => url('/hackfest-2026')],
+        ['name' => 'Speakers & Panelists', 'url' => url()->current()],
+    ]])
+@endpush
 @endsection

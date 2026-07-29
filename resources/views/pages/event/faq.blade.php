@@ -5,7 +5,7 @@
     <div class="bih-container">
         <a class="bih-link" href="/hackfest-2026">&larr; Back to The Bengal HackFest PRAGATI 2026</a>
         <div class="mt-4 max-w-3xl">
-            @include('partials.section-heading', ['eyebrow' => 'Support', 'title' => 'HackFest FAQ', 'intro' => 'Answers to the most common questions about The Bengal HackFest PRAGATI 2026, from registration to judging and sponsorship.'])
+            @include('partials.section-heading', ['level' => 'h1', 'eyebrow' => 'Support', 'title' => 'HackFest FAQ', 'intro' => 'Answers to the most common questions about The Bengal HackFest PRAGATI 2026, from registration to judging and sponsorship.'])
             <div class="mt-6 flex flex-wrap gap-3">
                 <a class="bih-button" href="/hackfest-2026/register">Register as Participant</a>
                 <a class="inline-flex min-h-11 items-center justify-center rounded-md border-2 border-teal-700 px-4 py-3 font-extrabold text-teal-700 transition hover:bg-teal-700 hover:text-white" href="/contact">Still Have Questions?</a>

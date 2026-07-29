@@ -1,0 +1,21 @@
+# This project's real document root is public/. This root-level file only
+# exists to stop the raw project folder (source code, config, .env) from
+# being directory-listed or browsed if the vhost points here instead of
+# at public/ directly. It does not run the application — index.php above
+# handles redirecting a bare visit into public/.
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Exception to the note above: these SEO files must be reachable at the
+    # root URL because crawlers request /sitemap.xml and /robots.txt directly.
+    # Prefer generated public files when they exist, then fall back to Laravel.
+    RewriteCond public/$1 -f
+    RewriteRule ^(sitemap(?:-[^/]+)?\.xml|robots\.txt)$ public/$1 [L]
+
+    # Let SEO endpoints work even when Apache is pointed at the project root
+    # instead of public/. The application routes still generate the response.
+    RewriteRule ^(sitemap|sitemap\.xml|sitemap-[^/]+\.xml|robots\.txt)$ public/index.php [L]
+    RewriteRule ^(sitemap|sitemap-index)\.xsl$ public/$1.xsl [L]
+</IfModule>

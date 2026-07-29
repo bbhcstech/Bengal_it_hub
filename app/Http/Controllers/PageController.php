@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BlogPost;
 use App\Models\Event;
 use App\Models\Faq;
 use App\Models\Page;
 use App\Models\Partner;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Support\InternalLinks;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
 
@@ -43,6 +43,7 @@ class PageController extends Controller
                 $home['meta_title'] ?? 'Future Ready Bengal | AI Hackathon & IT Services | Bengal IT Hub',
                 $home['meta_description'] ?? 'Bengal IT Hub ignites Zen X innovation in Eastern India through advanced IT solutions, SaaS, cloud, AI marketing, talent empowerment, and The Bengal HackFest PRAGATI 2026.',
                 $home['meta_keywords'] ?? null,
+                image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85',
             ),
             'services' => $services,
             'event' => $event,
@@ -81,10 +82,12 @@ class PageController extends Controller
             'seo' => $this->seo(
                 $product['title'].' | Bengal IT Hub Products',
                 $product['summary'],
+                image: $product['image'] ?? null,
             ),
             'product' => $product,
             'technologies' => config('bengalhub.products.technologies'),
             'otherProducts' => $products->where('slug', '!=', $slug)->take(3),
+            'internalLinks' => InternalLinks::forProduct($product),
         ]);
     }
 
@@ -96,6 +99,30 @@ class PageController extends Controller
                 "TechBiz is Bengal IT Hub's technology newsroom, covering partnership meetings, product milestones, and industry collaboration.",
             ),
             'techbiz' => config('bengalhub.techbiz'),
+        ]);
+    }
+
+    public function clients(): View
+    {
+        return view('pages.clients.index', [
+            'seo' => $this->seo(
+                'Our Clients | Bengal IT Hub',
+                'Explore Bengal IT Hub client companies, logos, sectors, deal products, and digital systems delivered across practical business categories.',
+                image: config('bengalhub.clients.intro.image'),
+            ),
+            'clients' => config('bengalhub.clients'),
+        ]);
+    }
+
+    public function awardsRecognition(): View
+    {
+        return view('pages.awards-recognition', [
+            'seo' => $this->seo(
+                'Awards & Recognition | Bengal IT Hub',
+                "Awards, certifications, media mentions, and industry recognition earned by Bengal IT Hub.",
+                image: config('bengalhub.awards.intro.image'),
+            ),
+            'awards' => config('bengalhub.awards'),
         ]);
     }
 
@@ -111,10 +138,12 @@ class PageController extends Controller
                 $serviceModel?->meta_description ?: $service['summary'],
                 $serviceModel?->meta_keywords,
                 $serviceModel?->meta_robots,
+                $service['image'] ?? null,
             ),
             'service' => $service,
             'slug' => $slug,
             'layout' => self::SERVICE_LAYOUTS[$slug] ?? null,
+            'internalLinks' => InternalLinks::forService($slug, $service),
         ]);
     }
 
@@ -208,7 +237,11 @@ class PageController extends Controller
         abort_unless(isset($labels[$type]), 404);
 
         return view('pages.form', [
-            'seo' => $this->seo($labels[$type][0].' | Bengal IT Hub', $labels[$type][1]),
+            'seo' => $this->seo(
+                $labels[$type][0].' | Bengal IT Hub',
+                $labels[$type][1],
+                robots: $type === 'participant' ? 'noindex, follow' : null,
+            ),
             'type' => $type,
             'title' => $labels[$type][0],
             'intro' => $labels[$type][1],
@@ -258,8 +291,7 @@ class PageController extends Controller
             'page' => $page,
             'slug' => $slug,
             'faqs' => $this->faqs('site'),
-            'partners' => $this->cmsReady('partners') ? Partner::published()->whereIn('scope', ['home', 'about'])->orderBy('sort_order')->get() : collect(),
-            'posts' => $this->cmsReady('blog_posts') ? BlogPost::where('status', 'published')->latest('published_at')->take(6)->get() : collect(),
+            'internalLinks' => InternalLinks::forStatic($slug, $page),
         ]);
     }
 
@@ -313,22 +345,18 @@ class PageController extends Controller
         return $faqs->map(fn (Faq $faq) => [$faq->question, $faq->answer])->all();
     }
 
-    private function fallbackPages(): array
+    public function fallbackPages(): array
     {
         return [
             'vision-2030' => ['Vision 2030', 'AI Powered Bengal', 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.'],
             'about-us' => ['About Us', 'About Our AI Talent Platform', 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.'],
-            'our-partners' => ['Our Partners', 'Industry Expert Partners', 'Our partners bring real-world insight, mentorship, strategic guidance, and delivery capability to bridge academic learning with industry innovation.'],
             'faq' => ['FAQ', 'Answers For Visitors', 'Browse common questions about Bengal IT Hub, its services, events, and partnership opportunities.'],
-            'blog' => ['Blog', 'Insights Coming Online', 'The live WordPress site has a placeholder blog link. This Laravel build includes the route and is ready for a full blog CMS module.'],
             'tech-talk' => ['Tech Talk', 'Curated Technology Media', 'Tech Talk currently points to external news portals and can later be brought in-house as a native insights module.'],
             'terms-conditions' => ['Terms & Conditions', 'Effective Date: 18 Feb 2026', 'By accessing the Bengal IT Hub website, registering for events, or participating in any program including The Bengal HackFest PRAGATI 2026, users agree to comply with the published terms.'],
             'privacy-policy' => ['Privacy Policy', 'Effective Date: 2 January 2026', 'Bengal IT Hub is committed to protecting personal information shared through the website, forms, registrations, events, and communication channels.'],
             'download-sponsor-brochure' => ['Download Sponsor Brochure', 'Thank You For Your Interest', 'The sponsorship brochure download flow replaces the WordPress Download Manager plugin with a native Laravel-ready download page.'],
             'download-final-year-career-template-v1-0' => ['Download Final Year Career Template v1.0', 'Career Template Download', 'A native download confirmation page for future student and career resources.'],
             'sponsor-hackfest-2026' => ['Partner With Us', 'Sponsors & Exclusive Partners', 'Bengal HackFest PRAGATI 2026 invites visionary organizations, technology leaders, and innovation-driven companies to partner with one of Eastern India premier student innovation platforms.'],
-            'industries' => ['Industries', 'Industries We Serve', "Bengal IT Hub delivers technology, talent, and growth solutions across IT & Digital Services, SaaS & Cloud, FinTech, Healthcare, EdTech, Manufacturing, E-Commerce, and Corporate Operations."],
-            'awards-recognition' => ['Awards & Recognition', 'Recognized Excellence', 'Bengal IT Hub is building a track record of recognized achievement across innovation, education, and enterprise impact. This page is being prepared with our award and recognition milestones.'],
             'pricing' => ['Pricing', 'Custom Engagement Models', 'Pricing and engagement models can be configured by service, event, or partner requirement.'],
             'amenities' => ['Amenities', 'Spaces And Facilities', 'A flexible facilities page retained for migration compatibility.'],
             'ascend' => ['Ascend', 'Innovation Acceleration', 'A landing page for ideas, incubation, and market acceleration.'],
@@ -341,10 +369,10 @@ class PageController extends Controller
         return Schema::hasTable($table);
     }
 
-    private function seo(string $title, string $description, ?string $keywords = null, ?string $robots = null): array
+    private function seo(string $title, string $description, ?string $keywords = null, ?string $robots = null, ?string $image = null): array
     {
         return compact('title', 'description') + [
-            'image' => asset('logo_bengal_it_hub.png'),
+            'image' => $image ?: asset('logo_bengal_it_hub.svg'),
             'keywords' => $keywords ?: config('bengalhub.seo.keywords'),
             'robots' => $robots ?: config('bengalhub.seo.robots'),
         ];

@@ -42,6 +42,28 @@
         ['Develop', 'Secure Laravel, SaaS, cloud, automation, and analytics systems built for performance.', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85'],
         ['Scale', 'Launch support, training, reporting, and growth campaigns that keep improving outcomes.', 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=900&q=85'],
     ];
+
+    $productCatalog = collect(config('bengalhub.products.items', []))->take(4);
+    $clientCatalog = collect(config('bengalhub.clients.items', []));
+    $industryCatalog = collect(config('bengalhub.industries', []))->take(6);
+    $partnerPage = config('bengalhub.partnersPage', []);
+    $partnerCategories = collect($partnerPage['categories'] ?? [])->take(4);
+    $awards = config('bengalhub.awards', []);
+    $awardCategories = collect($awards['categories'] ?? [])->take(4);
+    $homeFaqs = collect($faqs ?? [])->merge([
+        ['Which product lines can Bengal IT Hub build?', 'We build software, web, app, IoT, digital marketing, generative AI, and agentic AI product lines for startups, institutions, MSMEs, and growing businesses.'],
+        ['Can I see all Bengal IT Hub products from the homepage?', 'Yes. The product preview section links to the full Products page where every product line has a dedicated detail path.'],
+        ['Which industries does Bengal IT Hub support?', 'We support industries such as real estate, healthcare, education, manufacturing, logistics, travel, retail, banking, insurance, telecom, public services, energy, and information services.'],
+        ['How do I explore industry-specific solutions?', 'Use the Industries section on the landing page to open the full industry directory, then choose the industry or focus area that matches your business.'],
+        ['What is the Our Partners section for?', 'It introduces the academic, industry, innovation, hiring, technology, and community partners that collaborate with Bengal IT Hub.'],
+        ['Can my company become a partner?', 'Yes. Companies, colleges, communities, mentors, and technology providers can start through the Our Partners page or the contact form.'],
+        ['What is Tech Innovation?', 'Tech Innovation is Bengal IT Hub\'s technology news and insight hub covering AI, cloud, cybersecurity, software, developer tools, and business technology.'],
+        ['How often is Tech Innovation updated?', 'The Tech Innovation hub is designed as a continuously updated feed, with articles organized by category, source, trend, and search.'],
+        ['What does Awards & Recognition include?', 'Awards & Recognition tracks industry awards, media recognition, certifications, partner recognition, and milestone slots as they are earned.'],
+        ['Why are these sections added to the landing page?', 'They help visitors quickly understand what Bengal IT Hub builds, where it works, who it collaborates with, and how to explore deeper pages.'],
+        ['Will these landing-page sections replace the main pages?', 'No. Each section is only a compact preview with a View More button that redirects visitors to the full main page.'],
+        ['How do I start a project with Bengal IT Hub?', 'Open the contact page, share your business goal, and the team can guide you toward the right product, service, partnership, or event pathway.'],
+    ]);
 @endphp
 
 @section('content')
@@ -58,7 +80,7 @@
             </div>
         </div>
         <div class="bih-hero-showcase">
-            <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Professional digital business workspace with website analytics">
+            <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Professional digital business workspace with website analytics" width="1200" height="800" decoding="async" fetchpriority="high">
             <div class="absolute inset-x-5 bottom-5 grid gap-3 rounded-md bg-white/92 p-4 shadow-xl backdrop-blur sm:grid-cols-4">
                 @foreach($stats as $stat)
                     @php([$value, $label] = explode('|', $stat))
@@ -105,7 +127,7 @@
         <div class="grid gap-4 md:grid-cols-3">
             @foreach($ecosystemImages as [$label, $image])
                 <figure class="bih-photo-panel">
-                    <img src="{{ $image }}" alt="{{ $label }} at Bengal IT Hub">
+                    <img src="{{ $image }}" alt="{{ $label }} at Bengal IT Hub" width="900" height="600" loading="lazy" decoding="async">
                     <span>{{ $label }}</span>
                 </figure>
             @endforeach
@@ -133,7 +155,7 @@
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             @foreach($services as $slug => $service)
                 <a href="/{{ $slug }}" class="bih-card bih-image-card group block overflow-hidden">
-                    <img class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $service['image'] ?? $serviceImages[$slug] ?? 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80' }}" alt="{{ $service['title'] }} service at Bengal IT Hub">
+                    <img class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $service['image'] ?? $serviceImages[$slug] ?? 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80' }}" alt="{{ $service['title'] }} service at Bengal IT Hub" width="900" height="600" loading="lazy" decoding="async">
                     <div class="p-6">
                         <p class="bih-eyebrow">{{ $service['kicker'] }}</p>
                         <h3 class="bih-section-title mt-3 text-2xl">{{ $service['title'] }}</h3>
@@ -151,7 +173,7 @@
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($deliverySteps as [$title, $body, $image])
                 <article class="bih-card bih-image-card overflow-hidden">
-                    <img class="h-48 w-full object-cover" src="{{ $image }}" alt="{{ $title }} phase at Bengal IT Hub">
+                    <img class="h-48 w-full object-cover" src="{{ $image }}" alt="{{ $title }} phase at Bengal IT Hub" width="900" height="600" loading="lazy" decoding="async">
                     <div class="p-5">
                         <p class="bih-eyebrow">0{{ $loop->iteration }}</p>
                         <h3 class="bih-section-title mt-2 text-2xl">{{ $title }}</h3>
@@ -169,10 +191,161 @@
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($impactCards as [$title, $body, $image])
                 <article class="bih-card bih-image-card overflow-hidden">
-                    <img class="h-44 w-full object-cover" src="{{ $image }}" alt="{{ $title }}">
+                    <img class="h-44 w-full object-cover" src="{{ $image }}" alt="{{ $title }}" width="900" height="600" loading="lazy" decoding="async">
                     <div class="p-5">
                         <h3 class="bih-section-title text-xl">{{ $title }}</h3>
                         <p class="bih-copy mt-3">{{ $body }}</p>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            @include('partials.section-heading', ['eyebrow' => 'Our Clients', 'title' => 'Companies Building Real Products With Bengal IT Hub', 'intro' => 'A quick logo wall and client preview from healthcare, education, real estate, commerce, logistics, hospitality, services, energy, and manufacturing.'])
+            <a class="bih-button" href="{{ route('clients.index') }}">View More Clients</a>
+        </div>
+
+        <div class="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            @foreach($clientCatalog as $client)
+                <a href="{{ route('clients.index') }}#client-{{ Str::slug($client['name']) }}" class="group rounded-md border border-slate-200 bg-slate-50 p-4 text-center shadow-sm transition hover:-translate-y-1 hover:border-teal-600/50 hover:bg-white hover:shadow-lg">
+                    <img class="mx-auto h-16 w-16 rounded-md object-cover shadow-sm" src="{{ $client['logo'] }}" alt="{{ $client['name'] }} logo" width="160" height="160" loading="lazy" decoding="async">
+                    <p class="mt-3 text-sm font-black leading-tight text-slate-950 transition group-hover:text-teal-700">{{ $client['name'] }}</p>
+                    <p class="mt-1 text-xs font-bold uppercase text-slate-500">{{ $client['industry'] }}</p>
+                </a>
+            @endforeach
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+            @foreach($clientCatalog->take(3) as $client)
+                <article class="bih-card p-6">
+                    <p class="bih-eyebrow">{{ $client['industry'] }}</p>
+                    <h3 class="bih-section-title mt-3 text-2xl">{{ $client['deal'] }}</h3>
+                    <p class="bih-copy mt-3">{{ $client['product'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            @include('partials.section-heading', ['eyebrow' => 'Products', 'title' => 'Product Lines Built For Real Business Use', 'intro' => 'Explore a compact preview of the platforms, apps, automation tools, and AI-enabled systems Bengal IT Hub can plan, build, launch, and improve.'])
+            <a class="bih-button" href="{{ route('products.index') }}">View More Products</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            @foreach($productCatalog as $product)
+                <a href="{{ route('products.show', $product['slug']) }}" class="bih-card bih-image-card group block overflow-hidden">
+                    <img class="h-44 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $product['image'] }}" alt="{{ $product['title'] }} product line" width="900" height="600" loading="lazy" decoding="async">
+                    <div class="p-5">
+                        <p class="bih-eyebrow">{{ $product['category'] ?? 'Product' }}</p>
+                        <h3 class="bih-section-title mt-2 text-xl">{{ $product['title'] }}</h3>
+                        <p class="bih-copy mt-3">{{ $product['summary'] }}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-slate-50">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            @include('partials.section-heading', ['eyebrow' => 'Industries', 'title' => 'Industry Solutions With Practical Technology Depth', 'intro' => 'From patient systems to manufacturing dashboards and property platforms, each industry page maps the real workflows Bengal IT Hub can digitize.'])
+            <a class="bih-button" href="{{ route('industries.index') }}">View More Industries</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            @foreach($industryCatalog as $slug => $industry)
+                <a href="{{ route('industries.show', $slug) }}" class="bih-card bih-image-card group flex flex-col overflow-hidden">
+                    <img class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $industry['image'] }}" alt="{{ $industry['name'] }} technology solutions" width="900" height="600" loading="lazy" decoding="async">
+                    <div class="flex flex-1 flex-col p-6">
+                        <p class="bih-eyebrow">{{ $industry['kicker'] ?? 'Industry Solutions' }}</p>
+                        <h3 class="bih-section-title mt-2 text-2xl">{{ $industry['name'] }}</h3>
+                        <p class="bih-copy mt-3 flex-1">{{ $industry['summary'] }}</p>
+                        <span class="mt-5 text-sm font-extrabold text-teal-700">Explore industry</span>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            @include('partials.section-heading', ['eyebrow' => 'Our Partners', 'title' => 'Collaboration Across Industry, Academia, And Community', 'intro' => 'A quick look at the partner ecosystem behind Bengal IT Hub, including academic, hiring, innovation, technology, and community pathways.'])
+            <a class="bih-button" href="{{ route('our-partners.index') }}">View More Partners</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            @if($partners->isNotEmpty())
+                @foreach($partners->take(4) as $partner)
+                    <a href="{{ route('our-partners.show', $partner->slug) }}" class="bih-card block p-6 transition hover:-translate-y-1 hover:border-teal-500">
+                        <p class="bih-eyebrow">{{ ucfirst($partner->scope) }} Partner</p>
+                        <h3 class="bih-section-title mt-3 text-xl">{{ $partner->name }}</h3>
+                        <p class="bih-copy mt-3">{{ $partner->description ? Str::limit($partner->description, 120) : 'Partner profile details are being added.' }}</p>
+                    </a>
+                @endforeach
+            @else
+                @foreach($partnerCategories as $category)
+                    <article class="bih-card p-6">
+                        <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
+                            @include('partials.icon', ['name' => $category['icon']])
+                        </span>
+                        <h3 class="bih-section-title mt-4 text-xl">{{ $category['name'] }}</h3>
+                        <p class="bih-copy mt-3">{{ $category['body'] }}</p>
+                    </article>
+                @endforeach
+            @endif
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-slate-950 text-white">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            <div class="max-w-3xl">
+                <p class="text-sm font-black uppercase text-amber-300">Tech Innovation</p>
+                <h2 class="bih-section-title mt-3 text-3xl text-white md:text-5xl">Technology News, Trends, And Future-Ready Signals</h2>
+                <p class="bih-page-intro bih-on-dark mt-4">Follow AI, cloud, software, cybersecurity, and business technology updates through the full Tech Innovation hub.</p>
+            </div>
+            <a class="bih-button" href="{{ route('tech-innovation.index') }}">View More Tech Innovation</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-3">
+            @foreach([
+                ['AI & Automation', 'Track practical artificial intelligence, automation workflows, and new product ideas shaping business growth.', 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85'],
+                ['Cloud & Software', 'Read updates on scalable platforms, SaaS architecture, developer tools, and modern engineering practices.', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85'],
+                ['Security & Digital Growth', 'Stay close to cybersecurity, analytics, digital strategy, and operational technology trends.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85'],
+            ] as [$title, $body, $image])
+                <a href="{{ route('tech-innovation.index') }}" class="group overflow-hidden rounded-md border border-white/10 bg-white/8 transition hover:-translate-y-1 hover:border-teal-300/60">
+                    <img class="h-48 w-full object-cover opacity-90 transition duration-500 group-hover:scale-105" src="{{ $image }}" alt="{{ $title }} in Tech Innovation" width="900" height="600" loading="lazy" decoding="async">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-black text-white">{{ $title }}</h3>
+                        <p class="mt-3 leading-7 text-white/72">{{ $body }}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bg-white">
+    <div class="bih-container">
+        <div class="flex flex-wrap items-end justify-between gap-5">
+            @include('partials.section-heading', ['eyebrow' => 'Awards & Recognition', 'title' => 'Recognition Milestones, Media Mentions, And Proof Points', 'intro' => 'A concise preview of the recognition categories Bengal IT Hub is tracking as the company, HackFest platform, and Vision 2030 ecosystem grow.'])
+            <a class="bih-button" href="{{ route('awards-recognition') }}">View More Recognition</a>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            @foreach($awardCategories as $category)
+                <article class="bih-card bih-image-card overflow-hidden">
+                    <img class="h-36 w-full object-cover" src="{{ $category['image'] }}" alt="{{ $category['title'] }}" width="900" height="600" loading="lazy" decoding="async">
+                    <div class="p-5">
+                        <p class="bih-eyebrow">Recognition</p>
+                        <h3 class="bih-section-title mt-2 text-xl">{{ $category['title'] }}</h3>
+                        <p class="bih-copy mt-3">{{ $category['body'] }}</p>
                     </div>
                 </article>
             @endforeach
@@ -219,7 +392,7 @@
         </div>
         <div class="grid grid-cols-2 gap-4">
             @foreach($hackfestImages as [$alt, $src])
-                <img class="h-44 w-full rounded-md object-cover shadow-lg {{ $loop->first ? 'col-span-2 h-64' : '' }}" src="{{ $src }}" alt="{{ $alt }} at Bengal IT Hub">
+                <img class="h-44 w-full rounded-md object-cover shadow-lg {{ $loop->first ? 'col-span-2 h-64' : '' }}" src="{{ $src }}" alt="{{ $alt }} at Bengal IT Hub" width="900" height="600" loading="lazy" decoding="async">
             @endforeach
         </div>
     </div>
@@ -229,12 +402,12 @@
     <div class="bih-container">
         @include('partials.section-heading', ['eyebrow' => 'Tech Talk', 'title' => 'TechBiz and Tech-Innovation Channels', 'intro' => 'Follow business technology stories, innovation updates, AI, cloud, and future-ready ideas through Bengal IT Hub technology media pathways.'])
         <div class="mt-10 grid gap-5 md:grid-cols-2">
-            <a class="bih-card bih-image-card overflow-hidden" href="https://test1.infoscience.co.in/" target="_blank" rel="noopener">
-                <img class="h-64 w-full object-cover" src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=80" alt="TechBiz business technology news">
+            <a class="bih-card bih-image-card overflow-hidden" href="/tech-biz">
+                <img class="h-64 w-full object-cover" src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=80" alt="TechBiz business technology news" width="900" height="600" loading="lazy" decoding="async">
                 <div class="p-6"><h3 class="bih-section-title text-2xl">TechBiz</h3><p class="bih-copy mt-2">Business technology stories, innovation, and ecosystem updates.</p></div>
             </a>
-            <a class="bih-card bih-image-card overflow-hidden" href="https://test1.infoscience.co.in/" target="_blank" rel="noopener">
-                <img class="h-64 w-full object-cover" src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=900&q=80" alt="Tech innovation and future technology">
+            <a class="bih-card bih-image-card overflow-hidden" href="/tech-innovation">
+                <img class="h-64 w-full object-cover" src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=900&q=80" alt="Tech innovation and future technology" width="900" height="600" loading="lazy" decoding="async">
                 <div class="p-6"><h3 class="bih-section-title text-2xl">Tech-Innovation</h3><p class="bih-copy mt-2">Emerging technology, AI, cloud, and future-ready ideas.</p></div>
             </a>
         </div>
@@ -265,7 +438,26 @@
                 <p class="mt-3 font-black text-slate-950">{{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}</p>
                 <a class="bih-button mt-5" href="/contact">Contact Us Today</a>
             </div>
-            <img class="h-80 w-full rounded-md object-cover shadow-xl" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1100&q=85" alt="Contact Bengal IT Hub team">
+            <img class="h-80 w-full rounded-md object-cover shadow-xl" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1100&q=85" alt="Contact Bengal IT Hub team" width="1100" height="733" loading="lazy" decoding="async">
+        </div>
+    </div>
+</section>
+
+<section id="qa" class="bih-section bg-slate-50">
+    <div class="bih-container">
+        @include('partials.section-heading', ['eyebrow' => 'Questions & Answers', 'title' => 'Common Questions Before You Explore Deeper', 'intro' => 'Quick answers about products, industries, partners, Tech Innovation, recognition, and how visitors should move from the landing page to the right main section.'])
+        <div class="mt-10 grid gap-4 lg:grid-cols-2">
+            @foreach($homeFaqs as $faq)
+                <details class="bih-card group p-6">
+                    <summary class="cursor-pointer list-none text-lg font-black leading-snug text-slate-950">
+                        <span class="inline-flex w-full items-start justify-between gap-4">
+                            <span>{{ $faq[0] }}</span>
+                            <span class="text-teal-700 transition group-open:rotate-45">+</span>
+                        </span>
+                    </summary>
+                    <p class="bih-copy mt-4">{{ $faq[1] }}</p>
+                </details>
+            @endforeach
         </div>
     </div>
 </section>

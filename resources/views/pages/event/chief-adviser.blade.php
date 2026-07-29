@@ -9,7 +9,7 @@
     <div class="bih-container">
         <a class="bih-link" href="/hackfest-2026">&larr; Back to The Bengal HackFest PRAGATI 2026</a>
         <div class="mt-4 max-w-3xl">
-            @include('partials.section-heading', ['eyebrow' => 'The Bengal HackFest PRAGATI 2026', 'title' => 'Chief Adviser', 'intro' => 'Meet the Chief Adviser providing strategic guidance for PRAGATI 2026.'])
+            @include('partials.section-heading', ['level' => 'h1', 'eyebrow' => 'The Bengal HackFest PRAGATI 2026', 'title' => 'Chief Adviser', 'intro' => 'Meet the Chief Adviser providing strategic guidance for PRAGATI 2026.'])
         </div>
 
         @if($person)
@@ -30,4 +30,23 @@
         </div>
     </div>
 </section>
+
+@if($person)
+    @push('schema')
+        <script type="application/ld+json">
+            {!! json_encode([
+                '@'.'context' => 'https://schema.org',
+                '@type' => 'Person',
+                'name' => $person[1],
+                'jobTitle' => 'Chief Adviser, '.$event['name'],
+                'description' => $person[2],
+            ], JSON_UNESCAPED_SLASHES) !!}
+        </script>
+        @include('partials.breadcrumb-schema', ['crumbs' => [
+            ['name' => 'Home', 'url' => url('/')],
+            ['name' => $event['name'], 'url' => url('/hackfest-2026')],
+            ['name' => 'Chief Adviser', 'url' => url()->current()],
+        ]])
+    @endpush
+@endif
 @endsection

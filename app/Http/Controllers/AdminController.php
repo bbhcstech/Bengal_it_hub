@@ -12,11 +12,15 @@ use App\Models\Lead;
 use App\Models\Page;
 use App\Models\Partner;
 use App\Models\Person;
+use App\Models\RssSource;
 use App\Models\Service;
 use App\Models\SiteSetting;
+use App\Models\TechNewsCategory;
+use App\Services\RssImportService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
@@ -195,7 +199,7 @@ class AdminController extends Controller
 
     public function updatePartner(Request $request, Partner $partner): RedirectResponse
     {
-        $partner->update($this->partnerData($request));
+        $partner->update($this->partnerData($request, $partner));
         $this->log('updated', $partner);
 
         return back()->with('status', 'Partner updated.');
@@ -228,6 +232,31 @@ class AdminController extends Controller
         $this->log('created', $post);
 
         return redirect()->route('admin.blog.edit', $post)->with('status', 'Post created.');
+    }
+
+    public function storeBlogCategory(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:120'],
+            'slug' => ['nullable', 'string', 'max:140'],
+        ]);
+
+        $baseSlug = Str::slug($data['slug'] ?: $data['name']);
+        $slug = $baseSlug;
+        $counter = 2;
+
+        while (BlogCategory::where('slug', $slug)->exists()) {
+            $slug = $baseSlug.'-'.$counter++;
+        }
+
+        $category = BlogCategory::create([
+            'name' => $data['name'],
+            'slug' => $slug,
+        ]);
+
+        $this->log('created', $category);
+
+        return back()->with('status', 'Blog section created. You can now assign posts to it.');
     }
 
     public function editPost(BlogPost $post): View
@@ -328,6 +357,94 @@ class AdminController extends Controller
         return back()->with('status', 'Settings updated.');
     }
 
+    public function rssSources(): View
+    {
+        return view('admin.rss-sources.index', [
+            'sources' => RssSource::with('category')->ordered()->get(),
+        ]);
+    }
+
+    public function createRssSource(): View
+    {
+        return view('admin.rss-sources.form', [
+            'source' => new RssSource(),
+            'categories' => TechNewsCategory::orderBy('name')->get(),
+        ]);
+    }
+
+    public function storeRssSource(Request $request): RedirectResponse
+    {
+        $source = RssSource::create($this->rssSourceData($request));
+        $this->log('created', $source);
+
+        return redirect()->route('admin.rss-sources')->with('status', 'RSS source added.');
+    }
+
+    public function editRssSource(RssSource $rssSource): View
+    {
+        return view('admin.rss-sources.form', [
+            'source' => $rssSource,
+            'categories' => TechNewsCategory::orderBy('name')->get(),
+        ]);
+    }
+
+    public function updateRssSource(Request $request, RssSource $rssSource): RedirectResponse
+    {
+        $rssSource->update($this->rssSourceData($request, $rssSource));
+        $this->log('updated', $rssSource);
+
+        return back()->with('status', 'RSS source updated.');
+    }
+
+    public function deleteRssSource(RssSource $rssSource): RedirectResponse
+    {
+        $this->log('deleted', $rssSource, ['name' => $rssSource->name]);
+        $rssSource->delete();
+
+        return back()->with('status', 'RSS source deleted.');
+    }
+
+    public function syncRssSource(RssSource $rssSource, RssImportService $importer): RedirectResponse
+    {
+        $result = $importer->syncSource($rssSource);
+
+        return back()->with('status', $result['status'] === 'success'
+            ? "Synced {$rssSource->name}: imported {$result['imported']}, skipped {$result['skipped']}."
+            : "Sync failed for {$rssSource->name}: ".($result['message'] ?? 'unknown error'));
+    }
+
+    public function syncAllRssSources(RssImportService $importer): RedirectResponse
+    {
+        $results = $importer->syncAll();
+        $imported = collect($results)->sum('imported');
+        $failed = collect($results)->where('status', '!=', 'success')->count();
+
+        return back()->with('status', "Synced ".count($results)." source(s): {$imported} article(s) imported".($failed ? ", {$failed} failed" : '').'.');
+    }
+
+    private function rssSourceData(Request $request, ?RssSource $source = null): array
+    {
+        $data = $request->validate([
+            'tech_news_category_id' => ['nullable', 'exists:tech_news_categories,id'],
+            'name' => ['required', 'string', 'max:160'],
+            'slug' => ['nullable', 'string', 'max:180'],
+            'feed_url' => ['required', 'url', 'max:500'],
+            'logo' => ['nullable', 'string', 'max:500'],
+            'is_active' => ['nullable', 'boolean'],
+            'sort_order' => ['nullable', 'integer', 'min:0'],
+        ]);
+
+        return [
+            'tech_news_category_id' => $data['tech_news_category_id'] ?? null,
+            'name' => $data['name'],
+            'slug' => $data['slug'] ?: Str::slug($data['name']),
+            'feed_url' => $data['feed_url'],
+            'logo' => $data['logo'] ?? null,
+            'is_active' => $request->boolean('is_active'),
+            'sort_order' => $data['sort_order'] ?? $source?->sort_order ?? 0,
+        ];
+    }
+
     private function serviceData(Request $request, ?Service $service = null): array
     {
         $data = $request->validate([
@@ -423,16 +540,39 @@ class AdminController extends Controller
         ]);
     }
 
-    private function partnerData(Request $request): array
+    private function partnerData(Request $request, ?Partner $partner = null): array
     {
-        return $request->validate([
+        $data = $request->validate([
             'name' => ['required', 'string', 'max:160'],
+            'slug' => ['nullable', 'string', 'max:180'],
             'logo' => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'projects_text' => ['nullable', 'string'],
+            'products_text' => ['nullable', 'string'],
+            'clients_count' => ['nullable', 'string', 'max:40'],
+            'employees_count' => ['nullable', 'string', 'max:40'],
             'link_url' => ['nullable', 'string'],
             'scope' => ['required', 'string', 'max:80'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'status' => ['required', 'in:draft,published'],
         ]);
+
+        return [
+            'name' => $data['name'],
+            'slug' => ($data['slug'] ?? null) ?: ($partner?->slug ?: Str::slug($data['name'])),
+            'logo' => $data['logo'] ?? null,
+            'description' => $data['description'] ?? null,
+            'address' => $data['address'] ?? null,
+            'projects' => $this->lines($data['projects_text'] ?? ''),
+            'products' => $this->lines($data['products_text'] ?? ''),
+            'clients_count' => $data['clients_count'] ?? null,
+            'employees_count' => $data['employees_count'] ?? null,
+            'link_url' => $data['link_url'] ?? null,
+            'scope' => $data['scope'],
+            'sort_order' => $data['sort_order'] ?? $partner?->sort_order ?? 0,
+            'status' => $data['status'],
+        ];
     }
 
     private function postData(Request $request, ?BlogPost $post = null): array
@@ -442,6 +582,7 @@ class AdminController extends Controller
             'title' => ['required', 'string', 'max:180'],
             'slug' => ['nullable', 'string', 'max:180'],
             'featured_image' => ['nullable', 'string'],
+            'featured_image_file' => ['nullable', 'image', 'max:4096'],
             'body' => ['nullable', 'string'],
             'published_at' => ['nullable', 'date'],
             'status' => ['required', 'in:draft,scheduled,published'],
@@ -454,6 +595,12 @@ class AdminController extends Controller
         $data['slug'] = $data['slug'] ?: Str::slug($data['title']);
         $data['author_id'] = $post?->author_id ?: Auth::id();
         $data['meta_robots'] = $data['meta_robots'] ?? 'index, follow';
+
+        if ($request->hasFile('featured_image_file')) {
+            $data['featured_image'] = Storage::url($request->file('featured_image_file')->store('blog', 'public'));
+        }
+
+        unset($data['featured_image_file']);
 
         return $data;
     }

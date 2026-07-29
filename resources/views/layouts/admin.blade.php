@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
     <title>BIH Console</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('logo_bengal_it_hub.svg') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -15,6 +16,7 @@
         ['label' => 'Services', 'route' => 'admin.services', 'match' => 'admin.services*', 'icon' => 'SV', 'can' => auth()->user()->canManage('services')],
         ['label' => 'Events', 'route' => 'admin.events', 'match' => 'admin.events*', 'icon' => 'EV', 'can' => auth()->user()->canManage('events')],
         ['label' => 'Blog', 'route' => 'admin.blog', 'match' => 'admin.blog*', 'icon' => 'BL', 'can' => auth()->user()->canManage('blog')],
+        ['label' => 'RSS Sources', 'route' => 'admin.rss-sources', 'match' => 'admin.rss-sources*', 'icon' => 'RS', 'can' => auth()->user()->canManage('rss')],
         ['label' => 'FAQs', 'route' => 'admin.faqs', 'match' => 'admin.faqs*', 'icon' => 'FQ', 'can' => auth()->user()->canManage('pages')],
         ['label' => 'Partners', 'route' => 'admin.partners', 'match' => 'admin.partners*', 'icon' => 'PT', 'can' => auth()->user()->canManage('pages')],
         ['label' => 'Leads', 'route' => 'admin.leads', 'match' => 'admin.leads*', 'icon' => 'LD', 'can' => auth()->user()->canManage('leads')],

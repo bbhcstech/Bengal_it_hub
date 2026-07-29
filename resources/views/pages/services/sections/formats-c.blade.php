@@ -6,7 +6,7 @@
                     <p class="bih-eyebrow">Program Formats</p>
                     <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">The delivery formats that make this service work in practice</h2>
                 </div>
-                <p class="hidden text-sm font-bold text-slate-400 sm:block">Scroll to explore &rarr;</p>
+                <p class="hidden text-sm font-bold text-slate-500 sm:block">Scroll to explore &rarr;</p>
             </div>
             <div class="mt-10 -mx-4 flex gap-5 overflow-x-auto px-4 pb-4 sm:mx-0 sm:px-0">
                 @foreach($service['formats'] as $format)

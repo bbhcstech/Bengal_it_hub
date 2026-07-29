@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@include('partials.internal-links', [
+    'links' => [],
+    'breadcrumbs' => [
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => $page[0], 'url' => url()->current()],
+    ],
+])
+
 <section class="bih-section">
     <div class="bih-container">
         <div class="grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
@@ -34,38 +42,6 @@
                             ], JSON_UNESCAPED_SLASHES) !!}
                         </script>
                     @endpush
-                @elseif($slug === 'our-partners')
-                    <h2 class="text-2xl font-black">Partner Ecosystem</h2>
-                    <div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
-                        @foreach($partners->isNotEmpty() ? $partners : collect(['Industry Experts','Academic Partners','Innovation Partners','Hiring Partners','Technology Partners','Community Partners']) as $partner)
-                            <div class="rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold">{{ is_string($partner) ? $partner : $partner->name }}</div>
-                        @endforeach
-                    </div>
-                @elseif($slug === 'blog')
-                    <h2 class="text-2xl font-black">Blog CMS Ready</h2>
-                    @if($posts->isNotEmpty())
-                        <div class="mt-5 grid gap-4">
-                            @foreach($posts as $post)
-                                <article class="rounded-md border border-slate-200 p-4">
-                                    <h3 class="font-black">{{ $post->title }}</h3>
-                                    <p class="mt-2 text-sm leading-6 text-slate-600">{{ Str::limit(strip_tags($post->body), 140) }}</p>
-                                </article>
-                            @endforeach
-                        </div>
-                    @else
-                        <p class="mt-4 leading-8 text-slate-600">The SRS marks blog as a net-new module. This route is ready for posts, categories, tags, author attribution, RSS, and structured data.</p>
-                    @endif
-                @elseif($slug === 'industries')
-                    <h2 class="text-2xl font-black">Industries We Serve</h2>
-                    <div class="mt-5 grid grid-cols-2 gap-3">
-                        @foreach(['IT & Digital Services', 'SaaS & Cloud Solutions', 'FinTech', 'Healthcare', 'EdTech', 'Manufacturing', 'E-Commerce', 'Corporate Operations'] as $industry)
-                            <div class="rounded-md border border-slate-200 bg-white p-4 text-center font-extrabold">{{ $industry }}</div>
-                        @endforeach
-                    </div>
-                @elseif($slug === 'awards-recognition')
-                    <h2 class="text-2xl font-black">Awards & Recognition Coming Soon</h2>
-                    <p class="mt-4 leading-8 text-slate-600">We're compiling Bengal IT Hub's award wins, media mentions, and industry recognitions into a dedicated showcase. Check back soon.</p>
-                    <a class="bih-button mt-6" href="/contact">Get In Touch</a>
                 @else
                     <h2 class="text-2xl font-black">Laravel Migration Page</h2>
                     <p class="mt-4 leading-8 text-slate-600">This page preserves the current WordPress URL inventory and gives the CMS build a clean place to migrate rich text, images, SEO metadata, and reusable content blocks.</p>
@@ -74,4 +50,10 @@
         </div>
     </div>
 </section>
+
+@include('partials.internal-links', [
+    'links' => $internalLinks ?? [],
+    'title' => 'Related Pages Across Bengal IT Hub',
+    'intro' => 'Use these internal links to continue into connected services, articles, and ecosystem proof pages.',
+])
 @endsection

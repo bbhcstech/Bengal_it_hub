@@ -39,6 +39,15 @@
     @case('adapt')
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.6-5.7M20 12a8 8 0 0 1-13.6 5.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 3v4h-4M7 21v-4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         @break
+    @case('trophy')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-5 5 5 5 0 0 1-5-5V4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M12 13v3.5M9 20h6M8.5 20c0-1.8 1.2-3 3.5-3s3.5 1.2 3.5 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        @break
+    @case('medal')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.5 3h7l-2.4 6.4M8.5 3l2.4 6.4M8.5 3 6 9.4M15.5 3 18 9.4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="15" r="5.4" stroke="currentColor" stroke-width="1.6"/><path d="M12 12.2 12.9 14l1.9.3-1.4 1.4.3 1.9-1.7-.9-1.7.9.3-1.9-1.4-1.4 1.9-.3.9-1.8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+        @break
+    @case('star')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3.5 2.6 5.4 5.9.8-4.3 4.2 1 5.9-5.2-2.8-5.2 2.8 1-5.9-4.3-4.2 5.9-.8L12 3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        @break
     @default
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/></svg>
 @endswitch

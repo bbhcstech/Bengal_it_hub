@@ -134,8 +134,45 @@ class DatabaseSeeder extends Seeder
         }
 
         $pages = [
-            'vision-2030' => ['Vision 2030', 'AI Powered Bengal', 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.'],
-            'about-us' => ['About Us', 'About Our AI Talent Platform', 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.'],
+            'vision' => ['Vision', 'Vision Section', 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.', [
+                'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                'image_alt' => 'Bengal IT Hub innovation workspace',
+                'cta_label' => 'Explore the vision',
+                'cta_url' => '/vision-2030',
+                'stat_value' => '2030',
+                'stat_label' => 'Future roadmap',
+                'cards' => [
+                    'Editable cards powered from the Pages admin panel',
+                    'Image links, headings, body copy, CTA, and proof points can change anytime',
+                    'Landing page updates as soon as the page content is saved',
+                ],
+            ]],
+            'vision-2030' => ['Vision 2030', 'AI Powered Bengal', 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.', [
+                'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                'image_alt' => 'Digital technology lab representing Vision 2030',
+                'cta_label' => 'Open Vision 2030',
+                'cta_url' => '/vision-2030',
+                'stat_value' => '100K+',
+                'stat_label' => 'AI-ready professionals',
+                'cards' => [
+                    '100,000 AI-ready professionals in 5 years',
+                    'Eastern India as a global technology hub',
+                    'Enterprise-ready execution from strategy to delivery',
+                ],
+            ]],
+            'about-us' => ['About Us', 'About Our AI Talent Platform', 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.', [
+                'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                'image_alt' => 'Modern IT workspace for Bengal IT Hub',
+                'cta_label' => 'Read About Us',
+                'cta_url' => '/about-us',
+                'stat_value' => '500+',
+                'stat_label' => 'Projects delivered',
+                'cards' => [
+                    'Custom software, web platforms, SaaS, and AI-enabled growth systems',
+                    'Industry-aligned skilling, internships, events, and talent pathways',
+                    'A Bengal-based team building for national and global opportunities',
+                ],
+            ]],
             'our-partners' => ['Our Partners', 'Industry Expert Partners', 'Our partners bring real-world insight, mentorship, strategic guidance, and delivery capability to bridge academic learning with industry innovation.'],
             'faq' => ['FAQ', 'Answers For Visitors', 'Browse common questions about Bengal IT Hub, its services, events, and partnership opportunities.'],
             'blog' => ['Blog', 'Insights Coming Online', 'The live WordPress site has a placeholder blog link. This Laravel build includes the route and is ready for a full blog CMS module.'],
@@ -154,7 +191,7 @@ class DatabaseSeeder extends Seeder
                 ['slug' => $slug],
                 [
                     'title' => $page[0],
-                    'blocks' => ['eyebrow' => $page[1], 'intro' => $page[2]],
+                    'blocks' => array_replace(['eyebrow' => $page[1], 'intro' => $page[2]], $page[3] ?? []),
                     'meta_title' => $page[0].' | Bengal IT Hub',
                     'meta_description' => $page[2],
                     'status' => 'published',

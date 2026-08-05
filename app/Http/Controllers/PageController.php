@@ -48,6 +48,7 @@ class PageController extends Controller
             'services' => $services,
             'event' => $event,
             'home' => $home,
+            'landingPages' => $this->landingPages(['vision', 'vision-2030', 'about-us']),
             'faqs' => $this->faqs('site'),
             'partners' => $this->cmsReady('partners') ? Partner::published()->hasSlug()->where('scope', 'home')->orderBy('sort_order')->get() : collect(),
         ]);
@@ -360,11 +361,24 @@ class PageController extends Controller
         return $faqs->map(fn (Faq $faq) => [$faq->question, $faq->answer])->all();
     }
 
+    private function landingPages(array $slugs)
+    {
+        if (! $this->cmsReady('pages')) {
+            return collect();
+        }
+
+        return Page::whereIn('slug', $slugs)
+            ->where('status', 'published')
+            ->get()
+            ->keyBy('slug');
+    }
+
     public function fallbackPages(): array
     {
         return [
             'vision-2030' => ['Vision 2030', 'AI Powered Bengal', 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.'],
             'about-us' => ['About Us', 'About Our AI Talent Platform', 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.'],
+            'vision' => ['Vision', 'Vision Section', 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.'],
             'faq' => ['FAQ', 'Answers For Visitors', 'Browse common questions about Bengal IT Hub, its services, events, and partnership opportunities.'],
             'tech-talk' => ['Tech Talk', 'Curated Technology Media', 'Tech Talk currently points to external news portals and can later be brought in-house as a native insights module.'],
             'terms-conditions' => ['Terms & Conditions', 'Effective Date: 18 Feb 2026', 'By accessing the Bengal IT Hub website, registering for events, or participating in any program including The Bengal HackFest PRAGATI 2026, users agree to comply with the published terms.'],

@@ -49,7 +49,7 @@ class PageController extends Controller
             'event' => $event,
             'home' => $home,
             'faqs' => $this->faqs('site'),
-            'partners' => $this->cmsReady('partners') ? Partner::published()->where('scope', 'home')->orderBy('sort_order')->get() : collect(),
+            'partners' => $this->cmsReady('partners') ? Partner::published()->hasSlug()->where('scope', 'home')->orderBy('sort_order')->get() : collect(),
         ]);
     }
 
@@ -159,7 +159,7 @@ class PageController extends Controller
                 $eventModel?->meta_robots,
             ),
             'event' => array_merge(config('bengalhub.event'), $eventModel?->toPublicArray() ?: []),
-            'partners' => $this->cmsReady('partners') ? Partner::published()->where('scope', 'home')->orderBy('sort_order')->get() : collect(),
+            'partners' => $this->cmsReady('partners') ? Partner::published()->hasSlug()->where('scope', 'home')->orderBy('sort_order')->get() : collect(),
         ]);
     }
 
@@ -286,7 +286,7 @@ class PageController extends Controller
                     $pageModel?->meta_keywords,
                     $pageModel?->meta_robots,
                 ),
-                'partners' => $this->cmsReady('partners') ? Partner::published()->whereIn('scope', ['home', 'about'])->orderBy('sort_order')->get() : collect(),
+                'partners' => $this->cmsReady('partners') ? Partner::published()->hasSlug()->whereIn('scope', ['home', 'about'])->orderBy('sort_order')->get() : collect(),
             ]);
         }
 

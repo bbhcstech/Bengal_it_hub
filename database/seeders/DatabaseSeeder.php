@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
         foreach (['Industry Experts', 'Academic Partners', 'Innovation Partners', 'Hiring Partners', 'Technology Partners', 'Community Partners'] as $index => $name) {
             Partner::updateOrCreate(
                 ['name' => $name, 'scope' => 'home'],
-                ['sort_order' => $index + 1, 'status' => 'published'],
+                ['slug' => Str::slug($name), 'sort_order' => $index + 1, 'status' => 'published'],
             );
         }
 

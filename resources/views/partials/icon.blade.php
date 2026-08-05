@@ -12,6 +12,9 @@
     @case('partners')
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="7" cy="12" r="3.3" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="12" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M10.3 12h3.4" stroke="currentColor" stroke-width="1.6"/></svg>
         @break
+    @case('admin')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M5.8 19.5c.8-3.3 3-5 6.2-5s5.4 1.7 6.2 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M17.8 8.8h2.9m-1.4-1.4v2.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        @break
     @case('rocket')
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 17 7 21m8-4 2 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         @break

@@ -207,6 +207,9 @@
         </nav>
         <div class="bih-header-actions">
             <a class="bih-button hidden sm:inline-flex" href="{{ route('contact') }}">Get in Touch</a>
+            <a class="bih-admin-nav-link" href="{{ route('admin.login') }}" aria-label="Admin login" title="Admin login">
+                @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
+            </a>
             <button data-menu-button class="bih-menu-button" aria-label="Open menu" aria-expanded="false">Menu</button>
         </div>
     </div>
@@ -225,6 +228,12 @@
                 @endif
             </div>
         @endforeach
+        <div class="border-t border-slate-200 py-2">
+            <a class="inline-flex items-center gap-2 font-extrabold text-slate-900" href="{{ route('admin.login') }}">
+                @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
+                <span>Admin Login</span>
+            </a>
+        </div>
     </nav>
 </header>
 

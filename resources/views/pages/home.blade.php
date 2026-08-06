@@ -64,6 +64,77 @@
         ['Will these landing-page sections replace the main pages?', 'No. Each section is only a compact preview with a View More button that redirects visitors to the full main page.'],
         ['How do I start a project with Bengal IT Hub?', 'Open the contact page, share your business goal, and the team can guide you toward the right product, service, partnership, or event pathway.'],
     ]);
+
+    $landingPageDefaults = [
+        'vision' => [
+            'title' => 'Vision',
+            'blocks' => [
+                'eyebrow' => 'Vision Section',
+                'intro' => 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.',
+                'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                'image_alt' => 'Bengal IT Hub innovation workspace',
+                'cta_label' => 'Explore the vision',
+                'cta_url' => '/vision-2030',
+                'stat_value' => '2030',
+                'stat_label' => 'Future roadmap',
+                'cards' => [
+                    'Editable cards powered from the Pages admin panel',
+                    'Image links, headings, body copy, CTA, and proof points can change anytime',
+                    'Landing page updates as soon as the page content is saved',
+                ],
+            ],
+        ],
+        'vision-2030' => [
+            'title' => 'Vision 2030',
+            'blocks' => [
+                'eyebrow' => 'AI Powered Bengal',
+                'intro' => 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.',
+                'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                'image_alt' => 'Digital technology lab representing Vision 2030',
+                'cta_label' => 'Open Vision 2030',
+                'cta_url' => '/vision-2030',
+                'stat_value' => '100K+',
+                'stat_label' => 'AI-ready professionals',
+                'cards' => [
+                    '100,000 AI-ready professionals in 5 years',
+                    'Eastern India as a global technology hub',
+                    'Enterprise-ready execution from strategy to delivery',
+                ],
+            ],
+        ],
+        'about-us' => [
+            'title' => 'About Us',
+            'blocks' => [
+                'eyebrow' => 'About Bengal IT Hub',
+                'intro' => 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.',
+                'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                'image_alt' => 'Modern IT workspace for Bengal IT Hub',
+                'cta_label' => 'Read About Us',
+                'cta_url' => '/about-us',
+                'stat_value' => '500+',
+                'stat_label' => 'Projects delivered',
+                'cards' => [
+                    'Custom software, web platforms, SaaS, and AI-enabled growth systems',
+                    'Industry-aligned skilling, internships, events, and talent pathways',
+                    'A Bengal-based team building for national and global opportunities',
+                ],
+            ],
+        ],
+    ];
+
+    $landingPages = $landingPages ?? collect();
+    $landingPage = function (string $slug) use ($landingPages, $landingPageDefaults) {
+        $model = $landingPages->get($slug);
+        $fallback = $landingPageDefaults[$slug];
+
+        return [
+            'title' => $model?->title ?: $fallback['title'],
+            'blocks' => array_replace($fallback['blocks'], $model?->blocks ?? []),
+        ];
+    };
+
+    $visionSection = $landingPage('vision');
+    $visionCards = collect(['vision-2030', 'about-us'])->map(fn ($slug) => $landingPage($slug));
 @endphp
 
 @section('content')
@@ -135,15 +206,48 @@
     </div>
 </section>
 
-<section id="vision" class="bih-section">
+<section id="vision" class="bih-vision-section">
     <div class="bih-container">
-        @include('partials.section-heading', ['eyebrow' => 'Vision 2030', 'title' => 'AI Powered Bengal', 'intro' => 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.'])
-        <div class="mt-10 grid gap-5 md:grid-cols-3">
-            @foreach(['100,000 AI-ready professionals in 5 years', 'Eastern India as a global technology hub', 'Enterprise-ready execution from strategy to delivery'] as $item)
-                <div class="bih-card p-6">
-                    <div class="text-3xl font-black text-teal-700">0{{ $loop->iteration }}</div>
-                    <p class="mt-4 font-bold leading-7 text-slate-800">{{ $item }}</p>
+        <div class="bih-vision-shell">
+            <div class="bih-vision-copy">
+                <p class="bih-eyebrow">{{ $visionSection['blocks']['eyebrow'] }}</p>
+                <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">{{ $visionSection['title'] }}</h2>
+                <p class="bih-page-intro mt-5">{{ $visionSection['blocks']['intro'] }}</p>
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a class="bih-button" href="{{ $visionSection['blocks']['cta_url'] ?: '/vision-2030' }}">{{ $visionSection['blocks']['cta_label'] ?: 'Explore the vision' }}</a>
+                    <a class="bih-button bih-button-secondary" href="/about-us">About Us</a>
                 </div>
+            </div>
+
+            <figure class="bih-vision-feature">
+                <img src="{{ $visionSection['blocks']['image'] }}" alt="{{ $visionSection['blocks']['image_alt'] ?: $visionSection['title'] }}" width="1200" height="800" loading="lazy" decoding="async">
+                <figcaption>
+                    <strong>{{ $visionSection['blocks']['stat_value'] }}</strong>
+                    <span>{{ $visionSection['blocks']['stat_label'] }}</span>
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="bih-vision-card-grid">
+            @foreach($visionCards as $card)
+                @php($blocks = $card['blocks'])
+                <article class="bih-vision-card">
+                    <div class="bih-vision-card-media">
+                        <img src="{{ $blocks['image'] }}" alt="{{ $blocks['image_alt'] ?: $card['title'] }}" width="900" height="600" loading="lazy" decoding="async">
+                        <span>{{ $blocks['stat_value'] }}</span>
+                    </div>
+                    <div class="bih-vision-card-body">
+                        <p class="bih-eyebrow">{{ $blocks['eyebrow'] }}</p>
+                        <h3>{{ $card['title'] }}</h3>
+                        <p>{{ $blocks['intro'] }}</p>
+                        <ul>
+                            @foreach(($blocks['cards'] ?? []) as $point)
+                                <li>{{ $point }}</li>
+                            @endforeach
+                        </ul>
+                        <a href="{{ $blocks['cta_url'] ?: '#' }}">{{ $blocks['cta_label'] ?: 'View More' }}</a>
+                    </div>
+                </article>
             @endforeach
         </div>
     </div>

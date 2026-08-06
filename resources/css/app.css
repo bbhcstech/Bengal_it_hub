@@ -1,11 +1,12 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Manrope', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-sans:
+        "Manrope", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -62,9 +63,9 @@ textarea:focus-visible,
     background: #0f172a;
     color: #fff;
     font-weight: 800;
-    padding: .75rem 1.25rem;
-    border-radius: .5rem;
-    transition: top .15s ease;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: top 0.15s ease;
 }
 
 .bih-skip-link:focus {
@@ -130,16 +131,25 @@ textarea:focus-visible,
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
-        animation-duration: .01ms !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
     }
 }
 
 .bih-shell {
     background:
-        radial-gradient(circle at 8% 4%, rgba(14, 165, 233, .18), transparent 24rem),
-        linear-gradient(135deg, rgba(12, 58, 104, .10), rgba(0, 148, 136, .07) 42%, rgba(255, 183, 3, .10)),
+        radial-gradient(
+            circle at 8% 4%,
+            rgba(14, 165, 233, 0.18),
+            transparent 24rem
+        ),
+        linear-gradient(
+            135deg,
+            rgba(12, 58, 104, 0.1),
+            rgba(0, 148, 136, 0.07) 42%,
+            rgba(255, 183, 3, 0.1)
+        ),
         #eef5fb;
 }
 
@@ -161,14 +171,14 @@ textarea:focus-visible,
     display: flex;
     min-height: 80px;
     align-items: center;
-    gap: .75rem;
+    gap: 0.75rem;
 }
 
 .bih-header-brand {
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    gap: .55rem;
+    gap: 0.55rem;
     min-width: 0;
 }
 
@@ -176,7 +186,40 @@ textarea:focus-visible,
     display: flex;
     flex: none;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
+}
+
+.bih-admin-nav-link {
+    display: inline-grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 0.5rem;
+    color: #0f172a;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 8px 18px rgba(15, 23, 42, 0.08);
+    transition:
+        border-color 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.bih-admin-nav-link:hover {
+    border-color: rgba(15, 118, 110, 0.45);
+    color: #0f766e;
+    background: #ecfdf5;
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(15, 118, 110, 0.16);
+}
+
+.bih-admin-nav-link:focus-visible {
+    outline: 3px solid rgba(20, 184, 166, 0.28);
+    outline-offset: 3px;
 }
 
 .bih-menu-button {
@@ -185,10 +228,10 @@ textarea:focus-visible,
     height: 44px;
     place-items: center;
     border: 1px solid #e2e8f0;
-    border-radius: .375rem;
+    border-radius: 0.375rem;
     color: #0f172a;
     background: #ffffff;
-    font-size: .72rem;
+    font-size: 0.72rem;
     font-weight: 900;
     line-height: 1;
 }
@@ -201,7 +244,7 @@ textarea:focus-visible,
     justify-content: flex-start;
     gap: 0;
     color: #334155;
-    font-size: .74rem;
+    font-size: 0.74rem;
     font-weight: 900;
 }
 
@@ -209,13 +252,13 @@ textarea:focus-visible,
     display: inline-flex;
     align-items: center;
     min-height: 80px;
-    padding-inline: .34rem;
+    padding-inline: 0.34rem;
     color: inherit;
     line-height: 1.1;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    transition: color .18s ease;
+    transition: color 0.18s ease;
 }
 
 .bih-header-nav-link:hover {
@@ -226,26 +269,34 @@ textarea:focus-visible,
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: .4rem;
+    gap: 0.4rem;
     min-height: 36px;
-    border: 1px solid rgba(15, 118, 110, .22);
-    border-radius: .5rem;
-    padding: .45rem .62rem;
+    border: 1px solid rgba(15, 118, 110, 0.22);
+    border-radius: 0.5rem;
+    padding: 0.45rem 0.62rem;
     color: #0f4f49;
     background: linear-gradient(135deg, #ecfeff, #ffffff);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .8), 0 10px 24px rgba(15, 118, 110, .10);
-    font-size: .76rem;
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 10px 24px rgba(15, 118, 110, 0.1);
+    font-size: 0.76rem;
     font-weight: 900;
     line-height: 1.15;
     text-decoration: none;
     white-space: nowrap;
-    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, color .18s ease;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        color 0.18s ease;
 }
 
 .bih-header-call:hover {
     color: #0f172a;
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), 0 14px 30px rgba(15, 118, 110, .16);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+        0 14px 30px rgba(15, 118, 110, 0.16);
     transform: translateY(-1px);
 }
 
@@ -267,19 +318,19 @@ textarea:focus-visible,
 
 @media (min-width: 1440px) {
     .bih-header-nav {
-        font-size: .82rem;
+        font-size: 0.82rem;
     }
 
     .bih-header-nav-link {
-        padding-inline: .52rem;
+        padding-inline: 0.52rem;
     }
 }
 
 .bih-card {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .96);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, .10);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.1);
 }
 
 .bih-card h2,
@@ -296,20 +347,23 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    border-radius: .375rem;
-    padding: .8rem 1rem;
+    border-radius: 0.375rem;
+    padding: 0.8rem 1rem;
     font-weight: 800;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
     background: #f59e0b;
     color: #102033;
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
 }
 
 .bih-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(255, 183, 3, .25);
+    box-shadow: 0 14px 28px rgba(255, 183, 3, 0.25);
     background: #fbbf24;
 }
 
@@ -320,7 +374,7 @@ textarea:focus-visible,
 
 .bih-button-secondary:hover {
     background: #115e59;
-    box-shadow: 0 14px 28px rgba(15, 118, 110, .22);
+    box-shadow: 0 14px 28px rgba(15, 118, 110, 0.22);
 }
 
 .bih-section {
@@ -329,7 +383,7 @@ textarea:focus-visible,
 
 .bih-eyebrow {
     color: #0f766e;
-    font-size: .78rem;
+    font-size: 0.78rem;
     font-weight: 900;
     letter-spacing: 0;
     text-transform: uppercase;
@@ -361,7 +415,7 @@ textarea:focus-visible,
 }
 
 .bih-on-dark {
-    color: rgba(255, 255, 255, .92);
+    color: rgba(255, 255, 255, 0.92);
 }
 
 .bih-link {
@@ -375,13 +429,225 @@ textarea:focus-visible,
     text-decoration: underline;
 }
 
+.bih-vision-section {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+    background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(255, 255, 255, 0) 44%),
+        linear-gradient(180deg, #ffffff 0%, #eef5fb 100%);
+}
+
+.bih-vision-shell {
+    display: grid;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.bih-vision-copy {
+    align-self: center;
+}
+
+.bih-vision-feature,
+.bih-vision-card {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.13);
+}
+
+.bih-vision-feature {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+}
+
+.bih-vision-feature img,
+.bih-vision-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bih-vision-feature figcaption {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    display: grid;
+    gap: 0.15rem;
+    width: min(12rem, calc(100% - 2rem));
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 1rem;
+    color: #0f172a;
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(14px);
+}
+
+.bih-vision-feature strong {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #0f766e;
+}
+
+.bih-vision-feature span {
+    font-size: 0.75rem;
+    font-weight: 900;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: #475569;
+}
+
+.bih-vision-card-grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.bih-vision-card {
+    display: grid;
+    overflow: hidden;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.bih-vision-card:hover {
+    border-color: rgba(15, 118, 110, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 34px 80px rgba(15, 118, 110, 0.15);
+}
+
+.bih-vision-card-media {
+    position: relative;
+    min-height: 16rem;
+}
+
+.bih-vision-card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.02), rgba(15, 23, 42, 0.5));
+}
+
+.bih-vision-card-media span {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    border-radius: 0.5rem;
+    background: #f59e0b;
+    padding: 0.65rem 0.8rem;
+    color: #102033;
+    font-weight: 900;
+    line-height: 1;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.22);
+}
+
+.bih-vision-card-body {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.bih-vision-card-body h3 {
+    margin-top: 0.55rem;
+    color: #0f172a;
+    font-size: clamp(1.55rem, 3vw, 2.35rem);
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.bih-vision-card-body p:not(.bih-eyebrow) {
+    margin-top: 0.8rem;
+    color: #24364d;
+    line-height: 1.75;
+}
+
+.bih-vision-card-body ul {
+    display: grid;
+    gap: 0.65rem;
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.bih-vision-card-body li {
+    position: relative;
+    padding-left: 1.35rem;
+    color: #334155;
+    font-size: 0.94rem;
+    font-weight: 800;
+    line-height: 1.55;
+}
+
+.bih-vision-card-body li::before {
+    content: "";
+    position: absolute;
+    top: 0.62rem;
+    left: 0;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: #0f766e;
+}
+
+.bih-vision-card-body a {
+    width: fit-content;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    color: #0f766e;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.bih-vision-card-body a:hover {
+    color: #0f172a;
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .bih-vision-card {
+        grid-template-columns: 0.82fr 1.18fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bih-vision-shell {
+        grid-template-columns: 0.86fr 1.14fr;
+    }
+
+    .bih-vision-feature {
+        min-height: 31rem;
+    }
+
+    .bih-vision-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 1.75rem;
+    }
+
+    .bih-vision-card {
+        grid-template-columns: 0.9fr 1.1fr;
+    }
+}
+
 .bih-hero {
     min-height: 76vh;
     display: grid;
     align-items: center;
     background:
-        linear-gradient(90deg, rgba(10, 22, 45, .92), rgba(10, 22, 45, .72), rgba(10, 22, 45, .36)),
-        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=80') center/cover;
+        linear-gradient(
+            90deg,
+            rgba(10, 22, 45, 0.92),
+            rgba(10, 22, 45, 0.72),
+            rgba(10, 22, 45, 0.36)
+        ),
+        url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1800&q=80")
+            center/cover;
     color: white;
 }
 
@@ -389,8 +655,9 @@ textarea:focus-visible,
     position: relative;
     overflow: hidden;
     background:
-        linear-gradient(90deg, rgba(2, 6, 23, .92), rgba(2, 6, 23, .78)),
-        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1900&q=85') center/cover;
+        linear-gradient(90deg, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.78)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1900&q=85")
+            center/cover;
     color: white;
     box-shadow: inset 0 -96px 0 #eef5fb;
 }
@@ -416,8 +683,13 @@ textarea:focus-visible,
 
 .bih-photo-band {
     background:
-        linear-gradient(135deg, rgba(15, 23, 42, .96), rgba(15, 118, 110, .88)),
-        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85') center/cover;
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.96),
+            rgba(15, 118, 110, 0.88)
+        ),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85")
+            center/cover;
     color: white;
 }
 
@@ -431,15 +703,15 @@ textarea:focus-visible,
     position: relative;
     min-height: 260px;
     overflow: hidden;
-    border-radius: .5rem;
-    box-shadow: 0 22px 54px rgba(2, 6, 23, .20);
+    border-radius: 0.5rem;
+    box-shadow: 0 22px 54px rgba(2, 6, 23, 0.2);
 }
 
 .bih-photo-panel::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent, rgba(2, 6, 23, .58));
+    background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.58));
 }
 
 .bih-photo-panel img {
@@ -462,19 +734,19 @@ textarea:focus-visible,
 .bih-service-hero-visual {
     position: relative;
     overflow: visible;
-    border: 1px solid rgba(255, 255, 255, .14);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
     margin-bottom: 1.2rem;
-    padding: .75rem .75rem 5.1rem;
-    box-shadow: 0 30px 70px rgba(2, 6, 23, .36);
+    padding: 0.75rem 0.75rem 5.1rem;
+    box-shadow: 0 30px 70px rgba(2, 6, 23, 0.36);
     backdrop-filter: blur(14px);
 }
 
 .bih-service-hero-visual img {
     display: block;
-    border-radius: .5rem;
-    box-shadow: 0 18px 38px rgba(2, 6, 23, .26);
+    border-radius: 0.5rem;
+    box-shadow: 0 18px 38px rgba(2, 6, 23, 0.26);
 }
 
 .bih-service-hero-stats {
@@ -484,39 +756,54 @@ textarea:focus-visible,
     left: 1.25rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: .75rem;
+    gap: 0.75rem;
 }
 
 .bih-service-hero-stat-card {
     min-width: 0;
     min-height: 126px;
-    border: 1px solid rgba(255, 255, 255, .24);
-    border-radius: .5rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 0.5rem;
     background:
-        linear-gradient(135deg, rgba(15, 118, 110, .98), rgba(2, 132, 199, .95)),
+        linear-gradient(
+            135deg,
+            rgba(15, 118, 110, 0.98),
+            rgba(2, 132, 199, 0.95)
+        ),
         #0f766e;
-    padding: .95rem .85rem;
+    padding: 0.95rem 0.85rem;
     color: #ffffff;
-    box-shadow: 0 22px 44px rgba(2, 6, 23, .28);
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow: 0 22px 44px rgba(2, 6, 23, 0.28);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .bih-service-hero-stat-card:nth-child(2) {
     background:
-        linear-gradient(135deg, rgba(16, 32, 51, .98), rgba(15, 118, 110, .92)),
+        linear-gradient(
+            135deg,
+            rgba(16, 32, 51, 0.98),
+            rgba(15, 118, 110, 0.92)
+        ),
         #102033;
 }
 
 .bih-service-hero-stat-card:nth-child(3) {
     background:
-        linear-gradient(135deg, rgba(245, 158, 11, .98), rgba(180, 83, 9, .96)),
+        linear-gradient(
+            135deg,
+            rgba(245, 158, 11, 0.98),
+            rgba(180, 83, 9, 0.96)
+        ),
         #b45309;
 }
 
 .bih-service-hero-stat-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(255, 255, 255, .55);
-    box-shadow: 0 30px 58px rgba(2, 6, 23, .34);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 30px 58px rgba(2, 6, 23, 0.34);
 }
 
 .bih-service-hero-stat-card p {
@@ -532,9 +819,9 @@ textarea:focus-visible,
 
 .bih-service-hero-stat-card span {
     display: block;
-    margin-top: .65rem;
-    color: rgba(255, 255, 255, .86);
-    font-size: .74rem;
+    margin-top: 0.65rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.74rem;
     font-weight: 900;
     line-height: 1.3;
     text-transform: uppercase;
@@ -545,21 +832,24 @@ textarea:focus-visible,
     position: relative;
     min-height: 520px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .18);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .08);
-    box-shadow: 0 30px 70px rgba(2, 6, 23, .34);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 30px 70px rgba(2, 6, 23, 0.34);
 }
 
 .bih-image-card {
     overflow: hidden;
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .bih-image-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, .15);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.15);
 }
 
 .bih-filter-btn {
@@ -567,18 +857,21 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     min-height: 40px;
-    border: 1px solid rgba(20, 33, 61, .14);
+    border: 1px solid rgba(20, 33, 61, 0.14);
     border-radius: 999px;
     background: #ffffff;
-    padding: .55rem 1.1rem;
+    padding: 0.55rem 1.1rem;
     color: #475569;
-    font-size: .85rem;
+    font-size: 0.85rem;
     font-weight: 800;
-    transition: background .18s ease, color .18s ease, border-color .18s ease;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .bih-filter-btn:hover {
-    border-color: rgba(15, 118, 110, .4);
+    border-color: rgba(15, 118, 110, 0.4);
     color: #0f766e;
 }
 
@@ -596,8 +889,7 @@ textarea:focus-visible,
 .bih-tech-innovation-hero {
     position: relative;
     overflow: hidden;
-    background:
-        linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #edfafa 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #edfafa 100%);
 }
 
 .bih-tech-innovation-hero::after {
@@ -606,15 +898,15 @@ textarea:focus-visible,
     inset-inline: 0;
     bottom: 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
 }
 
 .bih-tech-search {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .84);
-    padding: .45rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .10);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.84);
+    padding: 0.45rem;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
 }
 
 .bih-tech-search .bih-field {
@@ -633,20 +925,23 @@ textarea:focus-visible,
 }
 
 .bih-tech-feature {
-    border-color: rgba(15, 118, 110, .20);
-    box-shadow: 0 24px 64px rgba(15, 23, 42, .12);
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    border-color: rgba(15, 118, 110, 0.2);
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .bih-tech-feature:hover {
     transform: translateY(-3px);
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: 0 30px 72px rgba(15, 23, 42, .16);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow: 0 30px 72px rgba(15, 23, 42, 0.16);
 }
 
 .bih-tech-feature img,
 .bih-tech-news-card img {
-    transition: transform .28s ease;
+    transition: transform 0.28s ease;
 }
 
 .bih-tech-feature:hover img,
@@ -655,28 +950,27 @@ textarea:focus-visible,
 }
 
 .bih-tech-feed {
-    background:
-        linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
+    background: linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
 }
 
 .bih-tech-filter {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .82);
-    padding: .75rem;
-    box-shadow: 0 12px 34px rgba(15, 23, 42, .07);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.82);
+    padding: 0.75rem;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.07);
 }
 
 .bih-tech-filter .bih-filter-btn {
-    border-radius: .375rem;
+    border-radius: 0.375rem;
 }
 
 .bih-tech-controls {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1rem;
-    box-shadow: 0 12px 34px rgba(15, 23, 42, .07);
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.07);
 }
 
 .bih-tech-controls label {
@@ -696,14 +990,16 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     min-height: 34px;
-    border-radius: .375rem;
+    border-radius: 0.375rem;
     background: #0f766e;
-    padding: .45rem .75rem;
+    padding: 0.45rem 0.75rem;
     color: #ffffff;
     font-weight: 900;
     text-decoration: none;
     white-space: nowrap;
-    transition: background .18s ease, transform .18s ease;
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease;
 }
 
 .bih-tech-read-more:hover {
@@ -712,7 +1008,7 @@ textarea:focus-visible,
 }
 
 .bih-tech-sidebar .bih-card {
-    box-shadow: 0 18px 44px rgba(15, 23, 42, .09);
+    box-shadow: 0 18px 44px rgba(15, 23, 42, 0.09);
 }
 
 .bih-tech-sidebar a {
@@ -720,8 +1016,7 @@ textarea:focus-visible,
 }
 
 .bih-tech-cta {
-    background:
-        linear-gradient(135deg, #102033 0%, #0f172a 48%, #0f766e 100%);
+    background: linear-gradient(135deg, #102033 0%, #0f172a 48%, #0f766e 100%);
 }
 
 .bih-industry-hero {
@@ -733,29 +1028,29 @@ textarea:focus-visible,
     position: absolute;
     inset: auto 0 0;
     height: 9rem;
-    background: linear-gradient(180deg, transparent, rgba(15, 23, 42, .46));
+    background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.46));
     pointer-events: none;
     z-index: 0;
 }
 
 .bih-industry-hero img {
-    opacity: .48;
+    opacity: 0.48;
     filter: saturate(1.08) contrast(1.04);
 }
 
 .bih-industry-hero-panel {
     align-self: end;
-    border: 1px solid rgba(255, 255, 255, .18);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
     padding: 1.25rem;
-    box-shadow: 0 24px 64px rgba(2, 6, 23, .28);
+    box-shadow: 0 24px 64px rgba(2, 6, 23, 0.28);
     backdrop-filter: blur(14px);
 }
 
 .bih-industry-hero-panel p {
     color: #fbbf24;
-    font-size: .78rem;
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -764,7 +1059,7 @@ textarea:focus-visible,
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, .14);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
     margin-top: 1rem;
     padding-top: 1rem;
 }
@@ -775,62 +1070,72 @@ textarea:focus-visible,
     height: 3.2rem;
     flex: none;
     place-items: center;
-    border-radius: .5rem;
-    background: rgba(15, 118, 110, .92);
+    border-radius: 0.5rem;
+    background: rgba(15, 118, 110, 0.92);
     color: #ffffff;
     font-size: 1.25rem;
     font-weight: 900;
 }
 
 .bih-industry-hero-panel strong {
-    color: rgba(255, 255, 255, .90);
-    font-size: .95rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
     line-height: 1.45;
 }
 
 .bih-industry-focus {
-    background:
-        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .bih-industry-branch-card {
     color: inherit;
     text-decoration: none;
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .bih-industry-branch-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: 0 26px 64px rgba(15, 23, 42, .15);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow: 0 26px 64px rgba(15, 23, 42, 0.15);
 }
 
 .bih-industry-card-link {
     width: max-content;
-    border-radius: .375rem;
+    border-radius: 0.375rem;
     background: #ecfdf5;
-    padding: .55rem .75rem;
+    padding: 0.55rem 0.75rem;
 }
 
 .bih-industry-breadcrumb {
-    border-bottom: 1px solid rgba(15, 23, 42, .06);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .bih-industry-sub-hero {
     background:
-        radial-gradient(circle at 92% 12%, rgba(20, 184, 166, .13), transparent 22rem),
+        radial-gradient(
+            circle at 92% 12%,
+            rgba(20, 184, 166, 0.13),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .bih-industry-sub-visual {
-    border: 1px solid rgba(20, 33, 61, .10);
+    border: 1px solid rgba(20, 33, 61, 0.1);
 }
 
 .bih-industry-sub-visual::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 52%, rgba(15, 23, 42, .18));
+    background: linear-gradient(
+        180deg,
+        transparent 52%,
+        rgba(15, 23, 42, 0.18)
+    );
     pointer-events: none;
 }
 
@@ -843,8 +1148,16 @@ textarea:focus-visible,
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 8% 10%, rgba(20, 184, 166, .16), transparent 24rem),
-        radial-gradient(circle at 92% 0, rgba(245, 158, 11, .14), transparent 22rem),
+        radial-gradient(
+            circle at 8% 10%,
+            rgba(20, 184, 166, 0.16),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 92% 0,
+            rgba(245, 158, 11, 0.14),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 58%, #edfafa 100%);
 }
 
@@ -854,21 +1167,21 @@ textarea:focus-visible,
     inset-inline: 0;
     bottom: 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
 }
 
 .bih-industries-hero-panel {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .86);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.86);
     padding: 1.25rem;
-    box-shadow: 0 22px 54px rgba(15, 23, 42, .12);
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.12);
     backdrop-filter: blur(14px);
 }
 
 .bih-industries-hero-panel p {
     color: #0f766e;
-    font-size: .78rem;
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -877,7 +1190,7 @@ textarea:focus-visible,
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-top: 1px solid rgba(15, 23, 42, .08);
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
     margin-top: 1rem;
     padding-top: 1rem;
 }
@@ -888,7 +1201,7 @@ textarea:focus-visible,
     height: 3.25rem;
     flex: none;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #0f766e, #0284c7);
     color: #ffffff;
     font-size: 1.2rem;
@@ -897,30 +1210,30 @@ textarea:focus-visible,
 
 .bih-industries-hero-panel strong {
     color: #0f172a;
-    font-size: .95rem;
+    font-size: 0.95rem;
     line-height: 1.45;
 }
 
 .bih-industries-approach {
-    border-bottom: 1px solid rgba(15, 23, 42, .07);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.07);
 }
 
 .bih-industries-approach article {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1.25rem;
-    box-shadow: 0 14px 36px rgba(15, 23, 42, .07);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
 }
 
 .bih-industries-approach span {
     color: #0f766e;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 900;
 }
 
 .bih-industries-approach h2 {
-    margin-top: .45rem;
+    margin-top: 0.45rem;
     color: #0f172a;
     font-size: 1.05rem;
     font-weight: 900;
@@ -928,27 +1241,29 @@ textarea:focus-visible,
 }
 
 .bih-industries-approach p {
-    margin-top: .65rem;
+    margin-top: 0.65rem;
     color: #475569;
-    font-size: .95rem;
+    font-size: 0.95rem;
     line-height: 1.7;
 }
 
 .bih-industries-grid-section {
-    background:
-        linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
+    background: linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
 }
 
 .bih-industries-card {
     color: inherit;
     text-decoration: none;
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .bih-industries-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: 0 28px 68px rgba(15, 23, 42, .16);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow: 0 28px 68px rgba(15, 23, 42, 0.16);
 }
 
 .bih-industries-card-link {
@@ -956,16 +1271,23 @@ textarea:focus-visible,
 }
 
 .bih-industries-cta {
-    background:
-        linear-gradient(135deg, #102033 0%, #0f172a 48%, #0f766e 100%);
+    background: linear-gradient(135deg, #102033 0%, #0f172a 48%, #0f766e 100%);
 }
 
 .bih-blog-hero {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 10% 10%, rgba(20, 184, 166, .16), transparent 24rem),
-        radial-gradient(circle at 92% 0, rgba(245, 158, 11, .14), transparent 22rem),
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(20, 184, 166, 0.16),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 92% 0,
+            rgba(245, 158, 11, 0.14),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 58%, #edfafa 100%);
 }
 
@@ -975,21 +1297,21 @@ textarea:focus-visible,
     inset-inline: 0;
     bottom: 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
 }
 
 .bih-blog-hero-panel {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .88);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.88);
     padding: 1.25rem;
-    box-shadow: 0 22px 54px rgba(15, 23, 42, .12);
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.12);
     backdrop-filter: blur(14px);
 }
 
 .bih-blog-hero-panel p {
     color: #0f766e;
-    font-size: .78rem;
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -998,7 +1320,7 @@ textarea:focus-visible,
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-top: 1px solid rgba(15, 23, 42, .08);
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
     margin-top: 1rem;
     padding-top: 1rem;
 }
@@ -1009,7 +1331,7 @@ textarea:focus-visible,
     height: 3.25rem;
     flex: none;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #0f766e, #0284c7);
     color: #ffffff;
     font-size: 1.1rem;
@@ -1018,39 +1340,41 @@ textarea:focus-visible,
 
 .bih-blog-hero-panel strong {
     color: #0f172a;
-    font-size: .95rem;
+    font-size: 0.95rem;
     line-height: 1.45;
 }
 
 .bih-blog-nav {
-    border: 1px solid rgba(20, 33, 61, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .86);
-    padding: .75rem;
-    box-shadow: 0 12px 34px rgba(15, 23, 42, .07);
+    border: 1px solid rgba(20, 33, 61, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.86);
+    padding: 0.75rem;
+    box-shadow: 0 12px 34px rgba(15, 23, 42, 0.07);
 }
 
 .bih-blog-nav .bih-filter-btn {
-    border-radius: .375rem;
+    border-radius: 0.375rem;
 }
 
 .bih-blog-latest {
-    background:
-        linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
+    background: linear-gradient(180deg, #f8fafc 0%, #eef5fb 100%);
 }
 
 .bih-blog-post-card,
 .bih-blog-section-card {
     color: inherit;
     text-decoration: none;
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        box-shadow 0.22s ease;
 }
 
 .bih-blog-post-card:hover,
 .bih-blog-section-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(15, 118, 110, .42);
-    box-shadow: 0 28px 68px rgba(15, 23, 42, .16);
+    border-color: rgba(15, 118, 110, 0.42);
+    box-shadow: 0 28px 68px rgba(15, 23, 42, 0.16);
 }
 
 .bih-blog-story-section {
@@ -1058,12 +1382,11 @@ textarea:focus-visible,
 }
 
 .bih-blog-story-section:nth-of-type(even) {
-    background:
-        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .bih-blog-section-card img {
-    transition: transform .28s ease;
+    transition: transform 0.28s ease;
 }
 
 .bih-blog-section-card:hover img {
@@ -1075,8 +1398,16 @@ textarea:focus-visible,
     overflow: hidden;
     padding-block: clamp(3.4rem, 7vw, 6rem);
     background:
-        radial-gradient(circle at 8% 14%, rgba(20, 184, 166, .18), transparent 24rem),
-        radial-gradient(circle at 88% 8%, rgba(245, 158, 11, .15), transparent 22rem),
+        radial-gradient(
+            circle at 8% 14%,
+            rgba(20, 184, 166, 0.18),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 88% 8%,
+            rgba(245, 158, 11, 0.15),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 48%, #ecfeff 100%);
 }
 
@@ -1085,7 +1416,7 @@ textarea:focus-visible,
     position: absolute;
     inset: auto 0 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
     pointer-events: none;
 }
 
@@ -1097,37 +1428,41 @@ textarea:focus-visible,
 .bih-products-hero .bih-page-title {
     max-width: 13ch;
     font-size: clamp(3rem, 7vw, 6.4rem);
-    line-height: .95;
+    line-height: 0.95;
 }
 
 .bih-products-stack-panel {
-    border: 1px solid rgba(15, 118, 110, .18);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.18);
+    border-radius: 0.5rem;
     background:
-        linear-gradient(135deg, rgba(15, 23, 42, .97), rgba(15, 118, 110, .92)),
+        linear-gradient(
+            135deg,
+            rgba(15, 23, 42, 0.97),
+            rgba(15, 118, 110, 0.92)
+        ),
         #102033;
     padding: 1rem;
     color: #ffffff;
-    box-shadow: 0 30px 72px rgba(15, 23, 42, .24);
+    box-shadow: 0 30px 72px rgba(15, 23, 42, 0.24);
 }
 
 .bih-products-stack-screen {
-    border: 1px solid rgba(255, 255, 255, .14);
-    border-radius: .5rem;
-    background: rgba(2, 6, 23, .42);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.5rem;
+    background: rgba(2, 6, 23, 0.42);
     padding: 1rem;
-    box-shadow: inset 0 1px rgba(255, 255, 255, .08);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .bih-products-screen-bar {
     display: flex;
-    gap: .4rem;
+    gap: 0.4rem;
     margin-bottom: 1rem;
 }
 
 .bih-products-screen-bar span {
-    width: .62rem;
-    height: .62rem;
+    width: 0.62rem;
+    height: 0.62rem;
     border-radius: 999px;
     background: #f59e0b;
 }
@@ -1142,7 +1477,7 @@ textarea:focus-visible,
 
 .bih-products-stack-screen > p {
     color: #67e8f9;
-    font-size: .78rem;
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -1150,62 +1485,69 @@ textarea:focus-visible,
 .bih-products-stack-row {
     display: flex;
     align-items: center;
-    gap: .8rem;
-    border: 1px solid rgba(255, 255, 255, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .08);
-    padding: .78rem .85rem;
+    gap: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.78rem 0.85rem;
 }
 
 .bih-products-stack-row span {
     color: #fbbf24;
-    font-size: .72rem;
+    font-size: 0.72rem;
     font-weight: 900;
 }
 
 .bih-products-stack-row strong {
     color: #ffffff;
-    font-size: .92rem;
+    font-size: 0.92rem;
     line-height: 1.2;
 }
 
 .bih-products-stack-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: .5rem;
-    margin-top: .9rem;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
 }
 
 .bih-products-stack-chips span {
-    border: 1px solid rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 999px;
-    background: rgba(255, 255, 255, .10);
-    padding: .5rem .7rem;
-    color: rgba(255, 255, 255, .86);
-    font-size: .74rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0.7rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.74rem;
     font-weight: 900;
 }
 
 .bih-products-company {
     background:
-        radial-gradient(circle at 90% 12%, rgba(245, 158, 11, .13), transparent 21rem),
+        radial-gradient(
+            circle at 90% 12%,
+            rgba(245, 158, 11, 0.13),
+            transparent 21rem
+        ),
         linear-gradient(180deg, #ffffff, #f8fafc);
 }
 
 .bih-products-company-card {
     min-height: 100%;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.14);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1.15rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .bih-products-company-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(15, 118, 110, .34);
-    box-shadow: 0 26px 58px rgba(15, 23, 42, .13);
+    border-color: rgba(15, 118, 110, 0.34);
+    box-shadow: 0 26px 58px rgba(15, 23, 42, 0.13);
 }
 
 .bih-products-company-card span {
@@ -1213,12 +1555,12 @@ textarea:focus-visible,
     width: 3.1rem;
     height: 3.1rem;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #102033, #0f766e);
     color: #ffffff;
     font-size: 1.15rem;
     font-weight: 900;
-    box-shadow: 0 14px 30px rgba(15, 118, 110, .22);
+    box-shadow: 0 14px 30px rgba(15, 118, 110, 0.22);
 }
 
 .bih-products-company-card h3 {
@@ -1230,30 +1572,29 @@ textarea:focus-visible,
 }
 
 .bih-products-company-card p {
-    margin-top: .55rem;
+    margin-top: 0.55rem;
     color: #475569;
-    font-size: .9rem;
+    font-size: 0.9rem;
     line-height: 1.65;
 }
 
 .bih-products-catalog {
-    background:
-        linear-gradient(180deg, #f8fafc, #ffffff 52%, #eef5fb);
+    background: linear-gradient(180deg, #f8fafc, #ffffff 52%, #eef5fb);
 }
 
 .bih-products-metrics {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: .75rem;
+    gap: 0.75rem;
 }
 
 .bih-products-metrics div {
     min-height: 7.35rem;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.14);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
 }
 
 .bih-products-metrics strong {
@@ -1261,35 +1602,35 @@ textarea:focus-visible,
     color: #0f766e;
     font-size: clamp(2.35rem, 4.4vw, 3.65rem);
     font-weight: 900;
-    line-height: .95;
+    line-height: 0.95;
 }
 
 .bih-products-metrics span {
     display: block;
-    margin-top: .55rem;
+    margin-top: 0.55rem;
     color: #475569;
-    font-size: .72rem;
+    font-size: 0.72rem;
     font-weight: 900;
     line-height: 1.25;
     text-transform: uppercase;
 }
 
 .bih-products-filter {
-    border: 1px solid rgba(15, 23, 42, .08);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .78);
-    padding: .65rem;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, .07);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.78);
+    padding: 0.65rem;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
 }
 
 .bih-products-filter .bih-filter-btn {
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 }
 
 .bih-products-card {
     position: relative;
-    border-color: rgba(15, 118, 110, .13);
-    background: rgba(255, 255, 255, .98);
+    border-color: rgba(15, 118, 110, 0.13);
+    background: rgba(255, 255, 255, 0.98);
     min-height: 100%;
 }
 
@@ -1302,13 +1643,13 @@ textarea:focus-visible,
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 48%, rgba(2, 6, 23, .72));
+    background: linear-gradient(180deg, transparent 48%, rgba(2, 6, 23, 0.72));
     pointer-events: none;
 }
 
 .bih-products-card-image img {
     height: 13.5rem;
-    transition: transform .5s ease;
+    transition: transform 0.5s ease;
 }
 
 .bih-products-card:hover .bih-products-card-image img {
@@ -1317,26 +1658,26 @@ textarea:focus-visible,
 
 .bih-products-card-image span {
     position: absolute;
-    right: .9rem;
-    bottom: .85rem;
+    right: 0.9rem;
+    bottom: 0.85rem;
     z-index: 1;
     display: grid;
     width: 3.1rem;
     height: 3.1rem;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, .24);
-    border-radius: .5rem;
-    background: rgba(15, 118, 110, .92);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 0.5rem;
+    background: rgba(15, 118, 110, 0.92);
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 900;
-    box-shadow: 0 14px 28px rgba(2, 6, 23, .28);
+    box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
 }
 
 .bih-products-card-actions {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: .65rem;
+    gap: 0.65rem;
     align-items: stretch;
 }
 
@@ -1350,18 +1691,22 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     min-height: 44px;
-    border: 2px solid rgba(15, 118, 110, .22);
-    border-radius: .375rem;
-    padding: .7rem .85rem;
+    border: 2px solid rgba(15, 118, 110, 0.22);
+    border-radius: 0.375rem;
+    padding: 0.7rem 0.85rem;
     color: #0f766e;
-    font-size: .82rem;
+    font-size: 0.82rem;
     font-weight: 900;
     text-decoration: none;
-    transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
 }
 
 .bih-products-website {
-    border-color: rgba(2, 132, 199, .24);
+    border-color: rgba(2, 132, 199, 0.24);
     color: #0369a1;
 }
 
@@ -1384,24 +1729,31 @@ textarea:focus-visible,
 
 .bih-products-process {
     background:
-        radial-gradient(circle at 6% 0, rgba(14, 165, 233, .12), transparent 24rem),
+        radial-gradient(
+            circle at 6% 0,
+            rgba(14, 165, 233, 0.12),
+            transparent 24rem
+        ),
         linear-gradient(180deg, #ffffff, #f8fafc);
 }
 
 .bih-products-process-card {
     min-height: 100%;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.14);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1.2rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
-    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
 }
 
 .bih-products-process-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(15, 118, 110, .34);
-    box-shadow: 0 26px 56px rgba(15, 23, 42, .13);
+    border-color: rgba(15, 118, 110, 0.34);
+    box-shadow: 0 26px 56px rgba(15, 23, 42, 0.13);
 }
 
 .bih-products-process-card span {
@@ -1409,7 +1761,7 @@ textarea:focus-visible,
     width: 3.15rem;
     height: 3.15rem;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #0f766e, #0284c7);
     color: #ffffff;
     font-size: 1.15rem;
@@ -1424,9 +1776,9 @@ textarea:focus-visible,
 }
 
 .bih-products-process-card p {
-    margin-top: .55rem;
+    margin-top: 0.55rem;
     color: #475569;
-    font-size: .92rem;
+    font-size: 0.92rem;
     line-height: 1.65;
 }
 
@@ -1434,20 +1786,32 @@ textarea:focus-visible,
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 78% 8%, rgba(20, 184, 166, .18), transparent 24rem),
+        radial-gradient(
+            circle at 78% 8%,
+            rgba(20, 184, 166, 0.18),
+            transparent 24rem
+        ),
         linear-gradient(135deg, #020617, #102033 55%, #0f766e);
 }
 
 .bih-products-mission-image {
-    border: 1px solid rgba(255, 255, 255, .14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .bih-techbiz-hero {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 10% 12%, rgba(14, 165, 233, .18), transparent 24rem),
-        radial-gradient(circle at 88% 4%, rgba(245, 158, 11, .15), transparent 22rem),
+        radial-gradient(
+            circle at 10% 12%,
+            rgba(14, 165, 233, 0.18),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 88% 4%,
+            rgba(245, 158, 11, 0.15),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 48%, #ecfeff 100%);
 }
 
@@ -1456,7 +1820,7 @@ textarea:focus-visible,
     position: absolute;
     inset: auto 0 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
     pointer-events: none;
 }
 
@@ -1468,14 +1832,14 @@ textarea:focus-visible,
 .bih-techbiz-hero .bih-page-title {
     max-width: 10ch;
     font-size: clamp(3.4rem, 8vw, 7rem);
-    line-height: .9;
+    line-height: 0.9;
 }
 
 .bih-techbiz-brief {
     position: relative;
-    border-color: rgba(15, 118, 110, .18);
-    background: rgba(255, 255, 255, .92);
-    box-shadow: 0 30px 70px rgba(15, 23, 42, .18);
+    border-color: rgba(15, 118, 110, 0.18);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 30px 70px rgba(15, 23, 42, 0.18);
 }
 
 .bih-techbiz-brief-head {
@@ -1483,61 +1847,70 @@ textarea:focus-visible,
 }
 
 .bih-techbiz-brief-item {
-    border: 1px solid rgba(15, 118, 110, .12);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.12);
+    border-radius: 0.5rem;
     background: #f8fafc;
-    padding: .75rem;
-    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    padding: 0.75rem;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
 }
 
 .bih-techbiz-brief-item:hover {
     transform: translateX(4px);
-    border-color: rgba(15, 118, 110, .32);
+    border-color: rgba(15, 118, 110, 0.32);
     background: #ecfeff;
 }
 
 .bih-techbiz-covers {
     background:
-        radial-gradient(circle at 5% 0, rgba(20, 184, 166, .12), transparent 24rem),
+        radial-gradient(
+            circle at 5% 0,
+            rgba(20, 184, 166, 0.12),
+            transparent 24rem
+        ),
         linear-gradient(180deg, #f8fafc, #ffffff);
 }
 
 .bih-techbiz-cover-card {
     min-height: 100%;
-    border-color: rgba(15, 118, 110, .13);
-    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    border-color: rgba(15, 118, 110, 0.13);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-techbiz-cover-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(15, 118, 110, .34);
-    box-shadow: 0 28px 62px rgba(15, 23, 42, .14);
+    border-color: rgba(15, 118, 110, 0.34);
+    box-shadow: 0 28px 62px rgba(15, 23, 42, 0.14);
 }
 
 .bih-techbiz-cover-icon {
     background: linear-gradient(135deg, #0f766e, #0284c7);
-    box-shadow: 0 14px 30px rgba(15, 118, 110, .22);
+    box-shadow: 0 14px 30px rgba(15, 118, 110, 0.22);
 }
 
 .bih-techbiz-conversations {
-    background:
-        linear-gradient(180deg, #ffffff, #f8fafc 56%, #eef5fb);
+    background: linear-gradient(180deg, #ffffff, #f8fafc 56%, #eef5fb);
 }
 
 .bih-techbiz-filter {
-    border: 1px solid rgba(15, 23, 42, .08);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .82);
-    padding: .65rem;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, .07);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.82);
+    padding: 0.65rem;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.07);
 }
 
 .bih-techbiz-filter .bih-filter-btn {
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 }
 
 .bih-techbiz-update-card {
-    border-color: rgba(15, 118, 110, .13);
+    border-color: rgba(15, 118, 110, 0.13);
     background: #ffffff;
 }
 
@@ -1550,13 +1923,13 @@ textarea:focus-visible,
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 45%, rgba(2, 6, 23, .74));
+    background: linear-gradient(180deg, transparent 45%, rgba(2, 6, 23, 0.74));
     pointer-events: none;
 }
 
 .bih-techbiz-update-image img {
     height: 13rem;
-    transition: transform .5s ease;
+    transition: transform 0.5s ease;
 }
 
 .bih-techbiz-update-card:hover .bih-techbiz-update-image img {
@@ -1565,40 +1938,48 @@ textarea:focus-visible,
 
 .bih-techbiz-update-image span {
     position: absolute;
-    right: .9rem;
-    bottom: .85rem;
+    right: 0.9rem;
+    bottom: 0.85rem;
     z-index: 1;
     display: grid;
     width: 3rem;
     height: 3rem;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, .24);
-    border-radius: .5rem;
-    background: rgba(15, 118, 110, .94);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 0.5rem;
+    background: rgba(15, 118, 110, 0.94);
     color: #ffffff;
     font-size: 1.05rem;
     font-weight: 900;
-    box-shadow: 0 14px 28px rgba(2, 6, 23, .28);
+    box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
 }
 
 .bih-techbiz-cta {
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 20% 0, rgba(14, 165, 233, .18), transparent 24rem),
-        radial-gradient(circle at 84% 18%, rgba(245, 158, 11, .16), transparent 20rem),
+        radial-gradient(
+            circle at 20% 0,
+            rgba(14, 165, 233, 0.18),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 84% 18%,
+            rgba(245, 158, 11, 0.16),
+            transparent 20rem
+        ),
         linear-gradient(135deg, #020617, #102033 55%, #0f766e);
 }
 
 .bih-button-light {
-    border: 1px solid rgba(255, 255, 255, .25);
-    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
     backdrop-filter: blur(14px);
 }
 
 .bih-button-light:hover {
-    background: rgba(255, 255, 255, .20);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .bih-service-page-educamp {
@@ -1609,8 +1990,16 @@ textarea:focus-visible,
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 12% 14%, rgba(20, 184, 166, .18), transparent 24rem),
-        radial-gradient(circle at 92% 10%, rgba(245, 158, 11, .16), transparent 22rem),
+        radial-gradient(
+            circle at 12% 14%,
+            rgba(20, 184, 166, 0.18),
+            transparent 24rem
+        ),
+        radial-gradient(
+            circle at 92% 10%,
+            rgba(245, 158, 11, 0.16),
+            transparent 22rem
+        ),
         linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #ecfeff 100%);
 }
 
@@ -1619,7 +2008,7 @@ textarea:focus-visible,
     position: absolute;
     inset: auto 0 0;
     height: 1px;
-    background: rgba(15, 23, 42, .08);
+    background: rgba(15, 23, 42, 0.08);
     pointer-events: none;
 }
 
@@ -1631,14 +2020,14 @@ textarea:focus-visible,
 .bih-service-page-educamp .bih-service-b-hero .bih-page-title {
     max-width: 12ch;
     font-size: clamp(3.2rem, 8vw, 6.6rem);
-    line-height: .92;
+    line-height: 0.92;
 }
 
 .bih-service-page-educamp .bih-service-b-showcase {
     position: relative;
-    border-color: rgba(15, 118, 110, .18);
-    background: rgba(255, 255, 255, .88);
-    box-shadow: 0 30px 72px rgba(15, 23, 42, .18);
+    border-color: rgba(15, 118, 110, 0.18);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 30px 72px rgba(15, 23, 42, 0.18);
     backdrop-filter: blur(18px);
 }
 
@@ -1659,16 +2048,16 @@ textarea:focus-visible,
     position: relative;
     z-index: 2;
     margin: -2rem 1rem 0;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: #ffffff;
-    box-shadow: 0 22px 48px rgba(15, 23, 42, .16);
+    box-shadow: 0 22px 48px rgba(15, 23, 42, 0.16);
 }
 
 .bih-service-page-educamp .bih-service-b-stat {
     min-width: 0;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #ecfeff, #ffffff);
-    padding: .8rem .45rem;
+    padding: 0.8rem 0.45rem;
 }
 
 .bih-service-page-educamp .bih-service-b-stat:nth-child(2) {
@@ -1688,16 +2077,16 @@ textarea:focus-visible,
 
 .bih-service-page-educamp .bih-service-b-stat p:last-child {
     color: #475569;
-    font-size: .68rem;
+    font-size: 0.68rem;
     line-height: 1.22;
 }
 
 .bih-service-page-educamp .bih-service-b-audiences {
-    border-top-color: rgba(15, 23, 42, .07);
+    border-top-color: rgba(15, 23, 42, 0.07);
 }
 
 .bih-service-page-educamp .bih-service-b-audience {
-    border: 1px solid rgba(15, 118, 110, .13);
+    border: 1px solid rgba(15, 118, 110, 0.13);
     background: #f8fafc;
     color: #334155;
 }
@@ -1706,17 +2095,23 @@ textarea:focus-visible,
 .bih-service-page-educamp .bih-service-b-formats,
 .bih-service-page-educamp .bih-service-b-flow,
 .bih-service-page-educamp .bih-service-b-outcomes {
-    background: linear-gradient(180deg, rgba(248, 250, 252, .96), rgba(255, 255, 255, .98));
+    background: linear-gradient(
+        180deg,
+        rgba(248, 250, 252, 0.96),
+        rgba(255, 255, 255, 0.98)
+    );
 }
 
 .bih-service-page-educamp .bih-service-b-feature-list {
     overflow: hidden;
-    border-color: rgba(15, 118, 110, .16);
-    box-shadow: 0 22px 54px rgba(15, 23, 42, .10);
+    border-color: rgba(15, 118, 110, 0.16);
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.1);
 }
 
 .bih-service-page-educamp .bih-service-b-feature-item {
-    transition: background .18s ease, transform .18s ease;
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease;
 }
 
 .bih-service-page-educamp .bih-service-b-feature-item:hover {
@@ -1730,52 +2125,59 @@ textarea:focus-visible,
     height: 2.35rem;
     flex: none;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: #ccfbf1;
 }
 
 .bih-service-page-educamp .bih-service-b-feature-image,
 .bih-service-page-educamp .bih-service-b-format-image {
-    border: 1px solid rgba(15, 23, 42, .10);
-    box-shadow: 0 28px 62px rgba(15, 23, 42, .18);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    box-shadow: 0 28px 62px rgba(15, 23, 42, 0.18);
 }
 
 .bih-service-page-educamp .bih-service-b-format {
-    border: 1px solid rgba(15, 118, 110, .12);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .82);
+    border: 1px solid rgba(15, 118, 110, 0.12);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.82);
     padding: clamp(1rem, 3vw, 1.45rem);
-    box-shadow: 0 20px 46px rgba(15, 23, 42, .09);
+    box-shadow: 0 20px 46px rgba(15, 23, 42, 0.09);
 }
 
 .bih-service-page-educamp .bih-service-b-format-image img {
-    transition: transform .5s ease;
+    transition: transform 0.5s ease;
 }
 
-.bih-service-page-educamp .bih-service-b-format:hover .bih-service-b-format-image img {
+.bih-service-page-educamp
+    .bih-service-b-format:hover
+    .bih-service-b-format-image
+    img {
     transform: scale(1.045);
 }
 
 .bih-service-page-educamp .bih-service-b-format-copy {
-    padding: .25rem;
+    padding: 0.25rem;
 }
 
 .bih-service-page-educamp .bih-service-b-flow-step {
     min-height: 100%;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 118, 110, 0.14);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1rem;
-    box-shadow: 0 16px 36px rgba(15, 23, 42, .08);
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
 
 .bih-service-page-educamp .bih-service-b-flow-number {
     background: linear-gradient(135deg, #0f766e, #0284c7);
-    box-shadow: 0 12px 26px rgba(15, 118, 110, .24);
+    box-shadow: 0 12px 26px rgba(15, 118, 110, 0.24);
 }
 
 .bih-service-page-educamp .bih-service-b-flow-line {
-    background: linear-gradient(90deg, rgba(15, 118, 110, .42), rgba(245, 158, 11, .38));
+    background: linear-gradient(
+        90deg,
+        rgba(15, 118, 110, 0.42),
+        rgba(245, 158, 11, 0.38)
+    );
 }
 
 .bih-service-page-educamp .bih-service-b-outcome-list {
@@ -1787,8 +2189,8 @@ textarea:focus-visible,
     display: flex;
     align-items: center;
     min-height: 4.25rem;
-    border-color: rgba(15, 118, 110, .16);
-    border-radius: .5rem;
+    border-color: rgba(15, 118, 110, 0.16);
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #ffffff, #ecfeff);
     color: #0f172a;
     line-height: 1.35;
@@ -1799,22 +2201,29 @@ textarea:focus-visible,
     width: 48px;
     height: 48px;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, .22);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 999px;
-    background: linear-gradient(135deg, rgba(15, 23, 42, .94), rgba(15, 118, 110, .92));
+    background: linear-gradient(
+        135deg,
+        rgba(15, 23, 42, 0.94),
+        rgba(15, 118, 110, 0.92)
+    );
     color: white;
     font-size: 1.4rem;
     font-weight: 900;
     line-height: 1;
-    box-shadow: 0 16px 38px rgba(2, 6, 23, .28);
+    box-shadow: 0 16px 38px rgba(2, 6, 23, 0.28);
     backdrop-filter: blur(12px);
-    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
 }
 
 .bih-scroll-button:hover {
     transform: translateY(-2px);
     background: linear-gradient(135deg, #0f766e, #0284c7);
-    box-shadow: 0 20px 46px rgba(2, 132, 199, .24);
+    box-shadow: 0 20px 46px rgba(2, 132, 199, 0.24);
 }
 
 .bih-footer,
@@ -1826,7 +2235,7 @@ textarea:focus-visible,
 
 .bih-footer p,
 .bih-footer a {
-    color: rgba(255, 255, 255, .82);
+    color: rgba(255, 255, 255, 0.82);
 }
 
 .bih-footer a:hover {
@@ -1873,7 +2282,7 @@ textarea:focus-visible,
 }
 
 .bih-footer .grid.gap-2 {
-    gap: .6rem;
+    gap: 0.6rem;
 }
 
 .bih-footer .grid.gap-2 a {
@@ -1885,21 +2294,25 @@ textarea:focus-visible,
     width: 42px;
     height: 42px;
     place-items: center;
-    border: 1px solid rgba(255, 255, 255, .16);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 999px;
-    background: rgba(255, 255, 255, .10);
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 900;
     line-height: 1;
     text-decoration: none;
-    transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        color 0.18s ease;
 }
 
 .bih-social-icon:hover {
     transform: translateY(-2px);
-    border-color: rgba(251, 191, 36, .8);
-    background: rgba(251, 191, 36, .16);
+    border-color: rgba(251, 191, 36, 0.8);
+    background: rgba(251, 191, 36, 0.16);
     color: #fbbf24;
 }
 
@@ -1916,7 +2329,10 @@ textarea:focus-visible,
 
 @media (min-width: 1024px) {
     .bih-footer-grid {
-        grid-template-columns: minmax(260px, 1.35fr) repeat(4, minmax(0, .85fr));
+        grid-template-columns: minmax(260px, 1.35fr) repeat(
+                4,
+                minmax(0, 0.85fr)
+            );
         align-items: start;
     }
 }
@@ -1924,7 +2340,7 @@ textarea:focus-visible,
 @media (max-width: 520px) {
     .bih-footer-brand-link {
         grid-template-columns: 1fr;
-        gap: .75rem;
+        gap: 0.75rem;
     }
 
     .bih-footer-logo {
@@ -1936,11 +2352,11 @@ textarea:focus-visible,
 @media (max-width: 767px) {
     .bih-header-main {
         min-height: 76px;
-        gap: .65rem;
+        gap: 0.65rem;
     }
 
     .bih-header-brand {
-        gap: .35rem;
+        gap: 0.35rem;
     }
 
     .bih-site-logo {
@@ -2067,11 +2483,11 @@ textarea:focus-visible,
 
     .bih-service-page-educamp .bih-service-b-stats {
         grid-template-columns: 1fr;
-        margin: -1.25rem .75rem 0;
+        margin: -1.25rem 0.75rem 0;
     }
 
     .bih-service-page-educamp .bih-service-b-stat {
-        padding: .9rem;
+        padding: 0.9rem;
         text-align: left;
     }
 
@@ -2097,13 +2513,13 @@ textarea:focus-visible,
 
     .bih-service-hero-visual {
         margin-bottom: 0;
-        padding: .65rem;
+        padding: 0.65rem;
     }
 
     .bih-service-hero-stats {
         position: static;
         grid-template-columns: 1fr;
-        margin-top: .75rem;
+        margin-top: 0.75rem;
     }
 
     .bih-service-hero-stat-card {
@@ -2127,86 +2543,474 @@ textarea:focus-visible,
 
 .bih-field {
     width: 100%;
-    border: 1px solid rgba(20, 33, 61, .16);
-    border-radius: .375rem;
+    border: 1px solid rgba(20, 33, 61, 0.16);
+    border-radius: 0.375rem;
     background: white;
-    padding: .85rem .95rem;
+    padding: 0.85rem 0.95rem;
     color: #0f172a;
     outline: none;
 }
 
 .bih-field:focus {
     border-color: #0f766e;
-    box-shadow: 0 0 0 4px rgba(15, 118, 110, .12);
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
 }
 
 .bih-admin {
     min-height: 100vh;
+    background: #d9dde7;
+    color: #111827;
+    font-family:
+        "Manrope", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+.bih-admin-login-body {
+    overflow-x: hidden;
     background:
-        radial-gradient(circle at 8% 4%, rgba(14, 165, 233, .13), transparent 24rem),
-        radial-gradient(circle at 92% 0, rgba(245, 158, 11, .10), transparent 22rem),
-        linear-gradient(135deg, #eef5fb, #ffffff 48%, #edfafa);
+        radial-gradient(
+            circle at 20% 18%,
+            rgba(125, 211, 252, 0.32),
+            transparent 18rem
+        ),
+        radial-gradient(
+            circle at 78% 82%,
+            rgba(2, 132, 199, 0.48),
+            transparent 17rem
+        ),
+        linear-gradient(180deg, #1d90d6 0%, #0d6fb2 48%, #07568d 100%);
+}
+
+.bih-admin-login-stage {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.bih-admin-login-stage::before,
+.bih-admin-login-stage::after {
+    content: "";
+    position: fixed;
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.bih-admin-login-stage::before {
+    width: 20rem;
+    height: 20rem;
+    left: -7rem;
+    bottom: -7rem;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.bih-admin-login-stage::after {
+    width: 15rem;
+    height: 15rem;
+    right: -5rem;
+    top: 4rem;
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.bih-admin-login-card {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: min(100%, 960px);
+    min-height: 430px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 0.9rem;
+    background: #ffffff;
+    box-shadow: 0 32px 78px rgba(2, 45, 86, 0.34);
+}
+
+.bih-admin-login-card::before {
+    content: "";
+    position: absolute;
+    left: -5.3rem;
+    bottom: -5.8rem;
+    z-index: 3;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 999px;
+    background: linear-gradient(
+        145deg,
+        rgba(56, 189, 248, 0.38),
+        rgba(2, 132, 199, 0.16)
+    );
+}
+
+.bih-admin-login-card::after {
+    content: "";
+    position: absolute;
+    right: -4rem;
+    bottom: -4.7rem;
+    z-index: 3;
+    width: 10.8rem;
+    height: 10.8rem;
+    border-radius: 999px;
+    background: linear-gradient(
+        145deg,
+        rgba(96, 165, 250, 0.76),
+        rgba(2, 132, 199, 0.92)
+    );
+    box-shadow: inset 18px 18px 34px rgba(255, 255, 255, 0.08);
+}
+
+.bih-admin-login-welcome {
+    position: relative;
+    display: flex;
+    min-height: 430px;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    border-top-right-radius: 48% 100%;
+    border-bottom-right-radius: 48% 100%;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08), transparent 46%),
+        radial-gradient(
+            circle at 78% 68%,
+            rgba(125, 211, 252, 0.34),
+            transparent 8rem
+        ),
+        linear-gradient(145deg, #157fc3 0%, #0767ab 54%, #045189 100%);
+    padding: 2.2rem 6.2rem 2.2rem 3.3rem;
+    color: #ffffff;
+}
+
+.bih-admin-login-welcome::before {
+    content: "";
+    position: absolute;
+    right: 1.15rem;
+    bottom: 3.8rem;
+    z-index: 0;
+    width: 10.7rem;
+    height: 10.7rem;
+    border-radius: 999px;
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, 0.22),
+            transparent 2.5rem
+        ),
+        linear-gradient(145deg, #5bb9ec, #0965a7);
+    box-shadow: 0 22px 46px rgba(3, 43, 83, 0.26);
+}
+
+.bih-admin-login-welcome::after {
+    content: "";
+    position: absolute;
+    left: 2.2rem;
+    bottom: -5.4rem;
+    width: 13rem;
+    height: 13rem;
+    border-radius: 999px;
+    background: linear-gradient(
+        145deg,
+        rgba(56, 189, 248, 0.3),
+        rgba(255, 255, 255, 0.08)
+    );
+}
+
+.bih-admin-login-logo-wrap,
+.bih-admin-login-copy,
+.bih-admin-login-pills {
+    position: relative;
+    z-index: 1;
+}
+
+.bih-admin-login-logo-wrap {
+    width: fit-content;
+    max-width: min(100%, 220px);
+    border-radius: 0.6rem;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0.48rem 0.65rem;
+    box-shadow: 0 16px 32px rgba(3, 37, 76, 0.16);
+}
+
+.bih-admin-login-logo-wrap img {
+    display: block;
+    width: min(188px, 48vw);
+    height: auto;
+    max-height: 72px;
+    object-fit: contain;
+}
+
+.bih-admin-login-copy {
+    max-width: 19rem;
+    margin-top: 1.75rem;
+}
+
+.bih-admin-login-copy p,
+.bih-admin-login-kicker {
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.bih-admin-login-copy h1 {
+    margin-top: 0.55rem;
+    color: #ffffff;
+    font-size: clamp(1.6rem, 2.9vw, 2.35rem);
+    font-weight: 900;
+    line-height: 1.02;
+}
+
+.bih-admin-login-copy span {
+    display: block;
+    margin-top: 0.75rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.75;
+}
+
+.bih-admin-login-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    padding-top: 1.6rem;
+}
+
+.bih-admin-login-pills span {
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.34rem 0.68rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.bih-admin-login-form {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+    padding: 2.1rem 2.8rem 2.1rem 2.35rem;
+}
+
+.bih-admin-login-mobile-logo {
+    display: none;
+    width: min(230px, 78vw);
+    height: auto;
+    max-height: 90px;
+    object-fit: contain;
+}
+
+.bih-admin-login-kicker {
+    color: #0f766e;
+    letter-spacing: 0.12em;
+}
+
+.bih-admin-login-form h2 {
     color: #0f172a;
-    font-family: 'Manrope', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 900;
+    line-height: 1;
+}
+
+.bih-admin-login-note {
+    margin-top: 0.45rem;
+    color: #64748b;
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.55;
+}
+
+.bih-admin-login-error {
+    margin-top: 0.9rem;
+    border: 1px solid #fecaca;
+    border-radius: 0.35rem;
+    background: #fef2f2;
+    padding: 0.62rem 0.75rem;
+    color: #991b1b;
+    font-size: 0.76rem;
+    font-weight: 800;
+}
+
+.bih-admin-login-label {
+    margin-top: 0.9rem;
+    color: #475569;
+    font-size: 0.72rem;
+    font-weight: 900;
+}
+
+.bih-admin-login-field {
+    display: grid;
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+    align-items: center;
+    margin-top: 0.34rem;
+    border: 1px solid #edf2f7;
+    border-radius: 0.24rem;
+    background: #f6f8fb;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+.bih-admin-login-field:focus-within {
+    border-color: #0ea5e9;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14);
+}
+
+.bih-admin-login-field span {
+    display: grid;
+    height: 100%;
+    min-height: 2.55rem;
+    place-items: center;
+    color: #334155;
+}
+
+.bih-admin-login-field svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+.bih-admin-login-field input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    padding: 0.72rem 0.75rem 0.72rem 0;
+    color: #0f172a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    outline: none;
+}
+
+.bih-admin-login-field input::placeholder {
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.bih-admin-login-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 0.72rem;
+    color: #64748b;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.bih-admin-login-row label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.bih-admin-login-row input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #0f766e;
+}
+
+.bih-admin-login-row a {
+    color: #0f766e;
+    text-decoration: none;
+}
+
+.bih-admin-login-row a:hover {
+    color: #075985;
+}
+
+.bih-admin-login-submit {
+    margin-top: 1rem;
+    border: 0;
+    border-radius: 0.28rem;
+    background: linear-gradient(180deg, #0e75b7, #07598f);
+    padding: 0.78rem 1rem;
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 900;
+    box-shadow: 0 14px 28px rgba(7, 89, 133, 0.22);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+.bih-admin-login-submit:hover {
+    transform: translateY(-1px);
+    filter: saturate(1.08);
+    box-shadow: 0 24px 42px rgba(7, 89, 133, 0.3);
+}
+
+.bih-admin-login-submit:focus-visible,
+.bih-admin-login-row a:focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.22);
+    outline-offset: 3px;
 }
 
 .bih-admin-shell {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 292px minmax(0, 1fr);
+    grid-template-columns: 222px minmax(0, 1fr);
+    gap: 1rem;
+    padding: 2rem;
 }
 
 .bih-admin-sidebar {
     position: sticky;
     top: 0;
-    height: 100vh;
-    padding: 1rem;
+    height: calc(100vh - 4rem);
+    padding: 0;
 }
 
 .bih-admin-sidebar-inner {
     display: flex;
     height: 100%;
     flex-direction: column;
-    border: 1px solid rgba(15, 23, 42, .08);
-    border-radius: 1.25rem;
-    background:
-        linear-gradient(180deg, rgba(255, 255, 255, .97), rgba(238, 250, 249, .94)),
-        #ffffff;
-    padding: .9rem;
-    box-shadow: 0 22px 52px rgba(15, 23, 42, .08);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 1.15rem;
+    background: rgba(247, 248, 252, 0.96);
+    padding: 1rem;
+    box-shadow: 0 22px 46px rgba(69, 82, 113, 0.14);
 }
 
 .bih-admin-brand {
     display: flex;
     align-items: center;
-    gap: .75rem;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .9rem;
-    background: linear-gradient(135deg, #ffffff, #ecfeff);
-    padding: .8rem;
+    gap: 0.6rem;
+    border: 0;
+    border-radius: 0.7rem;
+    background: transparent;
+    padding: 0.35rem 0.25rem 1rem;
     text-decoration: none;
-    box-shadow: 0 12px 28px rgba(15, 23, 42, .055);
+    box-shadow: none;
 }
 
 .bih-admin-brand img {
-    width: 158px;
+    width: 84px;
     height: auto;
-    max-height: 112px;
+    max-height: 54px;
     object-fit: contain;
 }
 
 .bih-admin-brand strong {
     display: block;
-    color: #0f172a;
-    font-size: .98rem;
+    color: #111827;
+    font-size: 0.88rem;
     font-weight: 900;
     line-height: 1.1;
 }
 
 .bih-admin-brand em {
     display: block;
-    color: #64748b;
-    font-size: .72rem;
+    color: #9ca3af;
+    font-size: 0.62rem;
     font-style: normal;
     font-weight: 900;
     letter-spacing: 0;
@@ -2215,52 +3019,56 @@ textarea:focus-visible,
 
 .bih-admin-nav {
     display: grid;
-    gap: .35rem;
-    margin-top: 1rem;
+    gap: 0.25rem;
+    margin-top: 0.35rem;
 }
 
 .bih-admin-nav a {
     display: flex;
     align-items: center;
-    gap: .7rem;
-    border-radius: .85rem;
-    padding: .72rem .8rem;
-    color: #334155;
-    font-size: .92rem;
+    gap: 0.55rem;
+    border-radius: 0.55rem;
+    padding: 0.58rem 0.65rem;
+    color: #6b7280;
+    font-size: 0.76rem;
     font-weight: 800;
     text-decoration: none;
-    transition: background .18s ease, color .18s ease, transform .18s ease, box-shadow .18s ease;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-admin-nav a:hover,
 .bih-admin-nav a.is-active {
-    background: #0f766e;
+    background: #4552f1;
     color: #ffffff;
-    box-shadow: 0 14px 28px rgba(15, 118, 110, .18);
+    box-shadow: 0 12px 22px rgba(69, 82, 241, 0.22);
     transform: translateX(2px);
 }
 
 .bih-admin-nav a span {
     display: grid;
-    width: 32px;
-    height: 32px;
+    width: 22px;
+    height: 22px;
     place-items: center;
-    border-radius: .65rem;
-    background: #f1f5f9;
-    color: #0f766e;
-    font-size: .72rem;
+    border-radius: 0.35rem;
+    background: #eef0f7;
+    color: #6b7280;
+    font-size: 0.55rem;
     font-weight: 900;
 }
 
 .bih-admin-nav a:hover span,
 .bih-admin-nav a.is-active span {
-    background: rgba(255, 255, 255, .18);
+    background: rgba(255, 255, 255, 0.18);
     color: #ffffff;
 }
 
 .bih-admin-panel {
     min-width: 0;
-    padding: 1rem 1.25rem 1.25rem 0;
+    padding: 0;
 }
 
 .bih-admin-topbar {
@@ -2268,17 +3076,16 @@ textarea:focus-visible,
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    border: 1px solid rgba(15, 23, 42, .08);
-    border-radius: 1.25rem;
-    background: rgba(255, 255, 255, .82);
-    padding: .9rem 1rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .06);
-    backdrop-filter: blur(18px);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 1.15rem;
+    background: rgba(247, 248, 252, 0.96);
+    padding: 0.75rem 0.85rem;
+    box-shadow: 0 22px 46px rgba(69, 82, 113, 0.14);
 }
 
 .bih-admin-topbar h2 {
-    color: #0f172a;
-    font-size: 1.05rem;
+    color: #111827;
+    font-size: 0.88rem;
     font-weight: 900;
     line-height: 1.2;
 }
@@ -2286,39 +3093,35 @@ textarea:focus-visible,
 .bih-admin-actions {
     display: flex;
     align-items: center;
-    gap: .45rem;
+    gap: 0.45rem;
 }
 
 .bih-admin-ghost,
 .bih-admin-logout {
     display: inline-flex;
-    min-height: 40px;
+    min-height: 34px;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(15, 23, 42, .08);
-    border-radius: .75rem;
-    padding: .65rem .9rem;
-    font-size: .85rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 999px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.72rem;
     font-weight: 900;
     text-decoration: none;
 }
 
 .bih-admin-ghost {
     background: #ffffff;
-    color: #334155;
+    color: #4b5563;
 }
 
 .bih-admin-logout {
-    background: #102033;
+    background: #111827;
     color: #ffffff;
 }
 
 .bih-admin-welcome {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.3rem .25rem 1rem;
+    display: none;
 }
 
 .bih-admin-welcome p {
@@ -2330,7 +3133,7 @@ textarea:focus-visible,
 
 .bih-admin-welcome span {
     color: #475569;
-    font-size: .9rem;
+    font-size: 0.9rem;
     font-weight: 700;
 }
 
@@ -2339,40 +3142,66 @@ textarea:focus-visible,
     border-radius: 999px;
     background: #0f766e;
     color: #ffffff;
-    padding: .48rem .8rem;
-    font-size: .75rem;
+    padding: 0.48rem 0.8rem;
+    font-size: 0.75rem;
 }
 
 .bih-admin-content {
-    padding: 0 .25rem 1rem;
+    padding: 1rem 0 0;
 }
 
 .bih-admin-card,
 .bih-admin form.rounded-md.bg-white,
 .bih-admin .rounded-md.bg-white {
-    border: 1px solid rgba(15, 23, 42, .08);
+    border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 1.15rem;
-    background: rgba(255, 255, 255, .74);
-    box-shadow: 0 18px 36px rgba(15, 23, 42, .07);
+    background: rgba(255, 255, 255, 0.74);
+    box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
     backdrop-filter: blur(14px);
 }
 
 .bih-admin input,
 .bih-admin select,
 .bih-admin textarea {
-    border: 1px solid rgba(15, 23, 42, .16);
-    border-radius: .85rem;
-    background: rgba(255, 255, 255, .86);
+    border: 1px solid rgba(15, 23, 42, 0.16);
+    border-radius: 0.85rem;
+    background: rgba(255, 255, 255, 0.86);
     color: #0f172a;
     outline: none;
-    transition: border-color .18s ease, box-shadow .18s ease;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-admin input:focus,
 .bih-admin select:focus,
 .bih-admin textarea:focus {
     border-color: #0f766e;
-    box-shadow: 0 0 0 4px rgba(15, 118, 110, .12);
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+}
+
+.bih-admin .bih-admin-login-field input {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0.72rem 0.75rem 0.72rem 0;
+    box-shadow: none;
+}
+
+.bih-admin .bih-admin-login-field input:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.bih-admin .bih-admin-login-row input {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.2rem;
+    padding: 0;
+}
+
+.bih-admin .bih-admin-login-submit {
+    border-radius: 0.28rem;
 }
 
 .bih-admin table {
@@ -2382,12 +3211,12 @@ textarea:focus-visible,
 
 .bih-admin thead {
     color: #334155;
-    font-size: .78rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
 }
 
 .bih-admin tbody tr {
-    transition: background .16s ease;
+    transition: background 0.16s ease;
 }
 
 .bih-admin tbody tr:hover {
@@ -2418,13 +3247,13 @@ textarea:focus-visible,
 .bih-admin button,
 .bih-admin a.rounded.bg-teal-700,
 .bih-admin a.rounded.bg-slate-950 {
-    border-radius: .55rem;
+    border-radius: 0.55rem;
 }
 
 .bih-admin button.bg-teal-700,
 .bih-admin a.bg-teal-700 {
     background: #0f766e;
-    box-shadow: 0 12px 24px rgba(15, 118, 110, .16);
+    box-shadow: 0 12px 24px rgba(15, 118, 110, 0.16);
 }
 
 .bih-admin button.bg-teal-700:hover,
@@ -2435,18 +3264,425 @@ textarea:focus-visible,
 .bih-admin button.bg-slate-950,
 .bih-admin a.bg-slate-950 {
     background: #102033;
-    box-shadow: 0 12px 24px rgba(15, 23, 42, .14);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.14);
+}
+
+.admin-dashboard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 292px;
+    gap: 1rem;
+}
+
+.admin-dashboard-main,
+.admin-dashboard-side,
+.admin-activity-card {
+    min-width: 0;
+}
+
+.admin-dashboard-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.admin-dashboard-heading p,
+.admin-card-title p {
+    color: #8b93a7;
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.admin-dashboard-heading h1 {
+    color: #111827;
+    font-size: 1.28rem;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.admin-dashboard-heading a,
+.admin-card-title a,
+.admin-card-title span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eef0f6;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #6b7280;
+    padding: 0.42rem 0.62rem;
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.admin-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.admin-stat-card,
+.admin-chart-card,
+.admin-side-card,
+.admin-activity-card {
+    border: 1px solid rgba(226, 232, 240, 0.92);
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 0 18px 36px rgba(69, 82, 113, 0.11);
+}
+
+.admin-stat-card {
+    min-height: 142px;
+    padding: 1rem;
+}
+
+.admin-stat-card.is-blue {
+    background: linear-gradient(135deg, #4552f1, #5966ff);
+    color: #ffffff;
+}
+
+.admin-stat-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.admin-stat-card-top span {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 0.75rem;
+    background: #f4f6fb;
+    color: #374151;
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.admin-stat-card.is-blue .admin-stat-card-top span {
+    background: rgba(255, 255, 255, 0.92);
+    color: #4552f1;
+}
+
+.admin-stat-card-top em,
+.admin-metric-list em {
+    border-radius: 999px;
+    background: #53e375;
+    color: #065f46;
+    padding: 0.18rem 0.42rem;
+    font-size: 0.6rem;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.admin-stat-card.is-red .admin-stat-card-top em,
+.admin-metric-list em.is-alert {
+    background: #ff5c63;
+    color: #ffffff;
+}
+
+.admin-stat-card p {
+    margin-top: 1.1rem;
+    color: inherit;
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.admin-stat-card strong {
+    display: block;
+    margin-top: 0.2rem;
+    color: inherit;
+    font-size: 1.72rem;
+    font-weight: 950;
+    line-height: 1;
+}
+
+.admin-stat-card small {
+    display: block;
+    margin-top: 0.25rem;
+    color: currentColor;
+    font-size: 0.63rem;
+    font-weight: 700;
+    opacity: 0.64;
+}
+
+.admin-chart-card,
+.admin-side-card,
+.admin-activity-card {
+    padding: 1rem;
+}
+
+.admin-chart-card {
+    margin-top: 1rem;
+}
+
+.admin-card-title {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.admin-card-title h2 {
+    color: #111827;
+    font-size: 0.96rem;
+    font-weight: 950;
+    line-height: 1.15;
+}
+
+.admin-chart-legend {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    color: #9ca3af;
+    font-size: 0.66rem;
+    font-weight: 800;
+}
+
+.admin-chart-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.admin-chart-legend i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #4552f1;
+}
+
+.admin-chart-legend span:last-child i {
+    background: #d8dce7;
+}
+
+.admin-bar-chart {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(54px, 1fr));
+    align-items: end;
+    gap: 1rem;
+    min-height: 240px;
+    padding-top: 1rem;
+}
+
+.admin-bar-item {
+    display: grid;
+    gap: 0.55rem;
+}
+
+.admin-bar-track {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    gap: 0.35rem;
+    height: 176px;
+    border-radius: 0.75rem;
+}
+
+.admin-bar-track span,
+.admin-bar-track i {
+    display: block;
+    width: 22px;
+    min-height: 16px;
+    border-radius: 999px 999px 0.4rem 0.4rem;
+}
+
+.admin-bar-track span {
+    background: linear-gradient(180deg, #5360ff, #3345ed);
+    box-shadow: 0 12px 24px rgba(69, 82, 241, 0.18);
+}
+
+.admin-bar-track i {
+    background: #e2e5ee;
+}
+
+.admin-bar-item p {
+    color: #8b93a7;
+    font-size: 0.68rem;
+    font-weight: 900;
+    text-align: center;
+}
+
+.admin-dashboard-side {
+    display: grid;
+    gap: 1rem;
+}
+
+.admin-rings {
+    position: relative;
+    display: grid;
+    min-height: 190px;
+    place-items: center;
+}
+
+.admin-rings > span {
+    position: absolute;
+    border-radius: 999px;
+    inset: 21px;
+    border: 12px solid #e2e5ee;
+    clip-path: polygon(0 0, 78% 0, 78% 100%, 0 100%);
+}
+
+.admin-rings .ring-one {
+    border-color: #4552f1;
+    inset: 18px;
+}
+
+.admin-rings .ring-two {
+    border-color: #5d6aff;
+    inset: 42px;
+    transform: rotate(13deg);
+}
+
+.admin-rings .ring-three {
+    border-color: #ff444c;
+    inset: 66px;
+    transform: rotate(26deg);
+}
+
+.admin-rings div {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+}
+
+.admin-rings strong {
+    color: #111827;
+    font-size: 1.45rem;
+    font-weight: 950;
+    line-height: 1;
+}
+
+.admin-rings small {
+    color: #8b93a7;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.admin-metric-list,
+.admin-lead-list,
+.admin-activity-list {
+    display: grid;
+    gap: 0.65rem;
+}
+
+.admin-metric-list div,
+.admin-lead-list a,
+.admin-activity-list div {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
+}
+
+.admin-metric-list div {
+    justify-content: space-between;
+}
+
+.admin-metric-list span {
+    color: #4b5563;
+    font-size: 0.73rem;
+    font-weight: 900;
+}
+
+.admin-metric-list strong {
+    margin-left: auto;
+    color: #111827;
+    font-size: 0.78rem;
+    font-weight: 950;
+}
+
+.admin-lead-list {
+    margin-top: 0.9rem;
+}
+
+.admin-lead-list a {
+    border-radius: 0.8rem;
+    color: inherit;
+    padding: 0.35rem;
+    text-decoration: none;
+    transition: background 0.16s ease;
+}
+
+.admin-lead-list a:hover {
+    background: #f5f6fb;
+}
+
+.admin-lead-list span,
+.admin-activity-list span {
+    display: grid;
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #5360ff, #7f8aff);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 950;
+}
+
+.admin-lead-list div,
+.admin-activity-list p {
+    min-width: 0;
+}
+
+.admin-lead-list strong,
+.admin-activity-list strong {
+    display: block;
+    overflow: hidden;
+    color: #111827;
+    font-size: 0.76rem;
+    font-weight: 950;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-lead-list small,
+.admin-activity-list small {
+    display: block;
+    overflow: hidden;
+    color: #8b93a7;
+    font-size: 0.64rem;
+    font-weight: 800;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-activity-card {
+    grid-column: 1 / -1;
+}
+
+.admin-activity-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 0.9rem;
+}
+
+.admin-empty {
+    border-radius: 0.85rem;
+    background: #f5f6fb;
+    color: #6b7280;
+    padding: 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 800;
 }
 
 @media (max-width: 1023px) {
     .bih-admin-shell {
         grid-template-columns: 1fr;
+        padding: 1rem;
     }
 
     .bih-admin-sidebar {
         position: static;
         height: auto;
-        padding: .75rem;
+        padding: 0.75rem;
     }
 
     .bih-admin-sidebar-inner {
@@ -2454,7 +3690,7 @@ textarea:focus-visible,
     }
 
     .bih-admin-panel {
-        padding: 0 .75rem .75rem;
+        padding: 0 0.75rem 0.75rem;
     }
 
     .bih-admin-nav {
@@ -2467,14 +3703,63 @@ textarea:focus-visible,
         align-items: flex-start;
         flex-direction: column;
     }
+
+    .admin-dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .bih-admin-login-card {
+        max-width: 520px;
+        min-height: 0;
+        grid-template-columns: 1fr;
+    }
+
+    .bih-admin-login-welcome {
+        display: none;
+    }
+
+    .bih-admin-login-form {
+        min-height: 0;
+        padding: clamp(1.5rem, 7vw, 2.3rem);
+    }
+
+    .bih-admin-login-mobile-logo {
+        display: block;
+        margin-bottom: 1.6rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .bih-admin-login-stage {
+        align-items: stretch;
+        padding: 0.9rem;
+    }
+
+    .bih-admin-login-card {
+        border-radius: 0.65rem;
+    }
+
+    .bih-admin-login-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.7rem;
+    }
 }
 
 .bih-hackfest-hero {
     position: relative;
     overflow: hidden;
     background:
-        linear-gradient(90deg, rgba(2, 6, 23, .96), rgba(8, 47, 73, .90), rgba(15, 118, 110, .76)),
-        url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1900&q=85') center/cover;
+        linear-gradient(
+            90deg,
+            rgba(2, 6, 23, 0.96),
+            rgba(8, 47, 73, 0.9),
+            rgba(15, 118, 110, 0.76)
+        ),
+        url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1900&q=85")
+            center/cover;
     color: #ffffff;
 }
 
@@ -2483,28 +3768,45 @@ textarea:focus-visible,
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, .06), transparent 38%),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, .055) 0 1px, transparent 1px 72px);
-    opacity: .42;
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 38%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.055) 0 1px,
+            transparent 1px 72px
+        );
+    opacity: 0.42;
     pointer-events: none;
 }
 
 .bih-hackfest-section {
     position: relative;
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(248, 250, 252, .96)),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(248, 250, 252, 0.96)
+        ),
         #ffffff;
 }
 
 .bih-hackfest-panelists {
     background:
-        linear-gradient(180deg, rgba(238, 245, 251, .96), rgba(255, 255, 255, .96)),
+        linear-gradient(
+            180deg,
+            rgba(238, 245, 251, 0.96),
+            rgba(255, 255, 255, 0.96)
+        ),
         #eef5fb;
 }
 
 .bih-hackfest-venue-section {
     background:
-        linear-gradient(135deg, rgba(236, 254, 255, .92), rgba(255, 255, 255, .96) 52%, rgba(254, 243, 199, .42)),
+        linear-gradient(
+            135deg,
+            rgba(236, 254, 255, 0.92),
+            rgba(255, 255, 255, 0.96) 52%,
+            rgba(254, 243, 199, 0.42)
+        ),
         #f8fafc;
 }
 
@@ -2513,8 +3815,8 @@ textarea:focus-visible,
     max-width: 58rem;
     color: #ffffff;
     font-weight: 900;
-    line-height: .95;
-    text-shadow: 0 18px 42px rgba(2, 6, 23, .48);
+    line-height: 0.95;
+    text-shadow: 0 18px 42px rgba(2, 6, 23, 0.48);
 }
 
 .bih-hackfest-title span,
@@ -2527,7 +3829,7 @@ textarea:focus-visible,
 }
 
 .bih-hackfest-title strong {
-    margin-top: .45rem;
+    margin-top: 0.45rem;
     color: #67e8f9;
     font-size: clamp(3.4rem, 8vw, 7.4rem);
     letter-spacing: 0;
@@ -2537,17 +3839,17 @@ textarea:focus-visible,
     display: flex;
     max-width: 48rem;
     flex-wrap: wrap;
-    gap: .7rem;
+    gap: 0.7rem;
     margin-top: 1.2rem;
 }
 
 .bih-hackfest-hero-meta span {
-    border: 1px solid rgba(255, 255, 255, .20);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 999px;
-    background: rgba(255, 255, 255, .12);
-    padding: .62rem .9rem;
-    color: rgba(255, 255, 255, .88);
-    font-size: .78rem;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.62rem 0.9rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
     backdrop-filter: blur(12px);
@@ -2563,10 +3865,10 @@ textarea:focus-visible,
 .bih-hackfest-venue,
 .bih-hackfest-faq,
 .bih-hackfest-contact {
-    border: 1px solid rgba(15, 23, 42, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .94);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, .13);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.13);
 }
 
 .bih-hackfest-logo-panel {
@@ -2574,7 +3876,11 @@ textarea:focus-visible,
     overflow: hidden;
     padding: clamp(1.25rem, 3vw, 2rem);
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, .98), rgba(236, 254, 255, .94)),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(236, 254, 255, 0.94)
+        ),
         #ffffff;
     transform: translateZ(0);
 }
@@ -2597,14 +3903,18 @@ textarea:focus-visible,
 }
 
 .bih-hackfest-stat {
-    border: 1px solid rgba(255, 255, 255, .22);
-    border-radius: .5rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, .17), rgba(255, 255, 255, .08));
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 0.5rem;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.17),
+        rgba(255, 255, 255, 0.08)
+    );
     padding: 1rem;
     color: #ffffff;
     backdrop-filter: blur(12px);
     min-height: 118px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .bih-hackfest-stat strong {
@@ -2616,9 +3926,9 @@ textarea:focus-visible,
 
 .bih-hackfest-stat span {
     display: block;
-    margin-top: .35rem;
-    color: rgba(255, 255, 255, .82);
-    font-size: .78rem;
+    margin-top: 0.35rem;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.78rem;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -2627,20 +3937,24 @@ textarea:focus-visible,
     overflow: hidden;
     padding: 1.15rem;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, .98), rgba(236, 254, 255, .92)),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.98),
+            rgba(236, 254, 255, 0.92)
+        ),
         #ffffff;
 }
 
 .bih-hackfest-check {
     display: flex;
     align-items: center;
-    gap: .75rem;
-    border: 1px solid rgba(15, 118, 110, .14);
-    border-radius: .5rem;
+    gap: 0.75rem;
+    border: 1px solid rgba(15, 118, 110, 0.14);
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #ffffff, #f8fafc);
     padding: 1rem;
     min-height: 84px;
-    box-shadow: 0 12px 26px rgba(15, 23, 42, .055);
+    box-shadow: 0 12px 26px rgba(15, 23, 42, 0.055);
 }
 
 .bih-hackfest-check span {
@@ -2662,7 +3976,12 @@ textarea:focus-visible,
 
 .bih-hackfest-band {
     background:
-        linear-gradient(135deg, rgba(238, 245, 251, .98), rgba(236, 254, 255, .88) 55%, rgba(254, 243, 199, .34)),
+        linear-gradient(
+            135deg,
+            rgba(238, 245, 251, 0.98),
+            rgba(236, 254, 255, 0.88) 55%,
+            rgba(254, 243, 199, 0.34)
+        ),
         #eef5fb;
 }
 
@@ -2674,12 +3993,15 @@ textarea:focus-visible,
     height: 100%;
     min-height: 260px;
     flex-direction: column;
-    border: 1px solid rgba(15, 23, 42, .10);
-    border-radius: .5rem;
-    background: rgba(255, 255, 255, .96);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.96);
     padding: 1.45rem;
-    box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
-    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-hackfest-track::before,
@@ -2698,8 +4020,8 @@ textarea:focus-visible,
 .bih-hackfest-person-card:hover,
 .bih-hackfest-timeline:hover {
     transform: translateY(-3px);
-    border-color: rgba(15, 118, 110, .26);
-    box-shadow: 0 24px 56px rgba(15, 23, 42, .12);
+    border-color: rgba(15, 118, 110, 0.26);
+    box-shadow: 0 24px 56px rgba(15, 23, 42, 0.12);
 }
 
 .bih-hackfest-track > p:first-child,
@@ -2712,7 +4034,7 @@ textarea:focus-visible,
 
 .bih-hackfest-track h3,
 .bih-hackfest-register-card h3 {
-    margin-top: .6rem;
+    margin-top: 0.6rem;
     color: #0f172a;
     font-size: 1.32rem;
     font-weight: 900;
@@ -2721,10 +4043,10 @@ textarea:focus-visible,
 
 .bih-hackfest-track ul {
     display: grid;
-    gap: .6rem;
+    gap: 0.6rem;
     margin-top: 1rem;
     color: #475569;
-    font-size: .95rem;
+    font-size: 0.95rem;
     font-weight: 700;
     flex: 1;
 }
@@ -2737,7 +4059,7 @@ textarea:focus-visible,
 .bih-hackfest-track li::before {
     content: "";
     position: absolute;
-    top: .7rem;
+    top: 0.7rem;
     left: 0;
     width: 6px;
     height: 6px;
@@ -2765,12 +4087,15 @@ textarea:focus-visible,
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    border: 1px solid rgba(15, 23, 42, .10);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
     background: #ffffff;
     padding: 1.15rem;
-    box-shadow: 0 14px 34px rgba(15, 23, 42, .06);
-    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-hackfest-timeline span {
@@ -2779,7 +4104,7 @@ textarea:focus-visible,
     height: 44px;
     flex: none;
     place-items: center;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #102033, #0f766e);
     color: #ffffff;
     font-weight: 900;
@@ -2791,12 +4116,12 @@ textarea:focus-visible,
 }
 
 .bih-hackfest-timeline em {
-    margin-left: .35rem;
+    margin-left: 0.35rem;
     border-radius: 999px;
     background: #ccfbf1;
     color: #0f766e;
-    padding: .15rem .5rem;
-    font-size: .7rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.7rem;
     font-style: normal;
     font-weight: 900;
     text-transform: uppercase;
@@ -2804,26 +4129,26 @@ textarea:focus-visible,
 
 .bih-hackfest-timeline strong {
     display: block;
-    margin-top: .15rem;
+    margin-top: 0.15rem;
     color: #64748b;
-    font-size: .95rem;
+    font-size: 0.95rem;
 }
 
 .bih-hackfest-feature-person,
 .bih-hackfest-person-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(15, 23, 42, .10);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
     background: #ffffff;
-    box-shadow: 0 18px 46px rgba(15, 23, 42, .09);
+    box-shadow: 0 18px 46px rgba(15, 23, 42, 0.09);
 }
 
 .bih-hackfest-feature-person {
     display: grid;
-    grid-template-columns: minmax(260px, .46fr) 1fr;
+    grid-template-columns: minmax(260px, 0.46fr) 1fr;
     min-height: 420px;
-    border-color: rgba(15, 118, 110, .18);
+    border-color: rgba(15, 118, 110, 0.18);
 }
 
 .bih-hackfest-feature-person img {
@@ -2845,7 +4170,10 @@ textarea:focus-visible,
     display: flex;
     height: 100%;
     flex-direction: column;
-    transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-hackfest-person-card > div {
@@ -2856,7 +4184,7 @@ textarea:focus-visible,
 
 .bih-hackfest-feature-person h3,
 .bih-hackfest-person-card h3 {
-    margin-top: .45rem;
+    margin-top: 0.45rem;
     color: #0f172a;
     font-size: 1.4rem;
     font-weight: 900;
@@ -2869,7 +4197,7 @@ textarea:focus-visible,
 .bih-hackfest-matter p,
 .bih-hackfest-faq p,
 .bih-hackfest-contact p {
-    margin-top: .8rem;
+    margin-top: 0.8rem;
     color: #475569;
     line-height: 1.75;
 }
@@ -2893,7 +4221,7 @@ textarea:focus-visible,
     object-fit: cover;
     object-position: center top;
     background: #e2e8f0;
-    transition: transform .28s ease;
+    transition: transform 0.28s ease;
 }
 
 .bih-hackfest-person-card:hover img {
@@ -2902,9 +4230,9 @@ textarea:focus-visible,
 
 .bih-hackfest-person-card > div > p:first-child {
     color: #0f766e;
-    font-size: .72rem;
+    font-size: 0.72rem;
     font-weight: 900;
-    letter-spacing: .04em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
@@ -2927,7 +4255,7 @@ textarea:focus-visible,
 }
 
 .bih-hackfest-sponsor-panel h2 {
-    margin-top: .6rem;
+    margin-top: 0.6rem;
     max-width: 44rem;
     color: #0f172a;
     font-size: clamp(2rem, 4vw, 3.2rem);
@@ -2940,8 +4268,8 @@ textarea:focus-visible,
     border-radius: 999px;
     background: #ccfbf1;
     color: #0f766e;
-    padding: .55rem .85rem;
-    font-size: .78rem;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.78rem;
     font-weight: 900;
 }
 
@@ -2954,13 +4282,11 @@ textarea:focus-visible,
     position: relative;
     overflow: hidden;
     align-self: stretch;
-    border-radius: .5rem;
-    background:
-        linear-gradient(135deg, #102033, #0f3348 58%, #0f766e),
-        #102033;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #102033, #0f3348 58%, #0f766e), #102033;
     padding: clamp(1.25rem, 3vw, 2rem);
     color: #ffffff;
-    box-shadow: 0 22px 54px rgba(15, 23, 42, .16);
+    box-shadow: 0 22px 54px rgba(15, 23, 42, 0.16);
 }
 
 .bih-hackfest-matter h2,
@@ -2973,7 +4299,7 @@ textarea:focus-visible,
 }
 
 .bih-hackfest-matter p {
-    color: rgba(255, 255, 255, .84);
+    color: rgba(255, 255, 255, 0.84);
     font-size: 1.05rem;
 }
 
@@ -2986,23 +4312,25 @@ textarea:focus-visible,
 .bih-hackfest-faq > div {
     display: grid;
     max-height: 36rem;
-    gap: .8rem;
+    gap: 0.8rem;
     margin-top: 1.25rem;
     overflow-y: auto;
-    padding-right: .25rem;
+    padding-right: 0.25rem;
 }
 
 .bih-hackfest-faq details {
-    border: 1px solid rgba(15, 23, 42, .10);
-    border-radius: .5rem;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
     background: linear-gradient(135deg, #ffffff, #f8fafc);
     padding: 1rem;
-    transition: border-color .18s ease, box-shadow .18s ease;
+    transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .bih-hackfest-faq details[open] {
-    border-color: rgba(15, 118, 110, .28);
-    box-shadow: 0 14px 34px rgba(15, 23, 42, .07);
+    border-color: rgba(15, 118, 110, 0.28);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
 }
 
 .bih-hackfest-faq summary {
@@ -3025,7 +4353,7 @@ textarea:focus-visible,
 
 @media (min-width: 768px) {
     .bih-hackfest-contact {
-        grid-template-columns: .8fr 1.2fr;
+        grid-template-columns: 0.8fr 1.2fr;
     }
 }
 

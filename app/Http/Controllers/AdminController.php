@@ -121,6 +121,8 @@ class AdminController extends Controller
 
     public function pages(): View
     {
+        $this->ensureEditableLandingPages();
+
         return view('admin.pages.index', ['pages' => Page::orderBy('slug')->get()]);
     }
 
@@ -135,6 +137,15 @@ class AdminController extends Controller
             'title' => ['required', 'string', 'max:160'],
             'eyebrow' => ['nullable', 'string', 'max:200'],
             'intro' => ['nullable', 'string'],
+            'image' => ['nullable', 'string'],
+            'image_alt' => ['nullable', 'string', 'max:220'],
+            'cta_label' => ['nullable', 'string', 'max:80'],
+            'cta_url' => ['nullable', 'string', 'max:220'],
+            'stat_value' => ['nullable', 'string', 'max:40'],
+            'stat_label' => ['nullable', 'string', 'max:80'],
+            'card_1' => ['nullable', 'string', 'max:180'],
+            'card_2' => ['nullable', 'string', 'max:180'],
+            'card_3' => ['nullable', 'string', 'max:180'],
             'meta_title' => ['nullable', 'string', 'max:180'],
             'meta_description' => ['nullable', 'string'],
             'meta_keywords' => ['nullable', 'string', 'max:255'],
@@ -142,9 +153,25 @@ class AdminController extends Controller
             'status' => ['required', 'in:draft,published'],
         ]);
 
+        $blocks = array_replace($page->blocks ?? [], [
+            'eyebrow' => $data['eyebrow'] ?? '',
+            'intro' => $data['intro'] ?? '',
+            'image' => $data['image'] ?? '',
+            'image_alt' => $data['image_alt'] ?? '',
+            'cta_label' => $data['cta_label'] ?? '',
+            'cta_url' => $data['cta_url'] ?? '',
+            'stat_value' => $data['stat_value'] ?? '',
+            'stat_label' => $data['stat_label'] ?? '',
+            'cards' => array_values(array_filter([
+                $data['card_1'] ?? '',
+                $data['card_2'] ?? '',
+                $data['card_3'] ?? '',
+            ], fn ($value) => filled($value))),
+        ]);
+
         $page->update([
             'title' => $data['title'],
-            'blocks' => ['eyebrow' => $data['eyebrow'] ?? '', 'intro' => $data['intro'] ?? ''],
+            'blocks' => $blocks,
             'meta_title' => $data['meta_title'] ?? $data['title'].' | Bengal IT Hub',
             'meta_description' => $data['meta_description'] ?? $data['intro'] ?? '',
             'meta_keywords' => $data['meta_keywords'] ?? null,
@@ -154,6 +181,85 @@ class AdminController extends Controller
         $this->log('updated', $page);
 
         return back()->with('status', 'Page updated.');
+    }
+
+    private function ensureEditableLandingPages(): void
+    {
+        foreach ($this->editableLandingPageDefaults() as $slug => $page) {
+            $model = Page::firstOrNew(['slug' => $slug]);
+            $existingBlocks = $model->blocks ?? [];
+            $model->fill([
+                'title' => $model->exists ? $model->title : $page['title'],
+                'blocks' => array_replace($page['blocks'], $existingBlocks),
+                'meta_title' => $model->meta_title ?: $page['title'].' | Bengal IT Hub',
+                'meta_description' => $model->meta_description ?: ($existingBlocks['intro'] ?? $page['blocks']['intro'] ?? ''),
+                'status' => $model->status ?: 'published',
+            ]);
+
+            if ($model->isDirty() || ! $model->exists) {
+                $model->save();
+            }
+        }
+    }
+
+    private function editableLandingPageDefaults(): array
+    {
+        return [
+            'vision' => [
+                'title' => 'Vision',
+                'blocks' => [
+                    'eyebrow' => 'Vision Section',
+                    'intro' => 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.',
+                    'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                    'image_alt' => 'Bengal IT Hub innovation workspace',
+                    'cta_label' => 'Explore the vision',
+                    'cta_url' => '/vision-2030',
+                    'stat_value' => '2030',
+                    'stat_label' => 'Future roadmap',
+                    'cards' => [
+                        'Editable cards powered from the Pages admin panel',
+                        'Image links, headings, body copy, CTA, and proof points can change anytime',
+                        'Landing page updates as soon as the page content is saved',
+                    ],
+                ],
+            ],
+            'vision-2030' => [
+                'title' => 'Vision 2030',
+                'blocks' => [
+                    'eyebrow' => 'AI Powered Bengal',
+                    'intro' => 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.',
+                    'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                    'image_alt' => 'Digital technology lab representing Vision 2030',
+                    'cta_label' => 'Open Vision 2030',
+                    'cta_url' => '/vision-2030',
+                    'stat_value' => '100K+',
+                    'stat_label' => 'AI-ready professionals',
+                    'cards' => [
+                        '100,000 AI-ready professionals in 5 years',
+                        'Eastern India as a global technology hub',
+                        'Enterprise-ready execution from strategy to delivery',
+                    ],
+                ],
+            ],
+            'about-us' => [
+                'title' => 'About Us',
+                'blocks' => [
+                    'eyebrow' => 'About Bengal IT Hub',
+                    'intro' => 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.',
+                    'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                    'image_alt' => 'Modern IT workspace for Bengal IT Hub',
+                    'cta_label' => 'Read About Us',
+                    'cta_url' => '/about-us',
+                    'stat_value' => '500+',
+                    'stat_label' => 'Projects delivered',
+                    'cards' => [
+                        'Custom software, web platforms, SaaS, and AI-enabled growth systems',
+                        'Industry-aligned skilling, internships, events, and talent pathways',
+                        'A Bengal-based team building for national and global opportunities',
+                    ],
+                ],
+            ],
+        ];
     }
 
     public function faqs(): View

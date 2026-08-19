@@ -1,61 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 460" role="img" aria-labelledby="title desc">
-  <title id="title">Bengal IT Hub logo</title>
-  <desc id="desc">A blue technology globe mark above the words Bengal IT Hub on a transparent background.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 95" role="img" aria-labelledby="title desc">
+  <title id="title">Bengal IT Hub Logo</title>
+  <desc id="desc">Gold globe emblem and bold BENGAL IT HUB text.</desc>
   <defs>
-    <linearGradient id="logoFill" x1="160" y1="48" x2="478" y2="404" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8ffcff"/>
-      <stop offset=".45" stop-color="#23c9f6"/>
-      <stop offset="1" stop-color="#0577d8"/>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBF0B9"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#AA7C11"/>
+      <stop offset="100%" stop-color="#F3E5AB"/>
     </linearGradient>
-    <linearGradient id="textFill" x1="132" y1="278" x2="510" y2="380" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#7ff8ff"/>
-      <stop offset=".48" stop-color="#24c7f7"/>
-      <stop offset="1" stop-color="#0877d7"/>
-    </linearGradient>
-    <filter id="softGlow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#23c9f6" flood-opacity=".38"/>
-      <feDropShadow dx="0" dy="1" stdDeviation="1.4" flood-color="#063f8f" flood-opacity=".55"/>
+    <filter id="goldDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity="0.4"/>
     </filter>
   </defs>
 
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)">
-    <path d="M112 238h416" stroke="#0055a8" stroke-width="12"/>
-    <path d="M112 238h416" stroke="#83fbff" stroke-width="5"/>
-
-    <path d="M150 218a172 172 0 0 1 340 0" stroke="#0055a8" stroke-width="22"/>
-    <path d="M150 218a172 172 0 0 1 340 0" stroke="url(#logoFill)" stroke-width="14"/>
-    <path d="M190 216a130 130 0 0 1 260 0" stroke="#0055a8" stroke-width="12"/>
-    <path d="M190 216a130 130 0 0 1 260 0" stroke="url(#logoFill)" stroke-width="7"/>
-
-    <path d="M190 216h260M205 172h230M235 122h170M320 90v126M264 101c-30 41-43 78-42 115M376 101c30 41 43 78 42 115" stroke="#0055a8" stroke-width="10"/>
-    <path d="M190 216h260M205 172h230M235 122h170M320 90v126M264 101c-30 41-43 78-42 115M376 101c30 41 43 78 42 115" stroke="#79f8ff" stroke-width="5"/>
-
-    <path d="M223 136h62l36 35h88M214 185h83l70 42M250 216h46l34 31h64" stroke="#0055a8" stroke-width="11"/>
-    <path d="M223 136h62l36 35h88M214 185h83l70 42M250 216h46l34 31h64" stroke="#7df8ff" stroke-width="5"/>
-    <g fill="#7df8ff" stroke="#0055a8" stroke-width="7">
-      <circle cx="223" cy="136" r="14"/>
-      <circle cx="409" cy="171" r="14"/>
-      <circle cx="214" cy="185" r="14"/>
-      <circle cx="367" cy="227" r="14"/>
-      <circle cx="250" cy="216" r="14"/>
-      <circle cx="394" cy="247" r="14"/>
+  <!-- Left Side: Globe Emblem with Arch -->
+  <g transform="translate(10, 2)">
+    <!-- Top Arch -->
+    <path d="M 12 42 A 38 38 0 0 1 78 42" fill="none" stroke="url(#goldGrad)" stroke-width="3.5" stroke-linecap="round" filter="url(#goldDrop)"/>
+    <path d="M 8 46 L 13 40 M 82 46 L 77 40" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Globe Circle & Tech Grid -->
+    <g fill="none" stroke="url(#goldGrad)" filter="url(#goldDrop)">
+      <circle cx="45" cy="45" r="28" stroke-width="2.5"/>
+      <path d="M 19 37 Q 45 47 71 37" stroke-width="1.8"/>
+      <path d="M 17 45 Q 45 56 73 45" stroke-width="2"/>
+      <path d="M 20 53 Q 45 62 70 53" stroke-width="1.8"/>
+      
+      <path d="M 45 17 Q 30 45 45 73" stroke-width="1.6"/>
+      <path d="M 45 17 Q 60 45 45 73" stroke-width="1.6"/>
+      
+      <!-- Nodes -->
+      <g fill="url(#goldGrad)" stroke="#0b1724" stroke-width="1">
+        <circle cx="30" cy="38" r="2.5"/>
+        <circle cx="60" cy="35" r="2.5"/>
+        <circle cx="23" cy="45" r="2.5"/>
+        <circle cx="50" cy="51" r="2.5"/>
+        <circle cx="67" cy="46" r="2.5"/>
+        <circle cx="37" cy="57" r="2.5"/>
+      </g>
     </g>
-
-    <path d="M78 216v-64M562 216v-64" stroke="#0055a8" stroke-width="24"/>
-    <path d="M78 216v-64M562 216v-64" stroke="url(#logoFill)" stroke-width="15"/>
   </g>
 
-  <g font-family="Arial, Helvetica, sans-serif" text-anchor="middle" filter="url(#softGlow)">
-    <text x="320" y="334" fill="#0055a8" font-size="106" font-weight="900" letter-spacing="2" stroke="#0055a8" stroke-width="8">BENGAL</text>
-    <text x="320" y="334" fill="url(#textFill)" font-size="106" font-weight="900" letter-spacing="2" stroke="#9bffff" stroke-width="1.5">BENGAL</text>
-    <path d="M92 358h122M426 358h122" stroke="#0055a8" stroke-width="9" stroke-linecap="round"/>
-    <path d="M92 358h122M426 358h122" stroke="#78f7ff" stroke-width="4" stroke-linecap="round"/>
-    <text x="320" y="394" fill="#0055a8" font-size="52" font-weight="900" letter-spacing="12" stroke="#0055a8" stroke-width="4">IT HUB</text>
-    <text x="320" y="394" fill="#6df6ff" font-size="52" font-weight="900" letter-spacing="12">IT HUB</text>
-  </g>
-
-  <g transform="translate(482 68)">
-    <circle cx="22" cy="22" r="20" fill="#ffffff" stroke="#006bc4" stroke-width="3"/>
-    <text x="22" y="34" text-anchor="middle" fill="#006bc4" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800">R</text>
+  <!-- Right Side: Brand Typography -->
+  <g font-family="'Outfit', 'Manrope', 'Plus Jakarta Sans', 'Arial Black', sans-serif">
+    <!-- BENGAL Text -->
+    <text x="108" y="52" fill="url(#goldGrad)" font-size="40" font-weight="900" letter-spacing="3.5" filter="url(#goldDrop)">BENGAL</text>
+    
+    <!-- Underline Bar -->
+    <path d="M 108 60 H 325" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+    
+    <!-- IT HUB Subtext with Flank Lines -->
+    <path d="M 108 77 H 155 M 278 77 H 325" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="216" y="82" fill="currentColor" class="bih-logo-text-sub" font-size="18" font-weight="900" letter-spacing="7" text-anchor="middle">IT HUB</text>
   </g>
 </svg>

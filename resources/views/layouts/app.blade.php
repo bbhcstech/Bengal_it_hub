@@ -241,7 +241,7 @@
     @yield('content')
 </main>
 
-<div class="fixed top-24 left-5 z-40">
+<div class="fixed left-5 z-40" style="position: fixed; top: 165px; left: 20px; z-index: 9999;">
     <button data-back-button class="bih-scroll-button" type="button" aria-label="Go back to previous page" title="Go back">&larr;</button>
 </div>
 

@@ -4379,3 +4379,349 @@ textarea:focus-visible,
         min-height: 320px;
     }
 }
+
+/* =====================================================================
+   AWARDS & RECOGNITION — BENGAL SIGNAL UI/UX
+   ===================================================================== */
+
+.bih-breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.bih-breadcrumb-nav a {
+    color: #64748b;
+    transition: color 0.2s ease;
+}
+
+.bih-breadcrumb-nav a:hover {
+    color: #0f766e;
+}
+
+.bih-breadcrumb-nav .bih-breadcrumb-sep {
+    opacity: 0.45;
+}
+
+.bih-breadcrumb-nav .bih-breadcrumb-current {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.bih-awards-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a1f28 0%, #102d3b 50%, #1e4a5f 100%), #0a1f28;
+    color: #ffffff;
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.bih-awards-hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -100px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 170, 61, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+.bih-awards-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15, 118, 110, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+.bih-eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5c978;
+    background: rgba(232, 170, 61, 0.12);
+    padding: 0.45rem 1rem 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(232, 170, 61, 0.28);
+    width: fit-content;
+}
+
+.bih-eyebrow-pill-light {
+    color: #1e4a5f;
+    background: rgba(30, 74, 95, 0.08);
+    border: 1px solid rgba(30, 74, 95, 0.18);
+}
+
+.bih-eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #e8aa3d;
+    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.3);
+    display: inline-block;
+}
+
+.bih-awards-stat-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 2.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bih-awards-stat-chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.bih-awards-stat-chip:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(232, 170, 61, 0.4);
+}
+
+.bih-awards-photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #dce6e8;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(10, 31, 40, 0.06);
+    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.bih-awards-photo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30, 74, 95, 0.12);
+    border-color: rgba(232, 170, 61, 0.45);
+}
+
+.bih-awards-photo-thumb {
+    position: relative;
+    overflow: hidden;
+    height: 190px;
+}
+
+.bih-awards-photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bih-awards-photo-card:hover .bih-awards-photo-thumb img {
+    transform: scale(1.06);
+}
+
+.bih-awards-photo-body {
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.bih-badge-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: 1.5px solid #dce6e8;
+    color: #52707a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.bih-badge-gold {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e8aa3d;
+    color: #12242b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.bih-awards-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(30, 74, 95, 0.12), rgba(232, 170, 61, 0.16));
+    color: #1e4a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.bih-journey-card {
+    background-color: #ffffff;
+    border: 1px solid #dce6e8;
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(10, 31, 40, 0.06);
+    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.bih-journey-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30, 74, 95, 0.12);
+    border-color: rgba(232, 170, 61, 0.45);
+}
+
+.bih-journey-card:hover .bih-awards-icon-badge {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, rgba(30, 74, 95, 0.22), rgba(232, 170, 61, 0.28));
+}
+
+.bih-milestone-slot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 14px;
+    border: 2px dashed #cbd5e1;
+    background-color: rgba(248, 250, 252, 0.8);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.bih-milestone-slot:hover {
+    border-color: rgba(30, 74, 95, 0.45);
+    background-color: rgba(216, 233, 236, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30, 74, 95, 0.06);
+}
+
+.bih-vision-spotlight {
+    background: linear-gradient(135deg, #0a1f28 0%, #123544 50%, #1e4a5f 100%), #0a1f28;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(10, 31, 40, 0.2);
+    color: #ffffff;
+}
+
+.bih-awards-cta-band {
+    background: linear-gradient(135deg, #081a21 0%, #0f2d3b 50%, #1e4a5f 100%), #081a21;
+    border-radius: 20px;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 24px 54px rgba(10, 31, 40, 0.24);
+}
+
+.bih-awards-cta-band::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(232, 170, 61, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.bih-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #e8aa3d;
+    color: #12242b;
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: 999px;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 14px rgba(232, 170, 61, 0.3);
+    border: 1.5px solid transparent;
+}
+
+.bih-btn-gold:hover {
+    background-color: #f5c978;
+    box-shadow: 0 10px 28px rgba(232, 170, 61, 0.45);
+    transform: translateY(-2px);
+}
+
+.bih-btn-primary-teal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #1e4a5f;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: 999px;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 14px rgba(30, 74, 95, 0.25);
+    border: 1.5px solid transparent;
+}
+
+.bih-btn-primary-teal:hover {
+    background-color: #2e7089;
+    box-shadow: 0 10px 28px rgba(30, 74, 95, 0.35);
+    transform: translateY(-2px);
+}
+
+.bih-btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.92rem;
+    padding: 0.85rem 1.85rem;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    transition: all 0.22s ease;
+}
+
+.bih-btn-outline-white:hover {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}

@@ -55,7 +55,16 @@ class AppServiceProvider extends ServiceProvider
                 //
             }
 
-            $nav = array_replace_recursive(config('bengalhub.nav'), is_array($nav) ? $nav : []);
+            $defaultNav = config('bengalhub.nav');
+            if (is_array($nav)) {
+                foreach ($defaultNav as $key => $val) {
+                    if (is_array($val)) {
+                        $nav[$key] = is_array($nav[$key] ?? null) ? array_merge($val, $nav[$key]) : $val;
+                    }
+                }
+            } else {
+                $nav = $defaultNav;
+            }
 
             $view->with('siteBrand', $brand)->with('siteNav', $nav)->with('seoSettings', $seoSettings);
         });

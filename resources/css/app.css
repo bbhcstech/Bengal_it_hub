@@ -81,6 +81,61 @@ textarea:focus-visible,
     transform: translateY(0);
 }
 
+[data-dropdown-trigger][aria-expanded="true"] + .bih-services-mega,
+[data-dropdown-trigger][aria-expanded="true"] + .bih-industries-mega,
+[data-dropdown-trigger][aria-expanded="true"] + .bih-insights-mega {
+    transform: translateX(-50%) translateY(0);
+}
+
+html:not(.dark) .bih-services-mega,
+html.dark .bih-services-mega,
+html:not(.dark) .bih-industries-mega,
+html.dark .bih-industries-mega,
+html:not(.dark) .bih-insights-mega,
+html.dark .bih-insights-mega {
+    background-color: #123941 !important;
+    border-color: #21454f !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45) !important;
+}
+
+html:not(.dark) .bih-services-mega a,
+html.dark .bih-services-mega a,
+html:not(.dark) .bih-industries-mega a,
+html.dark .bih-industries-mega a,
+html:not(.dark) .bih-insights-mega a,
+html.dark .bih-insights-mega a {
+    color: #f1f5f9 !important;
+}
+
+html:not(.dark) .bih-services-mega a:hover,
+html.dark .bih-services-mega a:hover,
+html:not(.dark) .bih-industries-mega a:hover,
+html.dark .bih-industries-mega a:hover,
+html:not(.dark) .bih-insights-mega a:hover,
+html.dark .bih-insights-mega a:hover {
+    background-color: transparent !important;
+    color: #f5c978 !important;
+}
+
+html:not(.dark) .bih-services-mega .bih-services-mega-heading,
+html.dark .bih-services-mega .bih-services-mega-heading,
+html:not(.dark) .bih-industries-mega .bih-industries-mega-heading,
+html.dark .bih-industries-mega .bih-industries-mega-heading,
+html:not(.dark) .bih-insights-mega .bih-insights-mega-heading,
+html.dark .bih-insights-mega .bih-insights-mega-heading {
+    color: #f2aa36 !important;
+}
+
+html:not(.dark) .bih-products-dropdown .bih-products-dropdown-all,
+html.dark .bih-products-dropdown .bih-products-dropdown-all {
+    color: #4fb3cf !important;
+}
+
+html:not(.dark) .bih-products-dropdown .bih-products-dropdown-all:hover,
+html.dark .bih-products-dropdown .bih-products-dropdown-all:hover {
+    color: #f5c978 !important;
+}
+
 .bih-section,
 .bih-photo-band,
 .bih-products-company,
@@ -154,23 +209,214 @@ textarea:focus-visible,
 }
 
 .bih-container {
-    max-width: 1180px;
+    max-width: 1400px;
     margin-inline: auto;
     padding-inline: 1rem;
 }
 
+/* Theme Toggle Pill (matching bengal-demo) */
+.theme-toggle {
+    width: 54px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #e8f0f1;
+    border: 1px solid #dce6e8;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.theme-toggle .knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #1e4a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 12px;
+    transition: transform 300ms cubic-bezier(.4, 0, .2, 1), background-color 300ms ease;
+}
+
+html.dark .theme-toggle {
+    background-color: #163944 !important;
+    border-color: #21454f !important;
+}
+
+html.dark .theme-toggle .knob {
+    transform: translateX(24px) !important;
+    background-color: #e8aa3d !important;
+    color: #0a1f28 !important;
+}
+
+/* =====================================================================
+   HEADER & NAVBAR HIGH-CONTRAST THEMES (LIGHT & DARK MODES)
+   ===================================================================== */
+
+/* Adaptive SVG Logo */
 .bih-site-logo {
     display: block;
-    width: clamp(138px, 15vw, 205px);
-    height: 64px !important;
+    width: auto;
+    max-width: 240px;
+    height: 68px !important;
     object-fit: contain;
     object-position: left center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* LIGHT MODE HEADER: Crisp White Background + Slate-900 Bold Links */
+header.bih-header-sticky,
+html:not(.dark) header.bih-header-sticky {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+    color: #0f172a !important;
+}
+
+html:not(.dark) .bih-header-nav-link {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+html:not(.dark) .bih-header-nav-link:hover {
+    color: #0f766e !important;
+}
+
+html:not(.dark) .bih-site-logo .bih-logo-main-text {
+    fill: #0f172a !important;
+}
+
+html:not(.dark) .bih-site-logo .bih-logo-text-sub {
+    fill: #1e293b !important;
+}
+
+html:not(.dark) [data-dropdown-panel] {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12) !important;
+}
+
+html:not(.dark) [data-dropdown-panel] a {
+    color: #0f172a !important;
+}
+
+html:not(.dark) [data-dropdown-panel] a:hover {
+    background-color: #f0fdf4 !important;
+    color: #0f766e !important;
+}
+
+/* DARK MODE HEADER: Dark Navy Background + Pure White (#FFFFFF) Links */
+html.dark header.bih-header-sticky {
+    background-color: rgba(11, 23, 36, 0.96) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    color: #ffffff !important;
+}
+
+html.dark .bih-header-nav-link {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+}
+
+html.dark .bih-header-nav-link:hover {
+    color: #f3e5ab !important;
+    text-shadow: 0 0 12px rgba(243, 229, 171, 0.4) !important;
+}
+
+html.dark .bih-site-logo .bih-logo-main-text {
+    fill: #ffffff !important;
+}
+
+html.dark .bih-site-logo .bih-logo-text-sub {
+    fill: #f3e5ab !important;
+}
+
+html.dark [data-dropdown-panel] {
+    background-color: #0d1f30 !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8) !important;
+}
+
+html.dark [data-dropdown-panel] a {
+    color: #e2e8f0 !important;
+}
+
+html.dark [data-dropdown-panel] a:hover {
+    background-color: #182e44 !important;
+    color: #f3e5ab !important;
+}
+
+/* Global Dark Mode Themes (matching bengal-demo) */
+html.dark {
+    --bg: #0A1F28;
+    --bg-shift: #0E262F;
+    --surface: #123039;
+    --surface-alt: #163944;
+    --text-primary: #EAF4F6;
+    --text-secondary: #93B2BA;
+    --border: #21454F;
+    color-scheme: dark;
+}
+
+html.dark body {
+    background-color: #0a1f28 !important;
+    color: #eaf4f6 !important;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+    color: #f8fafc !important;
+}
+
+html.dark p:not([class*="text-amber"]):not([class*="text-teal"]):not([class*="text-gold"]):not([class*="text-[#"]) {
+    color: #cbd5e1 !important;
+}
+
+html.dark .bih-card,
+html.dark .bih-hp-card,
+html.dark .bih-section-card,
+html.dark [class*="bih-card"] {
+    background-color: #123039 !important;
+    border-color: #21454f !important;
+    color: #eaf4f6 !important;
+}
+
+/* Hardcoded Light Utility Classes Inversion in Dark Mode */
+html.dark .text-slate-900,
+html.dark .text-slate-950,
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+    color: #f8fafc !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+    color: #93b2ba !important;
+}
+
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-300 {
+    border-color: #21454f !important;
 }
 
 .bih-header-main {
     display: flex;
-    min-height: 80px;
+    min-height: 76px;
     align-items: center;
+    justify-content: space-between;
     gap: 0.75rem;
 }
 
@@ -178,62 +424,68 @@ textarea:focus-visible,
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    gap: 0.55rem;
+    gap: 0.5rem;
     min-width: 0;
 }
 
 .bih-header-actions {
     display: flex;
-    flex: none;
+    flex: 0 0 auto;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.65rem;
 }
 
 .bih-admin-nav-link {
     display: inline-grid;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     place-items: center;
-    border: 1px solid rgba(15, 23, 42, 0.12);
+    border: 1px solid #cbd5e1;
     border-radius: 0.5rem;
     color: #0f172a;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        0 8px 18px rgba(15, 23, 42, 0.08);
-    transition:
-        border-color 0.18s ease,
-        background 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    transition: all 0.18s ease;
 }
 
 .bih-admin-nav-link:hover {
-    border-color: rgba(15, 118, 110, 0.45);
+    border-color: #0f766e;
     color: #0f766e;
-    background: #ecfdf5;
-    transform: translateY(-1px);
-    box-shadow: 0 14px 26px rgba(15, 118, 110, 0.16);
+    background: #f0fdf4;
 }
 
-.bih-admin-nav-link:focus-visible {
-    outline: 3px solid rgba(20, 184, 166, 0.28);
-    outline-offset: 3px;
+html.dark .bih-admin-nav-link {
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #f3e5ab;
+    background: linear-gradient(180deg, #132435 0%, #0c1825 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .bih-admin-nav-link:hover {
+    border-color: rgba(243, 229, 171, 0.7);
+    color: #ffffff;
+    background: #192e42;
 }
 
 .bih-menu-button {
     display: grid;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     place-items: center;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
     border-radius: 0.375rem;
     color: #0f172a;
     background: #ffffff;
     font-size: 0.72rem;
     font-weight: 900;
     line-height: 1;
+    transition: all 0.18s ease;
+}
+
+html.dark .bih-menu-button {
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #f3e5ab;
+    background: #112233;
 }
 
 .bih-header-nav {
@@ -241,28 +493,43 @@ textarea:focus-visible,
     min-width: 0;
     flex: 1 1 auto;
     align-items: center;
-    justify-content: flex-start;
-    gap: 0;
-    color: #334155;
-    font-size: 0.74rem;
-    font-weight: 900;
+    justify-content: space-evenly;
+    gap: 0.2rem;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    overflow: visible;
 }
 
 .bih-header-nav-link {
     display: inline-flex;
     align-items: center;
-    min-height: 80px;
-    padding-inline: 0.34rem;
-    color: inherit;
+    min-height: 76px;
+    padding-inline: 0.45rem;
     line-height: 1.1;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    transition: color 0.18s ease;
+    position: relative;
+    font-weight: 800;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-.bih-header-nav-link:hover {
-    color: #0f766e;
+.bih-header-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #f3e5ab);
+    transition: transform 0.22s ease-in-out;
+    border-radius: 2px;
+}
+
+.bih-header-nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
 .bih-header-call {
@@ -270,15 +537,15 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    min-height: 36px;
-    border: 1px solid rgba(15, 118, 110, 0.22);
+    min-height: 38px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
     border-radius: 0.5rem;
-    padding: 0.45rem 0.62rem;
-    color: #0f4f49;
-    background: linear-gradient(135deg, #ecfeff, #ffffff);
+    padding: 0.45rem 0.7rem;
+    color: #f3e5ab;
+    background: linear-gradient(135deg, #132435, #0a1622);
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
-        0 10px 24px rgba(15, 118, 110, 0.1);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 4px 15px rgba(0, 0, 0, 0.3);
     font-size: 0.76rem;
     font-weight: 900;
     line-height: 1.15;
@@ -292,11 +559,11 @@ textarea:focus-visible,
 }
 
 .bih-header-call:hover {
-    color: #0f172a;
-    border-color: rgba(15, 118, 110, 0.42);
+    color: #ffffff;
+    border-color: rgba(243, 229, 171, 0.7);
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.9),
-        0 14px 30px rgba(15, 118, 110, 0.16);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 20px rgba(212, 175, 55, 0.25);
     transform: translateY(-1px);
 }
 
@@ -304,6 +571,34 @@ textarea:focus-visible,
     width: 1rem;
     height: 1rem;
     flex: none;
+    color: #d4af37;
+}
+
+.bih-header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-weight: 800;
+    font-size: 0.84rem;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+    color: #08131f;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+.bih-header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.08);
 }
 
 @media (min-width: 1280px) {
@@ -318,11 +613,11 @@ textarea:focus-visible,
 
 @media (min-width: 1440px) {
     .bih-header-nav {
-        font-size: 0.82rem;
+        font-size: 0.84rem;
     }
 
     .bih-header-nav-link {
-        padding-inline: 0.52rem;
+        padding-inline: 0.55rem;
     }
 }
 

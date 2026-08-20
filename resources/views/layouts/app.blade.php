@@ -165,40 +165,179 @@
             gtag('config', '{{ $seoSettings['google_analytics_id'] }}');
         </script>
     @endif
+    <script>
+        (function() {
+            const stored = localStorage.getItem('bith-theme');
+            if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
     @vite(['resources/css/app.css', 'resources/js/site.js'])
 </head>
 <body class="bih-shell min-h-screen">
 <a href="#main-content" class="bih-skip-link">Skip to main content</a>
-<header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/94 shadow-sm backdrop-blur">
+<header class="bih-header-sticky sticky top-0 z-50 backdrop-blur-md relative transition-colors duration-300 shadow-md">
+    <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#d4af37]/70 to-transparent pointer-events-none"></div>
     <div class="bih-container bih-header-main">
+        @php
+            $bihServiceMegaMenu = [
+                'Learn & Grow' => [
+                    ['label' => 'Tech Ed/Fest', 'href' => '/tech-ed-fest', 'icon' => 'zap'],
+                    ['label' => 'Educamp', 'href' => '/educamp', 'icon' => 'book'],
+                    ['label' => 'Eduverse', 'href' => '/eduverse-2', 'icon' => 'layers'],
+                    ['label' => 'Groomify', 'href' => '/groomify', 'icon' => 'admin'],
+                ],
+                'Grow The Business' => [
+                    ['label' => 'AI-Marketing', 'href' => '/ai-marketing', 'icon' => 'trending'],
+                    ['label' => 'Biz-Consultation', 'href' => '/biz-consultation', 'icon' => 'compass'],
+                    ['label' => 'Biz-Enablement', 'href' => '/biz-enablement', 'icon' => 'leaf'],
+                    ['label' => 'E-Collab', 'href' => '/e-collab-2', 'icon' => 'users'],
+                ],
+                'Operate & Scale' => [
+                    ['label' => 'Staff Augmentation', 'href' => '/staff-augmentation', 'icon' => 'admin'],
+                    ['label' => 'Corporate Ops Outsourcing', 'href' => '/corporate-operations-outsourcing', 'icon' => 'briefcase'],
+                ],
+            ];
+            $bihIndustriesMegaMenu = [
+                'Property & Health' => [
+                    ['label' => 'Real Estate', 'href' => '/industries/real-estate'],
+                    ['label' => 'Health Care', 'href' => '/industries/health-care'],
+                ],
+                'Learning & Industry' => [
+                    ['label' => 'Edu Tech', 'href' => '/industries/edu-tech'],
+                    ['label' => 'Manufacturing', 'href' => '/industries/manufacturing'],
+                ],
+                'Movement & Trade' => [
+                    ['label' => 'Logistics', 'href' => '/industries/logistics'],
+                    ['label' => 'Travel & Hospitality', 'href' => '/industries/travel-hospitality'],
+                ],
+            ];
+            $bihInsightsMegaMenu = [
+                'Tech Talk' => [
+                    ['label' => 'Tech Innovation Hub', 'href' => '/tech-innovation'],
+                    ['label' => 'TechBiz', 'href' => '/tech-biz'],
+                    ['label' => 'Blog', 'href' => '/blog'],
+                ],
+                'Proof' => [
+                    ['label' => 'Our Clients', 'href' => '/our-clients'],
+                    ['label' => 'Awards & Recognition', 'href' => '/awards-recognition'],
+                    ['label' => 'Our Partners', 'href' => '/our-partners'],
+                ],
+                'Company' => [
+                    ['label' => 'About Us', 'href' => '/about-us'],
+                    ['label' => 'FAQ', 'href' => '/faq'],
+                    ['label' => 'Contact', 'href' => '/contact'],
+                ],
+            ];
+        @endphp
         <div class="bih-header-brand">
             <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Bengal IT Hub home">
-                <img class="bih-site-logo shrink-0" src="{{ $bihLogoUrl }}" alt="Bengal IT Hub logo" width="260" height="80" decoding="async" fetchpriority="high">
-            </a>
-            <a class="bih-header-call" href="tel:+919230653975" aria-label="Call Bengal IT Hub at +91 92306 53975">
-                <svg class="bih-header-call-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M6.8 4.5 9.2 4c.5-.1 1 .2 1.2.7l1 2.4c.2.5.1 1-.3 1.3L9.8 9.6c.9 1.9 2.4 3.4 4.4 4.5l1.2-1.4c.3-.4.9-.5 1.3-.3l2.5 1.1c.5.2.8.7.7 1.2l-.4 2.4c-.1.5-.5.9-1 .9C11.4 18.1 5.9 12.6 5.9 5.5c0-.5.4-.9.9-1Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="bih-header-call-text">+91 92306 53975</span>
+                <img class="bih-site-logo shrink-0" src="{{ $bihLogoUrl }}" alt="Bengal IT Hub logo" width="240" height="68" decoding="async" fetchpriority="high">
             </a>
         </div>
         <nav class="bih-header-nav" aria-label="Primary">
             @foreach($siteNav as $label => $item)
                 @if(is_array($item))
                     <div class="group relative" data-dropdown>
-                        <button type="button" class="bih-header-nav-link" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">{{ $label }}</button>
-                        <div class="invisible absolute left-0 top-full w-72 translate-y-2 rounded-md border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
-                            @foreach($item as $child => $href)
-                                <a class="block rounded px-3 py-2 hover:bg-teal-50 hover:text-teal-800" href="{{ $href }}">{{ $child }}</a>
-                            @endforeach
-                        </div>
+                        <button type="button" class="bih-header-nav-link flex items-center gap-1" data-dropdown-trigger aria-haspopup="true" aria-expanded="false">
+                            <span>{{ $label }}</span>
+                            <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180 opacity-70" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
+                        </button>
+                        @if($label === 'Services')
+                            <div class="bih-services-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(1100px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-14 lg:grid-cols-3">
+                                    @foreach($bihServiceMegaMenu as $group => $services)
+                                        <div>
+                                            <p class="bih-services-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                                <span class="h-px w-5 bg-[#f2aa36]"></span>
+                                                <span>{{ $group }}</span>
+                                            </p>
+                                            <div class="grid gap-7">
+                                                @foreach($services as $service)
+                                                    <a class="bih-services-mega-link group/item flex items-center gap-4 text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $service['href'] }}">
+                                                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#164650] text-[#f5c342] transition-colors group-hover/item:bg-[#1d5661]">
+                                                            @include('partials.icon', ['name' => $service['icon'], 'size' => 'h-5 w-5'])
+                                                        </span>
+                                                        <span>{{ $service['label'] }}</span>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="mt-12 flex items-center justify-between gap-6 border-t border-[#2a5660] pt-7">
+                                    <p class="font-serif text-lg font-black italic text-slate-100">Not sure where to start? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Talk to the team &rarr;</a></p>
+                                    <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-[#2a5660] px-10 text-base font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/services">Explore All Services</a>
+                                </div>
+                            </div>
+                        @elseif($label === 'Products')
+                            <div class="bih-products-dropdown invisible absolute left-0 top-full min-w-72 translate-y-2 rounded-2xl border border-slate-200/80 dark:border-[#d4af37]/35 bg-white dark:bg-[#0b1b2b] p-4 opacity-0 shadow-2xl shadow-slate-900/15 dark:shadow-black/85 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="flex flex-col gap-1">
+                                    @foreach($item as $child => $href)
+                                        <a class="block rounded-lg px-4 py-3 text-[0.96rem] font-bold text-slate-800 dark:text-slate-100 hover:bg-teal-50 dark:hover:bg-[#15283a] hover:text-teal-800 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
+                                    @endforeach
+                                </div>
+                                <div class="mt-3 border-t border-slate-200/80 pt-3 dark:border-[#2a5660]">
+                                    <a class="bih-products-dropdown-all block rounded-lg px-4 py-3 text-[0.96rem] font-black text-[#4fb3cf] transition hover:bg-teal-50 hover:text-[#f5c978] dark:hover:bg-[#15283a]" href="/products">View All Products &rarr;</a>
+                                </div>
+                            </div>
+                        @elseif($label === 'Industries')
+                            <div class="bih-industries-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(950px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-14 lg:grid-cols-3">
+                                    @foreach($bihIndustriesMegaMenu as $group => $industries)
+                                        <div>
+                                            <p class="bih-industries-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                                <span class="h-px w-5 bg-[#f2aa36]"></span>
+                                                <span>{{ $group }}</span>
+                                            </p>
+                                            <div class="grid gap-5">
+                                                @foreach($industries as $industry)
+                                                    <a class="bih-industries-mega-link block text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $industry['href'] }}">{{ $industry['label'] }}</a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="mt-10 flex items-center justify-between gap-6 border-t border-[#2a5660] pt-7">
+                                    <p class="font-serif text-lg font-black italic text-slate-100">Don't see your sector? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Tell us about it &rarr;</a></p>
+                                    <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-[#2a5660] px-10 text-base font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/industries">View All Industries</a>
+                                </div>
+                            </div>
+                        @elseif($label === 'Insights')
+                            <div class="bih-insights-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(850px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-14 lg:grid-cols-3">
+                                    @foreach($bihInsightsMegaMenu as $group => $links)
+                                        <div>
+                                            <p class="bih-insights-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                                <span class="h-px w-5 bg-[#f2aa36]"></span>
+                                                <span>{{ $group }}</span>
+                                            </p>
+                                            <div class="grid gap-5">
+                                                @foreach($links as $link)
+                                                    <a class="bih-insights-mega-link block text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $link['href'] }}">{{ $link['label'] }}</a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <div class="invisible absolute left-0 top-full min-w-64 translate-y-2 rounded-xl border border-slate-200/80 dark:border-[#d4af37]/35 bg-white dark:bg-[#0b1b2b] p-3 opacity-0 shadow-2xl shadow-slate-900/15 dark:shadow-black/85 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="flex flex-col gap-1">
+                                    @foreach($item as $child => $href)
+                                        <a class="block rounded-lg px-4 py-3 text-[0.96rem] font-bold text-slate-800 dark:text-slate-100 hover:bg-teal-50 dark:hover:bg-[#15283a] hover:text-teal-800 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @else
                     <a class="bih-header-nav-link" href="{{ $item }}">{{ $label }}</a>
@@ -206,32 +345,43 @@
             @endforeach
         </nav>
         <div class="bih-header-actions">
-            <a class="bih-button hidden sm:inline-flex" href="{{ route('contact') }}">Get in Touch</a>
+            <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false" title="Toggle theme">
+                <span class="knob">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+                    </svg>
+                </span>
+            </button>
+            <a class="bih-header-cta hidden sm:inline-flex" href="{{ route('contact') }}">Get in Touch</a>
             <a class="bih-admin-nav-link" href="{{ route('admin.login') }}" aria-label="Admin login" title="Admin login">
                 @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
             </a>
             <button data-menu-button class="bih-menu-button" aria-label="Open menu" aria-expanded="false">Menu</button>
         </div>
     </div>
-    <nav data-mobile-menu class="bih-container hidden pb-4 xl:hidden" aria-label="Mobile">
+    <nav data-mobile-menu class="bih-container hidden pb-5 xl:hidden border-t border-slate-200 dark:border-[#d4af37]/20 bg-white dark:bg-[#0b1724]" aria-label="Mobile">
         @foreach($siteNav as $label => $item)
-            <div class="border-t border-slate-200 py-2">
+            <div class="border-t border-slate-200 dark:border-[#d4af37]/15 py-3">
                 @if(is_array($item))
-                    <p class="font-extrabold">{{ $label }}</p>
-                    <div class="mt-2 grid gap-1 pl-3">
+                    <p class="font-extrabold text-teal-800 dark:text-[#f3e5ab] text-sm tracking-wide uppercase px-2">{{ $label }}</p>
+                    <div class="mt-2 grid gap-1.5 pl-3">
                         @foreach($item as $child => $href)
-                            <a class="py-1 text-sm font-semibold text-slate-800" href="{{ $href }}">{{ $child }}</a>
+                            <a class="py-1.5 px-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-teal-700 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
                         @endforeach
                     </div>
                 @else
-                    <a class="font-extrabold" href="{{ $item }}">{{ $label }}</a>
+                    <a class="px-2 font-extrabold text-slate-800 dark:text-slate-100 hover:text-teal-700 dark:hover:text-[#f3e5ab] transition-colors block text-base" href="{{ $item }}">{{ $label }}</a>
                 @endif
             </div>
         @endforeach
-        <div class="border-t border-slate-200 py-2">
-            <a class="inline-flex items-center gap-2 font-extrabold text-slate-900" href="{{ route('admin.login') }}">
+        <div class="border-t border-slate-200 dark:border-[#d4af37]/20 pt-3 pb-1 flex items-center justify-between">
+            <a class="inline-flex items-center gap-2 font-extrabold text-teal-800 dark:text-[#f3e5ab] hover:text-teal-900 dark:hover:text-white px-2 py-1 transition-colors" href="{{ route('admin.login') }}">
                 @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
                 <span>Admin Login</span>
+            </a>
+            <a class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 px-2" href="tel:+919230653975">
+                <span>+91 92306 53975</span>
             </a>
         </div>
     </nav>

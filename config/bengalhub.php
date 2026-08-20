@@ -36,21 +36,32 @@ return [
             'Staff Augmentation' => '/staff-augmentation',
             'Corporate Operations Outsourcing' => '/corporate-operations-outsourcing',
         ],
-        'Products' => '/products',
-        'Tech Talk' => [
-            'TechBiz' => '/tech-biz',
-            'Tech-Innovation' => '/tech-innovation',
-            'Our Clients' => '/our-clients',
+        'Products' => [
+            'Software Development' => '/products/software-development',
+            'Web Development' => '/products/web-development',
+            'App Development' => '/products/app-development',
+            'IoT Product Build' => '/products/iot-product-build',
         ],
-        'Industries' => '/industries',
-        'News & Events' => [
-            'Hackfest Pragati 2026' => '/hackfest-2026',
+        'Industries' => [
+            'Real Estate' => '/industries/real-estate',
+            'Health Care' => '/industries/health-care',
+            'Edu Tech' => '/industries/edu-tech',
+            'Manufacturing' => '/industries/manufacturing',
+            'Logistics' => '/industries/logistics',
+            'Travel & Hospitality' => '/industries/travel-hospitality',
         ],
         'Insights' => [
+            'Tech Innovation Hub' => '/tech-innovation',
+            'TechBiz' => '/tech-biz',
             'Blog' => '/blog',
+            'Our Clients' => '/our-clients',
             'Awards & Recognition' => '/awards-recognition',
+            'Our Partners' => '/our-partners',
+            'About Us' => '/about-us',
+            'FAQ' => '/faq',
+            'Contact' => '/contact',
         ],
-        'Our Partners' => '/our-partners',
+        'HackFest 2026' => '/hackfest-2026',
     ],
 
     'clients' => [

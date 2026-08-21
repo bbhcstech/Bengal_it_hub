@@ -12,6 +12,30 @@
     @case('partners')
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="7" cy="12" r="3.3" stroke="currentColor" stroke-width="1.6"/><circle cx="17" cy="12" r="3.3" stroke="currentColor" stroke-width="1.6"/><path d="M10.3 12h3.4" stroke="currentColor" stroke-width="1.6"/></svg>
         @break
+    @case('admin')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M5.8 19.5c.8-3.3 3-5 6.2-5s5.4 1.7 6.2 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M17.8 8.8h2.9m-1.4-1.4v2.9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        @break
+    @case('zap')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 5 13h6l-1 9 8-12h-6l1-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        @break
+    @case('book')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8 17h11M8 7h7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        @break
+    @case('layers')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 4 9 4.5-9 4.5-9-4.5L12 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m5 12 7 3.5 7-3.5M5 16l7 3.5 7-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        @break
+    @case('trending')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 16 5.5-5.5 4 4L20 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 8h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        @break
+    @case('compass')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        @break
+    @case('leaf')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 4c-7.5.4-12 4.7-12 10.2 0 2.8 2 4.8 4.8 4.8C17.3 19 20.6 12.9 19 4Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 19c2.2-4.6 5-7.2 9-9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        @break
+    @case('users')
+        <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.7"/><path d="M3.8 19c.7-3.1 2.5-4.7 5.2-4.7s4.5 1.6 5.2 4.7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M15 5.5a3 3 0 0 1 0 5M16.5 14.5c2 .6 3.2 2.1 3.7 4.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        @break
     @case('rocket')
         <svg class="{{ $size }}" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3 2-3-2c-1-1-2-3-2-5 0-4 2-8 5-10Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="10" r="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M9 17 7 21m8-4 2 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         @break

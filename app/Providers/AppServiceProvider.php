@@ -55,7 +55,50 @@ class AppServiceProvider extends ServiceProvider
                 //
             }
 
-            $nav = array_replace_recursive(config('bengalhub.nav'), is_array($nav) ? $nav : []);
+            $defaultNav = config('bengalhub.nav');
+            if (is_array($nav)) {
+                foreach ($defaultNav as $key => $val) {
+                    if (is_array($val)) {
+                        $nav[$key] = is_array($nav[$key] ?? null) ? array_merge($val, $nav[$key]) : $val;
+                    }
+                }
+
+                $techTalkLinks = [
+                    'TechBiz' => '/tech-biz',
+                    'Tech Innovation Hub' => '/tech-innovation',
+                    'Our Clients' => '/our-clients',
+                ];
+
+                $nav['Tech Talk'] = array_merge(
+                    $techTalkLinks,
+                    array_diff_key(is_array($nav['Tech Talk'] ?? null) ? $nav['Tech Talk'] : [], $techTalkLinks)
+                );
+
+                if (is_array($nav['Insights'] ?? null)) {
+                    $nav['Insights'] = array_diff_key($nav['Insights'], $techTalkLinks);
+                }
+
+                unset($nav['HackFest 2026']);
+                $nav['News & Event'] = is_array($nav['News & Event'] ?? null) ? $nav['News & Event'] : [];
+                $nav['News & Event']['HackFest 2026'] = '/hackfest-2026';
+
+                $orderedNav = [];
+                foreach (array_keys($defaultNav) as $key) {
+                    if (array_key_exists($key, $nav)) {
+                        $orderedNav[$key] = $nav[$key];
+                    }
+                }
+
+                foreach ($nav as $key => $val) {
+                    if (! array_key_exists($key, $orderedNav)) {
+                        $orderedNav[$key] = $val;
+                    }
+                }
+
+                $nav = $orderedNav;
+            } else {
+                $nav = $defaultNav;
+            }
 
             $view->with('siteBrand', $brand)->with('siteNav', $nav)->with('seoSettings', $seoSettings);
         });

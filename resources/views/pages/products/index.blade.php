@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="bih-product-marquee" aria-hidden="true">
+    <div class="bih-product-marquee-track">
+        <span>Software Development</span><span>Web Development</span><span>App Development</span><span>IoT Product Build</span><span>Generative AI</span><span>Agentic AI</span><span>SaaS &amp; Cloud</span>
+        <span>Software Development</span><span>Web Development</span><span>App Development</span><span>IoT Product Build</span><span>Generative AI</span><span>Agentic AI</span><span>SaaS &amp; Cloud</span>
+    </div>
+</div>
+
+<div class="bih-product-breadcrumb-wrap">
+    <div class="bih-container">
+        <nav class="bih-product-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}">Home</a>
+            <span class="sep">/</span>
+            <span class="current">Products</span>
+        </nav>
+    </div>
+</div>
+
 <section class="bih-products-hero">
     <div class="bih-container grid gap-10 lg:grid-cols-[1fr_.82fr] lg:items-center">
         <div>
@@ -159,13 +176,13 @@
         ['Who does Bengal IT Hub build products for?', 'Bengal IT Hub works with startups, founders, institutions, MSMEs, and growing companies that need product planning, engineering, launch support, and long-term improvement.'],
     ];
 @endphp
-<section class="bih-section bg-white">
+<section class="bih-section bih-products-faq bg-white">
     <div class="bih-container max-w-3xl">
         <p class="bih-eyebrow">Common Questions</p>
         <h2 class="bih-section-title mt-3 text-3xl leading-tight md:text-4xl">Products FAQ</h2>
         <div class="mt-8 grid gap-4">
             @foreach($bihProductFaqs as [$question, $answer])
-                <details class="rounded-md border border-slate-200 bg-slate-50 p-4">
+                <details class="bih-products-faq-item rounded-md border border-slate-200 bg-slate-50 p-4">
                     <summary class="cursor-pointer font-extrabold">{{ $question }}</summary>
                     <p class="mt-3 leading-7 text-slate-600">{{ $answer }}</p>
                 </details>

@@ -36,6 +36,11 @@ class Partner extends Model
         return $query->where('status', 'published');
     }
 
+    public function scopeHasSlug(Builder $query): Builder
+    {
+        return $query->whereNotNull('slug')->where('slug', '!=', '');
+    }
+
     public function scopeOrdered(Builder $query): Builder
     {
         return $query->orderBy('sort_order')->orderBy('name');

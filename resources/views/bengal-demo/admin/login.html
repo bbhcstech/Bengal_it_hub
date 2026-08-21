@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Login | Bengal IT Hub</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../assets/images/favicon.png">
+<link rel="stylesheet" href="../assets/css/admin.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --font-display: 'Fraunces', serif;
+        --font-heading: 'Outfit', sans-serif;
+    }
+
+    html, body { height: 100%; }
+    body { margin: 0; overflow-x: hidden; }
+
+    .login-shell {
+        min-height: 100vh;
+        display: flex;
+        background-color: var(--a-surface);
+    }
+    .login-brand-panel, .login-form-panel { flex: 1 1 50%; align-self: stretch; min-height: 0; }
+    .login-brand-panel { flex-basis: 52%; }
+    .login-form-panel { flex-basis: 48%; }
+    @media (max-width: 900px) { .login-shell { flex-direction: column; } .login-brand-panel, .login-form-panel { flex-basis: auto; } }
+
+    /* ---------------- Left brand panel ---------------- */
+    .login-brand-panel {
+        position: relative;
+        overflow: hidden;
+        background: radial-gradient(circle at 20% 15%, #2E7089 0%, #123544 55%, #0A1F28 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 56px 64px;
+    }
+    @media (max-width: 900px) { .login-brand-panel { padding: 40px 32px; min-height: 320px; } }
+
+    .login-brand-panel .blob {
+        position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55;
+        animation: loginBlob 18s ease-in-out infinite;
+    }
+    .login-brand-panel .blob-1 { width: 380px; height: 380px; top: -100px; right: -100px; background-color: #F2A93B; animation-delay: 0s; }
+    .login-brand-panel .blob-2 { width: 320px; height: 320px; bottom: -140px; left: -80px; background-color: #2E7089; animation-delay: -7s; }
+    .login-brand-panel .blob-3 { width: 220px; height: 220px; bottom: 30%; right: 10%; background-color: #FF6B5D; opacity: 0.3; animation-delay: -10s; }
+    @keyframes loginBlob { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px,-18px) scale(1.08); } }
+
+    .login-brand-panel::after {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        opacity: 0.06; mix-blend-mode: overlay; pointer-events: none;
+    }
+
+    .login-brand-top { position: relative; z-index: 1; display: flex; align-items: center; gap: 10px; }
+    .login-brand-top img { height: 40px; }
+    .login-brand-top span { font-family: var(--font-heading); font-weight: 700; font-size: 1.15rem; }
+
+    .login-brand-mid { position: relative; z-index: 1; max-width: 460px; }
+    .login-brand-mid .eyebrow-pill {
+        display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-heading);
+        font-size: 0.74rem; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase;
+        color: #F5C978; background-color: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+        padding: 7px 16px; border-radius: 999px; margin-bottom: 22px;
+    }
+    .login-brand-mid .eyebrow-pill .dot { width: 6px; height: 6px; border-radius: 50%; background-color: #F2A93B; }
+    .login-brand-mid h1 {
+        font-family: var(--font-display); font-weight: 600; font-style: italic; font-size: clamp(1.9rem, 3vw, 2.5rem);
+        line-height: 1.2; margin: 0 0 18px; color: #fff;
+    }
+    .login-brand-mid p { color: #A9C7CE; font-size: 1rem; line-height: 1.7; margin: 0; }
+
+    .login-brand-stats { position: relative; z-index: 1; display: flex; gap: 32px; }
+    .login-brand-stats div strong { display: block; font-family: var(--font-display); font-style: italic; font-size: 1.7rem; color: #F5C978; }
+    .login-brand-stats div span { font-family: var(--font-heading); font-size: 0.76rem; color: #9BB9C1; letter-spacing: 0.03em; }
+
+    @media (max-width: 900px) { .login-brand-stats { display: none; } }
+
+    /* ---------------- Right form panel ---------------- */
+    .login-form-panel {
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 48px 40px; position: relative;
+    }
+    .login-theme-toggle {
+        position: absolute; top: 32px; right: 40px;
+        width: 54px; height: 30px; border-radius: 999px; background-color: var(--a-bg); border: 1px solid var(--a-border);
+        cursor: pointer; padding: 0;
+    }
+    .login-theme-toggle .knob {
+        width: 24px; height: 24px; border-radius: 50%; background-color: var(--a-primary); margin: 2px;
+        display: flex; align-items: center; justify-content: center; color: #fff; transition: transform 280ms ease;
+    }
+
+    .login-form-inner { width: 100%; max-width: 380px; }
+    .login-form-inner .mobile-logo { display: none; margin-bottom: 28px; }
+    .login-form-inner .mobile-logo img { height: 36px; }
+    @media (max-width: 900px) { .login-form-inner .mobile-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-weight: 700; } }
+
+    .login-form-inner .kicker { font-family: var(--font-heading); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--a-gold); margin-bottom: 10px; }
+    .login-form-inner h2 { font-family: var(--font-display); font-size: 1.9rem; font-weight: 600; margin: 0 0 8px; color: var(--a-text); }
+    .login-form-inner .sub { color: var(--a-text-muted); font-size: 0.92rem; margin-bottom: 32px; }
+
+    .field-group { margin-bottom: 20px; position: relative; }
+    .field-group label { display: block; font-family: var(--font-heading); font-weight: 600; font-size: 0.82rem; color: var(--a-text); margin-bottom: 7px; }
+    .field-input-wrap { position: relative; display: flex; align-items: center; }
+    .field-input-wrap svg { position: absolute; left: 14px; color: var(--a-text-muted); pointer-events: none; }
+    .field-input-wrap input {
+        width: 100%; padding: 13px 14px 13px 42px; border-radius: 10px; border: 1.5px solid var(--a-border);
+        font-family: inherit; font-size: 0.92rem; background-color: var(--a-surface); color: var(--a-text);
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+    .field-input-wrap input:focus { outline: none; border-color: var(--a-primary); box-shadow: 0 0 0 4px rgba(59,30,109,0.1); }
+    .field-toggle-visibility { position: absolute; right: 10px; background: none; border: none; color: var(--a-text-muted); cursor: pointer; padding: 4px; display: flex; }
+
+    .field-row-between { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+    .remember-check { display: flex; align-items: center; gap: 8px; font-size: 0.86rem; color: var(--a-text-muted); }
+    .remember-check input { accent-color: var(--a-primary); width: 16px; height: 16px; }
+    .forgot-link { font-size: 0.86rem; color: var(--a-primary); font-weight: 600; }
+    .forgot-link:hover { text-decoration: underline; }
+
+    .btn-signin {
+        width: 100%; padding: 15px; border-radius: 10px; border: none; cursor: pointer;
+        background: linear-gradient(135deg, var(--a-primary), #2E7089);
+        color: #fff; font-family: var(--font-heading); font-weight: 700; font-size: 0.95rem;
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        box-shadow: 0 10px 26px rgba(59,30,109,0.28);
+        transition: transform 200ms ease, box-shadow 200ms ease;
+    }
+    .btn-signin:hover { transform: translateY(-1px); box-shadow: 0 14px 32px rgba(59,30,109,0.36); }
+    .btn-signin:active { transform: translateY(0); }
+
+    .login-divider { display: flex; align-items: center; gap: 14px; margin: 28px 0; color: var(--a-text-muted); font-size: 0.78rem; }
+    .login-divider::before, .login-divider::after { content: ''; flex: 1; height: 1px; background-color: var(--a-border); }
+
+    .security-note {
+        display: flex; align-items: flex-start; gap: 10px; padding: 14px 16px; border-radius: 10px;
+        background-color: var(--a-bg); border: 1px solid var(--a-border); font-size: 0.8rem; color: var(--a-text-muted);
+    }
+    .security-note svg { color: var(--a-success); flex-shrink: 0; margin-top: 1px; }
+
+    .login-footer-note { text-align: center; margin-top: 28px; font-size: 0.8rem; color: var(--a-text-muted); }
+    .login-footer-note a { color: var(--a-primary); font-weight: 600; }
+
+    /* Dark mode */
+    html.dark body { background-color: #0A1F28; }
+    html.dark .login-form-panel { background-color: #0A1F28; }
+    html.dark .field-input-wrap input { background-color: #123039; border-color: #21454F; color: #EAF4F6; }
+    html.dark .login-form-inner h2 { color: #EAF4F6; }
+    html.dark .security-note { background-color: #123039; border-color: #21454F; color: #93B2BA; }
+    html.dark .login-theme-toggle { background-color: #123039; border-color: #21454F; }
+    html.dark .login-theme-toggle .knob { background-color: #F2A93B; transform: translateX(24px); }
+    html.dark .field-group label { color: #EAF4F6; }
+    html.dark .remember-check, html.dark .login-divider, html.dark .login-footer-note { color: #93B2BA; }
+    html.dark .login-divider::before, html.dark .login-divider::after { background-color: #21454F; }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">UI/UX design demo — static mockup. <a href="../demo-index.html">View all pages &rarr;</a></div>
+
+<div class="login-shell">
+    <div class="login-brand-panel">
+        <div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div>
+
+        <div class="login-brand-top">
+            <img src="../assets/images/logo-square.jpg" alt="Bengal IT Hub">
+        </div>
+
+        <div class="login-brand-mid">
+            <span class="eyebrow-pill"><span class="dot"></span> Admin Console</span>
+            <h1>Everything about your website, in one calm place.</h1>
+            <p>Edit content, manage SEO, review leads and control navigation &mdash; all without touching a line of code.</p>
+        </div>
+
+        <div class="login-brand-stats">
+            <div><strong>36</strong><span>Pages Managed</span></div>
+            <div><strong>10</strong><span>Services Live</span></div>
+            <div><strong>5★</strong><span>Editor Rating</span></div>
+        </div>
+    </div>
+
+    <div class="login-form-panel">
+        <button type="button" class="login-theme-toggle" data-theme-toggle aria-label="Toggle dark mode">
+            <span class="knob">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="5"/><path d="M10 1v2M10 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 10h2M21 10h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+            </span>
+        </button>
+
+        <div class="login-form-inner">
+            <div class="mobile-logo">
+                <img src="../assets/images/logo-square.jpg" alt="Bengal IT Hub">
+                <span>Bengal IT Hub</span>
+            </div>
+
+            <span class="kicker">Welcome Back</span>
+            <h2>Sign in to Admin</h2>
+            <p class="sub">Manage your website content, SEO and leads.</p>
+
+            <form onsubmit="return false;">
+                <div class="field-group">
+                    <label for="email">Email Address</label>
+                    <div class="field-input-wrap">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+                        <input type="email" id="email" value="admin@bengalithub.com">
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <div class="field-input-wrap">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        <input type="password" id="password" value="••••••••••">
+                        <button type="button" class="field-toggle-visibility" aria-label="Show password" onclick="const p=document.getElementById('password');p.type=p.type==='password'?'text':'password';">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 10s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="10" cy="10" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="field-row-between">
+                    <label class="remember-check"><input type="checkbox" checked> Remember me</label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <a href="dashboard.html" class="btn-signin">
+                    Sign In
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 10h14M10 5l7 7-7 7"/></svg>
+                </a>
+            </form>
+
+            <div class="login-divider">Protected Area</div>
+
+            <div class="security-note">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 2l8 4v6c0 5-3.4 8.7-8 10-4.6-1.3-8-5-8-10V6z"/><path d="M9 10l2 2 4-4"/></svg>
+                <span>This area requires authentication and is not indexed by search engines. Access is logged.</span>
+            </div>
+
+            <p class="login-footer-note">Not an admin? <a href="../index.html">Return to the website &rarr;</a></p>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/js/admin.js"></script>
+<script>
+    (function () {
+        var root = document.documentElement;
+        function apply(theme) { theme === 'dark' ? root.classList.add('dark') : root.classList.remove('dark'); }
+        var stored = localStorage.getItem('bith-theme');
+        apply(stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var next = root.classList.contains('dark') ? 'light' : 'dark';
+                apply(next);
+                localStorage.setItem('bith-theme', next);
+            });
+        });
+    })();
+</script>
+</body>
+</html>

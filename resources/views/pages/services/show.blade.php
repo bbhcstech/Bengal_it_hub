@@ -5,14 +5,24 @@
 @endphp
 
 @section('content')
-@include('partials.internal-links', [
-    'links' => [],
-    'breadcrumbs' => [
-        ['name' => 'Home', 'url' => route('home')],
-        ['name' => 'Services', 'url' => route('services.index')],
-        ['name' => $service['title'], 'url' => url()->current()],
-    ],
-])
+<div class="bih-service-marquee" aria-hidden="true">
+    <div class="bih-service-marquee-track">
+        <span>Tech Ed/Fest</span><span>Educamp</span><span>Eduverse</span><span>Groomify</span><span>AI Marketing</span><span>Staff Augmentation</span><span>Corporate Ops Outsourcing</span>
+        <span>Tech Ed/Fest</span><span>Educamp</span><span>Eduverse</span><span>Groomify</span><span>AI Marketing</span><span>Staff Augmentation</span><span>Corporate Ops Outsourcing</span>
+    </div>
+</div>
+
+<div class="bih-service-breadcrumb-wrap">
+    <div class="bih-container">
+        <nav class="bih-service-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}">Home</a>
+            <span class="sep">/</span>
+            <a href="{{ route('services.index') }}">Services</a>
+            <span class="sep">/</span>
+            <span class="current">{{ $service['title'] }}</span>
+        </nav>
+    </div>
+</div>
 
 @if(!empty($service['image']))
     <div class="bih-service-page bih-service-page-{{ $slug }}">

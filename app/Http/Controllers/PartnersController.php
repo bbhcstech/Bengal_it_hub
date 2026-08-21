@@ -9,7 +9,7 @@ class PartnersController extends Controller
 {
     public function index(): View
     {
-        $partners = Partner::published()->ordered()->get();
+        $partners = Partner::published()->hasSlug()->ordered()->get();
         $content = config('bengalhub.partnersPage');
         $content['intro']['stats'] = [
             ['value' => (string) $partners->count(), 'label' => 'Partner Categories'],
@@ -33,6 +33,7 @@ class PartnersController extends Controller
         abort_unless($partner->status === 'published', 404);
 
         $related = Partner::published()
+            ->hasSlug()
             ->where('id', '!=', $partner->id)
             ->where('scope', $partner->scope)
             ->ordered()

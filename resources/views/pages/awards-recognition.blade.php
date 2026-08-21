@@ -1,144 +1,508 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="relative overflow-hidden bg-slate-950 text-white">
-    <img class="absolute inset-0 h-full w-full object-cover opacity-35" src="{{ $awards['intro']['image'] }}" alt="Awards and recognition at Bengal IT Hub">
-    <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/92 to-slate-950/55"></div>
-    <div class="bih-container relative py-20">
-        <p class="text-sm font-black uppercase tracking-wide text-amber-300">{{ $awards['intro']['eyebrow'] }}</p>
-        <h1 class="mt-4 max-w-3xl text-5xl font-black leading-[1.05] tracking-tight text-white md:text-7xl">{{ $awards['intro']['title'] }}</h1>
-        @foreach($awards['intro']['body'] as $paragraph)
-            <p class="bih-page-intro bih-on-dark mt-5 max-w-2xl">{{ $paragraph }}</p>
-        @endforeach
-        <div class="mt-9 flex flex-wrap gap-3">
-            <a class="bih-button" href="/contact?interest=Awards+%26+Recognition">Get In Touch</a>
-            <a class="bih-button bih-button-light" href="#categories">See How It's Organized</a>
-        </div>
 
-        @if(!empty($awards['intro']['stats']))
-            <div class="mt-14 grid gap-5 border-t border-white/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
-                @foreach($awards['intro']['stats'] as $stat)
-                    <div>
-                        <p class="text-3xl font-black leading-tight text-white md:text-4xl">{{ $stat['value'] }}</p>
-                        <p class="mt-1.5 text-xs font-black uppercase tracking-wide text-white/60">{{ $stat['label'] }}</p>
+{{-- ======================================================
+     Page-scoped CSS — mirrors the Bengal Signal design
+     system from resources/views/bengal-demo/assets/css/site.css
+     Scoped under [data-awards] so it never bleeds to other pages.
+     ====================================================== --}}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+[data-awards] {
+    --bs-ink:         #0A1F28;
+    --bs-primary:     #1E4A5F;
+    --bs-primary-lt:  #2E7089;
+    --bs-gold:        #E8AA3D;
+    --bs-gold-lt:     #F5C978;
+    --bs-text:        #0F262E;
+    --bs-muted:       #52707A;
+    --bs-border:      #DCE6E8;
+    --bs-surface:     #FFFFFF;
+    --bs-surface-alt: #E8F0F1;
+    --bs-bg:          #F5F8F8;
+    --bs-tint:        #D8E9EC;
+    --bs-radius-sm:   8px;
+    --bs-radius-md:   16px;
+    --bs-radius-lg:   28px;
+    --bs-radius-pill: 999px;
+    --bs-shadow-sm:   0 1px 3px rgba(10,31,40,.08);
+    --bs-shadow-md:   0 12px 32px rgba(10,31,40,.10);
+    --bs-shadow-lg:   0 28px 64px rgba(10,31,40,.18);
+    font-family: 'Inter', sans-serif;
+    color: var(--bs-text);
+    background-color: var(--bs-bg);
+}
+
+/* ---------- marquee strip ---------- */
+[data-awards] .bs-marquee-strip {
+    background-color: var(--bs-ink, #0A1F28);
+    overflow: hidden;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bs-border, #DCE6E8);
+}
+[data-awards] .bs-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bsAwardsMarquee 32s linear infinite;
+}
+[data-awards] .bs-marquee-track span {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9DC3CC;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    white-space: nowrap;
+}
+[data-awards] .bs-marquee-track span::after {
+    content: '✦';
+    color: var(--bs-gold, #E8AA3D);
+}
+@keyframes bsAwardsMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- breadcrumb ---------- */
+[data-awards] .bs-breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: .82rem; color: var(--bs-muted);
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+[data-awards] .bs-breadcrumb a { color: var(--bs-muted); transition: color .2s; }
+[data-awards] .bs-breadcrumb a:hover { color: var(--bs-primary); }
+[data-awards] .bs-breadcrumb .sep { opacity: .5; }
+[data-awards] .bs-breadcrumb .current { color: var(--bs-text); font-weight: 700; }
+
+/* ---------- page-hero ---------- */
+[data-awards] .bs-page-hero {
+    padding: 64px 0 56px;
+    position: relative; overflow: hidden;
+    background: var(--bs-bg);
+}
+[data-awards] .bs-page-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; line-height: 1.15;
+    letter-spacing: -.01em; max-width: 780px;
+    color: var(--bs-text); margin: 0 0 .5em;
+}
+[data-awards] .bs-page-hero p.lead {
+    max-width: 620px; margin-top: .875rem;
+    font-size: 1.1rem; line-height: 1.75; color: var(--bs-muted);
+}
+
+/* ---------- eyebrow ---------- */
+[data-awards] .bs-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--bs-primary); background: rgba(30,74,95,.08);
+    padding: 7px 16px 7px 12px; border-radius: var(--bs-radius-pill); margin-bottom: 20px;
+    border: 1px solid rgba(30,74,95,.18);
+}
+[data-awards] .bs-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background-color: var(--bs-gold);
+    box-shadow: 0 0 0 3px rgba(232,170,61,.28);
+    display: inline-block; flex-shrink: 0;
+}
+
+/* ---------- container ---------- */
+[data-awards] .bs-container {
+    width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px;
+}
+
+/* ---------- section ---------- */
+[data-awards] .bs-section { padding: 100px 0; position: relative; }
+[data-awards] .bs-section-alt { background-color: var(--bs-surface-alt); }
+@media (max-width: 767px) { [data-awards] .bs-section { padding: 60px 0; } }
+
+/* ---------- section head ---------- */
+[data-awards] .bs-section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
+[data-awards] .bs-section-head.left { margin-left: 0; text-align: left; }
+[data-awards] .bs-section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.85rem,3.3vw,2.5rem); font-weight: 600;
+    color: var(--bs-text); margin: 0 0 .5em; line-height: 1.15; letter-spacing: -.01em;
+}
+
+/* ---------- grid ---------- */
+[data-awards] .bs-grid { display: grid; gap: 22px; }
+[data-awards] .bs-grid-2 { grid-template-columns: repeat(2,1fr); }
+[data-awards] .bs-grid-3 { grid-template-columns: repeat(3,1fr); }
+[data-awards] .bs-grid-4 { grid-template-columns: repeat(4,1fr); }
+@media (max-width: 991px) {
+    [data-awards] .bs-grid-3,
+    [data-awards] .bs-grid-4 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 640px) {
+    [data-awards] .bs-grid-2,
+    [data-awards] .bs-grid-3,
+    [data-awards] .bs-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ---------- photo-card ---------- */
+[data-awards] .bs-photo-card {
+    border-radius: var(--bs-radius-md); overflow: hidden;
+    border: 1px solid var(--bs-border); background-color: var(--bs-surface);
+    box-shadow: var(--bs-shadow-sm);
+    transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+}
+[data-awards] .bs-photo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30,74,95,.12);
+    border-color: rgba(232,170,61,.45);
+}
+[data-awards] .bs-photo-card img {
+    width: 100%; height: 190px; object-fit: cover; display: block;
+    transition: transform .5s ease;
+}
+[data-awards] .bs-photo-card:hover img { transform: scale(1.06); }
+[data-awards] .bs-photo-card .body { padding: 18px 20px; }
+
+/* ---------- badge tags ---------- */
+[data-awards] .bs-badge-outline {
+    display: inline-block; background: transparent;
+    border: 1.5px solid var(--bs-border); color: var(--bs-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: .7rem; font-weight: 700; padding: 4px 11px;
+    border-radius: var(--bs-radius-pill); margin-bottom: 12px;
+}
+[data-awards] .bs-badge-gold {
+    display: inline-block; background-color: var(--bs-gold); color: #12242B;
+    font-family: 'Outfit', sans-serif;
+    font-size: .7rem; font-weight: 800; padding: 5px 12px;
+    border-radius: var(--bs-radius-pill); margin-bottom: 12px;
+}
+
+/* ---------- card (bento) ---------- */
+[data-awards] .bs-card {
+    background-color: var(--bs-surface); border: 1px solid var(--bs-border);
+    border-radius: var(--bs-radius-md); padding: 30px 24px;
+    box-shadow: var(--bs-shadow-sm); transition: transform .26s ease, box-shadow .26s ease;
+    display: flex; flex-direction: column;
+}
+[data-awards] .bs-card:hover {
+    box-shadow: var(--bs-shadow-md); transform: translateY(-4px);
+}
+[data-awards] .bs-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--bs-text);
+    margin: 0 0 .5em; letter-spacing: -.01em;
+}
+[data-awards] .bs-card p {
+    font-size: .92rem; line-height: 1.75; color: var(--bs-muted); margin: 0; flex: 1;
+}
+[data-awards] .bs-card a.cta-link {
+    display: inline-flex; align-items: center; gap: .35rem;
+    margin-top: 1.25rem; font-family: 'Outfit', sans-serif;
+    font-weight: 700; font-size: .88rem; color: var(--bs-primary);
+    transition: color .2s, gap .2s;
+}
+[data-awards] .bs-card a.cta-link:hover { color: var(--bs-gold); gap: .6rem; }
+
+/* ---------- icon badge ---------- */
+[data-awards] .bs-icon-badge {
+    width: 52px; height: 52px; border-radius: var(--bs-radius-sm);
+    background: linear-gradient(135deg, rgba(30,74,95,.14), rgba(232,170,61,.14));
+    color: var(--bs-primary);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+}
+[data-awards] .bs-icon-badge svg { width: 22px; height: 22px; }
+
+/* ---------- placeholder slot ---------- */
+[data-awards] .bs-slot {
+    display: flex; align-items: center; gap: 1rem;
+    border-radius: 14px; border: 2px dashed var(--bs-border);
+    background: rgba(248,250,252,.8); padding: 1.25rem 1.5rem;
+    transition: border-color .22s, background .22s, transform .22s, box-shadow .22s;
+}
+[data-awards] .bs-slot:hover {
+    border-color: rgba(30,74,95,.4);
+    background: rgba(216,233,236,.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30,74,95,.06);
+}
+[data-awards] .bs-slot .slot-icon {
+    width: 46px; height: 46px; flex-shrink: 0; border-radius: 10px;
+    background: var(--bs-surface); border: 1px solid var(--bs-border);
+    display: flex; align-items: center; justify-content: center; color: var(--bs-primary);
+    transition: border-color .22s;
+}
+[data-awards] .bs-slot:hover .slot-icon { border-color: rgba(30,74,95,.4); }
+[data-awards] .bs-slot .slot-label { font-weight: 700; color: var(--bs-text); font-size: .95rem; font-family: 'Outfit', sans-serif; }
+[data-awards] .bs-slot .slot-status {
+    display: inline-block; margin-top: 3px;
+    font-family: 'Outfit', sans-serif;
+    font-size: .68rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--bs-primary); background: rgba(30,74,95,.08);
+    padding: 2px 10px; border-radius: 999px; border: 1px solid rgba(30,74,95,.18);
+}
+
+/* ---------- spotlight (Vision 2030) ---------- */
+[data-awards] .bs-spotlight {
+    background: linear-gradient(135deg, #0a1f28 0%, #123544 55%, #1e4a5f 100%);
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 20px 50px rgba(10,31,40,.2); color: #fff;
+    display: grid; gap: 0;
+}
+@media (min-width: 1024px) { [data-awards] .bs-spotlight { grid-template-columns: 1fr 1fr; } }
+
+[data-awards] .bs-spotlight .copy { padding: 56px 48px; }
+@media (max-width: 767px) { [data-awards] .bs-spotlight .copy { padding: 36px 24px; } }
+[data-awards] .bs-spotlight h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 600; color: #fff;
+    margin: .75rem 0 1rem; line-height: 1.15; letter-spacing: -.01em;
+}
+[data-awards] .bs-spotlight .bs-eyebrow { color: var(--bs-gold-lt); background: rgba(232,170,61,.12); border-color: rgba(232,170,61,.3); }
+[data-awards] .bs-spotlight p { color: rgba(255,255,255,.78); font-size: 1.05rem; line-height: 1.75; margin-bottom: 0; }
+[data-awards] .bs-spotlight .actions { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: 2rem; }
+[data-awards] .bs-spotlight .visual {
+    position: relative; min-height: 280px; overflow: hidden;
+}
+[data-awards] .bs-spotlight .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+[data-awards] .bs-spotlight .visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,31,40,.55), transparent 60%);
+}
+@media (min-width: 1024px) {
+    [data-awards] .bs-spotlight .visual::after {
+        background: linear-gradient(to right, rgba(10,31,40,.5) 0%, transparent 55%);
+    }
+}
+
+/* ---------- cta-banner ---------- */
+[data-awards] .bs-cta-banner {
+    background: linear-gradient(120deg, var(--bs-primary), #123544);
+    border-radius: var(--bs-radius-lg); padding: 60px;
+    text-align: center; color: #fff;
+    position: relative; overflow: hidden;
+}
+[data-awards] .bs-cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(232,170,61,.15) 0%, transparent 68%);
+    pointer-events: none;
+}
+[data-awards] .bs-cta-banner h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 600; color: #fff;
+    margin: .5rem 0 1rem; letter-spacing: -.01em;
+}
+[data-awards] .bs-cta-banner p { color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 1.75rem; }
+[data-awards] .bs-cta-banner .actions { display: flex; gap: .875rem; flex-wrap: wrap; justify-content: center; }
+@media (max-width: 640px) { [data-awards] .bs-cta-banner { padding: 40px 24px; } }
+
+/* ---------- buttons ---------- */
+[data-awards] .bs-btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background-color: var(--bs-gold); color: #12242B;
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 15px 30px; border-radius: var(--bs-radius-pill);
+    border: 1.5px solid transparent;
+    transition: background .22s, box-shadow .22s, transform .22s;
+}
+[data-awards] .bs-btn-gold:hover { background-color: var(--bs-gold-lt); box-shadow: 0 14px 34px rgba(232,170,61,.35); transform: translateY(-2px); }
+[data-awards] .bs-btn-outline {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: transparent; border: 1.5px solid var(--bs-border); color: var(--bs-text);
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 15px 30px; border-radius: var(--bs-radius-pill);
+    transition: border-color .22s, color .22s, transform .22s;
+}
+[data-awards] .bs-btn-outline:hover { border-color: var(--bs-primary); color: var(--bs-primary); transform: translateY(-2px); }
+[data-awards] .bs-btn-outline-white {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: transparent; border: 1.5px solid rgba(255,255,255,.38); color: #fff;
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 15px 30px; border-radius: var(--bs-radius-pill);
+    transition: border-color .22s, background .22s, transform .22s;
+}
+[data-awards] .bs-btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.1); transform: translateY(-2px); }
+
+/* ---------- reveal animation ---------- */
+[data-awards] .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 700ms cubic-bezier(.2,.7,.3,1), transform 700ms cubic-bezier(.2,.7,.3,1);
+}
+[data-awards] .reveal.in-view { opacity: 1; transform: translateY(0); }
+</style>
+
+@php
+    $demoImages = [
+        'Industry Awards' => asset('assets/images/award-industry.jpg'),
+        'Media Recognition' => asset('assets/images/award-media.jpg'),
+        'Certifications & Milestones' => asset('assets/images/award-cert.jpg'),
+        'Partner & Client Recognition' => asset('assets/images/award-partner.jpg'),
+    ];
+@endphp
+
+<div data-awards>
+    {{-- ── Marquee Strip ── --}}
+    <div class="bs-marquee-strip" aria-hidden="true">
+        <div class="bs-marquee-track">
+            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+        </div>
+    </div>
+
+    {{-- ── Breadcrumb ── --}}
+    <div class="bs-container" style="padding-top: 1.5rem; padding-bottom: 0;">
+        <nav class="bs-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}">Home</a>
+            <span class="sep">/</span>
+            <span class="current">Awards &amp; Recognition</span>
+        </nav>
+    </div>
+
+    {{-- ── Page Hero ── --}}
+    <section class="bs-page-hero">
+        <div class="bs-container">
+            <span class="bs-eyebrow"><span class="dot"></span> {{ $awards['intro']['eyebrow'] }}</span>
+            <h1>{{ $awards['intro']['title'] }}</h1>
+            @foreach($awards['intro']['body'] as $para)
+                <p class="lead">{{ $para }}</p>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- ── 4-column Photo Cards (Categories) ── --}}
+    <section class="bs-section" style="padding-top: 0; background: var(--bs-bg, #F5F8F8);">
+        <div class="bs-container">
+            <div class="bs-grid bs-grid-4">
+                @foreach($awards['categories'] as $category)
+                    @php
+                        $categoryImg = $demoImages[$category['title']] ?? $category['image'];
+                    @endphp
+                    <div class="bs-photo-card reveal">
+                        <img src="{{ $categoryImg }}" alt="{{ $category['title'] }}" loading="lazy" decoding="async">
+                        <div class="body">
+                            <span class="bs-badge-outline">Recognition</span>
+                            <h4 style="margin: 0; font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem; color: #0F262E; letter-spacing: -.01em;">{{ $category['title'] }}</h4>
+                            <p style="margin-top: .5rem; font-size: .88rem; line-height: 1.7; color: #52707A;">{{ $category['body'] }}</p>
+                        </div>
                     </div>
                 @endforeach
             </div>
-        @endif
-    </div>
-</section>
-
-<section id="categories" class="bih-section bg-white">
-    <div class="bih-container">
-        <div class="max-w-3xl">
-            <p class="bih-eyebrow">How This Page Is Organized</p>
-            <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">Four Kinds of Recognition We're Tracking</h2>
-            <p class="bih-page-intro mt-5">As Bengal IT Hub earns awards, certifications, and recognition, they're organized here by category, so you always know exactly where to look.</p>
         </div>
+    </section>
 
-        <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach($awards['categories'] as $category)
-                <article class="group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
-                    <span class="absolute inset-x-0 top-0 z-10 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
-                    <div class="relative h-32 overflow-hidden">
-                        <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $category['image'] }}" alt="{{ $category['title'] }}">
-                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
-                        <span class="absolute bottom-3 left-4 grid h-10 w-10 place-items-center rounded-md bg-white/95 text-teal-700 shadow-sm">
-                            @include('partials.icon', ['name' => $category['icon']])
+    {{-- ── Journey / Bigger Picture ── --}}
+    <section class="bs-section bs-section-alt">
+        <div class="bs-container">
+            <div class="bs-section-head reveal">
+                <span class="bs-eyebrow"><span class="dot"></span> The Bigger Picture</span>
+                <h2>What Recognition Is Building Toward</h2>
+                <p style="color: #52707A; margin: 0; font-size: 1rem; line-height: 1.75;">Awards and mentions matter most when they add up to something. Here's the throughline connecting our present milestones to where we're headed.</p>
+            </div>
+
+            <div class="bs-grid bs-grid-3">
+                @foreach($awards['journey'] as $item)
+                    <div class="bs-card reveal">
+                        <div class="bs-icon-badge">
+                            @include('partials.icon', ['name' => $item['icon']])
+                        </div>
+                        <span class="bs-badge-gold">{{ $item['tag'] }}</span>
+                        <h3>{{ $item['title'] }}</h3>
+                        <p>{{ $item['body'] }}</p>
+                        <a class="cta-link" href="{{ $item['href'] }}">
+                            {{ $item['cta'] }}
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ── Reserved & In-Progress Showcase ── --}}
+    <section class="bs-section" style="background: var(--bs-bg, #F5F8F8);">
+        <div class="bs-container">
+            <div class="bs-section-head left reveal">
+                <span class="bs-eyebrow"><span class="dot"></span> Reserved &amp; In Progress</span>
+                <h2>The Showcase We're Filling In</h2>
+                <p style="color: #52707A; margin: 0; font-size: 1rem; line-height: 1.75;">We'd rather show you an honest, growing wall than a fabricated one. Each slot below is reserved for a real, upcoming milestone as it's earned.</p>
+            </div>
+
+            <div class="bs-grid bs-grid-3">
+                @foreach($awards['placeholders'] as $slot)
+                    <div class="bs-slot reveal">
+                        <span class="slot-icon">
+                            @include('partials.icon', ['name' => $slot['icon']])
                         </span>
+                        <div>
+                            <p class="slot-label">{{ $slot['label'] }}</p>
+                            <span class="slot-status">Reserved &middot; Coming Soon</span>
+                        </div>
                     </div>
-                    <div class="flex flex-1 flex-col p-6">
-                        <h3 class="text-lg font-black leading-snug tracking-tight text-slate-950">{{ $category['title'] }}</h3>
-                        <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">{{ $category['body'] }}</p>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ── Vision 2030 Spotlight ── --}}
+    <section class="bs-section bs-section-alt">
+        <div class="bs-container">
+            <div class="bs-spotlight reveal">
+                <div class="copy">
+                    <span class="bs-eyebrow"><span class="dot"></span> Where This Is Headed</span>
+                    <h2>Every Milestone Feeds Vision 2030</h2>
+                    <p>Every award, certification, and mention we work toward supports the same goal: positioning Bengal as India's AI Innovation Hub, and building a track record the whole ecosystem can point to.</p>
+                    <div class="actions">
+                        <a class="bs-btn-gold" href="/vision-2030">
+                            Explore Vision 2030
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                        <a class="bs-btn-outline-white" href="{{ route('our-partners.index') }}">Meet Our Partners</a>
                     </div>
-                </article>
-            @endforeach
+                </div>
+                <div class="visual">
+                    <img src="{{ $awards['intro']['image'] }}" alt="Bengal IT Hub working toward Vision 2030 recognition" loading="lazy" decoding="async">
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="bih-section bg-slate-50">
-    <div class="bih-container">
-        <div class="max-w-3xl">
-            <p class="bih-eyebrow">The Bigger Picture</p>
-            <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">What Recognition Is Building Toward</h2>
-            <p class="bih-page-intro mt-5">Awards and mentions matter most when they add up to something. Here's the throughline connecting our present milestones to where we're headed.</p>
-        </div>
-
-        <div class="mt-12 grid gap-6 lg:grid-cols-3">
-            @foreach($awards['journey'] as $item)
-                <article class="group flex flex-col rounded-lg border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
-                    <span class="grid h-12 w-12 flex-none place-items-center rounded-md bg-teal-700 text-white">
-                        @include('partials.icon', ['name' => $item['icon']])
-                    </span>
-                    <p class="mt-5 text-xs font-black uppercase tracking-wide text-teal-700">{{ $item['tag'] }}</p>
-                    <h3 class="mt-2 text-xl font-black leading-snug tracking-tight text-slate-950">{{ $item['title'] }}</h3>
-                    <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">{{ $item['body'] }}</p>
-                    <a class="mt-5 inline-flex items-center gap-1.5 text-sm font-extrabold text-teal-700" href="{{ $item['href'] }}">
-                        {{ $item['cta'] }}
-                        <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    {{-- ── CTA Banner ── --}}
+    <section class="bs-section" style="background: var(--bs-bg, #F5F8F8);">
+        <div class="bs-container">
+            <div class="bs-cta-banner reveal">
+                <span class="bs-eyebrow" style="color: var(--bs-gold-lt, #F5C978); background: rgba(232,170,61,.12); border-color: rgba(232,170,61,.3);">
+                    <span class="dot"></span> Have Something to Share?
+                </span>
+                <h2>Won an award, got featured, or partnered with us?</h2>
+                <p>If Bengal IT Hub has been recognised somewhere and you'd like it featured on this page, let us know.</p>
+                <div class="actions">
+                    <a class="bs-btn-gold" href="{{ route('contact', ['interest' => 'Awards & Recognition']) }}">
+                        Get In Touch
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                </article>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section class="bih-section bg-white">
-    <div class="bih-container">
-        <div class="flex flex-wrap items-end justify-between gap-4">
-            <div class="max-w-2xl">
-                <p class="bih-eyebrow">Reserved &amp; In Progress</p>
-                <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">The Showcase We're Filling In</h2>
-                <p class="bih-page-intro mt-5">We'd rather show you an honest, growing wall than a fabricated one. Each slot below is reserved for a real, upcoming milestone as it's earned.</p>
-            </div>
-        </div>
-
-        <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            @foreach($awards['placeholders'] as $slot)
-                <div class="flex items-center gap-4 rounded-lg border-2 border-dashed border-slate-200 bg-slate-50/60 p-6 transition duration-300 hover:border-teal-600/40 hover:bg-teal-50/40">
-                    <span class="grid h-12 w-12 flex-none place-items-center rounded-md bg-white text-slate-500 shadow-sm">
-                        @include('partials.icon', ['name' => $slot['icon']])
-                    </span>
-                    <div>
-                        <p class="font-black leading-tight text-slate-500">{{ $slot['label'] }}</p>
-                        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-slate-500">Reserved &middot; Coming Soon</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-<section class="bih-section bg-slate-50">
-    <div class="bih-container">
-        <div class="grid gap-10 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm lg:grid-cols-2">
-            <div class="flex flex-col justify-center p-8 md:p-10">
-                <p class="bih-eyebrow">Where This Is Headed</p>
-                <h2 class="bih-section-title mt-3 text-3xl leading-tight md:text-4xl">Every Milestone Feeds Vision 2030</h2>
-                <p class="bih-copy mt-4">Every award, certification, and mention we work toward supports the same goal: positioning Bengal as India's AI Innovation Hub, and building a track record the whole ecosystem can point to.</p>
-                <div class="mt-6 flex flex-wrap gap-3">
-                    <a class="bih-button inline-flex w-fit" href="/vision-2030">Explore Vision 2030</a>
-                    <a class="bih-button-secondary inline-flex w-fit" href="/our-partners">Meet Our Partners</a>
+                    <a class="bs-btn-outline-white" href="{{ route('blog.index') }}">See Our Story So Far</a>
                 </div>
             </div>
-            <div class="relative h-64 lg:h-full">
-                <img class="h-full w-full object-cover" src="{{ $awards['intro']['image'] }}" alt="Bengal IT Hub working toward Vision 2030 recognition">
-                <div class="absolute inset-0 bg-linear-to-l from-transparent to-white/10 lg:bg-linear-to-r"></div>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
+</div>
 
-<section class="bg-slate-950 py-16 text-white">
-    <div class="bih-container text-center">
-        <p class="text-sm font-black uppercase tracking-wide text-amber-300">Have Something to Share?</p>
-        <h2 class="mx-auto mt-3 max-w-2xl text-3xl font-black leading-tight tracking-tight md:text-4xl">Won an award, got featured, or partnered with us?</h2>
-        <p class="mx-auto mt-4 max-w-2xl leading-8 text-white/82">If Bengal IT Hub has been recognized somewhere and you'd like it featured on this page, let us know.</p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <a class="bih-button" href="/contact?interest=Awards+%26+Recognition">Get In Touch</a>
-            <a class="bih-button bih-button-light" href="/blog">See Our Story So Far</a>
-        </div>
-    </div>
-</section>
+<script>
+(function () {
+    var els = document.querySelectorAll('[data-awards] .reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
 @endsection

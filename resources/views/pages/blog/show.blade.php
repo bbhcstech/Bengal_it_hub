@@ -81,6 +81,90 @@
     transition: background .22s, box-shadow .22s, transform .22s;
 }
 [data-blog-post] .bs-btn-gold:hover { background-color: var(--bs-gold-lt); box-shadow: 0 14px 34px rgba(232,170,61,.35); transform: translateY(-2px); }
+
+/* ---------- Dark mode (when html.dark or [data-theme="dark"]) ---------- */
+html.dark [data-blog-post],
+[data-theme="dark"] [data-blog-post] {
+    --bs-ink:         #0A1F28;
+    --bs-primary:     #4F9BB8;
+    --bs-primary-lt:  #6FB6D0;
+    --bs-gold:        #E8AA3D;
+    --bs-gold-lt:     #F5C978;
+    --bs-text:        #EAF4F6;
+    --bs-muted:       #93B2BA;
+    --bs-border:      #21454F;
+    --bs-surface:     #123039;
+    --bs-surface-alt: #163944;
+    --bs-bg:          #0A1F28;
+    color-scheme: dark;
+}
+
+html.dark [data-blog-post] article,
+[data-theme="dark"] [data-blog-post] article {
+    background-color: #123039 !important;
+    border-color: #21454F !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4) !important;
+}
+
+html.dark [data-blog-post] .bs-post-title,
+[data-theme="dark"] [data-blog-post] .bs-post-title {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog-post] time,
+[data-theme="dark"] [data-blog-post] time {
+    color: #93B2BA !important;
+}
+
+html.dark [data-blog-post] p,
+[data-theme="dark"] [data-blog-post] p {
+    color: #93B2BA !important;
+}
+
+html.dark [data-blog-post] .bs-eyebrow,
+[data-theme="dark"] [data-blog-post] .bs-eyebrow {
+    color: #F5C978;
+    background: rgba(232, 170, 61, 0.1);
+    border-color: rgba(232, 170, 61, 0.25);
+}
+
+html.dark [data-blog-post] .bs-eyebrow .dot,
+[data-theme="dark"] [data-blog-post] .bs-eyebrow .dot {
+    background-color: #E8AA3D;
+    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.25);
+}
+
+html.dark [data-blog-post] .bs-card,
+[data-theme="dark"] [data-blog-post] .bs-card {
+    background-color: #123039;
+    border-color: #21454F;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+html.dark [data-blog-post] .bs-breadcrumb a,
+[data-theme="dark"] [data-blog-post] .bs-breadcrumb a {
+    color: #93B2BA;
+}
+
+html.dark [data-blog-post] .bs-breadcrumb a:hover,
+[data-theme="dark"] [data-blog-post] .bs-breadcrumb a:hover {
+    color: #F5C978;
+}
+
+html.dark [data-blog-post] .bs-breadcrumb .current,
+[data-theme="dark"] [data-blog-post] .bs-breadcrumb .current {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog-post] aside a span,
+[data-theme="dark"] [data-blog-post] aside a span {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog-post] aside a:hover span,
+[data-theme="dark"] [data-blog-post] aside a:hover span {
+    color: #F5C978 !important;
+}
 </style>
 
 <div data-blog-post>

@@ -5,11 +5,13 @@
 {{-- ======================================================
      Page-scoped CSS — Bengal Signal Design System
      Contact & Lead Capture Forms
+     Light & Dark Mode Support
      Scoped strictly under [data-contact]
      ====================================================== --}}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 
+/* ---------- Light mode (default) ---------- */
 [data-contact] {
     --bs-ink:         #0A1F28;
     --bs-primary:     #1E4A5F;
@@ -33,6 +35,32 @@
     font-family: 'Inter', sans-serif;
     color: var(--bs-text);
     background-color: var(--bs-bg);
+    transition: background-color 260ms ease, color 260ms ease;
+}
+
+/* ---------- Dark mode (when html.dark or [data-theme="dark"]) ---------- */
+html.dark [data-contact],
+[data-theme="dark"] [data-contact] {
+    --bs-ink:         #0A1F28;
+    --bs-primary:     #4F9BB8;
+    --bs-primary-lt:  #6FB6D0;
+    --bs-gold:        #E8AA3D;
+    --bs-gold-lt:     #F5C978;
+    --bs-text:        #EAF4F6;
+    --bs-muted:       #93B2BA;
+    --bs-border:      #21454F;
+    --bs-surface:     #123039;
+    --bs-surface-alt: #163944;
+    --bs-bg:          #0A1F28;
+    --bs-tint:        #16414C;
+    --bs-shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+    --bs-shadow-md:   0 12px 32px rgba(0,0,0,0.5);
+    --bs-shadow-lg:   0 28px 64px rgba(0,0,0,0.6);
+    color-scheme: dark;
+}
+
+[data-contact] * {
+    transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
 }
 
 /* ---------- marquee strip ---------- */
@@ -77,9 +105,50 @@
     margin-bottom: 1.5rem; flex-wrap: wrap;
 }
 [data-contact] .bs-breadcrumb a { color: var(--bs-muted); transition: color .2s; text-decoration: none; }
-[data-contact] .bs-breadcrumb a:hover { color: var(--bs-primary); }
+[data-contact] .bs-breadcrumb a:hover { color: var(--bs-gold); }
 [data-contact] .bs-breadcrumb .sep { opacity: .5; }
 [data-contact] .bs-breadcrumb .current { color: var(--bs-text); font-weight: 700; }
+
+/* ---------- hero blobs ---------- */
+[data-contact] .bs-hero-blobs {
+    position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
+}
+[data-contact] .bs-hero-blobs .blob {
+    position: absolute; border-radius: 50%; filter: blur(60px); animation: bsContactBlobFloat 16s ease-in-out infinite;
+}
+[data-contact] .bs-hero-blobs .blob-1 {
+    width: 420px; height: 420px; top: -120px; left: -100px;
+    background: rgba(30, 74, 95, 0.15);
+}
+[data-contact] .bs-hero-blobs .blob-2 {
+    width: 340px; height: 340px; top: 40px; right: -80px;
+    background: rgba(232, 170, 61, 0.12);
+    animation-delay: -6s;
+}
+[data-contact] .bs-hero-blobs .blob-3 {
+    width: 280px; height: 280px; bottom: -80px; left: 40%;
+    background: rgba(46, 112, 137, 0.1);
+    animation-delay: -11s;
+}
+
+html.dark [data-contact] .bs-hero-blobs .blob-1,
+[data-theme="dark"] [data-contact] .bs-hero-blobs .blob-1 {
+    background: rgba(79, 155, 184, 0.22);
+}
+html.dark [data-contact] .bs-hero-blobs .blob-2,
+[data-theme="dark"] [data-contact] .bs-hero-blobs .blob-2 {
+    background: rgba(232, 170, 61, 0.18);
+}
+html.dark [data-contact] .bs-hero-blobs .blob-3,
+[data-theme="dark"] [data-contact] .bs-hero-blobs .blob-3 {
+    background: rgba(111, 182, 208, 0.15);
+}
+
+@keyframes bsContactBlobFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.08); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+}
 
 /* ---------- page-hero ---------- */
 [data-contact] .bs-page-hero {
@@ -92,10 +161,12 @@
     font-size: clamp(2.1rem, 4.2vw, 3.2rem); font-weight: 600; line-height: 1.15;
     letter-spacing: -.01em; max-width: 820px;
     color: var(--bs-text); margin: 0 0 .5em;
+    position: relative; z-index: 1;
 }
 [data-contact] .bs-page-hero p.lead {
     max-width: 680px; margin-top: .875rem;
     font-size: 1.1rem; line-height: 1.75; color: var(--bs-muted);
+    position: relative; z-index: 1;
 }
 
 /* ---------- eyebrow ---------- */
@@ -107,12 +178,25 @@
     padding: 7px 16px 7px 12px; border-radius: var(--bs-radius-pill); margin-bottom: 20px;
     border: 1px solid rgba(30,74,95,.18);
     width: fit-content;
+    position: relative; z-index: 1;
 }
 [data-contact] .bs-eyebrow .dot {
     width: 6px; height: 6px; border-radius: 50%;
     background-color: var(--bs-gold);
     box-shadow: 0 0 0 3px rgba(232,170,61,.28);
     display: inline-block; flex-shrink: 0;
+}
+
+html.dark [data-contact] .bs-eyebrow,
+[data-theme="dark"] [data-contact] .bs-eyebrow {
+    color: var(--bs-gold-lt);
+    background: rgba(232, 170, 61, 0.1);
+    border-color: rgba(232, 170, 61, 0.25);
+}
+html.dark [data-contact] .bs-eyebrow .dot,
+[data-theme="dark"] [data-contact] .bs-eyebrow .dot {
+    background-color: var(--bs-gold);
+    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.25);
 }
 
 /* ---------- container & section ---------- */
@@ -141,6 +225,7 @@
     [data-contact] .bs-card { padding: 24px 20px; }
 }
 
+[data-contact] .bs-card h2,
 [data-contact] .bs-card h3 {
     font-family: 'Fraunces', serif;
     font-size: 1.35rem; font-weight: 600; color: var(--bs-text);
@@ -173,18 +258,41 @@
     padding: 13px 16px;
     border-radius: var(--bs-radius-sm);
     border: 1.5px solid var(--bs-border);
-    background-color: #FFFFFF;
+    background-color: var(--bs-surface);
     font-family: 'Inter', sans-serif;
     font-size: .92rem;
     color: var(--bs-text);
     outline: none;
-    transition: border-color .2s ease, box-shadow .2s ease;
+    transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
     box-sizing: border-box;
+}
+[data-contact] .bs-field::placeholder {
+    color: var(--bs-muted);
+    opacity: 0.75;
 }
 [data-contact] .bs-field:focus {
     border-color: var(--bs-primary);
-    box-shadow: 0 0 0 3.5px rgba(30, 74, 95, 0.12);
+    box-shadow: 0 0 0 3.5px rgba(30, 74, 95, 0.16);
 }
+
+html.dark [data-contact] .bs-field,
+[data-theme="dark"] [data-contact] .bs-field {
+    background-color: #0E262F;
+    border-color: #21454F;
+    color: #EAF4F6;
+}
+html.dark [data-contact] .bs-field::placeholder,
+[data-theme="dark"] [data-contact] .bs-field::placeholder {
+    color: #62828B;
+    opacity: 1;
+}
+html.dark [data-contact] .bs-field:focus,
+[data-theme="dark"] [data-contact] .bs-field:focus {
+    border-color: #4F9BB8;
+    box-shadow: 0 0 0 3.5px rgba(79, 155, 184, 0.25);
+    background-color: #123039;
+}
+
 [data-contact] select.bs-field {
     cursor: pointer;
     appearance: none;
@@ -193,6 +301,20 @@
     background-position: right 14px center;
     padding-right: 38px;
 }
+html.dark [data-contact] select.bs-field,
+[data-theme="dark"] [data-contact] select.bs-field {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2393B2BA' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+}
+[data-contact] select.bs-field option {
+    background-color: var(--bs-surface);
+    color: var(--bs-text);
+}
+html.dark [data-contact] select.bs-field option,
+[data-theme="dark"] [data-contact] select.bs-field option {
+    background-color: #0E262F;
+    color: #EAF4F6;
+}
+
 [data-contact] textarea.bs-field {
     min-height: 120px; resize: vertical;
 }
@@ -200,17 +322,28 @@
 /* ---------- buttons ---------- */
 [data-contact] .bs-btn-primary {
     display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background-color: var(--bs-primary); color: #ffffff;
+    background-color: #1E4A5F; color: #ffffff;
     font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .96rem;
     padding: 15px 30px; border-radius: var(--bs-radius-pill);
     border: 1.5px solid transparent; text-decoration: none; cursor: pointer;
     transition: background .22s, box-shadow .22s, transform .22s;
     width: 100%;
+    box-shadow: 0 4px 14px rgba(30,74,95,.2);
 }
 [data-contact] .bs-btn-primary:hover {
-    background-color: var(--bs-primary-lt);
-    box-shadow: 0 10px 28px rgba(30,74,95,.25);
+    background-color: #2E7089;
+    box-shadow: 0 10px 28px rgba(30,74,95,.35);
     transform: translateY(-2px);
+}
+html.dark [data-contact] .bs-btn-primary,
+[data-theme="dark"] [data-contact] .bs-btn-primary {
+    background-color: #1E4A5F;
+    color: #ffffff;
+}
+html.dark [data-contact] .bs-btn-primary:hover,
+[data-theme="dark"] [data-contact] .bs-btn-primary:hover {
+    background-color: #2E7089;
+    box-shadow: 0 0 0 1px rgba(232,170,61,0.3), 0 20px 50px rgba(79,155,184,0.3);
 }
 
 [data-contact] .bs-btn-gold {
@@ -247,6 +380,19 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(30,74,95,.18);
 }
+html.dark [data-contact] .bs-social-link,
+[data-theme="dark"] [data-contact] .bs-social-link {
+    background-color: rgba(255,255,255,0.06);
+    border-color: #21454F;
+    color: #93B2BA;
+}
+html.dark [data-contact] .bs-social-link:hover,
+[data-theme="dark"] [data-contact] .bs-social-link:hover {
+    background-color: #E8AA3D;
+    border-color: #E8AA3D;
+    color: #12242B;
+    box-shadow: 0 8px 20px rgba(232, 170, 61, 0.3);
+}
 
 /* ---------- alert / status boxes ---------- */
 [data-contact] .bs-alert-success {
@@ -258,8 +404,18 @@
     font-weight: 600;
     margin-bottom: 20px;
 }
+html.dark [data-contact] .bs-alert-success,
+[data-theme="dark"] [data-contact] .bs-alert-success {
+    background-color: rgba(31, 157, 108, 0.15);
+    border-color: rgba(31, 157, 108, 0.4);
+    color: #4ade80;
+}
 [data-contact] .bs-alert-error {
     color: #dc2626; font-size: .82rem; margin-top: 4px; font-weight: 600;
+}
+html.dark [data-contact] .bs-alert-error,
+[data-theme="dark"] [data-contact] .bs-alert-error {
+    color: #f87171;
 }
 
 /* ---------- reveal animation ---------- */
@@ -290,6 +446,11 @@
 
     {{-- ── Page Hero ── --}}
     <section class="bs-page-hero">
+        <div class="bs-hero-blobs" aria-hidden="true">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+        </div>
         <div class="bs-container">
             <span class="bs-eyebrow">
                 <span class="dot"></span>
@@ -309,8 +470,8 @@
                     @if($type === 'participant')
                         <div style="text-align: center; padding: 12px 0;">
                             <span class="bs-eyebrow" style="margin-bottom: 12px;"><span class="dot"></span> Registrations Closed</span>
-                            <h2 style="font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; color: var(--bs-text); margin: 0 0 .75rem;">The Bengal HackFest PRAGATI 2026 Has Concluded</h2>
-                            <p style="color: var(--bs-muted); line-height: 1.75; margin-bottom: 24px;">Participant registrations closed on 30 April 2026, and the event has now been held. Thank you to everyone who took part. Registration for the next HackFest is not open yet — follow our channels or reach out below to be notified as soon as it is.</p>
+                            <h2 style="font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 600; margin: 0 0 .75rem;">The Bengal HackFest PRAGATI 2026 Has Concluded</h2>
+                            <p style="line-height: 1.75; margin-bottom: 24px;">Participant registrations closed on 30 April 2026, and the event has now been held. Thank you to everyone who took part. Registration for the next HackFest is not open yet — follow our channels or reach out below to be notified as soon as it is.</p>
                             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;">
                                 <a class="bs-btn-gold" href="/contact?interest=Next+HackFest+Notification">Get Notified for the Next HackFest</a>
                                 <a class="bs-btn-primary" style="width: auto;" href="/hackfest-2026">Back to Event Overview</a>

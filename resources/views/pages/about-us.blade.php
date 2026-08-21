@@ -117,11 +117,11 @@
 @endphp
 
 @section('content')
-<section class="relative overflow-hidden bg-slate-950 text-white">
+<section class="bih-landing-hero">
     <img class="absolute inset-0 h-full w-full object-cover opacity-40" src="{{ $heroImage }}" alt="Bengal IT Hub team discussing IT strategy">
-    <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-950/60"></div>
-    <div class="bih-container relative grid min-h-[76vh] gap-10 py-16 lg:grid-cols-[1fr_.9fr] lg:items-center">
-        <div>
+    <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-900/60"></div>
+    <div class="bih-container relative grid min-h-[82vh] gap-10 py-16 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div class="relative z-10">
             <p class="text-sm font-black uppercase text-amber-300">About Bengal IT Hub</p>
             <h1 class="mt-4 max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">Technology that helps businesses move forward</h1>
             <p class="bih-page-intro bih-on-dark mt-6">Bengal IT Hub is a future-focused IT company delivering software, cloud-ready platforms, AI-enabled growth, digital operations, and talent-driven innovation from Bengal.</p>
@@ -132,11 +132,11 @@
             </div>
         </div>
 
-        <div class="overflow-hidden rounded-md border border-white/14 bg-white/10 shadow-2xl backdrop-blur">
-            <img class="h-80 w-full object-cover sm:h-[31rem]" src="{{ $officeImage }}" alt="Modern IT workspace for Bengal IT Hub">
-            <div class="grid gap-3 bg-white p-5 text-slate-950 sm:grid-cols-2">
+        <div class="bih-hero-showcase">
+            <img class="h-full w-full object-cover" src="{{ $officeImage }}" alt="Modern IT workspace for Bengal IT Hub">
+            <div class="absolute inset-x-5 bottom-5 grid gap-3 rounded-md bg-white/92 p-4 text-slate-950 shadow-xl backdrop-blur sm:grid-cols-4 lg:grid-cols-2">
                 @foreach($stats as $stat)
-                    <div class="rounded-md bg-slate-50 p-4">
+                    <div class="rounded-md bg-slate-50 p-4 text-center">
                         <p class="text-3xl font-black text-teal-700">{{ $stat['value'] }}</p>
                         <p class="text-xs font-black uppercase text-slate-500">{{ $stat['label'] }}</p>
                     </div>
@@ -147,17 +147,18 @@
 </section>
 
 <section class="bih-section bg-white">
-    <div class="bih-container grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+    <div class="bih-container grid gap-10 lg:grid-cols-[.88fr_1.12fr] lg:items-center">
         <div>
             <p class="bih-eyebrow">Who We Are</p>
-            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">An IT partner built for practical business impact</h2>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">An IT partner built for practical business impact</h2>
             <p class="bih-page-intro mt-5">We combine digital engineering, business consulting, product thinking, and AI-first talent development so clients get more than a website or software build. They get a technology partner that understands growth.</p>
             <p class="bih-copy mt-4">Our work spans custom web platforms, SaaS products, cloud systems, AI marketing, business enablement, corporate operations support, education technology programs, and innovation events such as The Bengal HackFest PRAGATI.</p>
         </div>
         <div class="grid gap-4 sm:grid-cols-2">
             @foreach($capabilities as $capability)
-                <article class="bih-card p-6">
-                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
+                <article class="bih-card group relative overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:border-teal-500/50">
+                    <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-700 text-white">
                         @include('partials.icon', ['name' => $capability['icon']])
                     </span>
                     <h3 class="bih-section-title mt-4 text-2xl">{{ $capability['title'] }}</h3>
@@ -168,12 +169,12 @@
     </div>
 </section>
 
-<section class="bih-section">
+<section class="bih-photo-band py-16">
     <div class="bih-container">
         <div class="max-w-4xl">
-            <p class="bih-eyebrow">What We Build</p>
-            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Complete technology services for modern businesses and creators</h2>
-            <p class="bih-page-intro mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
+            <p class="text-sm font-black uppercase text-amber-300">What We Build</p>
+            <h2 class="bih-section-title mt-3 text-4xl text-white md:text-5xl">Complete technology services for modern businesses and creators</h2>
+            <p class="bih-page-intro bih-on-dark mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
         </div>
 
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -196,19 +197,23 @@
     </div>
 </section>
 
-<section class="bih-section">
+<section class="bih-section bg-white">
     <div class="bih-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
         <div class="grid gap-4 sm:grid-cols-2">
-            <img class="h-72 w-full rounded-md object-cover shadow-xl sm:h-96" src="{{ $teamImage }}" alt="Technology team collaborating on software development">
-            <img class="h-72 w-full rounded-md object-cover shadow-xl sm:mt-12 sm:h-96" src="{{ $strategyImage }}" alt="Business strategy discussion with technology partners">
+            <div class="bih-photo-panel h-72 sm:h-96">
+                <img src="{{ $teamImage }}" alt="Technology team collaborating on software development">
+            </div>
+            <div class="bih-photo-panel h-72 sm:mt-12 sm:h-96">
+                <img src="{{ $strategyImage }}" alt="Business strategy discussion with technology partners">
+            </div>
         </div>
         <div>
             <p class="bih-eyebrow">Our Mission</p>
-            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Build digital systems, talent, and opportunities from Bengal</h2>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">Build digital systems, talent, and opportunities from Bengal</h2>
             <p class="bih-page-intro mt-5">Our mission is to help businesses adopt useful technology while creating a stronger bridge between regional talent and global digital opportunity.</p>
             <div class="mt-7 grid gap-4">
                 @foreach($values as $value)
-                    <article class="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+                    <article class="bih-card p-5">
                         <h3 class="text-xl font-black text-slate-950">{{ $value['title'] }}</h3>
                         <p class="bih-copy mt-2">{{ $value['body'] }}</p>
                     </article>
@@ -227,7 +232,8 @@
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($teamRoles as $role)
-                <article class="bih-card p-6">
+                <article class="bih-card relative overflow-hidden p-6 transition duration-300 hover:-translate-y-1 hover:border-teal-500/50">
+                    <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
                     <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
                         @include('partials.icon', ['name' => $role['icon']])
                     </span>
@@ -248,7 +254,8 @@
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($process as $item)
-                <article class="rounded-md border border-white/12 bg-white/8 p-6 shadow-xl">
+                <article class="relative overflow-hidden rounded-md border border-white/12 bg-white/8 p-6 shadow-xl">
+                    <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-300 via-sky-300 to-amber-300"></span>
                     <p class="text-3xl font-black text-teal-300">{{ $item['step'] }}</p>
                     <h3 class="mt-4 text-2xl font-black text-white">{{ $item['title'] }}</h3>
                     <p class="mt-3 leading-7 text-white/78">{{ $item['body'] }}</p>
@@ -262,11 +269,12 @@
     <div class="bih-container grid gap-10 lg:grid-cols-[.88fr_1.12fr] lg:items-start">
         <div>
             <p class="bih-eyebrow">Why Choose Us</p>
-            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">A compact team with a broad technology ecosystem</h2>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">A compact team with a broad technology ecosystem</h2>
             <p class="bih-page-intro mt-5">Bengal IT Hub is built for clients who need dependable execution, useful ideas, and a partner who can connect technology, marketing, operations, and talent.</p>
             <a class="bih-button mt-8" href="{{ route('contact') }}">Talk to the Team</a>
         </div>
-        <div class="bih-card p-6">
+        <div class="bih-card relative overflow-hidden p-6">
+            <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
             <div class="grid gap-4 sm:grid-cols-2">
                 @foreach($whyChoose as $point)
                     <div class="flex items-start gap-3 rounded-md bg-slate-50 p-4">
@@ -285,7 +293,7 @@
     <div class="bih-container grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
         <div>
             <p class="bih-eyebrow">Visit Our Office</p>
-            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Where To Find Bengal IT Hub</h2>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">Where To Find Bengal IT Hub</h2>
             <p class="bih-page-intro mt-5">{{ $officeAddress }}</p>
             <p class="mt-3 flex items-center gap-2 text-sm font-bold text-slate-600">
                 @include('partials.icon', ['name' => 'chat', 'size' => 'h-4 w-4'])
@@ -298,7 +306,7 @@
                 </a>
             </div>
         </div>
-        <div class="overflow-hidden rounded-md border border-slate-200 shadow-xl">
+        <div class="bih-card overflow-hidden p-0">
             <iframe class="h-80 w-full sm:h-96" src="{{ $officeMapEmbedUrl }}" title="Bengal IT Hub office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
@@ -309,12 +317,12 @@
         <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
             <div>
                 <p class="bih-eyebrow">Ecosystem</p>
-                <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Built with partners, mentors, institutions, and industry</h2>
+                <h2 class="bih-section-title mt-3 text-4xl md:text-6xl">Built with partners, mentors, institutions, and industry</h2>
                 <p class="bih-page-intro mt-5">Our ecosystem approach helps us serve both businesses and talent. That means more practical learning, better execution support, stronger hiring connections, and more opportunities for Bengal's technology community.</p>
             </div>
             <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
                 @foreach($partners->isNotEmpty() ? $partners : collect(['Industry Experts', 'Academic Partners', 'Innovation Partners', 'Hiring Partners', 'Technology Partners', 'Community Partners']) as $partner)
-                    <div class="rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold shadow-sm">
+                    <div class="bih-card p-5 text-center font-extrabold transition duration-300 hover:-translate-y-1 hover:border-teal-500/50">
                         {{ is_string($partner) ? $partner : $partner->name }}
                     </div>
                 @endforeach

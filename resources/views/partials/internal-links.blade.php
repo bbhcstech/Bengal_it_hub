@@ -26,7 +26,7 @@
 @endif
 
 @if($services->isNotEmpty() || $products->isNotEmpty() || $blogs->isNotEmpty() || $articles->isNotEmpty() || $caseStudies->isNotEmpty())
-    <section class="bih-section bg-slate-50">
+    <section class="bih-section bih-related-links">
         <div class="bih-container">
             <div class="max-w-3xl">
                 <p class="bih-eyebrow">{{ $eyebrow ?? 'Internal Links' }}</p>
@@ -36,13 +36,13 @@
 
             <div class="mt-10 grid gap-5 lg:grid-cols-2">
                 @if($services->isNotEmpty())
-                    <div class="bih-card p-6">
+                    <div class="bih-card bih-related-links-panel p-6">
                         <h3 class="text-lg font-black text-slate-950">Related Services</h3>
                         <div class="mt-4 grid gap-3">
                             @foreach($services as $item)
-                                <a class="group block rounded-md border border-slate-100 bg-white p-4 transition hover:border-teal-600/40 hover:shadow-sm" href="{{ $item['url'] }}">
-                                    <span class="font-black text-slate-950 transition group-hover:text-teal-700">{{ $item['title'] }}</span>
-                                    <span class="mt-1 block text-sm leading-6 text-slate-600">{{ $item['summary'] }}</span>
+                                <a class="bih-related-link group block p-4 transition" href="{{ $item['url'] }}">
+                                    <span class="bih-related-link-title">{{ $item['title'] }}</span>
+                                    <span class="bih-related-link-summary">{{ $item['summary'] }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -50,13 +50,13 @@
                 @endif
 
                 @if($products->isNotEmpty())
-                    <div class="bih-card p-6">
+                    <div class="bih-card bih-related-links-panel p-6">
                         <h3 class="text-lg font-black text-slate-950">Related Products</h3>
                         <div class="mt-4 grid gap-3">
                             @foreach($products as $item)
-                                <a class="group block rounded-md border border-slate-100 bg-white p-4 transition hover:border-sky-600/40 hover:shadow-sm" href="{{ $item['url'] }}">
-                                    <span class="font-black text-slate-950 transition group-hover:text-sky-700">{{ $item['title'] }}</span>
-                                    <span class="mt-1 block text-sm leading-6 text-slate-600">{{ $item['summary'] }}</span>
+                                <a class="bih-related-link group block p-4 transition" href="{{ $item['url'] }}">
+                                    <span class="bih-related-link-title">{{ $item['title'] }}</span>
+                                    <span class="bih-related-link-summary">{{ $item['summary'] }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -64,13 +64,13 @@
                 @endif
 
                 @if($blogs->isNotEmpty())
-                    <div class="bih-card p-6">
+                    <div class="bih-card bih-related-links-panel p-6">
                         <h3 class="text-lg font-black text-slate-950">Related Blogs</h3>
                         <div class="mt-4 grid gap-3">
                             @foreach($blogs as $item)
-                                <a class="group block rounded-md border border-slate-100 bg-white p-4 transition hover:border-teal-600/40 hover:shadow-sm" href="{{ $item['url'] }}">
-                                    <span class="font-black text-slate-950 transition group-hover:text-teal-700">{{ $item['title'] }}</span>
-                                    <span class="mt-1 block text-sm leading-6 text-slate-600">{{ $item['summary'] }}</span>
+                                <a class="bih-related-link group block p-4 transition" href="{{ $item['url'] }}">
+                                    <span class="bih-related-link-title">{{ $item['title'] }}</span>
+                                    <span class="bih-related-link-summary">{{ $item['summary'] }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -78,13 +78,13 @@
                 @endif
 
                 @if($articles->isNotEmpty())
-                    <div class="bih-card p-6">
+                    <div class="bih-card bih-related-links-panel p-6">
                         <h3 class="text-lg font-black text-slate-950">Related Articles</h3>
                         <div class="mt-4 grid gap-3">
                             @foreach($articles as $item)
-                                <a class="group block rounded-md border border-slate-100 bg-white p-4 transition hover:border-amber-500/50 hover:shadow-sm" href="{{ $item['url'] }}">
-                                    <span class="font-black text-slate-950 transition group-hover:text-amber-700">{{ $item['title'] }}</span>
-                                    <span class="mt-1 block text-sm leading-6 text-slate-600">{{ $item['summary'] }}</span>
+                                <a class="bih-related-link group block p-4 transition" href="{{ $item['url'] }}">
+                                    <span class="bih-related-link-title">{{ $item['title'] }}</span>
+                                    <span class="bih-related-link-summary">{{ $item['summary'] }}</span>
                                 </a>
                             @endforeach
                         </div>
@@ -92,13 +92,13 @@
                 @endif
 
                 @if($caseStudies->isNotEmpty())
-                    <div class="bih-card p-6 lg:col-span-2">
+                    <div class="bih-card bih-related-links-panel p-6 lg:col-span-2">
                         <h3 class="text-lg font-black text-slate-950">Related Case Studies</h3>
                         <div class="mt-4 grid gap-3 md:grid-cols-3">
                             @foreach($caseStudies as $item)
-                                <a class="group block rounded-md border border-slate-100 bg-white p-4 transition hover:border-teal-600/40 hover:shadow-sm" href="{{ $item['url'] }}">
-                                    <span class="font-black text-slate-950 transition group-hover:text-teal-700">{{ $item['title'] }}</span>
-                                    <span class="mt-1 block text-sm leading-6 text-slate-600">{{ $item['summary'] }}</span>
+                                <a class="bih-related-link group block p-4 transition" href="{{ $item['url'] }}">
+                                    <span class="bih-related-link-title">{{ $item['title'] }}</span>
+                                    <span class="bih-related-link-summary">{{ $item['summary'] }}</span>
                                 </a>
                             @endforeach
                         </div>

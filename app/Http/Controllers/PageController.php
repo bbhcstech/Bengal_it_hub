@@ -291,6 +291,19 @@ class PageController extends Controller
             ]);
         }
 
+        if ($slug === 'faq') {
+            return view('pages.faq', [
+                'seo' => $this->seo(
+                    $pageModel?->meta_title ?: 'FAQ | Bengal IT Hub',
+                    $pageModel?->meta_description ?: "Browse common questions about Bengal IT Hub, its services, events, and partnership opportunities.",
+                    $pageModel?->meta_keywords,
+                    $pageModel?->meta_robots,
+                ),
+                'faqs' => $this->faqs('site'),
+                'internalLinks' => InternalLinks::forStatic($slug, $pageModel ? [$pageModel->title, $pageModel->blocks['eyebrow'] ?? '', $pageModel->blocks['intro'] ?? ''] : ($this->fallbackPages()[$slug] ?? ['FAQ', 'Questions & Answers', 'Browse common questions about Bengal IT Hub'])),
+            ]);
+        }
+
         $page = $pageModel
             ? [$pageModel->title, $pageModel->blocks['eyebrow'] ?? '', $pageModel->blocks['intro'] ?? '']
             : $this->fallbackPages()[$slug] ?? null;

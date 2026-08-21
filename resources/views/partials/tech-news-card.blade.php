@@ -1,29 +1,33 @@
-<article class="bih-card bih-image-card bih-tech-news-card flex flex-col overflow-hidden">
-    <a href="{{ route('tech-innovation.show', $article->slug) }}" class="block">
+<article class="bs-card bih-tech-news-card reveal">
+    <a href="{{ route('tech-innovation.show', $article->slug) }}" class="bs-card-media block">
         @if($article->image)
-            <img class="h-48 w-full object-cover" src="{{ $article->image }}" alt="{{ $article->title }}" loading="lazy">
+            <img src="{{ $article->image }}" alt="{{ $article->title }}" loading="lazy">
         @else
-            <div class="grid h-48 w-full place-items-center bg-linear-to-br from-teal-700 via-sky-700 to-slate-950 text-3xl font-black text-white">
+            <div style="display: grid; place-items: center; width: 100%; height: 100%; background: linear-gradient(135deg, var(--bs-primary), #123544); color: #fff; font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 700;">
                 {{ Str::substr($article->source?->name ?? 'BIH', 0, 1) }}
             </div>
         @endif
     </a>
-    <div class="flex flex-1 flex-col p-5 md:p-6">
-        <div class="flex items-center justify-between gap-3">
-            <p class="bih-eyebrow">{{ $article->category?->name ?? 'Technology' }}</p>
+    <div class="bs-card-body">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px;">
+            <span class="bs-badge-tag">{{ $article->category?->name ?? 'Technology' }}</span>
             @if($article->source)
-                <span class="max-w-[45%] truncate rounded-full bg-slate-100 px-2.5 py-1 text-xs font-black uppercase text-slate-500">{{ $article->source->name }}</span>
+                <span class="bs-badge-outline" style="font-size: 0.68rem; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $article->source->name }}</span>
             @endif
         </div>
-        <h3 class="bih-section-title mt-3 text-xl leading-tight">
-            <a href="{{ route('tech-innovation.show', $article->slug) }}" class="hover:text-teal-700">{{ Str::limit($article->title, 90) }}</a>
+        <h3 style="margin-bottom: 8px;">
+            <a href="{{ route('tech-innovation.show', $article->slug) }}" style="text-decoration: none; color: inherit; transition: color .2s;">
+                {{ Str::limit($article->title, 80) }}
+            </a>
         </h3>
         @if($article->description)
-            <p class="bih-copy mt-3 flex-1 text-sm">{{ Str::limit($article->description, 130) }}</p>
+            <p style="font-size: 0.88rem; line-height: 1.65; margin-bottom: 16px;">{{ Str::limit($article->description, 120) }}</p>
         @endif
-        <div class="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4 text-xs font-bold text-slate-500">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--bs-border); font-size: 0.78rem; font-family: 'Outfit', sans-serif; font-weight: 700; color: var(--bs-muted);">
             <time datetime="{{ ($article->published_at ?? $article->created_at)->toIso8601String() }}">{{ $article->published_at?->diffForHumans() ?? $article->created_at->diffForHumans() }}</time>
-            <a class="bih-tech-read-more" href="{{ route('tech-innovation.show', $article->slug) }}">Read More</a>
+            <a href="{{ route('tech-innovation.show', $article->slug) }}" style="color: var(--bs-primary); text-decoration: none; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;">
+                Read More &rarr;
+            </a>
         </div>
     </div>
 </article>

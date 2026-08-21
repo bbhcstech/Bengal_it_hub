@@ -117,12 +117,29 @@
 @endphp
 
 @section('content')
-<section class="relative overflow-hidden bg-slate-950 text-white">
+<div class="bih-about-marquee" aria-hidden="true">
+    <div class="bih-about-marquee-track">
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+    </div>
+</div>
+
+<div class="bih-about-breadcrumb-wrap">
+    <div class="bih-container">
+        <nav class="bih-about-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}">Home</a>
+            <span class="sep">/</span>
+            <span class="current">About Us</span>
+        </nav>
+    </div>
+</div>
+
+<section class="bih-about-hero relative overflow-hidden bg-slate-950 text-white">
     <img class="absolute inset-0 h-full w-full object-cover opacity-40" src="{{ $heroImage }}" alt="Bengal IT Hub team discussing IT strategy">
-    <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-950/60"></div>
+    <div class="bih-about-hero-overlay absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-950/60"></div>
     <div class="bih-container relative grid min-h-[76vh] gap-10 py-16 lg:grid-cols-[1fr_.9fr] lg:items-center">
         <div>
-            <p class="text-sm font-black uppercase text-amber-300">About Bengal IT Hub</p>
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">About Bengal IT Hub</p>
             <h1 class="mt-4 max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">Technology that helps businesses move forward</h1>
             <p class="bih-page-intro bih-on-dark mt-6">Bengal IT Hub is a future-focused IT company delivering software, cloud-ready platforms, AI-enabled growth, digital operations, and talent-driven innovation from Bengal.</p>
             <p class="mt-4 max-w-3xl leading-8 text-white/82">We work with startups, institutions, MSMEs, and growing enterprises to turn business ideas into useful digital products, efficient systems, stronger online presence, and practical technology capability.</p>
@@ -132,7 +149,7 @@
             </div>
         </div>
 
-        <div class="overflow-hidden rounded-md border border-white/14 bg-white/10 shadow-2xl backdrop-blur">
+        <div class="bih-about-hero-card overflow-hidden rounded-md border border-white/14 bg-white/10 shadow-2xl backdrop-blur">
             <img class="h-80 w-full object-cover sm:h-[31rem]" src="{{ $officeImage }}" alt="Modern IT workspace for Bengal IT Hub">
             <div class="grid gap-3 bg-white p-5 text-slate-950 sm:grid-cols-2">
                 @foreach($stats as $stat)
@@ -146,7 +163,7 @@
     </div>
 </section>
 
-<section class="bih-section bg-white">
+<section class="bih-section bih-about-section bg-white">
     <div class="bih-container grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
         <div>
             <p class="bih-eyebrow">Who We Are</p>
@@ -156,7 +173,8 @@
         </div>
         <div class="grid gap-4 sm:grid-cols-2">
             @foreach($capabilities as $capability)
-                <article class="bih-card p-6">
+                <article class="bih-card bih-about-bento p-6">
+                    <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                     <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
                         @include('partials.icon', ['name' => $capability['icon']])
                     </span>
@@ -168,17 +186,18 @@
     </div>
 </section>
 
-<section class="bih-section">
+<section class="bih-section bih-about-section">
     <div class="bih-container">
         <div class="max-w-4xl">
             <p class="bih-eyebrow">What We Build</p>
             <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Complete technology services for modern businesses and creators</h2>
             <p class="bih-page-intro mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
         </div>
+    </section>
 
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($buildServices as $service)
-                <article class="bih-card bih-image-card group overflow-hidden">
+                <article class="bih-card bih-image-card bih-about-image-card group overflow-hidden">
                     <div class="relative h-48 overflow-hidden">
                         <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $service['image'] }}" alt="{{ $service['title'] }} service by Bengal IT Hub">
                         <div class="absolute inset-0 bg-linear-to-t from-slate-950/76 via-slate-950/10 to-transparent"></div>
@@ -190,13 +209,13 @@
                         <h3 class="bih-section-title text-xl">{{ $service['title'] }}</h3>
                         <p class="bih-copy mt-3 text-sm">{{ $service['body'] }}</p>
                     </div>
-                </article>
-            @endforeach
-        </div>
-    </div>
-</section>
+                </div>
+                <div>
+                    <img src="{{ $teamImage }}" alt="Bengal IT Hub team" style="width: 100%; height: 380px; object-fit: cover; border-radius: var(--bs-radius-lg); box-shadow: var(--bs-shadow-md); border: 1px solid var(--bs-border);" loading="lazy">
+                </div>
+            </div>
 
-<section class="bih-section">
+<section class="bih-section bih-about-section">
     <div class="bih-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
         <div class="grid gap-4 sm:grid-cols-2">
             <img class="h-72 w-full rounded-md object-cover shadow-xl sm:h-96" src="{{ $teamImage }}" alt="Technology team collaborating on software development">
@@ -208,7 +227,8 @@
             <p class="bih-page-intro mt-5">Our mission is to help businesses adopt useful technology while creating a stronger bridge between regional talent and global digital opportunity.</p>
             <div class="mt-7 grid gap-4">
                 @foreach($values as $value)
-                    <article class="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+                    <article class="bih-about-bento rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+                        <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                         <h3 class="text-xl font-black text-slate-950">{{ $value['title'] }}</h3>
                         <p class="bih-copy mt-2">{{ $value['body'] }}</p>
                     </article>
@@ -218,7 +238,7 @@
     </div>
 </section>
 
-<section class="bih-section bg-white">
+<section class="bih-section bih-about-section bg-white">
     <div class="bih-container">
         <div class="max-w-3xl">
             <p class="bih-eyebrow">Our People</p>
@@ -227,7 +247,8 @@
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             @foreach($teamRoles as $role)
-                <article class="bih-card p-6">
+                <article class="bih-card bih-about-bento p-6">
+                    <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                     <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
                         @include('partials.icon', ['name' => $role['icon']])
                     </span>
@@ -239,16 +260,16 @@
     </div>
 </section>
 
-<section class="bg-slate-950 py-16 text-white">
+<section class="bih-about-dark bg-slate-950 py-16 text-white">
     <div class="bih-container">
         <div class="max-w-3xl">
-            <p class="text-sm font-black uppercase text-amber-300">How We Work</p>
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">How We Work</p>
             <h2 class="mt-3 text-4xl font-black leading-tight text-white md:text-5xl">A clear delivery process from idea to scale</h2>
             <p class="mt-5 leading-8 text-white/82">Every project needs clarity, pace, and ownership. Our process keeps business teams and technical teams aligned from the first conversation to post-launch improvement.</p>
         </div>
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($process as $item)
-                <article class="rounded-md border border-white/12 bg-white/8 p-6 shadow-xl">
+                <article class="bih-about-dark-card rounded-md border border-white/12 bg-white/8 p-6 shadow-xl">
                     <p class="text-3xl font-black text-teal-300">{{ $item['step'] }}</p>
                     <h3 class="mt-4 text-2xl font-black text-white">{{ $item['title'] }}</h3>
                     <p class="mt-3 leading-7 text-white/78">{{ $item['body'] }}</p>
@@ -258,7 +279,7 @@
     </div>
 </section>
 
-<section class="bih-section bg-white">
+<section class="bih-section bih-about-section bg-white">
     <div class="bih-container grid gap-10 lg:grid-cols-[.88fr_1.12fr] lg:items-start">
         <div>
             <p class="bih-eyebrow">Why Choose Us</p>
@@ -266,10 +287,10 @@
             <p class="bih-page-intro mt-5">Bengal IT Hub is built for clients who need dependable execution, useful ideas, and a partner who can connect technology, marketing, operations, and talent.</p>
             <a class="bih-button mt-8" href="{{ route('contact') }}">Talk to the Team</a>
         </div>
-        <div class="bih-card p-6">
+        <div class="bih-card bih-about-outcome-card p-6">
             <div class="grid gap-4 sm:grid-cols-2">
                 @foreach($whyChoose as $point)
-                    <div class="flex items-start gap-3 rounded-md bg-slate-50 p-4">
+                    <div class="bih-about-outcome flex items-start gap-3 rounded-md bg-slate-50 p-4">
                         <span class="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-teal-700 text-white">
                             @include('partials.icon', ['name' => 'check', 'size' => 'h-4 w-4'])
                         </span>
@@ -281,7 +302,7 @@
     </div>
 </section>
 
-<section class="bih-section bg-slate-50">
+<section class="bih-section bih-about-section bg-slate-50">
     <div class="bih-container grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
         <div>
             <p class="bih-eyebrow">Visit Our Office</p>
@@ -298,13 +319,13 @@
                 </a>
             </div>
         </div>
-        <div class="overflow-hidden rounded-md border border-slate-200 shadow-xl">
+        <div class="bih-about-map overflow-hidden rounded-md border border-slate-200 shadow-xl">
             <iframe class="h-80 w-full sm:h-96" src="{{ $officeMapEmbedUrl }}" title="Bengal IT Hub office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </section>
 
-<section class="bih-section">
+<section class="bih-section bih-about-section">
     <div class="bih-container">
         <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
             <div>
@@ -314,7 +335,7 @@
             </div>
             <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
                 @foreach($partners->isNotEmpty() ? $partners : collect(['Industry Experts', 'Academic Partners', 'Innovation Partners', 'Hiring Partners', 'Technology Partners', 'Community Partners']) as $partner)
-                    <div class="rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold shadow-sm">
+                    <div class="bih-about-partner rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold shadow-sm">
                         {{ is_string($partner) ? $partner : $partner->name }}
                     </div>
                 @endforeach
@@ -323,7 +344,7 @@
     </div>
 </section>
 
-<section class="bih-section bg-white">
+<section class="bih-section bih-about-section bg-white">
     <div class="bih-container">
         <div class="max-w-3xl">
             <p class="bih-eyebrow">Explore More</p>
@@ -332,7 +353,7 @@
         </div>
         <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             @foreach($exploreSections as $item)
-                <article class="group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
+                <article class="bih-about-bento group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
                     <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
                     <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-700 text-white">
                         @include('partials.icon', ['name' => $item['icon']])
@@ -347,14 +368,31 @@
     </div>
 </section>
 
-<section class="bg-slate-950 py-16 text-white">
+<section class="bih-about-final bg-slate-950 py-16 text-white">
     <div class="bih-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
         <div>
-            <p class="text-sm font-black uppercase text-amber-300">Let's Build</p>
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">Let's Build</p>
             <h2 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-white md:text-5xl">Have an idea, business challenge, or digital growth target?</h2>
             <p class="mt-5 max-w-3xl leading-8 text-white/82">Bengal IT Hub can help you plan, design, build, launch, and improve the technology behind it.</p>
         </div>
-        <a class="bih-button" href="{{ route('contact') }}">Start a Conversation</a>
-    </div>
-</section>
+    </section>
+</div>
+
+<script>
+(function () {
+    // Reveal animations
+    var els = document.querySelectorAll('[data-about] .reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) {
+                e.target.classList.add('in-view');
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
 @endsection

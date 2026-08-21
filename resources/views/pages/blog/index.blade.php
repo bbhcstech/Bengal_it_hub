@@ -7,272 +7,1052 @@
     $extraSections = $categories->reject(fn ($category) => $configuredSectionSlugs->contains($category->slug));
 @endphp
 
-<section class="bih-blog-hero bg-white pt-14 pb-12 md:pt-20">
-    <div class="bih-container grid gap-10 lg:grid-cols-[1fr_.44fr] lg:items-end">
-        <div>
-            <p class="bih-eyebrow">{{ $blog['intro']['eyebrow'] }}</p>
-            <h1 class="bih-page-title mt-4 text-5xl leading-[1.05] md:text-7xl">{{ $blog['intro']['title'] }}</h1>
-            @foreach($blog['intro']['body'] as $paragraph)
-                <p class="bih-page-intro mt-5 max-w-3xl">{{ $paragraph }}</p>
-            @endforeach
-        </div>
-        <div class="bih-blog-hero-panel">
-            <p>Publish Anything</p>
-            <div>
-                <span>01</span>
-                <strong>Birthday, interview, new joiner, function, event, culture, and company posts.</strong>
-            </div>
-            <div>
-                <span>02</span>
-                <strong>Admin-managed sections with featured images, status, dates, and SEO fields.</strong>
-            </div>
+{{-- ======================================================
+     Page-scoped CSS — Bengal Signal Design System
+     Mirrors resources/views/bengal-demo/assets/css/site.css
+     Scoped strictly under [data-blog]
+     ====================================================== --}}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+[data-blog] {
+    --bs-ink:         #0A1F28;
+    --bs-primary:     #1E4A5F;
+    --bs-primary-lt:  #2E7089;
+    --bs-gold:        #E8AA3D;
+    --bs-gold-lt:     #F5C978;
+    --bs-text:        #0F262E;
+    --bs-muted:       #52707A;
+    --bs-border:      #DCE6E8;
+    --bs-surface:     #FFFFFF;
+    --bs-surface-alt: #E8F0F1;
+    --bs-bg:          #F5F8F8;
+    --bs-tint:        #D8E9EC;
+    --bs-radius-sm:   8px;
+    --bs-radius-md:   16px;
+    --bs-radius-lg:   28px;
+    --bs-radius-pill: 999px;
+    --bs-shadow-sm:   0 1px 3px rgba(10,31,40,.08);
+    --bs-shadow-md:   0 12px 32px rgba(10,31,40,.10);
+    --bs-shadow-lg:   0 28px 64px rgba(10,31,40,.18);
+    font-family: 'Inter', sans-serif;
+    color: var(--bs-text);
+    background-color: var(--bs-bg);
+}
+
+/* ---------- marquee strip ---------- */
+[data-blog] .bs-marquee-strip {
+    background-color: var(--bs-ink, #0A1F28);
+    overflow: hidden;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--bs-border, #DCE6E8);
+}
+[data-blog] .bs-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bsBlogMarquee 32s linear infinite;
+}
+[data-blog] .bs-marquee-track span {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9DC3CC;
+    padding: 0 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    white-space: nowrap;
+}
+[data-blog] .bs-marquee-track span::after {
+    content: '✦';
+    color: var(--bs-gold, #E8AA3D);
+}
+@keyframes bsBlogMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- breadcrumb ---------- */
+[data-blog] .bs-breadcrumb {
+    display: flex; align-items: center; gap: .5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: .82rem; color: var(--bs-muted);
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+}
+[data-blog] .bs-breadcrumb a { color: var(--bs-muted); transition: color .2s; }
+[data-blog] .bs-breadcrumb a:hover { color: var(--bs-primary); }
+[data-blog] .bs-breadcrumb .sep { opacity: .5; }
+[data-blog] .bs-breadcrumb .current { color: var(--bs-text); font-weight: 700; }
+
+/* ---------- page-hero ---------- */
+[data-blog] .bs-page-hero {
+    padding: 64px 0 52px;
+    position: relative; overflow: hidden;
+    background: var(--bs-bg);
+}
+[data-blog] .bs-page-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.1rem, 4.2vw, 3.2rem); font-weight: 600; line-height: 1.15;
+    letter-spacing: -.01em; max-width: 820px;
+    color: var(--bs-text); margin: 0 0 .5em;
+}
+[data-blog] .bs-page-hero p.lead {
+    max-width: 680px; margin-top: .875rem;
+    font-size: 1.1rem; line-height: 1.75; color: var(--bs-muted);
+}
+
+/* ---------- hero side panel ---------- */
+[data-blog] .bs-hero-panel {
+    background: var(--bs-surface);
+    border: 1px solid var(--bs-border);
+    border-radius: var(--bs-radius-md);
+    padding: 24px 26px;
+    box-shadow: var(--bs-shadow-sm);
+    display: flex; flex-direction: column; gap: 14px;
+}
+[data-blog] .bs-hero-panel-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--bs-gold); margin-bottom: 4px;
+}
+[data-blog] .bs-hero-panel-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: .88rem; line-height: 1.6; color: var(--bs-text);
+}
+[data-blog] .bs-hero-panel-num {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 700; font-size: 1.15rem;
+    color: var(--bs-primary); flex-shrink: 0; line-height: 1; margin-top: 2px;
+}
+
+/* ---------- filter pills row ---------- */
+[data-blog] .bs-filter-row {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px;
+}
+[data-blog] .bs-filter-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: var(--bs-radius-pill);
+    border: 1.5px solid var(--bs-border); background-color: var(--bs-surface);
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: .84rem;
+    color: var(--bs-muted); text-decoration: none;
+    transition: all .2s ease;
+}
+[data-blog] .bs-filter-pill:hover,
+[data-blog] .bs-filter-pill.active {
+    border-color: var(--bs-primary); color: var(--bs-primary);
+    background-color: rgba(30,74,95,.06); transform: translateY(-1px);
+}
+
+/* ---------- eyebrow ---------- */
+[data-blog] .bs-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--bs-primary); background: rgba(30,74,95,.08);
+    padding: 7px 16px 7px 12px; border-radius: var(--bs-radius-pill); margin-bottom: 20px;
+    border: 1px solid rgba(30,74,95,.18);
+    width: fit-content;
+}
+[data-blog] .bs-eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background-color: var(--bs-gold);
+    box-shadow: 0 0 0 3px rgba(232,170,61,.28);
+    display: inline-block; flex-shrink: 0;
+}
+
+/* ---------- container & sections ---------- */
+[data-blog] .bs-container {
+    width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px;
+}
+[data-blog] .bs-section { padding: 90px 0; position: relative; scroll-margin-top: 80px; }
+[data-blog] .bs-section-alt { background-color: var(--bs-surface-alt); }
+@media (max-width: 767px) { [data-blog] .bs-section { padding: 56px 0; } }
+
+/* ---------- section head ---------- */
+[data-blog] .bs-section-head { max-width: 680px; margin: 0 auto 52px; text-align: center; }
+[data-blog] .bs-section-head.left { margin-left: 0; text-align: left; max-width: 100%; }
+[data-blog] .bs-section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.85rem,3.3vw,2.5rem); font-weight: 600;
+    color: var(--bs-text); margin: 0 0 .5em; line-height: 1.15; letter-spacing: -.01em;
+}
+[data-blog] .bs-section-head p {
+    color: var(--bs-muted); font-size: 1rem; line-height: 1.75; margin: 0;
+}
+
+/* ---------- grid system ---------- */
+[data-blog] .bs-grid { display: grid; gap: 22px; }
+[data-blog] .bs-grid-2 { grid-template-columns: repeat(2, 1fr); }
+[data-blog] .bs-grid-3 { grid-template-columns: repeat(3, 1fr); }
+[data-blog] .bs-grid-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 991px) {
+    [data-blog] .bs-grid-3,
+    [data-blog] .bs-grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    [data-blog] .bs-grid-2,
+    [data-blog] .bs-grid-3,
+    [data-blog] .bs-grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ---------- blog post card ---------- */
+[data-blog] .bs-blog-card {
+    background-color: var(--bs-surface);
+    border: 1px solid var(--bs-border);
+    border-radius: var(--bs-radius-md);
+    overflow: hidden;
+    box-shadow: var(--bs-shadow-sm);
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+    position: relative;
+}
+[data-blog] .bs-blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30,74,95,.12);
+    border-color: rgba(232,170,61,.45);
+}
+[data-blog] .bs-blog-card .thumb-box {
+    position: relative; overflow: hidden; height: 200px;
+    background: linear-gradient(135deg, var(--bs-primary), var(--bs-ink));
+}
+[data-blog] .bs-blog-card .thumb-box img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
+}
+[data-blog] .bs-blog-card:hover .thumb-box img { transform: scale(1.06); }
+[data-blog] .bs-blog-card .thumb-placeholder {
+    width: 100%; height: 100%; display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-weight: 700; font-size: 2.2rem;
+    color: #ffffff;
+}
+[data-blog] .bs-blog-card .body {
+    padding: 22px 24px;
+    display: flex; flex-direction: column; flex: 1;
+}
+[data-blog] .bs-blog-card h3 {
+    font-family: 'Fraunces', serif; font-size: 1.18rem; font-weight: 600;
+    color: var(--bs-text); margin: 0 0 .5em; line-height: 1.3;
+    letter-spacing: -.01em; transition: color .2s ease;
+}
+[data-blog] .bs-blog-card:hover h3 { color: var(--bs-primary); }
+[data-blog] .bs-blog-card p {
+    font-size: .88rem; line-height: 1.7; color: var(--bs-muted);
+    margin: 0; flex: 1;
+}
+[data-blog] .bs-blog-card .meta-row {
+    margin-top: 18px; padding-top: 14px;
+    border-top: 1px solid var(--bs-border);
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'Outfit', sans-serif; font-size: .75rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--bs-muted);
+}
+
+/* ---------- badge tags ---------- */
+[data-blog] .bs-badge-outline {
+    display: inline-block; background: transparent;
+    border: 1.5px solid var(--bs-border); color: var(--bs-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: .7rem; font-weight: 700; padding: 3px 11px;
+    border-radius: var(--bs-radius-pill); margin-bottom: 12px;
+    width: fit-content;
+}
+[data-blog] .bs-badge-gold {
+    display: inline-block; background-color: var(--bs-gold); color: #12242B;
+    font-family: 'Outfit', sans-serif;
+    font-size: .7rem; font-weight: 800; padding: 4px 11px;
+    border-radius: var(--bs-radius-pill); margin-bottom: 12px;
+    width: fit-content;
+}
+
+/* ---------- event photo card ---------- */
+[data-blog] .bs-event-card {
+    background-color: var(--bs-surface);
+    border: 1px solid var(--bs-border);
+    border-radius: var(--bs-radius-md);
+    overflow: hidden;
+    box-shadow: var(--bs-shadow-sm);
+    display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
+    transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+}
+[data-blog] .bs-event-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30,74,95,.12);
+    border-color: rgba(232,170,61,.45);
+}
+[data-blog] .bs-event-card .thumb {
+    position: relative; overflow: hidden; height: 160px;
+}
+[data-blog] .bs-event-card .thumb img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
+}
+[data-blog] .bs-event-card:hover .thumb img { transform: scale(1.06); }
+[data-blog] .bs-event-card .thumb::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,31,40,.6) 0%, transparent 70%);
+}
+[data-blog] .bs-event-card .body {
+    padding: 18px 20px;
+    display: flex; flex-direction: column; flex: 1;
+}
+[data-blog] .bs-event-card h3 {
+    font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600;
+    color: var(--bs-text); margin: 0 0 .4em; line-height: 1.3;
+    letter-spacing: -.01em; transition: color .2s ease;
+}
+[data-blog] .bs-event-card:hover h3 { color: var(--bs-primary); }
+[data-blog] .bs-event-card p {
+    font-size: .84rem; line-height: 1.65; color: var(--bs-muted);
+    margin: 0; flex: 1;
+}
+[data-blog] .bs-event-card .cta-link {
+    margin-top: 14px; font-family: 'Outfit', sans-serif;
+    font-size: .78rem; font-weight: 800; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--bs-primary);
+    display: inline-flex; align-items: center; gap: 4px;
+    transition: gap .2s ease, color .2s ease;
+}
+[data-blog] .bs-event-card:hover .cta-link { color: var(--bs-gold); gap: 7px; }
+
+/* ---------- culture moment card ---------- */
+[data-blog] .bs-culture-card {
+    position: relative; overflow: hidden;
+    border-radius: var(--bs-radius-md);
+    height: 240px;
+    box-shadow: var(--bs-shadow-sm);
+    transition: transform .26s ease, box-shadow .26s ease;
+}
+[data-blog] .bs-culture-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+}
+[data-blog] .bs-culture-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
+}
+[data-blog] .bs-culture-card:hover img { transform: scale(1.06); }
+[data-blog] .bs-culture-card .overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,31,40,.92) 0%, rgba(10,31,40,.2) 60%, transparent 100%);
+    padding: 18px 20px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+}
+[data-blog] .bs-culture-card h3 {
+    font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 600;
+    color: #ffffff; margin: 0 0 4px; line-height: 1.25;
+}
+[data-blog] .bs-culture-card p {
+    font-size: .78rem; line-height: 1.5; color: rgba(255,255,255,.8);
+    margin: 0;
+}
+
+/* ---------- icon badge ---------- */
+[data-blog] .bs-icon-badge {
+    width: 52px; height: 52px; border-radius: var(--bs-radius-sm);
+    background: linear-gradient(135deg, rgba(30,74,95,.14), rgba(232,170,61,.14));
+    color: var(--bs-primary);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+    transition: transform .22s ease, background .22s ease;
+}
+[data-blog] .bs-icon-badge svg { width: 22px; height: 22px; }
+[data-blog] .bs-card:hover .bs-icon-badge {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, rgba(30,74,95,.22), rgba(232,170,61,.28));
+}
+
+/* ---------- bento card for opportunities ---------- */
+[data-blog] .bs-card {
+    background-color: var(--bs-surface);
+    border: 1px solid var(--bs-border);
+    border-radius: var(--bs-radius-md);
+    padding: 28px 24px;
+    box-shadow: var(--bs-shadow-sm);
+    display: flex; flex-direction: column;
+    transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+}
+[data-blog] .bs-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--bs-shadow-md);
+    border-color: rgba(232,170,61,.45);
+}
+[data-blog] .bs-card h3 {
+    font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600;
+    color: var(--bs-text); margin: 0 0 .4em; letter-spacing: -.01em;
+}
+[data-blog] .bs-card p {
+    font-size: .88rem; line-height: 1.7; color: var(--bs-muted);
+    margin: 0; flex: 1;
+}
+
+/* ---------- spotlight box (Awards Feature) ---------- */
+[data-blog] .bs-spotlight {
+    background: linear-gradient(135deg, #0a1f28 0%, #123544 55%, #1e4a5f 100%);
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: 0 20px 50px rgba(10,31,40,.2); color: #fff;
+    display: grid; gap: 0;
+}
+@media (min-width: 1024px) { [data-blog] .bs-spotlight { grid-template-columns: 1fr 1fr; } }
+[data-blog] .bs-spotlight .copy { padding: 52px 46px; }
+@media (max-width: 767px) { [data-blog] .bs-spotlight .copy { padding: 32px 24px; } }
+[data-blog] .bs-spotlight h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem,3.5vw,2.5rem); font-weight: 600; color: #fff;
+    margin: .75rem 0 1rem; line-height: 1.15; letter-spacing: -.01em;
+}
+[data-blog] .bs-spotlight .bs-eyebrow { color: var(--bs-gold-lt); background: rgba(232,170,61,.12); border-color: rgba(232,170,61,.3); }
+[data-blog] .bs-spotlight p { color: rgba(255,255,255,.78); font-size: 1.02rem; line-height: 1.75; margin-bottom: 0; }
+[data-blog] .bs-spotlight .actions { display: flex; gap: .875rem; flex-wrap: wrap; margin-top: 1.75rem; }
+[data-blog] .bs-spotlight .visual {
+    position: relative; min-height: 280px; overflow: hidden;
+}
+[data-blog] .bs-spotlight .visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+[data-blog] .bs-spotlight .visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,31,40,.55), transparent 60%);
+}
+@media (min-width: 1024px) {
+    [data-blog] .bs-spotlight .visual::after {
+        background: linear-gradient(to right, rgba(10,31,40,.5) 0%, transparent 55%);
+    }
+}
+
+/* ---------- cta-banner ---------- */
+[data-blog] .bs-cta-banner {
+    background: linear-gradient(120deg, var(--bs-primary), #123544);
+    border-radius: var(--bs-radius-lg); padding: 60px;
+    text-align: center; color: #fff;
+    position: relative; overflow: hidden;
+}
+[data-blog] .bs-cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(232,170,61,.15) 0%, transparent 68%);
+    pointer-events: none;
+}
+[data-blog] .bs-cta-banner h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.7rem,3vw,2.4rem); font-weight: 600; color: #fff;
+    margin: .5rem 0 1rem; letter-spacing: -.01em;
+}
+[data-blog] .bs-cta-banner p { color: rgba(255,255,255,.78); max-width: 560px; margin: 0 auto 1.75rem; }
+[data-blog] .bs-cta-banner .actions { display: flex; gap: .875rem; flex-wrap: wrap; justify-content: center; }
+@media (max-width: 640px) { [data-blog] .bs-cta-banner { padding: 40px 24px; } }
+
+/* ---------- buttons ---------- */
+[data-blog] .bs-btn-gold {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background-color: var(--bs-gold); color: #12242B;
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 14px 28px; border-radius: var(--bs-radius-pill);
+    border: 1.5px solid transparent; text-decoration: none;
+    transition: background .22s, box-shadow .22s, transform .22s;
+}
+[data-blog] .bs-btn-gold:hover { background-color: var(--bs-gold-lt); box-shadow: 0 14px 34px rgba(232,170,61,.35); transform: translateY(-2px); }
+[data-blog] .bs-btn-outline-white {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    background: transparent; border: 1.5px solid rgba(255,255,255,.38); color: #fff;
+    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 14px 28px; border-radius: var(--bs-radius-pill); text-decoration: none;
+    transition: border-color .22s, background .22s, transform .22s;
+}
+[data-blog] .bs-btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.1); transform: translateY(-2px); }
+
+/* ---------- Dark mode (when html.dark or [data-theme="dark"]) ---------- */
+html.dark [data-blog],
+[data-theme="dark"] [data-blog] {
+    --bs-ink:         #0A1F28;
+    --bs-primary:     #4F9BB8;
+    --bs-primary-lt:  #6FB6D0;
+    --bs-gold:        #E8AA3D;
+    --bs-gold-lt:     #F5C978;
+    --bs-text:        #EAF4F6;
+    --bs-muted:       #93B2BA;
+    --bs-border:      #21454F;
+    --bs-surface:     #123039;
+    --bs-surface-alt: #163944;
+    --bs-bg:          #0A1F28;
+    --bs-tint:        #16414C;
+    --bs-shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+    --bs-shadow-md:   0 12px 32px rgba(0,0,0,0.5);
+    --bs-shadow-lg:   0 28px 64px rgba(0,0,0,0.6);
+    color-scheme: dark;
+}
+
+[data-blog] * {
+    transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+}
+
+/* Dark mode specific component refinements */
+html.dark [data-blog] .bs-page-hero,
+[data-theme="dark"] [data-blog] .bs-page-hero {
+    background: #0A1F28;
+}
+
+html.dark [data-blog] .bs-page-hero h1,
+[data-theme="dark"] [data-blog] .bs-page-hero h1 {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-page-hero p.lead,
+[data-theme="dark"] [data-blog] .bs-page-hero p.lead {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-eyebrow,
+[data-theme="dark"] [data-blog] .bs-eyebrow {
+    color: #F5C978;
+    background: rgba(232, 170, 61, 0.1);
+    border-color: rgba(232, 170, 61, 0.25);
+}
+
+html.dark [data-blog] .bs-eyebrow .dot,
+[data-theme="dark"] [data-blog] .bs-eyebrow .dot {
+    background-color: #E8AA3D;
+    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.25);
+}
+
+html.dark [data-blog] .bs-hero-panel,
+[data-theme="dark"] [data-blog] .bs-hero-panel {
+    background: #123039;
+    border-color: #21454F;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+html.dark [data-blog] .bs-hero-panel-item,
+[data-theme="dark"] [data-blog] .bs-hero-panel-item {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-hero-panel-num,
+[data-theme="dark"] [data-blog] .bs-hero-panel-num {
+    color: #4F9BB8;
+}
+
+html.dark [data-blog] .bs-filter-pill,
+[data-theme="dark"] [data-blog] .bs-filter-pill {
+    background-color: #123039;
+    border-color: #21454F;
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-filter-pill:hover,
+html.dark [data-blog] .bs-filter-pill.active,
+[data-theme="dark"] [data-blog] .bs-filter-pill:hover,
+[data-theme="dark"] [data-blog] .bs-filter-pill.active {
+    border-color: #F5C978;
+    color: #F5C978;
+    background-color: rgba(232, 170, 61, 0.12);
+}
+
+html.dark [data-blog] .bs-section-head h2,
+[data-theme="dark"] [data-blog] .bs-section-head h2 {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-section-head p,
+[data-theme="dark"] [data-blog] .bs-section-head p {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-blog-card,
+[data-theme="dark"] [data-blog] .bs-blog-card {
+    background-color: #123039;
+    border-color: #21454F;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+html.dark [data-blog] .bs-blog-card:hover,
+[data-theme="dark"] [data-blog] .bs-blog-card:hover {
+    border-color: rgba(232, 170, 61, 0.45);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+html.dark [data-blog] .bs-blog-card h3,
+[data-theme="dark"] [data-blog] .bs-blog-card h3 {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-blog-card:hover h3,
+[data-theme="dark"] [data-blog] .bs-blog-card:hover h3 {
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-blog-card p,
+[data-theme="dark"] [data-blog] .bs-blog-card p {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-blog-card .meta-row,
+[data-theme="dark"] [data-blog] .bs-blog-card .meta-row {
+    border-color: #21454F;
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-event-card,
+[data-theme="dark"] [data-blog] .bs-event-card {
+    background-color: #123039;
+    border-color: #21454F;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+html.dark [data-blog] .bs-event-card:hover,
+[data-theme="dark"] [data-blog] .bs-event-card:hover {
+    border-color: rgba(232, 170, 61, 0.45);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+html.dark [data-blog] .bs-event-card h3,
+[data-theme="dark"] [data-blog] .bs-event-card h3 {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-event-card:hover h3,
+[data-theme="dark"] [data-blog] .bs-event-card:hover h3 {
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-event-card p,
+[data-theme="dark"] [data-blog] .bs-event-card p {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-event-card .cta-link,
+[data-theme="dark"] [data-blog] .bs-event-card .cta-link {
+    color: #4F9BB8;
+}
+
+html.dark [data-blog] .bs-event-card:hover .cta-link,
+[data-theme="dark"] [data-blog] .bs-event-card:hover .cta-link {
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-culture-card,
+[data-theme="dark"] [data-blog] .bs-culture-card {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+html.dark [data-blog] .bs-card,
+[data-theme="dark"] [data-blog] .bs-card {
+    background-color: #123039;
+    border-color: #21454F;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+html.dark [data-blog] .bs-card:hover,
+[data-theme="dark"] [data-blog] .bs-card:hover {
+    border-color: rgba(232, 170, 61, 0.45);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.45);
+}
+
+html.dark [data-blog] .bs-card h3,
+[data-theme="dark"] [data-blog] .bs-card h3 {
+    color: #EAF4F6;
+}
+
+html.dark [data-blog] .bs-card:hover h3,
+[data-theme="dark"] [data-blog] .bs-card:hover h3 {
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-card p,
+[data-theme="dark"] [data-blog] .bs-card p {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-icon-badge,
+[data-theme="dark"] [data-blog] .bs-icon-badge {
+    background: linear-gradient(135deg, rgba(79, 155, 184, 0.2), rgba(232, 170, 61, 0.2));
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-badge-outline,
+[data-theme="dark"] [data-blog] .bs-badge-outline {
+    border-color: #21454F;
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-badge-gold,
+[data-theme="dark"] [data-blog] .bs-badge-gold {
+    background-color: #E8AA3D;
+    color: #12242B;
+}
+
+html.dark [data-blog] .bs-spotlight,
+[data-theme="dark"] [data-blog] .bs-spotlight {
+    background: linear-gradient(135deg, #07171e 0%, #0c2631 55%, #163944 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark [data-blog] .bs-cta-banner,
+[data-theme="dark"] [data-blog] .bs-cta-banner {
+    background: linear-gradient(120deg, #123544, #0a1f28);
+    border: 1px solid #21454F;
+}
+
+html.dark [data-blog] .bs-breadcrumb a,
+[data-theme="dark"] [data-blog] .bs-breadcrumb a {
+    color: #93B2BA;
+}
+
+html.dark [data-blog] .bs-breadcrumb a:hover,
+[data-theme="dark"] [data-blog] .bs-breadcrumb a:hover {
+    color: #F5C978;
+}
+
+html.dark [data-blog] .bs-breadcrumb .current,
+[data-theme="dark"] [data-blog] .bs-breadcrumb .current {
+    color: #EAF4F6;
+}
+
+/* ---------- reveal animation ---------- */
+[data-blog] .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 700ms cubic-bezier(.2,.7,.3,1), transform 700ms cubic-bezier(.2,.7,.3,1);
+}
+[data-blog] .reveal.in-view { opacity: 1; transform: translateY(0); }
+</style>
+
+<div data-blog>
+    {{-- ── Marquee Strip ── --}}
+    <div class="bs-marquee-strip" aria-hidden="true">
+        <div class="bs-marquee-track">
+            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
         </div>
     </div>
-    <div class="bih-container">
-        <div class="bih-blog-nav mt-8 flex flex-wrap gap-2">
-            <a href="#latest" class="bih-filter-btn">Latest Posts</a>
-            @foreach($storySections as $section)
-                <a href="#{{ $section['slug'] }}" class="bih-filter-btn">{{ $section['title'] }}</a>
-            @endforeach
-            @foreach($extraSections as $category)
-                <a href="#{{ $category->slug }}" class="bih-filter-btn">{{ $category->name }}</a>
-            @endforeach
-            <a href="#events" class="bih-filter-btn">Events</a>
-            <a href="#culture" class="bih-filter-btn">Life at Bengal IT Hub</a>
-            <a href="#opportunities" class="bih-filter-btn">Opportunities</a>
-        </div>
+
+    {{-- ── Breadcrumb ── --}}
+    <div class="bs-container" style="padding-top: 1.5rem; padding-bottom: 0;">
+        <nav class="bs-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ route('home') }}">Home</a>
+            <span class="sep">/</span>
+            <span class="current">Blog</span>
+        </nav>
     </div>
-</section>
 
-{{-- Latest From the Blog --}}
-<section id="latest" class="bih-section bih-blog-latest bg-slate-50">
-    <div class="bih-container">
-        <div class="max-w-3xl">
-            <p class="bih-eyebrow">Latest From the Blog</p>
-            <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">Latest stories, updates, and people moments</h2>
-            <p class="bih-page-intro mt-5">Every published admin post appears here first, then also flows into its matching section below.</p>
+    {{-- ── Page Hero ── --}}
+    <section class="bs-page-hero">
+        <div class="bs-container">
+            <div style="display: grid; gap: 2rem; align-items: flex-end;" class="lg:grid-cols-[1fr_.44fr]">
+                <div>
+                    <span class="bs-eyebrow"><span class="dot"></span> {{ $blog['intro']['eyebrow'] }}</span>
+                    <h1>{{ $blog['intro']['title'] }}</h1>
+                    @foreach($blog['intro']['body'] as $paragraph)
+                        <p class="lead">{{ $paragraph }}</p>
+                    @endforeach
+                </div>
+                <div class="bs-hero-panel reveal">
+                    <p class="bs-hero-panel-title">Publish Anything</p>
+                    <div class="bs-hero-panel-item">
+                        <span class="bs-hero-panel-num">01</span>
+                        <span>Birthday, interview, new joiner, function, event, culture, and company posts.</span>
+                    </div>
+                    <div class="bs-hero-panel-item">
+                        <span class="bs-hero-panel-num">02</span>
+                        <span>Admin-managed sections with featured images, status, dates, and SEO fields.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bs-filter-row">
+                <a href="#latest" class="bs-filter-pill">Latest Posts</a>
+                @foreach($storySections as $section)
+                    <a href="#{{ $section['slug'] }}" class="bs-filter-pill">{{ $section['title'] }}</a>
+                @endforeach
+                @foreach($extraSections as $category)
+                    <a href="#{{ $category->slug }}" class="bs-filter-pill">{{ $category->name }}</a>
+                @endforeach
+                <a href="#events" class="bs-filter-pill">Events</a>
+                <a href="#culture" class="bs-filter-pill">Life at Bengal IT Hub</a>
+                <a href="#awards" class="bs-filter-pill">Awards</a>
+                <a href="#opportunities" class="bs-filter-pill">Opportunities</a>
+            </div>
         </div>
+    </section>
 
-        @if($posts->isNotEmpty())
-            <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach($posts as $post)
-                    <a href="{{ route('blog.show', $post->slug) }}" class="bih-card bih-blog-post-card group relative flex flex-col overflow-hidden">
-                        <span class="absolute inset-x-0 top-0 z-10 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
-                        @if($post->featured_image)
-                            <img class="h-44 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $post->featured_image }}" alt="{{ $post->title }}">
+    {{-- ── Latest From the Blog ── --}}
+    <section id="latest" class="bs-section" style="background: var(--bs-bg, #F5F8F8); padding-top: 0;">
+        <div class="bs-container">
+            <div class="bs-section-head left reveal" style="margin-bottom: 36px;">
+                <span class="bs-eyebrow"><span class="dot"></span> Latest From the Blog</span>
+                <h2>Latest stories, updates, and people moments</h2>
+                <p>Every published admin post appears here first, then also flows into its matching section below.</p>
+            </div>
+
+            @if($posts->isNotEmpty())
+                <div class="bs-grid bs-grid-3">
+                    @foreach($posts as $post)
+                        <a href="{{ route('blog.show', $post->slug) }}" class="bs-blog-card reveal">
+                            <div class="thumb-box">
+                                @if($post->featured_image)
+                                    <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" loading="lazy" decoding="async">
+                                @else
+                                    <div class="thumb-placeholder">{{ Str::substr($post->title, 0, 1) }}</div>
+                                @endif
+                            </div>
+                            <div class="body">
+                                @if($post->category)
+                                    <span class="bs-badge-outline">{{ $post->category->name }}</span>
+                                @endif
+                                <h3>{{ $post->title }}</h3>
+                                <p>{{ Str::limit(strip_tags($post->body), 120) }}</p>
+                                <div class="meta-row">
+                                    <span>{{ $post->published_at?->format('d M Y') }}</span>
+                                    <span style="color: var(--bs-primary); font-weight: 800;">Read &rarr;</span>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+            @else
+                <div class="bs-grid bs-grid-2 reveal">
+                    <div class="bs-card" style="padding: 36px;">
+                        <span class="bs-badge-gold">Coming Soon</span>
+                        <h3 style="font-size: 1.4rem;">Our First Posts Are In The Works</h3>
+                        <p style="margin-top: 8px;">We're preparing our first round of blog posts on technology, hiring, events, and company updates. Check back soon, or explore what's already live below.</p>
+                        <div style="margin-top: 24px;">
+                            <a class="bs-btn-gold" href="/contact">Get Notified</a>
+                        </div>
+                    </div>
+                    @if($categories->isNotEmpty())
+                        <div class="bs-card" style="padding: 36px;">
+                            <span class="bs-badge-outline">Topics Coming Soon</span>
+                            <h3 style="font-size: 1.4rem;">Categories In Queue</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px;">
+                                @foreach($categories as $category)
+                                    <span class="bs-badge-outline" style="margin-bottom: 0;">{{ $category->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+                </div>
+            @endif
+        </div>
+    </section>
+
+    {{-- ── Admin-Managed Blog Sections ── --}}
+    @foreach($storySections as $section)
+        @php($items = $sectionPosts->get($section['slug'], collect()))
+        <section id="{{ $section['slug'] }}" class="bs-section {{ $loop->odd ? 'bs-section-alt' : '' }}">
+            <div class="bs-container">
+                <div style="display: grid; gap: 2.5rem; align-items: flex-start;" class="lg:grid-cols-[.42fr_1fr]">
+                    <div class="reveal">
+                        <span class="bs-eyebrow"><span class="dot"></span> {{ $section['eyebrow'] }}</span>
+                        <h2 style="font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3vw, 2.3rem); font-weight: 600; color: var(--bs-text); margin: 0 0 .5em; line-height: 1.2;">{{ $section['title'] }}</h2>
+                        <p style="color: var(--bs-muted); font-size: .98rem; line-height: 1.75; margin: 0;">{{ $section['intro'] }}</p>
+                    </div>
+
+                    <div class="bs-grid bs-grid-2">
+                        @if($items->isNotEmpty())
+                            @foreach($items->take(4) as $post)
+                                <a href="{{ route('blog.show', $post->slug) }}" class="bs-blog-card reveal">
+                                    <div class="thumb-box" style="height: 180px;">
+                                        @if($post->featured_image)
+                                            <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" loading="lazy" decoding="async">
+                                        @else
+                                            <div class="thumb-placeholder">{{ Str::substr($post->title, 0, 1) }}</div>
+                                        @endif
+                                    </div>
+                                    <div class="body">
+                                        @if($post->category)
+                                            <span class="bs-badge-outline">{{ $post->category->name }}</span>
+                                        @endif
+                                        <h3 style="font-size: 1.05rem;">{{ $post->title }}</h3>
+                                        <p style="font-size: .84rem;">{{ Str::limit(strip_tags($post->body), 110) }}</p>
+                                    </div>
+                                </a>
+                            @endforeach
                         @else
-                            <div class="grid h-44 w-full place-items-center bg-linear-to-br from-teal-700 to-slate-950 text-3xl font-black text-white">{{ Str::substr($post->title, 0, 1) }}</div>
+                            @foreach($section['fallback'] as $fallback)
+                                <div class="bs-blog-card reveal">
+                                    <div class="thumb-box" style="height: 180px;">
+                                        <img src="{{ $fallback['image'] }}" alt="{{ $fallback['title'] }} at Bengal IT Hub" loading="lazy" decoding="async">
+                                    </div>
+                                    <div class="body">
+                                        <span class="bs-badge-outline">Ready For Posts</span>
+                                        <h3 style="font-size: 1.05rem;">{{ $fallback['title'] }}</h3>
+                                        <p style="font-size: .84rem;">{{ $fallback['body'] }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         @endif
-                        <div class="flex flex-1 flex-col p-6">
-                            @if($post->category)
-                                <p class="bih-eyebrow">{{ $post->category->name }}</p>
-                            @endif
-                            <h3 class="mt-2 text-xl font-black leading-tight text-slate-950 transition group-hover:text-teal-700">{{ $post->title }}</h3>
-                            <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">{{ Str::limit(strip_tags($post->body), 120) }}</p>
-                            <time datetime="{{ $post->published_at?->toIso8601String() }}" class="mt-5 border-t border-slate-100 pt-4 text-xs font-black uppercase text-slate-500">{{ $post->published_at?->format('d M Y') }}</time>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endforeach
+
+    @foreach($extraSections as $category)
+        @php($items = $sectionPosts->get($category->slug, collect()))
+        <section id="{{ $category->slug }}" class="bs-section">
+            <div class="bs-container">
+                <div class="bs-section-head left reveal">
+                    <span class="bs-eyebrow"><span class="dot"></span> Custom Section</span>
+                    <h2>{{ $category->name }}</h2>
+                    <p>This section is controlled from the blog admin panel. Add posts with images under this category to fill it.</p>
+                </div>
+
+                <div class="bs-grid bs-grid-3">
+                    @forelse($items->take(6) as $post)
+                        <a href="{{ route('blog.show', $post->slug) }}" class="bs-blog-card reveal">
+                            <div class="thumb-box" style="height: 180px;">
+                                @if($post->featured_image)
+                                    <img src="{{ $post->featured_image }}" alt="{{ $post->title }}" loading="lazy" decoding="async">
+                                @else
+                                    <div class="thumb-placeholder">{{ Str::substr($post->title, 0, 1) }}</div>
+                                @endif
+                            </div>
+                            <div class="body">
+                                <h3>{{ $post->title }}</h3>
+                                <p>{{ Str::limit(strip_tags($post->body), 110) }}</p>
+                            </div>
+                        </a>
+                    @empty
+                        <div class="bs-card reveal" style="grid-column: 1 / -1; max-width: 600px;">
+                            <span class="bs-badge-outline">Empty Section</span>
+                            <h3>Ready for {{ $category->name }} posts</h3>
+                            <p>Create a post in the admin panel, assign it to this section, add a featured image, and publish it.</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+    @endforeach
+
+    {{-- ── Company Events ── --}}
+    <section id="events" class="bs-section bs-section-alt">
+        <div class="bs-container">
+            <div class="bs-section-head reveal">
+                <span class="bs-eyebrow"><span class="dot"></span> Events</span>
+                <h2>What We Host &amp; Show Up For</h2>
+                <p>From our flagship hackathon to partner showcases, here's where Bengal IT Hub shows up in person.</p>
+            </div>
+
+            <div class="bs-grid bs-grid-4">
+                @foreach($blog['events'] as $event)
+                    <a href="{{ $event['href'] }}" class="bs-event-card reveal">
+                        <div class="thumb">
+                            <img src="{{ $event['image'] }}" alt="{{ $event['title'] }} at Bengal IT Hub" loading="lazy" decoding="async">
+                        </div>
+                        <div class="body">
+                            <h3>{{ $event['title'] }}</h3>
+                            <p>{{ $event['body'] }}</p>
+                            <span class="cta-link">{{ $event['cta'] }} &rarr;</span>
                         </div>
                     </a>
                 @endforeach
             </div>
-        @else
-            <div class="mt-10 grid gap-8 lg:grid-cols-[1fr_.6fr] lg:items-center">
-                <div class="bih-card p-8">
-                    <p class="bih-eyebrow">Coming Soon</p>
-                    <h3 class="mt-2 text-2xl font-black text-slate-950">Our First Posts Are In The Works</h3>
-                    <p class="bih-copy mt-4">We're preparing our first round of blog posts on technology, hiring, events, and company updates. Check back soon, or explore what's already live below.</p>
-                    <a class="bih-button mt-6 inline-flex" href="/contact">Get Notified</a>
-                </div>
-                @if($categories->isNotEmpty())
-                    <div class="bih-card p-8">
-                        <p class="bih-eyebrow">Topics Coming Soon</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            @foreach($categories as $category)
-                                <span class="rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-black text-slate-700">{{ $category->name }}</span>
-                            @endforeach
+        </div>
+    </section>
+
+    {{-- ── Life at Bengal IT Hub / Culture ── --}}
+    <section id="culture" class="bs-section" style="background: linear-gradient(135deg, #0a1f28 0%, #102d3b 50%, #1e4a5f 100%); color: #ffffff;">
+        <div class="bs-container">
+            <div class="bs-section-head reveal" style="color: #ffffff;">
+                <span class="bs-eyebrow" style="color: var(--bs-gold-lt); background: rgba(232,170,61,.12); border-color: rgba(232,170,61,.3);">
+                    <span class="dot"></span> Life at Bengal IT Hub
+                </span>
+                <h2 style="color: #ffffff;">More Than Just Work</h2>
+                <p style="color: rgba(255,255,255,.78);">Celebrations, festivals, milestones, and time spent together outside the sprint board.</p>
+            </div>
+
+            <div class="bs-grid bs-grid-4">
+                @foreach($blog['culture'] as $moment)
+                    <div class="bs-culture-card reveal">
+                        <img src="{{ $moment['image'] }}" alt="{{ $moment['title'] }} at Bengal IT Hub" loading="lazy" decoding="async">
+                        <div class="overlay">
+                            <h3>{{ $moment['title'] }}</h3>
+                            <p>{{ $moment['body'] }}</p>
                         </div>
                     </div>
-                @endif
+                @endforeach
             </div>
-        @endif
-    </div>
-</section>
+        </div>
+    </section>
 
-{{-- Admin-Managed Blog Sections --}}
-@foreach($storySections as $section)
-    @php($items = $sectionPosts->get($section['slug'], collect()))
-    <section id="{{ $section['slug'] }}" class="bih-section bih-blog-story-section {{ $loop->odd ? 'bg-white' : 'bg-slate-50' }}">
-        <div class="bih-container">
-            <div class="grid gap-8 lg:grid-cols-[.48fr_1fr] lg:items-start">
-                <div>
-                    <p class="bih-eyebrow">{{ $section['eyebrow'] }}</p>
-                    <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">{{ $section['title'] }}</h2>
-                    <p class="bih-page-intro mt-5">{{ $section['intro'] }}</p>
+    {{-- ── Awards & Recognition Spotlight ── --}}
+    <section id="awards" class="bs-section" style="background: var(--bs-bg, #F5F8F8);">
+        <div class="bs-container">
+            <div class="bs-spotlight reveal">
+                <div class="copy">
+                    <span class="bs-eyebrow"><span class="dot"></span> Awards &amp; Recognition</span>
+                    <h2>{{ $blog['awards']['title'] }}</h2>
+                    <p>{{ $blog['awards']['body'] }}</p>
+                    <div class="actions">
+                        <a class="bs-btn-gold" href="{{ $blog['awards']['href'] }}">
+                            View Awards &amp; Recognition
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="grid gap-5 sm:grid-cols-2">
-                    @if($items->isNotEmpty())
-                        @foreach($items->take(4) as $post)
-                            <a href="{{ route('blog.show', $post->slug) }}" class="bih-card bih-blog-section-card group overflow-hidden">
-                                @if($post->featured_image)
-                                    <img class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $post->featured_image }}" alt="{{ $post->title }}">
-                                @else
-                                    <div class="grid h-52 w-full place-items-center bg-linear-to-br from-teal-700 to-slate-950 text-3xl font-black text-white">{{ Str::substr($post->title, 0, 1) }}</div>
-                                @endif
-                                <div class="p-5">
-                                    <p class="bih-eyebrow">{{ $post->category?->name }}</p>
-                                    <h3 class="mt-2 text-lg font-black leading-tight text-slate-950 transition group-hover:text-teal-700">{{ $post->title }}</h3>
-                                    <p class="mt-3 text-sm leading-7 text-slate-600">{{ Str::limit(strip_tags($post->body), 110) }}</p>
-                                </div>
-                            </a>
-                        @endforeach
-                    @else
-                        @foreach($section['fallback'] as $fallback)
-                            <article class="bih-card bih-blog-section-card overflow-hidden">
-                                <img class="h-52 w-full object-cover" src="{{ $fallback['image'] }}" alt="{{ $fallback['title'] }} at Bengal IT Hub">
-                                <div class="p-5">
-                                    <p class="bih-eyebrow">Ready For Posts</p>
-                                    <h3 class="mt-2 text-lg font-black leading-tight text-slate-950">{{ $fallback['title'] }}</h3>
-                                    <p class="mt-3 text-sm leading-7 text-slate-600">{{ $fallback['body'] }}</p>
-                                </div>
-                            </article>
-                        @endforeach
-                    @endif
+                <div class="visual">
+                    <img src="{{ $blog['awards']['image'] }}" alt="Awards and recognition at Bengal IT Hub" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
     </section>
-@endforeach
 
-@foreach($extraSections as $category)
-    @php($items = $sectionPosts->get($category->slug, collect()))
-    <section id="{{ $category->slug }}" class="bih-section bih-blog-story-section bg-white">
-        <div class="bih-container">
-            <div class="max-w-3xl">
-                <p class="bih-eyebrow">Custom Section</p>
-                <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">{{ $category->name }}</h2>
-                <p class="bih-page-intro mt-5">This section is controlled from the blog admin panel. Add posts with images under this category to fill it.</p>
+    {{-- ── Opportunities ── --}}
+    <section id="opportunities" class="bs-section bs-section-alt">
+        <div class="bs-container">
+            <div class="bs-section-head reveal">
+                <span class="bs-eyebrow"><span class="dot"></span> Opportunities</span>
+                <h2>Grow With Bengal IT Hub</h2>
+                <p>Ways to learn, work, and partner with us as we build.</p>
             </div>
-            <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                @forelse($items->take(6) as $post)
-                    <a href="{{ route('blog.show', $post->slug) }}" class="bih-card bih-blog-section-card group overflow-hidden">
-                        @if($post->featured_image)
-                            <img class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $post->featured_image }}" alt="{{ $post->title }}">
-                        @else
-                            <div class="grid h-52 w-full place-items-center bg-linear-to-br from-teal-700 to-slate-950 text-3xl font-black text-white">{{ Str::substr($post->title, 0, 1) }}</div>
-                        @endif
-                        <div class="p-5">
-                            <h3 class="text-lg font-black leading-tight text-slate-950 transition group-hover:text-teal-700">{{ $post->title }}</h3>
-                            <p class="mt-3 text-sm leading-7 text-slate-600">{{ Str::limit(strip_tags($post->body), 110) }}</p>
+
+            <div class="bs-grid bs-grid-4">
+                @foreach($blog['opportunities'] as $opportunity)
+                    <article class="bs-card reveal">
+                        <div class="bs-icon-badge">
+                            @include('partials.icon', ['name' => $opportunity['icon']])
                         </div>
+                        <h3>{{ $opportunity['title'] }}</h3>
+                        <p>{{ $opportunity['body'] }}</p>
+                    </article>
+                @endforeach
+            </div>
+
+            <div style="margin-top: 40px; display: flex; justify-content: center;" class="reveal">
+                <a class="bs-btn-gold" href="/contact?interest=Careers">Get In Touch About Opportunities</a>
+            </div>
+        </div>
+    </section>
+
+    {{-- ── Stay Connected CTA Banner ── --}}
+    <section class="bs-section" style="background: var(--bs-bg, #F5F8F8);">
+        <div class="bs-container">
+            <div class="bs-cta-banner reveal">
+                <span class="bs-eyebrow" style="color: var(--bs-gold-lt); background: rgba(232,170,61,.12); border-color: rgba(232,170,61,.3);">
+                    <span class="dot"></span> Stay Connected
+                </span>
+                <h2>Never miss what's happening at Bengal IT Hub</h2>
+                <p>Newsletter sign-up is coming soon. Until then, this page is the best place to catch new posts, events, and updates.</p>
+                <div class="actions">
+                    <a class="bs-btn-gold" href="{{ route('contact', ['interest' => 'Newsletter & Updates']) }}">
+                        Get In Touch
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                @empty
-                    <div class="bih-card p-6">
-                        <p class="bih-eyebrow">Empty Section</p>
-                        <h3 class="mt-2 text-xl font-black text-slate-950">Ready for {{ $category->name }} posts</h3>
-                        <p class="bih-copy mt-3 text-sm">Create a post in the admin panel, assign it to this section, add a featured image, and publish it.</p>
-                    </div>
-                @endforelse
+                </div>
             </div>
         </div>
     </section>
-@endforeach
+</div>
 
-{{-- Company Events --}}
-<section id="events" class="bih-section bg-white">
-    <div class="bih-container">
-        <div class="max-w-3xl">
-            <p class="bih-eyebrow">Events</p>
-            <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">What We Host & Show Up For</h2>
-            <p class="bih-page-intro mt-5">From our flagship hackathon to partner showcases, here's where Bengal IT Hub shows up in person.</p>
-        </div>
-        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach($blog['events'] as $event)
-                <a href="{{ $event['href'] }}" class="group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
-                    <div class="relative h-36 overflow-hidden">
-                        <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $event['image'] }}" alt="{{ $event['title'] }} at Bengal IT Hub">
-                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/10 to-transparent"></div>
-                    </div>
-                    <div class="flex flex-1 flex-col p-5">
-                        <h3 class="font-black leading-snug text-slate-950 transition group-hover:text-teal-700">{{ $event['title'] }}</h3>
-                        <p class="mt-2 flex-1 text-sm leading-6 text-slate-600">{{ $event['body'] }}</p>
-                        <span class="mt-4 text-xs font-extrabold uppercase text-teal-700">{{ $event['cta'] }} &rarr;</span>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </div>
-</section>
+<script>
+(function () {
+    var els = document.querySelectorAll('[data-blog] .reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+})();
+</script>
 
-{{-- Life at Bengal IT Hub / Culture --}}
-<section id="culture" class="relative overflow-hidden bg-slate-950 py-16 text-white">
-    <div class="bih-container relative">
-        <div class="max-w-3xl">
-            <p class="text-sm font-black uppercase tracking-wide text-amber-300">Life at Bengal IT Hub</p>
-            <h2 class="mt-3 text-4xl font-black leading-tight tracking-tight md:text-5xl">More Than Just Work</h2>
-            <p class="mt-5 max-w-2xl text-lg leading-8 text-white/80">Celebrations, festivals, milestones, and time spent together outside the sprint board.</p>
-        </div>
-        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach($blog['culture'] as $moment)
-                <div class="group relative overflow-hidden rounded-lg">
-                    <img class="h-56 w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $moment['image'] }}" alt="{{ $moment['title'] }} at Bengal IT Hub">
-                    <div class="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/10 to-transparent"></div>
-                    <div class="absolute inset-x-0 bottom-0 p-5">
-                        <h3 class="font-black leading-snug text-white">{{ $moment['title'] }}</h3>
-                        <p class="mt-1 text-xs leading-5 text-white/75">{{ $moment['body'] }}</p>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
-{{-- Awards & Recognition --}}
-<section id="awards" class="bih-section bg-white">
-    <div class="bih-container">
-        <div class="grid gap-10 overflow-hidden rounded-lg border border-slate-200 shadow-sm lg:grid-cols-2">
-            <div class="relative h-64 lg:h-full">
-                <img class="h-full w-full object-cover" src="{{ $blog['awards']['image'] }}" alt="Awards and recognition at Bengal IT Hub">
-                <div class="absolute inset-0 bg-linear-to-t from-slate-950/60 via-transparent to-transparent lg:bg-linear-to-r"></div>
-            </div>
-            <div class="flex flex-col justify-center p-8 md:p-10">
-                <p class="bih-eyebrow">Awards & Recognition</p>
-                <h2 class="bih-section-title mt-3 text-3xl leading-tight md:text-4xl">{{ $blog['awards']['title'] }}</h2>
-                <p class="bih-copy mt-4">{{ $blog['awards']['body'] }}</p>
-                <a class="bih-button mt-6 inline-flex w-fit" href="{{ $blog['awards']['href'] }}">View Awards & Recognition</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- Opportunities --}}
-<section id="opportunities" class="bih-section bg-slate-50">
-    <div class="bih-container">
-        <div class="max-w-3xl">
-            <p class="bih-eyebrow">Opportunities</p>
-            <h2 class="bih-section-title mt-3 text-4xl leading-tight md:text-5xl">Grow With Bengal IT Hub</h2>
-            <p class="bih-page-intro mt-5">Ways to learn, work, and partner with us as we build.</p>
-        </div>
-        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach($blog['opportunities'] as $opportunity)
-                <article class="bih-card p-6">
-                    <span class="grid h-11 w-11 place-items-center rounded-md bg-teal-700 text-white">
-                        @include('partials.icon', ['name' => $opportunity['icon']])
-                    </span>
-                    <h3 class="mt-4 font-black text-slate-950">{{ $opportunity['title'] }}</h3>
-                    <p class="mt-2 text-sm leading-6 text-slate-600">{{ $opportunity['body'] }}</p>
-                </article>
-            @endforeach
-        </div>
-        <div class="mt-10 flex justify-center">
-            <a class="bih-button" href="/contact?interest=Careers">Get In Touch About Opportunities</a>
-        </div>
-    </div>
-</section>
-
-<section class="bg-slate-950 py-16 text-white">
-    <div class="bih-container text-center">
-        <p class="text-sm font-black uppercase text-amber-300">Stay Connected</p>
-        <h2 class="mx-auto mt-3 max-w-2xl text-3xl font-black leading-tight md:text-4xl">Never miss what's happening at Bengal IT Hub</h2>
-        <p class="mx-auto mt-4 max-w-xl leading-8 text-white/82">Newsletter sign-up is coming soon. Until then, this page is the best place to catch new posts, events, and updates.</p>
-    </div>
-</section>
 @endsection

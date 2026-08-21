@@ -78,7 +78,161 @@ textarea:focus-visible,
 [data-dropdown-trigger][aria-expanded="true"] + [data-dropdown-panel] {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0);
+    --tw-translate-y: 0;
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+
+html:not(.dark) .bih-services-mega,
+html:not(.dark) .bih-industries-mega,
+html:not(.dark) .bih-insights-mega,
+html:not(.dark) .bih-products-mega,
+html:not(.dark) .bih-tech-talk-mega {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 250, 250, 0.96)),
+        #ffffff !important;
+    border-color: rgba(15, 73, 82, 0.14) !important;
+    box-shadow: 0 26px 64px rgba(15, 23, 42, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(14px);
+}
+
+html.dark .bih-services-mega,
+html.dark .bih-industries-mega,
+html.dark .bih-insights-mega,
+html.dark .bih-products-mega,
+html.dark .bih-tech-talk-mega {
+    background:
+        linear-gradient(135deg, rgba(20, 64, 72, 0.98), rgba(10, 31, 44, 0.98)),
+        #123941 !important;
+    border-color: rgba(245, 201, 120, 0.22) !important;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(14px);
+}
+
+html:not(.dark) .bih-services-mega a,
+html:not(.dark) .bih-industries-mega a,
+html:not(.dark) .bih-insights-mega a,
+html:not(.dark) .bih-products-mega a,
+html:not(.dark) .bih-tech-talk-mega a {
+    color: #0f172a !important;
+}
+
+html.dark .bih-services-mega a,
+html.dark .bih-industries-mega a,
+html.dark .bih-insights-mega a,
+html.dark .bih-products-mega a,
+html.dark .bih-tech-talk-mega a {
+    color: #f1f5f9 !important;
+}
+
+html:not(.dark) .bih-services-mega a:hover,
+html:not(.dark) .bih-industries-mega a:hover,
+html:not(.dark) .bih-insights-mega a:hover,
+html:not(.dark) .bih-products-mega a:hover,
+html:not(.dark) .bih-tech-talk-mega a:hover {
+    background-color: transparent !important;
+    color: #0f766e !important;
+}
+
+html.dark .bih-services-mega a:hover,
+html.dark .bih-industries-mega a:hover,
+html.dark .bih-insights-mega a:hover,
+html.dark .bih-products-mega a:hover,
+html.dark .bih-tech-talk-mega a:hover {
+    background-color: transparent !important;
+    color: #f5c978 !important;
+}
+
+html:not(.dark) .bih-services-mega .bih-services-mega-heading,
+html:not(.dark) .bih-industries-mega .bih-industries-mega-heading,
+html:not(.dark) .bih-insights-mega .bih-insights-mega-heading,
+html:not(.dark) .bih-products-mega .bih-products-mega-heading,
+html:not(.dark) .bih-tech-talk-mega .bih-tech-talk-mega-heading,
+html.dark .bih-services-mega .bih-services-mega-heading,
+html.dark .bih-industries-mega .bih-industries-mega-heading,
+html.dark .bih-insights-mega .bih-insights-mega-heading,
+html.dark .bih-products-mega .bih-products-mega-heading,
+html.dark .bih-tech-talk-mega .bih-tech-talk-mega-heading {
+    color: #f2aa36 !important;
+}
+
+html:not(.dark) .bih-products-dropdown .bih-products-dropdown-all,
+html.dark .bih-products-dropdown .bih-products-dropdown-all {
+    color: #4fb3cf !important;
+}
+
+html:not(.dark) .bih-products-dropdown .bih-products-dropdown-all:hover,
+html.dark .bih-products-dropdown .bih-products-dropdown-all:hover {
+    color: #f5c978 !important;
+}
+
+.bih-mega-icon,
+.bih-dropdown-icon {
+    display: inline-flex;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    background: rgba(245, 201, 120, 0.12);
+    color: #f5c978;
+    box-shadow: inset 0 0 0 1px rgba(245, 201, 120, 0.18);
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.bih-dropdown-icon {
+    background: rgba(15, 118, 110, 0.09);
+    color: #0f766e;
+    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.15);
+}
+
+.bih-services-mega-link:hover .bih-mega-icon,
+.bih-industries-mega-link:hover .bih-mega-icon,
+.bih-insights-mega-link:hover .bih-mega-icon,
+.bih-products-mega-link:hover .bih-mega-icon,
+.bih-tech-talk-mega-link:hover .bih-mega-icon,
+.bih-compact-dropdown-link:hover .bih-dropdown-icon {
+    transform: translateY(-1px);
+}
+
+.bih-services-mega-link:hover .bih-mega-icon,
+.bih-industries-mega-link:hover .bih-mega-icon,
+.bih-insights-mega-link:hover .bih-mega-icon,
+.bih-products-mega-link:hover .bih-mega-icon,
+.bih-tech-talk-mega-link:hover .bih-mega-icon {
+    background: rgba(245, 201, 120, 0.2);
+    color: #fff3c4;
+}
+
+html:not(.dark) .bih-mega-icon {
+    background: rgba(15, 118, 110, 0.08);
+    color: #0f766e;
+    box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.16);
+}
+
+html:not(.dark) .bih-services-mega-link:hover .bih-mega-icon,
+html:not(.dark) .bih-industries-mega-link:hover .bih-mega-icon,
+html:not(.dark) .bih-insights-mega-link:hover .bih-mega-icon,
+html:not(.dark) .bih-products-mega-link:hover .bih-mega-icon,
+html:not(.dark) .bih-tech-talk-mega-link:hover .bih-mega-icon {
+    background: rgba(15, 118, 110, 0.14);
+    color: #0f766e;
+}
+
+html:not(.dark) .bih-products-mega .bih-products-mega-all {
+    border-color: rgba(15, 73, 82, 0.18) !important;
+    color: #0f766e !important;
+}
+
+html:not(.dark) .bih-products-mega .bih-products-mega-all:hover {
+    border-color: rgba(15, 118, 110, 0.38) !important;
+    color: #0f172a !important;
+}
+
+html.dark .bih-dropdown-icon {
+    background: rgba(245, 201, 120, 0.13);
+    color: #f5c978;
+    box-shadow: inset 0 0 0 1px rgba(245, 201, 120, 0.2);
 }
 
 .bih-section,
@@ -154,23 +308,214 @@ textarea:focus-visible,
 }
 
 .bih-container {
-    max-width: 1180px;
+    max-width: 1400px;
     margin-inline: auto;
     padding-inline: 1rem;
 }
 
+/* Theme Toggle Pill (matching bengal-demo) */
+.theme-toggle {
+    width: 54px;
+    height: 30px;
+    border-radius: 999px;
+    background-color: #e8f0f1;
+    border: 1px solid #dce6e8;
+    position: relative;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.theme-toggle .knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #1e4a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 12px;
+    transition: transform 300ms cubic-bezier(.4, 0, .2, 1), background-color 300ms ease;
+}
+
+html.dark .theme-toggle {
+    background-color: #163944 !important;
+    border-color: #21454f !important;
+}
+
+html.dark .theme-toggle .knob {
+    transform: translateX(24px) !important;
+    background-color: #e8aa3d !important;
+    color: #0a1f28 !important;
+}
+
+/* =====================================================================
+   HEADER & NAVBAR HIGH-CONTRAST THEMES (LIGHT & DARK MODES)
+   ===================================================================== */
+
+/* Adaptive SVG Logo */
 .bih-site-logo {
     display: block;
-    width: clamp(138px, 15vw, 205px);
-    height: 64px !important;
+    width: auto;
+    max-width: 240px;
+    height: 68px !important;
     object-fit: contain;
     object-position: left center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* LIGHT MODE HEADER: Crisp White Background + Slate-900 Bold Links */
+header.bih-header-sticky,
+html:not(.dark) header.bih-header-sticky {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+    color: #0f172a !important;
+}
+
+html:not(.dark) .bih-header-nav-link {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+html:not(.dark) .bih-header-nav-link:hover {
+    color: #0f766e !important;
+}
+
+html:not(.dark) .bih-site-logo .bih-logo-main-text {
+    fill: #0f172a !important;
+}
+
+html:not(.dark) .bih-site-logo .bih-logo-text-sub {
+    fill: #1e293b !important;
+}
+
+html:not(.dark) [data-dropdown-panel] {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12) !important;
+}
+
+html:not(.dark) [data-dropdown-panel] a {
+    color: #0f172a !important;
+}
+
+html:not(.dark) [data-dropdown-panel] a:hover {
+    background-color: #f0fdf4 !important;
+    color: #0f766e !important;
+}
+
+/* DARK MODE HEADER: Dark Navy Background + Pure White (#FFFFFF) Links */
+html.dark header.bih-header-sticky {
+    background-color: rgba(11, 23, 36, 0.96) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    color: #ffffff !important;
+}
+
+html.dark .bih-header-nav-link {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7) !important;
+}
+
+html.dark .bih-header-nav-link:hover {
+    color: #f3e5ab !important;
+    text-shadow: 0 0 12px rgba(243, 229, 171, 0.4) !important;
+}
+
+html.dark .bih-site-logo .bih-logo-main-text {
+    fill: #ffffff !important;
+}
+
+html.dark .bih-site-logo .bih-logo-text-sub {
+    fill: #f3e5ab !important;
+}
+
+html.dark [data-dropdown-panel] {
+    background-color: #0d1f30 !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8) !important;
+}
+
+html.dark [data-dropdown-panel] a {
+    color: #e2e8f0 !important;
+}
+
+html.dark [data-dropdown-panel] a:hover {
+    background-color: #182e44 !important;
+    color: #f3e5ab !important;
+}
+
+/* Global Dark Mode Themes (matching bengal-demo) */
+html.dark {
+    --bg: #0A1F28;
+    --bg-shift: #0E262F;
+    --surface: #123039;
+    --surface-alt: #163944;
+    --text-primary: #EAF4F6;
+    --text-secondary: #93B2BA;
+    --border: #21454F;
+    color-scheme: dark;
+}
+
+html.dark body {
+    background-color: #0a1f28 !important;
+    color: #eaf4f6 !important;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+    color: #f8fafc !important;
+}
+
+html.dark p:not([class*="text-amber"]):not([class*="text-teal"]):not([class*="text-gold"]):not([class*="text-[#"]) {
+    color: #cbd5e1 !important;
+}
+
+html.dark .bih-card,
+html.dark .bih-hp-card,
+html.dark .bih-section-card,
+html.dark [class*="bih-card"] {
+    background-color: #123039 !important;
+    border-color: #21454f !important;
+    color: #eaf4f6 !important;
+}
+
+/* Hardcoded Light Utility Classes Inversion in Dark Mode */
+html.dark .text-slate-900,
+html.dark .text-slate-950,
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+    color: #f8fafc !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-slate-400 {
+    color: #93b2ba !important;
+}
+
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-300 {
+    border-color: #21454f !important;
 }
 
 .bih-header-main {
     display: flex;
-    min-height: 80px;
+    min-height: 76px;
     align-items: center;
+    justify-content: space-between;
     gap: 0.75rem;
 }
 
@@ -178,62 +523,68 @@ textarea:focus-visible,
     display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
-    gap: 0.55rem;
+    gap: 0.5rem;
     min-width: 0;
 }
 
 .bih-header-actions {
     display: flex;
-    flex: none;
+    flex: 0 0 auto;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.65rem;
 }
 
 .bih-admin-nav-link {
     display: inline-grid;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     place-items: center;
-    border: 1px solid rgba(15, 23, 42, 0.12);
+    border: 1px solid #cbd5e1;
     border-radius: 0.5rem;
     color: #0f172a;
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        0 8px 18px rgba(15, 23, 42, 0.08);
-    transition:
-        border-color 0.18s ease,
-        background 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    transition: all 0.18s ease;
 }
 
 .bih-admin-nav-link:hover {
-    border-color: rgba(15, 118, 110, 0.45);
+    border-color: #0f766e;
     color: #0f766e;
-    background: #ecfdf5;
-    transform: translateY(-1px);
-    box-shadow: 0 14px 26px rgba(15, 118, 110, 0.16);
+    background: #f0fdf4;
 }
 
-.bih-admin-nav-link:focus-visible {
-    outline: 3px solid rgba(20, 184, 166, 0.28);
-    outline-offset: 3px;
+html.dark .bih-admin-nav-link {
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #f3e5ab;
+    background: linear-gradient(180deg, #132435 0%, #0c1825 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .bih-admin-nav-link:hover {
+    border-color: rgba(243, 229, 171, 0.7);
+    color: #ffffff;
+    background: #192e42;
 }
 
 .bih-menu-button {
     display: grid;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     place-items: center;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
     border-radius: 0.375rem;
     color: #0f172a;
     background: #ffffff;
     font-size: 0.72rem;
     font-weight: 900;
     line-height: 1;
+    transition: all 0.18s ease;
+}
+
+html.dark .bih-menu-button {
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    color: #f3e5ab;
+    background: #112233;
 }
 
 .bih-header-nav {
@@ -241,28 +592,43 @@ textarea:focus-visible,
     min-width: 0;
     flex: 1 1 auto;
     align-items: center;
-    justify-content: flex-start;
-    gap: 0;
-    color: #334155;
-    font-size: 0.74rem;
-    font-weight: 900;
+    justify-content: space-evenly;
+    gap: 0.2rem;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    overflow: visible;
 }
 
 .bih-header-nav-link {
     display: inline-flex;
     align-items: center;
-    min-height: 80px;
-    padding-inline: 0.34rem;
-    color: inherit;
+    min-height: 76px;
+    padding-inline: 0.45rem;
     line-height: 1.1;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
-    transition: color 0.18s ease;
+    position: relative;
+    font-weight: 800;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
 }
 
-.bih-header-nav-link:hover {
-    color: #0f766e;
+.bih-header-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #f3e5ab);
+    transition: transform 0.22s ease-in-out;
+    border-radius: 2px;
+}
+
+.bih-header-nav-link:hover::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
 .bih-header-call {
@@ -270,15 +636,15 @@ textarea:focus-visible,
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    min-height: 36px;
-    border: 1px solid rgba(15, 118, 110, 0.22);
+    min-height: 38px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
     border-radius: 0.5rem;
-    padding: 0.45rem 0.62rem;
-    color: #0f4f49;
-    background: linear-gradient(135deg, #ecfeff, #ffffff);
+    padding: 0.45rem 0.7rem;
+    color: #f3e5ab;
+    background: linear-gradient(135deg, #132435, #0a1622);
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
-        0 10px 24px rgba(15, 118, 110, 0.1);
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 4px 15px rgba(0, 0, 0, 0.3);
     font-size: 0.76rem;
     font-weight: 900;
     line-height: 1.15;
@@ -292,11 +658,11 @@ textarea:focus-visible,
 }
 
 .bih-header-call:hover {
-    color: #0f172a;
-    border-color: rgba(15, 118, 110, 0.42);
+    color: #ffffff;
+    border-color: rgba(243, 229, 171, 0.7);
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.9),
-        0 14px 30px rgba(15, 118, 110, 0.16);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 6px 20px rgba(212, 175, 55, 0.25);
     transform: translateY(-1px);
 }
 
@@ -304,6 +670,34 @@ textarea:focus-visible,
     width: 1rem;
     height: 1rem;
     flex: none;
+    color: #d4af37;
+}
+
+.bih-header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    font-weight: 800;
+    font-size: 0.84rem;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+    color: #08131f;
+    box-shadow: 0 4px 16px rgba(212, 175, 55, 0.35);
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
+}
+
+.bih-header-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.08);
 }
 
 @media (min-width: 1280px) {
@@ -318,11 +712,11 @@ textarea:focus-visible,
 
 @media (min-width: 1440px) {
     .bih-header-nav {
-        font-size: 0.82rem;
+        font-size: 0.84rem;
     }
 
     .bih-header-nav-link {
-        padding-inline: 0.52rem;
+        padding-inline: 0.55rem;
     }
 }
 
@@ -342,29 +736,153 @@ textarea:focus-visible,
     color: #24364d;
 }
 
+.bih-related-links {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(20, 184, 166, 0.08), transparent 24rem),
+        linear-gradient(180deg, #f8fbfc, #eef5f6);
+}
+
+.bih-related-links-panel {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(244, 250, 250, 0.96));
+    border-color: rgba(15, 73, 82, 0.12);
+    box-shadow: 0 20px 48px rgba(8, 31, 43, 0.08);
+}
+
+.bih-related-link {
+    min-height: 8.6rem;
+    border: 1px solid rgba(15, 73, 82, 0.1);
+    border-radius: 0.5rem;
+    background:
+        linear-gradient(145deg, #ffffff, #f6fafb);
+    box-shadow: 0 10px 26px rgba(8, 31, 43, 0.05);
+}
+
+.bih-related-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 38px rgba(8, 31, 43, 0.1);
+}
+
+.bih-related-link-title {
+    display: block;
+    color: #0f172a !important;
+    opacity: 1 !important;
+    font-weight: 900;
+    transition: color 0.2s ease;
+}
+
+.bih-related-link:hover .bih-related-link-title {
+    color: #0f766e !important;
+}
+
+.bih-related-link-summary {
+    display: block;
+    margin-top: 0.25rem;
+    color: #334155 !important;
+    opacity: 1 !important;
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+html.dark .bih-related-links {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(20, 184, 166, 0.12), transparent 24rem),
+        radial-gradient(circle at 92% 12%, rgba(245, 201, 120, 0.08), transparent 20rem),
+        linear-gradient(180deg, #071823, #0a1f28) !important;
+}
+
+html.dark .bih-related-links .bih-eyebrow {
+    color: #f5c978 !important;
+}
+
+html.dark .bih-related-links .bih-section-title {
+    color: #f8fafc !important;
+}
+
+html.dark .bih-related-links .bih-page-intro {
+    color: #b6cbd1 !important;
+}
+
+html.dark .bih-related-links-panel {
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.92), rgba(10, 31, 40, 0.96)) !important;
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26) !important;
+}
+
+html.dark .bih-related-links-panel h3 {
+    color: #f8fafc !important;
+}
+
+html.dark .bih-related-link {
+    background:
+        linear-gradient(145deg, rgba(13, 38, 48, 0.98), rgba(7, 24, 35, 0.96)) !important;
+    border-color: rgba(169, 199, 206, 0.16) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.04), 0 14px 34px rgba(0, 0, 0, 0.2);
+}
+
+html.dark .bih-related-link:hover {
+    border-color: rgba(245, 201, 120, 0.42) !important;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.98), rgba(12, 43, 52, 0.96)) !important;
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+}
+
+html.dark .bih-related-link .bih-related-link-title {
+    color: #f8fafc !important;
+}
+
+html.dark .bih-related-link:hover .bih-related-link-title {
+    color: #f5c978 !important;
+}
+
+html.dark .bih-related-link .bih-related-link-summary {
+    color: #b6cbd1 !important;
+}
+
 .bih-button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    isolation: isolate;
+    overflow: hidden;
     min-height: 44px;
-    border-radius: 0.375rem;
-    padding: 0.8rem 1rem;
-    font-weight: 800;
+    border-radius: 999px;
+    padding: 0.85rem 1.25rem;
+    font-weight: 900;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
-    background: #f59e0b;
+    background: linear-gradient(135deg, #f5c978, #e8aa3d 52%, #c89119);
     color: #102033;
+    box-shadow: 0 14px 30px rgba(232, 170, 61, 0.22);
     transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease;
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        filter 0.24s ease;
+}
+
+.bih-button::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -75%;
+    width: 55%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+    transform: skewX(-18deg);
+    transition: left 0.55s ease;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .bih-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(255, 183, 3, 0.25);
-    background: #fbbf24;
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 22px 46px rgba(232, 170, 61, 0.34), 0 0 0 1px rgba(245, 201, 120, 0.38);
+    filter: saturate(1.08);
+}
+
+.bih-button:hover::before {
+    left: 125%;
 }
 
 .bih-button-secondary {
@@ -608,6 +1126,852 @@ textarea:focus-visible,
 .bih-vision-card-body a:hover {
     color: #0f172a;
     text-decoration: underline;
+}
+
+.bih-v2030-hero,
+.bih-v2030-roadmap,
+.bih-v2030-final {
+    background:
+        radial-gradient(circle at 16% 24%, rgba(20, 184, 166, 0.18), transparent 26rem),
+        radial-gradient(circle at 88% 16%, rgba(232, 170, 61, 0.12), transparent 22rem),
+        #071823;
+}
+
+.bih-v2030-marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(169, 199, 206, 0.18);
+    border-bottom: 1px solid rgba(169, 199, 206, 0.18);
+    background: #071823;
+    padding: 0.9rem 0;
+}
+
+.bih-v2030-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bih-v2030-marquee 32s linear infinite;
+}
+
+.bih-v2030-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0 1.75rem;
+    color: #9dc3cc;
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.bih-v2030-marquee-track span::after {
+    content: "*";
+    color: #f2aa36;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.bih-v2030-breadcrumb-wrap {
+    border-bottom: 1px solid rgba(169, 199, 206, 0.14);
+    background: #071823;
+}
+
+.bih-v2030-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0 1rem;
+    color: #9dc3cc;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.bih-v2030-breadcrumb a {
+    color: #9dc3cc;
+    text-decoration: none;
+}
+
+.bih-v2030-breadcrumb a:hover,
+.bih-v2030-breadcrumb .current {
+    color: #f1f5f9;
+}
+
+.bih-v2030-breadcrumb .sep {
+    opacity: 0.55;
+}
+
+@keyframes bih-v2030-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.bih-v2030-hero::before,
+.bih-v2030-roadmap::before,
+.bih-v2030-final::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 78%);
+}
+
+.bih-v2030-hero-overlay {
+    background:
+        linear-gradient(90deg, rgba(7, 13, 31, 0.98), rgba(7, 13, 31, 0.88) 48%, rgba(10, 61, 69, 0.68)),
+        linear-gradient(180deg, rgba(7, 13, 31, 0.18), rgba(7, 13, 31, 0.92));
+}
+
+.bih-v2030-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #f5c342 !important;
+    letter-spacing: 0.08em;
+}
+
+.bih-v2030-eyebrow::before {
+    content: "";
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #f2aa36;
+}
+
+.bih-v2030-hero-card {
+    border-radius: 0.35rem;
+    border-color: rgba(169, 199, 206, 0.32);
+    background: rgba(6, 20, 28, 0.82);
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.48);
+}
+
+.bih-v2030-hero-card img {
+    filter: saturate(1.05) contrast(1.05);
+}
+
+.bih-v2030-bento-band,
+.bih-v2030-section {
+    position: relative;
+    background:
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f6 100%);
+}
+
+.bih-v2030-bento,
+.bih-v2030-image-card,
+.bih-v2030-outcome-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(15, 73, 82, 0.12);
+    border-radius: 0.65rem;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 250, 0.92));
+    box-shadow: 0 22px 55px rgba(8, 31, 43, 0.09);
+}
+
+.bih-v2030-bento::after,
+.bih-v2030-image-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -45% 32%;
+    height: 9rem;
+    border-radius: 999px;
+    background: rgba(20, 184, 166, 0.08);
+    transform: rotate(-10deg);
+}
+
+.bih-v2030-bento:hover,
+.bih-v2030-image-card:hover {
+    border-color: rgba(232, 170, 61, 0.38);
+    box-shadow: 0 28px 70px rgba(8, 31, 43, 0.14);
+}
+
+.bih-v2030-index {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    color: rgba(15, 73, 82, 0.24);
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.bih-v2030-bento > *:not(.bih-v2030-index),
+.bih-v2030-image-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.bih-v2030-roadmap,
+.bih-v2030-final {
+    position: relative;
+    overflow: hidden;
+}
+
+.bih-v2030-dark-card {
+    border-color: rgba(169, 199, 206, 0.18);
+    border-radius: 0.65rem;
+    background: rgba(18, 57, 65, 0.72);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.bih-v2030-image-card {
+    border-radius: 0.65rem;
+}
+
+.bih-v2030-image-card img {
+    filter: saturate(1.05);
+}
+
+.bih-v2030-outcome {
+    border: 1px solid rgba(15, 73, 82, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+html.dark .bih-v2030-bento-band,
+html.dark .bih-v2030-section {
+    background:
+        linear-gradient(180deg, #071823 0%, #0d2630 100%) !important;
+}
+
+html.dark .bih-v2030-bento,
+html.dark .bih-v2030-image-card,
+html.dark .bih-v2030-outcome-card {
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    background: rgba(18, 57, 65, 0.82) !important;
+}
+
+html.dark .bih-v2030-outcome {
+    background: rgba(13, 38, 48, 0.78) !important;
+    border-color: rgba(169, 199, 206, 0.12) !important;
+}
+
+html.dark .bih-v2030-index {
+    color: rgba(243, 229, 171, 0.36);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.36);
+}
+
+.bih-about-marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(169, 199, 206, 0.18);
+    border-bottom: 1px solid rgba(169, 199, 206, 0.18);
+    background: #071823;
+    padding: 0.9rem 0;
+}
+
+.bih-about-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bih-about-marquee 32s linear infinite;
+}
+
+.bih-about-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0 1.75rem;
+    color: #9dc3cc;
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.bih-about-marquee-track span::after {
+    content: "*";
+    color: #f2aa36;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.bih-about-breadcrumb-wrap {
+    border-bottom: 1px solid rgba(169, 199, 206, 0.14);
+    background: #071823;
+}
+
+.bih-about-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0 1rem;
+    color: #9dc3cc;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.bih-about-breadcrumb a {
+    color: #9dc3cc;
+    text-decoration: none;
+}
+
+.bih-about-breadcrumb a:hover,
+.bih-about-breadcrumb .current {
+    color: #f1f5f9;
+}
+
+.bih-about-breadcrumb .sep {
+    opacity: 0.55;
+}
+
+.bih-about-hero,
+.bih-about-dark,
+.bih-about-final {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 14% 22%, rgba(20, 184, 166, 0.18), transparent 25rem),
+        radial-gradient(circle at 86% 12%, rgba(232, 170, 61, 0.12), transparent 22rem),
+        #071823;
+}
+
+.bih-about-hero::before,
+.bih-about-dark::before,
+.bih-about-final::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 78%);
+}
+
+.bih-about-hero-overlay {
+    background:
+        linear-gradient(90deg, rgba(7, 13, 31, 0.98), rgba(7, 13, 31, 0.88) 48%, rgba(10, 61, 69, 0.68)),
+        linear-gradient(180deg, rgba(7, 13, 31, 0.18), rgba(7, 13, 31, 0.92));
+}
+
+.bih-about-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #f5c342 !important;
+    letter-spacing: 0.08em;
+}
+
+.bih-about-eyebrow::before {
+    content: "";
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #f2aa36;
+}
+
+.bih-about-hero-card,
+.bih-about-map {
+    border-radius: 0.65rem;
+    border-color: rgba(169, 199, 206, 0.28);
+    background: rgba(6, 20, 28, 0.82);
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+}
+
+.bih-about-section {
+    position: relative;
+    background:
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f6 100%);
+}
+
+.bih-about-bento,
+.bih-about-image-card,
+.bih-about-outcome-card,
+.bih-about-partner {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(15, 73, 82, 0.12);
+    border-radius: 0.65rem;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 250, 0.92));
+    box-shadow: 0 22px 55px rgba(8, 31, 43, 0.09);
+}
+
+.bih-about-bento::after,
+.bih-about-image-card::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -45% 32%;
+    height: 9rem;
+    border-radius: 999px;
+    background: rgba(20, 184, 166, 0.08);
+    transform: rotate(-10deg);
+}
+
+.bih-about-bento:hover,
+.bih-about-image-card:hover,
+.bih-about-partner:hover {
+    border-color: rgba(232, 170, 61, 0.38);
+    box-shadow: 0 28px 70px rgba(8, 31, 43, 0.14);
+}
+
+.bih-about-index {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    color: rgba(15, 73, 82, 0.24);
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.bih-about-bento > *:not(.bih-about-index),
+.bih-about-image-card > *,
+.bih-about-outcome-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.bih-about-dark-card {
+    border-color: rgba(169, 199, 206, 0.18);
+    border-radius: 0.65rem;
+    background: rgba(18, 57, 65, 0.72);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.bih-about-outcome {
+    border: 1px solid rgba(15, 73, 82, 0.08);
+    background: rgba(255, 255, 255, 0.72);
+}
+
+@keyframes bih-about-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+html.dark .bih-about-section {
+    background:
+        linear-gradient(180deg, #071823 0%, #0d2630 100%) !important;
+}
+
+html.dark .bih-about-bento,
+html.dark .bih-about-image-card,
+html.dark .bih-about-outcome-card,
+html.dark .bih-about-partner {
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    background: rgba(18, 57, 65, 0.82) !important;
+}
+
+html.dark .bih-about-outcome {
+    background: rgba(13, 38, 48, 0.78) !important;
+    border-color: rgba(169, 199, 206, 0.12) !important;
+}
+
+html.dark .bih-about-index {
+    color: rgba(243, 229, 171, 0.36);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.36);
+}
+
+.bih-service-marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(169, 199, 206, 0.18);
+    border-bottom: 1px solid rgba(169, 199, 206, 0.18);
+    background: #071823;
+    padding: 0.9rem 0;
+}
+
+.bih-service-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bih-service-marquee 34s linear infinite;
+}
+
+.bih-service-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0 1.75rem;
+    color: #9dc3cc;
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.bih-service-marquee-track span::after {
+    content: "*";
+    color: #f2aa36;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.bih-service-breadcrumb-wrap {
+    border-bottom: 1px solid rgba(169, 199, 206, 0.14);
+    background: #071823;
+}
+
+.bih-service-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0 1rem;
+    color: #9dc3cc;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.bih-service-breadcrumb a {
+    color: #9dc3cc;
+    text-decoration: none;
+}
+
+.bih-service-breadcrumb a:hover,
+.bih-service-breadcrumb .current {
+    color: #f1f5f9;
+}
+
+.bih-service-breadcrumb .sep {
+    opacity: 0.55;
+}
+
+.bih-services-index-section,
+.bih-service-page .bih-section,
+.bih-service-page section.bg-white,
+.bih-service-page section.bg-slate-50,
+.bih-service-page section.py-16 {
+    position: relative;
+    background:
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f6 100%) !important;
+}
+
+.bih-service-page > section:first-child,
+.bih-service-page section.bg-slate-950,
+.bih-service-page .bih-service-b-hero,
+.bih-service-page + .bih-section,
+.bih-services-index-section:first-of-type {
+    position: relative;
+    overflow: hidden;
+}
+
+.bih-service-page > section:first-child,
+.bih-service-page .bih-service-b-hero,
+.bih-service-page section.bg-slate-950 {
+    background:
+        radial-gradient(circle at 14% 22%, rgba(20, 184, 166, 0.18), transparent 25rem),
+        radial-gradient(circle at 86% 12%, rgba(232, 170, 61, 0.12), transparent 22rem),
+        #071823 !important;
+}
+
+.bih-service-page > section:first-child::before,
+.bih-service-page .bih-service-b-hero::before,
+.bih-service-page section.bg-slate-950::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 78%);
+}
+
+.bih-service-page > section:first-child > img + div,
+.bih-service-page section.bg-slate-950 > img + div {
+    background:
+        linear-gradient(90deg, rgba(7, 13, 31, 0.98), rgba(7, 13, 31, 0.88) 48%, rgba(10, 61, 69, 0.68)),
+        linear-gradient(180deg, rgba(7, 13, 31, 0.18), rgba(7, 13, 31, 0.92)) !important;
+}
+
+.bih-service-page .bih-service-b-hero .bih-eyebrow,
+.bih-service-page > section:first-child p.text-sm.font-black.uppercase,
+.bih-service-page section.bg-slate-950 p.text-sm.font-black.uppercase,
+.bih-services-index-section .bih-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #f5c342 !important;
+    letter-spacing: 0.08em;
+}
+
+.bih-service-page .bih-service-b-hero .bih-eyebrow::before,
+.bih-service-page > section:first-child p.text-sm.font-black.uppercase::before,
+.bih-service-page section.bg-slate-950 p.text-sm.font-black.uppercase::before,
+.bih-services-index-section .bih-eyebrow::before {
+    content: "";
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #f2aa36;
+}
+
+.bih-service-page .bih-service-b-hero,
+.bih-service-page .bih-service-b-hero .bih-page-title,
+.bih-service-page .bih-service-b-hero .bih-page-intro,
+.bih-service-page .bih-service-b-hero .bih-copy {
+    color: #f8fafc !important;
+}
+
+.bih-service-page .bih-service-b-hero .bih-copy,
+.bih-service-page .bih-service-b-hero .bih-page-intro {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.bih-service-page .bih-service-hero-visual,
+.bih-service-page .bih-service-b-showcase,
+.bih-service-page > section:first-child .overflow-hidden.rounded-md,
+.bih-service-page .bih-service-b-format-image {
+    overflow: hidden;
+    border: 1px solid rgba(169, 199, 206, 0.28);
+    border-radius: 0.65rem;
+    background: rgba(6, 20, 28, 0.82);
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+}
+
+.bih-services-index-section .bih-card,
+.bih-service-page .bih-card,
+.bih-service-page article.rounded-md,
+.bih-service-page details,
+.bih-service-page .bih-service-b-feature-list,
+.bih-service-page .bih-service-b-feature-item,
+.bih-service-page .bih-service-b-format,
+.bih-service-page .bih-service-b-outcome,
+.bih-service-page .rounded-full.border,
+.bih-service-page .bg-slate-50,
+.bih-service-bento {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(15, 73, 82, 0.12) !important;
+    border-radius: 0.65rem !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 250, 0.92)) !important;
+    box-shadow: 0 22px 55px rgba(8, 31, 43, 0.09) !important;
+}
+
+.bih-services-index-section .bih-card::after,
+.bih-service-page .bih-card::after,
+.bih-service-page article.rounded-md::after,
+.bih-service-bento::after {
+    content: "";
+    position: absolute;
+    inset: auto -20% -45% 32%;
+    height: 9rem;
+    border-radius: 999px;
+    background: rgba(20, 184, 166, 0.08);
+    transform: rotate(-10deg);
+}
+
+.bih-services-index-section .bih-card:hover,
+.bih-service-page .bih-card:hover,
+.bih-service-page article.rounded-md:hover,
+.bih-service-bento:hover {
+    border-color: rgba(232, 170, 61, 0.38) !important;
+    box-shadow: 0 28px 70px rgba(8, 31, 43, 0.14) !important;
+}
+
+.bih-service-index-num {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    color: rgba(15, 73, 82, 0.11);
+    font-size: 2.6rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.bih-services-index-section .bih-card > *,
+.bih-service-page .bih-card > *,
+.bih-service-page article.rounded-md > *,
+.bih-service-bento > * {
+    position: relative;
+    z-index: 1;
+}
+
+.bih-service-page section.bg-slate-950 .rounded-md,
+.bih-service-page section.bg-slate-950 .bg-white\/8,
+.bih-service-page section.bg-slate-950 .bg-white\/5 {
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    background: rgba(18, 57, 65, 0.72) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.bih-service-page .bih-service-b-audience,
+.bih-service-page .bih-service-hero-stat-card,
+.bih-service-page .bih-service-b-stat {
+    border-radius: 0.55rem;
+}
+
+.bih-service-page .bih-service-b-format {
+    transition:
+        transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1),
+        border-color 0.28s ease,
+        box-shadow 0.28s ease,
+        background 0.28s ease;
+}
+
+.bih-service-page .bih-service-b-format:hover {
+    transform: translateY(-6px);
+    border-color: rgba(232, 170, 61, 0.42) !important;
+    box-shadow: 0 32px 80px rgba(8, 31, 43, 0.22), 0 0 0 1px rgba(232, 170, 61, 0.14) !important;
+}
+
+.bih-service-page .bih-service-b-format-image img {
+    transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.3, 1), filter 0.55s ease;
+}
+
+.bih-service-page .bih-service-b-format:hover .bih-service-b-format-image img {
+    transform: scale(1.055);
+    filter: saturate(1.08) contrast(1.04);
+}
+
+.bih-service-page .bih-service-b-format-copy {
+    transition: transform 0.28s ease;
+}
+
+.bih-service-page .bih-service-b-format:hover .bih-service-b-format-copy {
+    transform: translateX(4px);
+}
+
+.bih-service-page + .bih-section {
+    background:
+        linear-gradient(180deg, #0d2630 0%, #123941 100%) !important;
+}
+
+.bih-service-page + .bih-section .bih-section-title,
+.bih-service-page + .bih-section > .bih-container > .max-w-3xl h2 {
+    color: #f8fafc !important;
+}
+
+.bih-service-page + .bih-section .bih-page-intro,
+.bih-service-page + .bih-section > .bih-container > .max-w-3xl p:not(.bih-eyebrow) {
+    color: #a9c7ce !important;
+}
+
+.bih-service-page + .bih-section .bih-card {
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    background: rgba(18, 57, 65, 0.82) !important;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24) !important;
+}
+
+.bih-service-page + .bih-section .bih-card h3,
+.bih-service-page + .bih-section .bih-card .text-slate-950 {
+    color: #f8fafc !important;
+}
+
+.bih-service-page + .bih-section .bih-card a {
+    border-color: rgba(169, 199, 206, 0.16) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.bih-service-page + .bih-section .bih-card a .text-slate-950,
+.bih-service-page + .bih-section .bih-card a span:first-child {
+    color: #0f172a !important;
+}
+
+.bih-service-page + .bih-section .bih-card a .text-slate-600,
+.bih-service-page + .bih-section .bih-card a span:last-child {
+    color: #334155 !important;
+}
+
+.bih-service-page + .bih-section .bih-card a:hover span:first-child {
+    color: #0f766e !important;
+}
+
+.bih-service-page .bih-card .text-slate-950,
+.bih-service-page .bih-card .text-slate-900,
+.bih-service-page .bih-card .text-slate-800,
+.bih-service-page article.rounded-md .text-slate-950,
+.bih-service-page article.rounded-md .text-slate-900,
+.bih-service-page article.rounded-md .text-slate-800,
+.bih-services-index-section .bih-card .text-slate-950,
+.bih-services-index-section .bih-card .text-slate-900,
+.bih-services-index-section .bih-card .text-slate-800 {
+    color: #0f172a !important;
+}
+
+.bih-service-page .bih-card .text-slate-600,
+.bih-service-page article.rounded-md .text-slate-600,
+.bih-services-index-section .bih-card .text-slate-600 {
+    color: #334155 !important;
+}
+
+.bih-service-page #service-details .bg-slate-50,
+.bih-service-page #service-details .bih-service-b-feature-item,
+.bih-service-page #service-details .border-l-4 {
+    background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.bih-service-page #service-details .bg-slate-50 p,
+.bih-service-page #service-details .bih-service-b-feature-item p,
+.bih-service-page #service-details .border-l-4 p,
+.bih-service-page #service-details p.font-bold {
+    color: #1e293b !important;
+}
+
+.bih-service-page #service-details .bih-service-b-feature-number {
+    color: #0f766e !important;
+}
+
+.bih-service-page .bih-button,
+.bih-services-index-section .bih-button,
+.bih-service-page a.inline-flex.min-h-11 {
+    transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        border-color 0.24s ease,
+        color 0.24s ease,
+        background 0.24s ease;
+}
+
+.bih-service-page .bih-button:hover,
+.bih-services-index-section .bih-button:hover,
+.bih-service-page a.inline-flex.min-h-11:hover {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 22px 46px rgba(232, 170, 61, 0.28);
+}
+
+@keyframes bih-service-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+html.dark .bih-services-index-section,
+html.dark .bih-service-page .bih-section,
+html.dark .bih-service-page section.bg-white,
+html.dark .bih-service-page section.bg-slate-50,
+html.dark .bih-service-page section.py-16 {
+    background:
+        linear-gradient(180deg, #071823 0%, #0d2630 100%) !important;
+}
+
+html.dark .bih-services-index-section .bih-card,
+html.dark .bih-service-page .bih-card,
+html.dark .bih-service-page article.rounded-md,
+html.dark .bih-service-page details,
+html.dark .bih-service-page .bih-service-b-feature-list,
+html.dark .bih-service-page .bih-service-b-feature-item,
+html.dark .bih-service-page .bih-service-b-format,
+html.dark .bih-service-page .bih-service-b-outcome,
+html.dark .bih-service-bento {
+    border-color: rgba(169, 199, 206, 0.18) !important;
+    background: rgba(18, 57, 65, 0.82) !important;
 }
 
 @media (min-width: 768px) {
@@ -1426,9 +2790,11 @@ textarea:focus-visible,
 }
 
 .bih-products-hero .bih-page-title {
-    max-width: 13ch;
-    font-size: clamp(3rem, 7vw, 6.4rem);
-    line-height: 0.95;
+    max-width: 11.5ch;
+    font-size: clamp(2.85rem, 5.9vw, 6.25rem);
+    line-height: 0.94;
+    letter-spacing: 0;
+    text-wrap: balance;
 }
 
 .bih-products-stack-panel {
@@ -1796,6 +3162,543 @@ textarea:focus-visible,
 
 .bih-products-mission-image {
     border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.bih-product-marquee {
+    overflow: hidden;
+    border-top: 1px solid rgba(169, 199, 206, 0.18);
+    border-bottom: 1px solid rgba(169, 199, 206, 0.18);
+    background: #071823;
+    padding: 0.9rem 0;
+}
+
+.bih-product-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bih-product-marquee 34s linear infinite;
+}
+
+.bih-product-marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    padding: 0 1.75rem;
+    color: #9dc3cc;
+    font-size: 0.84rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.bih-product-marquee-track span::after {
+    content: "*";
+    color: #f2aa36;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.bih-product-breadcrumb-wrap {
+    border-bottom: 1px solid rgba(169, 199, 206, 0.14);
+    background: #071823;
+}
+
+.bih-product-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0 1rem;
+    color: #9dc3cc;
+    font-size: 0.9rem;
+    font-weight: 800;
+}
+
+.bih-product-breadcrumb a {
+    color: #9dc3cc;
+    text-decoration: none;
+}
+
+.bih-product-breadcrumb a:hover,
+.bih-product-breadcrumb .current {
+    color: #f1f5f9;
+}
+
+.bih-product-breadcrumb .sep {
+    opacity: 0.55;
+}
+
+.bih-products-hero,
+.bih-product-show-hero,
+.bih-products-mission {
+    background:
+        radial-gradient(circle at 14% 22%, rgba(20, 184, 166, 0.18), transparent 25rem),
+        radial-gradient(circle at 86% 12%, rgba(232, 170, 61, 0.12), transparent 22rem),
+        #071823 !important;
+}
+
+.bih-products-hero::before,
+.bih-product-show-hero::before,
+.bih-products-mission::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 76px 76px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 78%);
+}
+
+.bih-product-show-hero > img + div {
+    background:
+        linear-gradient(90deg, rgba(7, 13, 31, 0.98), rgba(7, 13, 31, 0.88) 48%, rgba(10, 61, 69, 0.68)),
+        linear-gradient(180deg, rgba(7, 13, 31, 0.18), rgba(7, 13, 31, 0.92)) !important;
+}
+
+.bih-products-hero .bih-page-title,
+.bih-products-hero .bih-page-intro,
+.bih-products-hero .bih-eyebrow {
+    color: #f8fafc !important;
+}
+
+.bih-products-hero .bih-page-title {
+    color: transparent !important;
+    background:
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 48%, #b9d8df 100%);
+    background-clip: text;
+    text-shadow: 0 22px 62px rgba(0, 0, 0, 0.36);
+}
+
+.bih-products-hero .bih-page-intro {
+    max-width: 54rem;
+    color: #c7dce2 !important;
+    font-size: clamp(1.05rem, 1.5vw, 1.28rem);
+    line-height: 1.85;
+}
+
+.bih-products-hero .bih-eyebrow,
+.bih-product-show-hero p.text-sm.font-black.uppercase,
+.bih-products-mission p.text-sm.font-black.uppercase,
+.bih-products-company .bih-eyebrow,
+.bih-products-catalog .bih-eyebrow,
+.bih-products-process .bih-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #f5c342 !important;
+    letter-spacing: 0.08em;
+}
+
+.bih-products-hero .bih-eyebrow::before,
+.bih-product-show-hero p.text-sm.font-black.uppercase::before,
+.bih-products-mission p.text-sm.font-black.uppercase::before,
+.bih-products-company .bih-eyebrow::before,
+.bih-products-catalog .bih-eyebrow::before,
+.bih-products-process .bih-eyebrow::before {
+    content: "";
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 999px;
+    background: #f2aa36;
+}
+
+.bih-products-company,
+.bih-products-catalog,
+.bih-products-process,
+.bih-products-faq {
+    background:
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f6 100%) !important;
+}
+
+.bih-products-company-card,
+.bih-products-metrics div,
+.bih-products-card,
+.bih-products-process-card,
+.bih-product-show-hero + .bih-section .bih-card,
+.bih-product-show-hero + .bih-section + .bih-section .bih-card,
+.bih-section details {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(15, 73, 82, 0.12) !important;
+    border-radius: 0.65rem !important;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(244, 250, 250, 0.92)) !important;
+    box-shadow: 0 22px 55px rgba(8, 31, 43, 0.09) !important;
+    transition:
+        transform 0.28s cubic-bezier(0.2, 0.7, 0.3, 1),
+        border-color 0.28s ease,
+        box-shadow 0.28s ease;
+}
+
+.bih-products-company-card:hover,
+.bih-products-card:hover,
+.bih-products-process-card:hover,
+.bih-product-show-hero + .bih-section .bih-card:hover,
+.bih-product-show-hero + .bih-section + .bih-section .bih-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(232, 170, 61, 0.42) !important;
+    box-shadow: 0 32px 80px rgba(8, 31, 43, 0.18), 0 0 0 1px rgba(232, 170, 61, 0.12) !important;
+}
+
+.bih-products-company-card h3,
+.bih-products-process-card h3,
+.bih-products-card h3,
+.bih-product-show-hero + .bih-section .bih-card h3,
+.bih-section details summary {
+    color: #0f172a !important;
+}
+
+.bih-products-company-card p,
+.bih-products-process-card p,
+.bih-products-card .bih-copy,
+.bih-product-show-hero + .bih-section .bih-card p,
+.bih-section details p {
+    color: #334155 !important;
+}
+
+.bih-products-filter {
+    gap: 0.75rem;
+    border-color: rgba(169, 199, 206, 0.22);
+    border-radius: 0.75rem;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.9), rgba(13, 38, 48, 0.86));
+    padding: 0.85rem;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2);
+}
+
+.bih-products-filter .bih-filter-btn {
+    min-height: 3.1rem;
+    border: 1px solid rgba(169, 199, 206, 0.2);
+    border-radius: 0.65rem;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.8rem 1.1rem;
+    color: #dbeafe !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+    transition:
+        transform 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        color 0.22s ease,
+        box-shadow 0.22s ease;
+}
+
+.bih-products-filter .bih-filter-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 201, 120, 0.38);
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff !important;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.bih-products-filter .bih-filter-btn.is-active {
+    border-color: rgba(245, 201, 120, 0.5);
+    background: linear-gradient(135deg, #14b8a6, #0f766e) !important;
+    color: #071823 !important;
+    box-shadow: 0 16px 34px rgba(20, 184, 166, 0.22);
+}
+
+.bih-products-linkedin,
+.bih-products-website,
+.bih-product-show-hero + .bih-section a.inline-flex.min-h-11 {
+    border-radius: 999px;
+    transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        background 0.24s ease,
+        color 0.24s ease,
+        border-color 0.24s ease;
+}
+
+.bih-products-linkedin:hover,
+.bih-products-website:hover,
+.bih-product-show-hero + .bih-section a.inline-flex.min-h-11:hover {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 18px 38px rgba(20, 184, 166, 0.2);
+}
+
+.bih-product-show-hero + .bih-section .rounded-full {
+    background: #f8fafc !important;
+    color: #334155 !important;
+}
+
+.bih-product-show-hero + .bih-section + .bih-section,
+.bih-product-show-hero ~ .bih-section {
+    background:
+        linear-gradient(180deg, #f7fbfb 0%, #eef6f6 100%) !important;
+}
+
+@keyframes bih-product-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+html.dark .bih-products-company,
+html.dark .bih-products-catalog,
+html.dark .bih-products-process,
+html.dark .bih-product-show-hero + .bih-section,
+html.dark .bih-product-show-hero + .bih-section + .bih-section,
+html.dark .bih-product-show-hero ~ .bih-section,
+html.dark .bih-products-faq {
+    background:
+        linear-gradient(180deg, #071823 0%, #0d2630 100%) !important;
+}
+
+html.dark .bih-products-company-card,
+html.dark .bih-products-metrics div,
+html.dark .bih-products-card,
+html.dark .bih-products-process-card,
+html.dark .bih-product-show-hero + .bih-section .bih-card,
+html.dark .bih-product-show-hero + .bih-section + .bih-section .bih-card,
+html.dark .bih-product-show-hero ~ .bih-section .bih-card,
+html.dark .bih-section details {
+    border-color: rgba(169, 199, 206, 0.2) !important;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.96), rgba(13, 38, 48, 0.92)) !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.26) !important;
+}
+
+html.dark .bih-products-company-card h3,
+html.dark .bih-products-process-card h3,
+html.dark .bih-products-card h3,
+html.dark .bih-products-card .bih-section-title,
+html.dark .bih-product-show-hero + .bih-section .bih-card h3,
+html.dark .bih-product-show-hero + .bih-section + .bih-section .bih-card h3,
+html.dark .bih-product-show-hero ~ .bih-section .bih-card h3,
+html.dark .bih-section details summary {
+    color: #f8fafc !important;
+}
+
+html.dark .bih-products-company-card p,
+html.dark .bih-products-process-card p,
+html.dark .bih-products-card .bih-copy,
+html.dark .bih-products-card p,
+html.dark .bih-product-show-hero + .bih-section .bih-card p,
+html.dark .bih-product-show-hero + .bih-section + .bih-section .bih-card p,
+html.dark .bih-product-show-hero ~ .bih-section .bih-card p,
+html.dark .bih-section details p {
+    color: #cbd5e1 !important;
+}
+
+html.dark .bih-products-metrics strong {
+    color: #f5c978 !important;
+}
+
+html.dark .bih-products-metrics span,
+html.dark .bih-products-stack-chips span,
+html.dark .bih-product-show-hero + .bih-section .rounded-full {
+    color: #dbeafe !important;
+}
+
+.bih-products-faq {
+    position: relative;
+    background:
+        linear-gradient(180deg, #071823 0%, #0d2630 100%) !important;
+}
+
+.bih-products-faq .bih-container {
+    max-width: 72rem;
+}
+
+.bih-products-faq .bih-section-title {
+    color: #f8fafc !important;
+}
+
+.bih-products-faq .bih-eyebrow {
+    color: #f5c342 !important;
+}
+
+.bih-products-faq-item {
+    overflow: hidden;
+    border-color: rgba(169, 199, 206, 0.22) !important;
+    border-radius: 0.85rem !important;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.92), rgba(13, 38, 48, 0.88)) !important;
+    padding: 0 !important;
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.22);
+    transition:
+        border-color 0.24s ease,
+        box-shadow 0.24s ease,
+        transform 0.24s ease;
+}
+
+.bih-products-faq-item:hover,
+.bih-products-faq-item[open] {
+    transform: translateY(-2px);
+    border-color: rgba(245, 201, 120, 0.34) !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+}
+
+.bih-products-faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 4rem;
+    padding: 1.1rem 1.25rem;
+    color: #f8fafc !important;
+    font-size: 1rem;
+    line-height: 1.35;
+    list-style: none;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.bih-products-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.bih-products-faq-item summary::after {
+    content: "+";
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    flex: none;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(245, 201, 120, 0.16);
+    color: #f5c978;
+    font-size: 1.3rem;
+    line-height: 1;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.bih-products-faq-item[open] summary::after {
+    transform: rotate(45deg);
+    background: rgba(245, 201, 120, 0.24);
+}
+
+.bih-products-faq-item p {
+    margin: 0 !important;
+    padding: 0 1.25rem 1.25rem;
+    color: #cbd5e1 !important;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card a {
+    border-color: rgba(169, 199, 206, 0.16) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card a .text-slate-950,
+.bih-product-show-hero ~ .bih-section .bih-card a span:first-child {
+    color: #0f172a !important;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card a .text-slate-600,
+.bih-product-show-hero ~ .bih-section .bih-card a span:last-child {
+    color: #334155 !important;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card a:hover span:first-child {
+    color: #0f766e !important;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card .bih-product-more-link {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(245, 201, 120, 0.44) !important;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f5c978, #e8aa3d 52%, #c89119) !important;
+    padding: 0.72rem 1.05rem;
+    color: #102033 !important;
+    font-weight: 900;
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 16px 34px rgba(232, 170, 61, 0.22);
+    transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        filter 0.24s ease;
+}
+
+.bih-product-show-hero ~ .bih-section .bih-card .bih-product-more-link:hover {
+    transform: translateY(-3px) scale(1.015);
+    color: #102033 !important;
+    box-shadow: 0 22px 46px rgba(232, 170, 61, 0.34), 0 0 0 1px rgba(245, 201, 120, 0.38);
+    filter: saturate(1.08);
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-panel {
+    overflow: hidden;
+    border-color: rgba(169, 199, 206, 0.2) !important;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.96), rgba(13, 38, 48, 0.92)) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.26) !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-panel > p:first-child {
+    color: #f8fafc !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-chip {
+    border-color: rgba(169, 199, 206, 0.2) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #1e293b !important;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+html.dark .bih-product-show-hero + .bih-section .bih-product-tech-chip {
+    border-color: rgba(245, 201, 120, 0.22) !important;
+    background: rgba(8, 31, 43, 0.72) !important;
+    color: #eaf4f6 !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action {
+    border-radius: 999px !important;
+    min-height: 3.55rem;
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action-primary {
+    background: linear-gradient(135deg, #f5c978, #e8aa3d 52%, #c89119) !important;
+    color: #102033 !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action-website {
+    border-color: rgba(2, 132, 199, 0.28) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #075985 !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action-linkedin {
+    border-color: rgba(15, 118, 110, 0.28) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    color: #0f766e !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action:hover {
+    transform: translateY(-3px) scale(1.012);
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action-website:hover {
+    background: #e0f2fe !important;
+    color: #0f172a !important;
+}
+
+.bih-product-show-hero + .bih-section .bih-product-tech-action-linkedin:hover {
+    background: #ccfbf1 !important;
+    color: #0f172a !important;
+}
+
+html.dark .bih-product-show-hero + .bih-section .bih-product-tech-action-website {
+    background: rgba(79, 179, 207, 0.16) !important;
+    color: #dff8ff !important;
+}
+
+html.dark .bih-product-show-hero + .bih-section .bih-product-tech-action-linkedin {
+    background: rgba(20, 184, 166, 0.16) !important;
+    color: #dcfffb !important;
 }
 
 .bih-techbiz-hero {
@@ -2194,6 +4097,89 @@ textarea:focus-visible,
     background: linear-gradient(135deg, #ffffff, #ecfeff);
     color: #0f172a;
     line-height: 1.35;
+}
+
+.bih-service-page .bih-service-b-flow-step,
+.bih-service-page-educamp .bih-service-b-flow-step {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(244, 250, 250, 0.96)) !important;
+}
+
+.bih-service-page .bih-service-b-flow-step h3,
+.bih-service-page-educamp .bih-service-b-flow-step h3 {
+    color: #0f172a !important;
+}
+
+.bih-service-page .bih-service-b-flow-step p,
+.bih-service-page-educamp .bih-service-b-flow-step p,
+.bih-service-page .bih-service-b-flow-step .bih-copy,
+.bih-service-page-educamp .bih-service-b-flow-step .bih-copy {
+    color: #475569 !important;
+}
+
+html.dark .bih-service-page .bih-service-b-flow-step,
+html.dark .bih-service-page-educamp .bih-service-b-flow-step,
+html.dark .bih-service-page section.py-16 article.rounded-md {
+    border-color: rgba(169, 199, 206, 0.2) !important;
+    background:
+        linear-gradient(145deg, rgba(18, 57, 65, 0.96), rgba(13, 38, 48, 0.92)) !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.26) !important;
+}
+
+html.dark .bih-service-page .bih-service-b-flow-step h3,
+html.dark .bih-service-page-educamp .bih-service-b-flow-step h3,
+html.dark .bih-service-page section.py-16 article.rounded-md h3 {
+    color: #f8fafc !important;
+}
+
+html.dark .bih-service-page .bih-service-b-flow-step p,
+html.dark .bih-service-page-educamp .bih-service-b-flow-step p,
+html.dark .bih-service-page .bih-service-b-flow-step .bih-copy,
+html.dark .bih-service-page-educamp .bih-service-b-flow-step .bih-copy,
+html.dark .bih-service-page section.py-16 article.rounded-md p {
+    color: #cbd5e1 !important;
+}
+
+html.dark .bih-service-page .bih-service-b-flow-line,
+html.dark .bih-service-page-educamp .bih-service-b-flow-line {
+    background: linear-gradient(90deg, rgba(20, 184, 166, 0.55), rgba(245, 201, 120, 0.45)) !important;
+}
+
+html:not(.dark) .bih-service-page .bih-service-b-outcome,
+html:not(.dark) .bih-service-page-educamp .bih-service-b-outcome {
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(240, 250, 250, 0.94)) !important;
+    border-color: rgba(15, 118, 110, 0.24) !important;
+    color: #0f5f5b !important;
+}
+
+html:not(.dark) .bih-service-page .bih-service-b-outcome *,
+html:not(.dark) .bih-service-page-educamp .bih-service-b-outcome * {
+    color: #0f5f5b !important;
+}
+
+html.dark .bih-service-page .bih-service-b-outcome,
+html.dark .bih-service-page-educamp .bih-service-b-outcome {
+    background: rgba(18, 57, 65, 0.92) !important;
+    border-color: rgba(169, 199, 206, 0.22) !important;
+    color: #eaf4f6 !important;
+}
+
+html.dark .bih-service-page .bih-service-b-outcome-list,
+html.dark .bih-service-page-educamp .bih-service-b-outcome-list {
+    color: #eaf4f6 !important;
+}
+
+html.dark .bih-service-page #service-details article.bih-card.flex,
+html.dark .bih-service-page #service-details article.bih-card.flex.min-h-28 {
+    background: rgba(18, 57, 65, 0.92) !important;
+    border-color: rgba(169, 199, 206, 0.22) !important;
+}
+
+html.dark .bih-service-page #service-details article.bih-card.flex p,
+html.dark .bih-service-page #service-details article.bih-card.flex .font-bold,
+html.dark .bih-service-page #service-details article.bih-card.flex.min-h-28 p,
+html.dark .bih-service-page #service-details article.bih-card.flex.min-h-28 .font-bold {
+    color: #eaf4f6 !important;
 }
 
 .bih-scroll-button {
@@ -4379,3 +6365,422 @@ textarea:focus-visible,
         min-height: 320px;
     }
 }
+
+/* =====================================================================
+   AWARDS & RECOGNITION — BENGAL SIGNAL UI/UX
+   ===================================================================== */
+
+.bih-breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.bih-breadcrumb-nav a {
+    color: #64748b;
+    transition: color 0.2s ease;
+}
+
+.bih-breadcrumb-nav a:hover {
+    color: #0f766e;
+}
+
+.bih-breadcrumb-nav .bih-breadcrumb-sep {
+    opacity: 0.45;
+}
+
+.bih-breadcrumb-nav .bih-breadcrumb-current {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.bih-awards-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a1f28 0%, #102d3b 50%, #1e4a5f 100%), #0a1f28;
+    color: #ffffff;
+    padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.bih-awards-hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -100px;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 170, 61, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+.bih-awards-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -80px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(15, 118, 110, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+.bih-eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5c978;
+    background: rgba(232, 170, 61, 0.12);
+    padding: 0.45rem 1rem 0.45rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(232, 170, 61, 0.28);
+    width: fit-content;
+}
+
+.bih-eyebrow-pill-light {
+    color: #1e4a5f;
+    background: rgba(30, 74, 95, 0.08);
+    border: 1px solid rgba(30, 74, 95, 0.18);
+}
+
+.bih-eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #e8aa3d;
+    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.3);
+    display: inline-block;
+}
+
+.bih-awards-stat-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 2.75rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bih-awards-stat-chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: transform 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
+}
+
+.bih-awards-stat-chip:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(232, 170, 61, 0.4);
+}
+
+.bih-awards-photo-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #dce6e8;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(10, 31, 40, 0.06);
+    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.bih-awards-photo-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30, 74, 95, 0.12);
+    border-color: rgba(232, 170, 61, 0.45);
+}
+
+.bih-awards-photo-thumb {
+    position: relative;
+    overflow: hidden;
+    height: 190px;
+}
+
+.bih-awards-photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.bih-awards-photo-card:hover .bih-awards-photo-thumb img {
+    transform: scale(1.06);
+}
+
+.bih-awards-photo-body {
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.bih-badge-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: transparent;
+    border: 1.5px solid #dce6e8;
+    color: #52707a;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.bih-badge-gold {
+    display: inline-flex;
+    align-items: center;
+    background-color: #e8aa3d;
+    color: #12242b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    width: fit-content;
+}
+
+.bih-awards-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(30, 74, 95, 0.12), rgba(232, 170, 61, 0.16));
+    color: #1e4a5f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.22s ease, background 0.22s ease;
+}
+
+.bih-journey-card {
+    background-color: #ffffff;
+    border: 1px solid #dce6e8;
+    border-radius: 16px;
+    padding: 1.75rem;
+    box-shadow: 0 1px 3px rgba(10, 31, 40, 0.06);
+    transition: transform 0.26s ease, box-shadow 0.26s ease, border-color 0.26s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.bih-journey-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(30, 74, 95, 0.12);
+    border-color: rgba(232, 170, 61, 0.45);
+}
+
+.bih-journey-card:hover .bih-awards-icon-badge {
+    transform: scale(1.08);
+    background: linear-gradient(135deg, rgba(30, 74, 95, 0.22), rgba(232, 170, 61, 0.28));
+}
+
+.bih-milestone-slot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 14px;
+    border: 2px dashed #cbd5e1;
+    background-color: rgba(248, 250, 252, 0.8);
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.bih-milestone-slot:hover {
+    border-color: rgba(30, 74, 95, 0.45);
+    background-color: rgba(216, 233, 236, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(30, 74, 95, 0.06);
+}
+
+.bih-vision-spotlight {
+    background: linear-gradient(135deg, #0a1f28 0%, #123544 50%, #1e4a5f 100%), #0a1f28;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 50px rgba(10, 31, 40, 0.2);
+    color: #ffffff;
+}
+
+.bih-awards-cta-band {
+    background: linear-gradient(135deg, #081a21 0%, #0f2d3b 50%, #1e4a5f 100%), #081a21;
+    border-radius: 20px;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 24px 54px rgba(10, 31, 40, 0.24);
+}
+
+.bih-awards-cta-band::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(232, 170, 61, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.bih-btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+}
+
+/* ---- Badge tags ---- */
+.bih-badge-tag { display: inline-block; background-color: var(--bih-gold); color: #12242B; font-family: var(--bih-font-heading); font-size: 0.7rem; font-weight: 800; padding: 5px 12px; border-radius: 999px; margin-bottom: 12px; }
+.bih-badge-tag-outline { display: inline-block; background: transparent; border: 1.5px solid var(--bih-border); color: var(--bih-text-secondary); font-family: var(--bih-font-heading); font-size: 0.7rem; font-weight: 700; padding: 4px 11px; border-radius: 999px; margin-bottom: 12px; }
+
+/* ---- HP card ---- */
+.bih-hp-card {
+    background-color: var(--bih-surface);
+    border: 1px solid var(--bih-border);
+    border-radius: var(--bih-radius-md);
+    padding: 30px 24px;
+    box-shadow: var(--bih-shadow-sm);
+    transition: box-shadow 220ms ease, transform 220ms ease;
+}
+.bih-hp-card:hover { box-shadow: var(--bih-shadow-md); transform: translateY(-4px); }
+.bih-hp-card h3 { font-family: var(--bih-font-display); font-size: 1.05rem; font-weight: 600; color: var(--bih-text-primary); margin: 0 0 0.4em; }
+.bih-hp-card p { font-family: var(--bih-font-body); font-size: 0.88rem; color: var(--bih-text-secondary); line-height: 1.65; margin: 0; }
+
+/* ---- Section head (centered) ---- */
+.bih-hp-section-head { max-width: 680px; margin: 0 auto 56px; text-align: center; }
+.bih-hp-section-head h2 {
+    font-family: var(--bih-font-display);
+    font-size: clamp(1.85rem, 3.3vw, 2.5rem);
+    font-weight: 600;
+    color: var(--bih-text-primary);
+    margin: 0 0 0.5em;
+}
+.bih-hp-section-head p { font-family: var(--bih-font-body); font-size: 1rem; color: var(--bih-text-secondary); line-height: 1.75; margin: 0; }
+
+/* ---- Grids ---- */
+.bih-hp-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+.bih-hp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.bih-hp-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+@media (max-width: 991px) { .bih-hp-grid-3, .bih-hp-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .bih-hp-grid-2, .bih-hp-grid-3, .bih-hp-grid-4 { grid-template-columns: 1fr; } }
+
+/* ---- HP section wrapper ---- */
+.bih-hp-section { padding: 100px 0; position: relative; }
+.bih-hp-section-alt { background-color: var(--bih-surface-alt); }
+@media (max-width: 767px) { .bih-hp-section { padding: 60px 0; } }
+.bih-hp-container { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+/* ---- Scroll reveal ---- */
+.bih-reveal { opacity: 0; transform: translateY(22px); transition: opacity 700ms cubic-bezier(.2,.7,.3,1), transform 700ms cubic-bezier(.2,.7,.3,1); }
+.bih-reveal.bih-in-view { opacity: 1; transform: translateY(0); }
+
+/* ---- Client marquee ---- */
+.bih-client-marquee { overflow: hidden; border-top: 1px solid var(--bih-border); border-bottom: 1px solid var(--bih-border); padding: 28px 0; }
+.bih-client-marquee-track { display: flex; width: max-content; gap: 48px; animation: bihMarquee 38s linear infinite; align-items: center; }
+.bih-cm-item { display: flex; align-items: center; gap: 10px; font-family: var(--bih-font-heading); font-weight: 700; color: var(--bih-text-secondary); white-space: nowrap; font-size: 0.95rem; }
+.bih-cm-dot { width: 32px; height: 32px; border-radius: 50%; background-color: var(--bih-surface-alt); color: var(--bih-brand); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; font-weight: 800; }
+
+/* ---- Ring stats (Vision 2030) ---- */
+.bih-ring-stat { text-align: center; }
+.bih-ring-stat svg { width: 120px; height: 120px; }
+.bih-ring-stat .bih-ring-label { font-family: var(--bih-font-heading); font-weight: 600; margin-top: 14px; color: #fff; font-size: 0.95rem; }
+.bih-ring-stat .bih-ring-sub { font-family: var(--bih-font-body); font-size: 0.85rem; color: #A9C7CE; margin-top: 4px; }
+
+/* ---- Ecosystem tabs ---- */
+.bih-eco-tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px; }
+.bih-eco-tab-btn {
+    padding: 10px 20px;
+    border-radius: var(--bih-radius-pill);
+    border: 1.5px solid var(--bih-border);
+    background-color: var(--bih-surface);
+    font-family: var(--bih-font-heading);
+    font-weight: 600;
+    font-size: 0.86rem;
+    color: var(--bih-text-secondary);
+    cursor: pointer;
+    transition: all 200ms ease;
+}
+.bih-eco-tab-btn.bih-active { background-color: var(--bih-brand); border-color: var(--bih-brand); color: #fff; }
+.bih-eco-panel { display: none; }
+.bih-eco-panel.bih-active { display: grid; }
+
+/* ---- Filter pills (Industries expertise) ---- */
+.bih-filter-pill {
+    padding: 9px 18px;
+    border-radius: var(--bih-radius-pill);
+    border: 1.5px solid var(--bih-border);
+    font-family: var(--bih-font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--bih-text-secondary);
+    background-color: var(--bih-surface);
+    transition: all 200ms ease;
+}
+.bih-filter-pill:hover { border-color: var(--bih-brand); color: var(--bih-brand); background: color-mix(in srgb, var(--bih-brand) 6%, var(--bih-surface)); }
+
+/* ---- Mini stats (HackFest counters) ---- */
+.bih-mini-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 640px) { .bih-mini-stats { grid-template-columns: repeat(2, 1fr); } }
+.bih-mini-stat { text-align: center; padding: 18px 10px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--bih-radius-md); }
+.bih-mini-stat .bih-ms-num { font-family: var(--bih-font-display); font-style: italic; font-weight: 600; font-size: 1.9rem; color: var(--bih-gold-light); }
+.bih-mini-stat .bih-ms-lbl { font-size: 0.78rem; color: #A9C7CE; font-family: var(--bih-font-heading); }
+
+/* ---- HP FAQ ---- */
+.bih-hp-faq-item { border-bottom: 1px solid var(--bih-border); }
+.bih-hp-faq-q { display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; cursor: pointer; font-family: var(--bih-font-heading); font-weight: 700; min-height: 44px; color: var(--bih-text-primary); }
+.bih-hp-faq-a { max-height: 0; overflow: hidden; transition: max-height 300ms ease; }
+.bih-hp-faq-item.bih-open .bih-hp-faq-a { max-height: 400px; }
+.bih-hp-faq-a p { padding-bottom: 20px; font-family: var(--bih-font-body); color: var(--bih-text-secondary); line-height: 1.75; margin: 0; }
+.bih-hp-faq-icon { transition: transform 240ms ease; color: var(--bih-gold); font-family: var(--bih-font-heading); font-size: 1.3rem; font-weight: 800; }
+.bih-hp-faq-item.bih-open .bih-hp-faq-icon { transform: rotate(45deg); }
+
+/* ---- Photo panel ---- */
+.bih-photo-panel { border-radius: var(--bih-radius-md); overflow: hidden; border: 1px solid var(--bih-border); background-color: var(--bih-surface); position: relative; }
+.bih-photo-panel img { width: 100%; height: 190px; object-fit: cover; display: block; }
+.bih-photo-panel span { display: block; padding: 12px 14px; font-family: var(--bih-font-heading); font-size: 0.82rem; font-weight: 700; color: var(--bih-text-primary); }
+
+/* ---- HP dark text helpers ---- */
+.bih-on-dark { color: #A9C7CE !important; }
+
+/* ---- Cursor glow effect ---- */
+.bih-cursor-glow {
+    position: fixed;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(circle, color-mix(in srgb, var(--bih-gold) 20%, transparent) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 400ms ease;
+    will-change: transform;
+}
+.bih-cursor-glow.bih-active { opacity: 1; }
+@media (max-width: 900px), (hover: none) { .bih-cursor-glow { display: none; } }

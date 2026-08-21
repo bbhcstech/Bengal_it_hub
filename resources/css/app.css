@@ -1166,9 +1166,9 @@ html.dark .bih-related-link .bih-related-link-summary {
 }
 
 .bih-v2030-marquee-track span::after {
-    content: "*";
+    content: "✦";
     color: #f2aa36;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1;
 }
 

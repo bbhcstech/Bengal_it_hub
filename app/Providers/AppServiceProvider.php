@@ -78,7 +78,16 @@ class AppServiceProvider extends ServiceProvider
                     $nav['Insights'] = array_diff_key($nav['Insights'], $techTalkLinks);
                 }
 
-                unset($nav['HackFest 2026']);
+                unset(
+                    $nav['HackFest 2026'],
+                    $nav['Our Partners'],
+                    $nav['our-partners'],
+                    $nav['Our partners'],
+                    $nav['News & Events'],
+                    $nav['news & events'],
+                    $nav['News & events'],
+                    $nav['News and Events']
+                );
                 $nav['News & Event'] = is_array($nav['News & Event'] ?? null) ? $nav['News & Event'] : [];
                 $nav['News & Event']['HackFest 2026'] = '/hackfest-2026';
 
@@ -86,12 +95,6 @@ class AppServiceProvider extends ServiceProvider
                 foreach (array_keys($defaultNav) as $key) {
                     if (array_key_exists($key, $nav)) {
                         $orderedNav[$key] = $nav[$key];
-                    }
-                }
-
-                foreach ($nav as $key => $val) {
-                    if (! array_key_exists($key, $orderedNav)) {
-                        $orderedNav[$key] = $val;
                     }
                 }
 

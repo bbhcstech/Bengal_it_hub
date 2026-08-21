@@ -117,6 +117,13 @@
 @endphp
 
 @section('content')
+<div class="bih-v2030-marquee" aria-hidden="true">
+    <div class="bih-v2030-marquee-track">
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+    </div>
+</div>
+
 <section class="bih-landing-hero">
     <img class="absolute inset-0 h-full w-full object-cover opacity-40" src="{{ $heroImage }}" alt="Bengal IT Hub team discussing IT strategy">
     <div class="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-900/60"></div>
@@ -176,7 +183,6 @@
             <h2 class="bih-section-title mt-3 text-4xl text-white md:text-5xl">Complete technology services for modern businesses and creators</h2>
             <p class="bih-page-intro bih-on-dark mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
         </div>
-    </section>
 
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($buildServices as $service)
@@ -192,11 +198,11 @@
                         <h3 class="bih-section-title text-xl">{{ $service['title'] }}</h3>
                         <p class="bih-copy mt-3 text-sm">{{ $service['body'] }}</p>
                     </div>
-                </div>
-                <div>
-                    <img src="{{ $teamImage }}" alt="Bengal IT Hub team" style="width: 100%; height: 380px; object-fit: cover; border-radius: var(--bs-radius-lg); box-shadow: var(--bs-shadow-md); border: 1px solid var(--bs-border);" loading="lazy">
-                </div>
-            </div>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
 
 <section class="bih-section bg-white">
     <div class="bih-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
@@ -363,8 +369,9 @@
             <h2 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-white md:text-5xl">Have an idea, business challenge, or digital growth target?</h2>
             <p class="mt-5 max-w-3xl leading-8 text-white/82">Bengal IT Hub can help you plan, design, build, launch, and improve the technology behind it.</p>
         </div>
-    </section>
-</div>
+        <a class="bih-button" href="{{ route('contact') }}">Start a Conversation</a>
+    </div>
+</section>
 
 <script>
 (function () {

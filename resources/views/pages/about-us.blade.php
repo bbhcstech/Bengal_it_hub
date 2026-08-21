@@ -193,6 +193,7 @@
             <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Complete technology services for modern businesses and creators</h2>
             <p class="bih-page-intro mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
         </div>
+    </section>
 
         <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             @foreach($buildServices as $service)
@@ -208,11 +209,11 @@
                         <h3 class="bih-section-title text-xl">{{ $service['title'] }}</h3>
                         <p class="bih-copy mt-3 text-sm">{{ $service['body'] }}</p>
                     </div>
-                </article>
-            @endforeach
-        </div>
-    </div>
-</section>
+                </div>
+                <div>
+                    <img src="{{ $teamImage }}" alt="Bengal IT Hub team" style="width: 100%; height: 380px; object-fit: cover; border-radius: var(--bs-radius-lg); box-shadow: var(--bs-shadow-md); border: 1px solid var(--bs-border);" loading="lazy">
+                </div>
+            </div>
 
 <section class="bih-section bih-about-section">
     <div class="bih-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
@@ -374,7 +375,24 @@
             <h2 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-white md:text-5xl">Have an idea, business challenge, or digital growth target?</h2>
             <p class="mt-5 max-w-3xl leading-8 text-white/82">Bengal IT Hub can help you plan, design, build, launch, and improve the technology behind it.</p>
         </div>
-        <a class="bih-button" href="{{ route('contact') }}">Start a Conversation</a>
-    </div>
-</section>
+    </section>
+</div>
+
+<script>
+(function () {
+    // Reveal animations
+    var els = document.querySelectorAll('[data-about] .reveal');
+    if (!els.length) return;
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) {
+                e.target.classList.add('in-view');
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
 @endsection

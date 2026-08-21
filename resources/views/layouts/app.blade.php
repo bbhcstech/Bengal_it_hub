@@ -208,34 +208,48 @@
             ];
             $bihIndustriesMegaMenu = [
                 'Property & Health' => [
-                    ['label' => 'Real Estate', 'href' => '/industries/real-estate'],
-                    ['label' => 'Health Care', 'href' => '/industries/health-care'],
+                    ['label' => 'Real Estate', 'href' => '/industries/real-estate', 'icon' => 'briefcase'],
+                    ['label' => 'Health Care', 'href' => '/industries/health-care', 'icon' => 'flask'],
                 ],
                 'Learning & Industry' => [
-                    ['label' => 'Edu Tech', 'href' => '/industries/edu-tech'],
-                    ['label' => 'Manufacturing', 'href' => '/industries/manufacturing'],
+                    ['label' => 'Edu Tech', 'href' => '/industries/edu-tech', 'icon' => 'graduation'],
+                    ['label' => 'Manufacturing', 'href' => '/industries/manufacturing', 'icon' => 'chip'],
                 ],
                 'Movement & Trade' => [
-                    ['label' => 'Logistics', 'href' => '/industries/logistics'],
-                    ['label' => 'Travel & Hospitality', 'href' => '/industries/travel-hospitality'],
+                    ['label' => 'Logistics', 'href' => '/industries/logistics', 'icon' => 'adapt'],
+                    ['label' => 'Travel & Hospitality', 'href' => '/industries/travel-hospitality', 'icon' => 'globe'],
                 ],
             ];
             $bihInsightsMegaMenu = [
-                'Tech Talk' => [
-                    ['label' => 'Tech Innovation Hub', 'href' => '/tech-innovation'],
-                    ['label' => 'TechBiz', 'href' => '/tech-biz'],
-                    ['label' => 'Blog', 'href' => '/blog'],
+                'Updates' => [
+                    ['label' => 'Blog', 'href' => '/blog', 'icon' => 'chat'],
                 ],
                 'Proof' => [
-                    ['label' => 'Our Clients', 'href' => '/our-clients'],
-                    ['label' => 'Awards & Recognition', 'href' => '/awards-recognition'],
-                    ['label' => 'Our Partners', 'href' => '/our-partners'],
+                    ['label' => 'Awards & Recognition', 'href' => '/awards-recognition', 'icon' => 'trophy'],
+                    ['label' => 'Our Partners', 'href' => '/our-partners', 'icon' => 'partners'],
                 ],
                 'Company' => [
-                    ['label' => 'About Us', 'href' => '/about-us'],
-                    ['label' => 'FAQ', 'href' => '/faq'],
-                    ['label' => 'Contact', 'href' => '/contact'],
+                    ['label' => 'About Us', 'href' => '/about-us', 'icon' => 'leadership'],
+                    ['label' => 'FAQ', 'href' => '/faq', 'icon' => 'check'],
+                    ['label' => 'Contact', 'href' => '/contact', 'icon' => 'chat'],
                 ],
+            ];
+            $bihDropdownIcons = [
+                'Vision 2030' => 'target',
+                'About Us' => 'leadership',
+                'Software Development' => 'chip',
+                'Web Development' => 'globe',
+                'App Development' => 'layers',
+                'IoT Product Build' => 'target',
+                'TechBiz' => 'chat',
+                'Tech Innovation Hub' => 'chip',
+                'Our Clients' => 'partners',
+                'Blog' => 'chat',
+                'Awards & Recognition' => 'trophy',
+                'Our Partners' => 'partners',
+                'FAQ' => 'check',
+                'Contact' => 'chat',
+                'HackFest 2026' => 'rocket',
             ];
         @endphp
         <div class="bih-header-brand">
@@ -252,17 +266,17 @@
                             <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180 opacity-70" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
                         </button>
                         @if($label === 'Services')
-                            <div class="bih-services-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(1100px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
-                                <div class="grid gap-14 lg:grid-cols-3">
+                            <div class="bih-services-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(860px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[1.35rem] border border-[#21454f] bg-[#123941] p-7 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-7 lg:grid-cols-3">
                                     @foreach($bihServiceMegaMenu as $group => $services)
                                         <div>
-                                            <p class="bih-services-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                            <p class="bih-services-mega-heading mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
                                                 <span class="h-px w-5 bg-[#f2aa36]"></span>
                                                 <span>{{ $group }}</span>
                                             </p>
-                                            <div class="grid gap-7">
+                                            <div class="grid gap-3">
                                                 @foreach($services as $service)
-                                                    <a class="bih-services-mega-link group/item flex items-center gap-4 text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $service['href'] }}">
+                                                    <a class="bih-services-mega-link group/item flex items-center gap-3 rounded-xl px-2 py-2 text-[0.98rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $service['href'] }}">
                                                         <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#164650] text-[#f5c342] transition-colors group-hover/item:bg-[#1d5661]">
                                                             @include('partials.icon', ['name' => $service['icon'], 'size' => 'h-5 w-5'])
                                                         </span>
@@ -273,56 +287,92 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="mt-12 flex items-center justify-between gap-6 border-t border-[#2a5660] pt-7">
-                                    <p class="font-serif text-lg font-black italic text-slate-100">Not sure where to start? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Talk to the team &rarr;</a></p>
-                                    <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-[#2a5660] px-10 text-base font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/services">Explore All Services</a>
+                                <div class="mt-6 flex items-center justify-between gap-5 border-t border-[#2a5660] pt-5">
+                                    <p class="font-serif text-base font-black italic text-slate-100">Not sure where to start? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Talk to the team &rarr;</a></p>
+                                    <a class="inline-flex min-h-11 items-center justify-center rounded-full border border-[#2a5660] px-7 text-sm font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/services">All Services</a>
                                 </div>
                             </div>
                         @elseif($label === 'Products')
-                            <div class="bih-products-dropdown invisible absolute left-0 top-full min-w-72 translate-y-2 rounded-2xl border border-slate-200/80 dark:border-[#d4af37]/35 bg-white dark:bg-[#0b1b2b] p-4 opacity-0 shadow-2xl shadow-slate-900/15 dark:shadow-black/85 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
-                                <div class="flex flex-col gap-1">
+                            <div class="bih-products-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(540px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[1.35rem] border border-[#21454f] bg-[#123941] p-7 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <p class="bih-products-mega-heading mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                    <span class="h-px w-5 bg-[#f2aa36]"></span>
+                                    <span>Product Suite</span>
+                                </p>
+                                <div class="grid gap-3 sm:grid-cols-2">
                                     @foreach($item as $child => $href)
-                                        <a class="block rounded-lg px-4 py-3 text-[0.96rem] font-bold text-slate-800 dark:text-slate-100 hover:bg-teal-50 dark:hover:bg-[#15283a] hover:text-teal-800 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
+                                        <a class="bih-products-mega-link flex items-center gap-3 rounded-xl px-2 py-2 text-[0.98rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $href }}">
+                                            <span class="bih-mega-icon">
+                                                @include('partials.icon', ['name' => $bihDropdownIcons[$child] ?? 'target', 'size' => 'h-4 w-4'])
+                                            </span>
+                                            <span>{{ $child }}</span>
+                                        </a>
                                     @endforeach
                                 </div>
-                                <div class="mt-3 border-t border-slate-200/80 pt-3 dark:border-[#2a5660]">
-                                    <a class="bih-products-dropdown-all block rounded-lg px-4 py-3 text-[0.96rem] font-black text-[#4fb3cf] transition hover:bg-teal-50 hover:text-[#f5c978] dark:hover:bg-[#15283a]" href="/products">View All Products &rarr;</a>
+                                <div class="mt-6 flex items-center justify-end border-t border-[#2a5660] pt-5">
+                                    <a class="bih-products-mega-all inline-flex min-h-11 items-center justify-center rounded-full border border-[#2a5660] px-7 text-sm font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/products">All Products</a>
+                                </div>
+                            </div>
+                        @elseif($label === 'Tech Talk')
+                            <div class="bih-tech-talk-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(500px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[1.35rem] border border-[#21454f] bg-[#123941] p-7 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <p class="bih-tech-talk-mega-heading mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                    <span class="h-px w-5 bg-[#f2aa36]"></span>
+                                    <span>Tech Talk</span>
+                                </p>
+                                <div class="grid gap-3">
+                                    @foreach($item as $child => $href)
+                                        <a class="bih-tech-talk-mega-link flex items-center gap-3 rounded-xl px-2 py-2 text-[0.98rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $href }}">
+                                            <span class="bih-mega-icon">
+                                                @include('partials.icon', ['name' => $bihDropdownIcons[$child] ?? 'target', 'size' => 'h-4 w-4'])
+                                            </span>
+                                            <span>{{ $child }}</span>
+                                        </a>
+                                    @endforeach
                                 </div>
                             </div>
                         @elseif($label === 'Industries')
-                            <div class="bih-industries-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(950px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
-                                <div class="grid gap-14 lg:grid-cols-3">
+                            <div class="bih-industries-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(760px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[1.35rem] border border-[#21454f] bg-[#123941] p-7 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-7 lg:grid-cols-3">
                                     @foreach($bihIndustriesMegaMenu as $group => $industries)
                                         <div>
-                                            <p class="bih-industries-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                            <p class="bih-industries-mega-heading mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
                                                 <span class="h-px w-5 bg-[#f2aa36]"></span>
                                                 <span>{{ $group }}</span>
                                             </p>
-                                            <div class="grid gap-5">
+                                            <div class="grid gap-3">
                                                 @foreach($industries as $industry)
-                                                    <a class="bih-industries-mega-link block text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $industry['href'] }}">{{ $industry['label'] }}</a>
+                                                    <a class="bih-industries-mega-link flex items-center gap-3 rounded-xl px-2 py-2 text-[0.98rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $industry['href'] }}">
+                                                        <span class="bih-mega-icon">
+                                                            @include('partials.icon', ['name' => $industry['icon'], 'size' => 'h-4 w-4'])
+                                                        </span>
+                                                        <span>{{ $industry['label'] }}</span>
+                                                    </a>
                                                 @endforeach
                                             </div>
                                         </div>
                                     @endforeach
                                 </div>
-                                <div class="mt-10 flex items-center justify-between gap-6 border-t border-[#2a5660] pt-7">
-                                    <p class="font-serif text-lg font-black italic text-slate-100">Don't see your sector? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Tell us about it &rarr;</a></p>
-                                    <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-[#2a5660] px-10 text-base font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/industries">View All Industries</a>
+                                <div class="mt-6 flex items-center justify-between gap-5 border-t border-[#2a5660] pt-5">
+                                    <p class="font-serif text-base font-black italic text-slate-100">Don't see your sector? <a class="text-[#f5c978] hover:text-white" href="{{ route('contact') }}">Tell us about it &rarr;</a></p>
+                                    <a class="inline-flex min-h-11 items-center justify-center rounded-full border border-[#2a5660] px-7 text-sm font-black text-slate-100 transition hover:border-[#f5c978] hover:text-[#f5c978]" href="/industries">All Industries</a>
                                 </div>
                             </div>
                         @elseif($label === 'Insights')
-                            <div class="bih-insights-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(850px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[2rem] border border-[#21454f] bg-[#123941] p-10 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
-                                <div class="grid gap-14 lg:grid-cols-3">
+                            <div class="bih-insights-mega invisible fixed left-1/2 top-[76px] z-[60] w-[min(640px,calc(100vw-48px))] -translate-x-1/2 translate-y-2 rounded-[1.35rem] border border-[#21454f] bg-[#123941] p-7 opacity-0 shadow-2xl shadow-black/45 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                                <div class="grid gap-6 lg:grid-cols-3">
                                     @foreach($bihInsightsMegaMenu as $group => $links)
                                         <div>
-                                            <p class="bih-insights-mega-heading mb-7 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
+                                            <p class="bih-insights-mega-heading mb-5 flex items-center gap-3 text-xs font-black uppercase tracking-[0.18em] text-[#f2aa36]">
                                                 <span class="h-px w-5 bg-[#f2aa36]"></span>
                                                 <span>{{ $group }}</span>
                                             </p>
-                                            <div class="grid gap-5">
+                                            <div class="grid gap-3">
                                                 @foreach($links as $link)
-                                                    <a class="bih-insights-mega-link block text-[1.05rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $link['href'] }}">{{ $link['label'] }}</a>
+                                                    <a class="bih-insights-mega-link flex items-center gap-3 rounded-xl px-2 py-2 text-[0.98rem] font-black text-slate-100 transition-colors hover:text-[#f5c978]" href="{{ $link['href'] }}">
+                                                        <span class="bih-mega-icon">
+                                                            @include('partials.icon', ['name' => $link['icon'], 'size' => 'h-4 w-4'])
+                                                        </span>
+                                                        <span>{{ $link['label'] }}</span>
+                                                    </a>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -330,10 +380,15 @@
                                 </div>
                             </div>
                         @else
-                            <div class="invisible absolute left-0 top-full min-w-64 translate-y-2 rounded-xl border border-slate-200/80 dark:border-[#d4af37]/35 bg-white dark:bg-[#0b1b2b] p-3 opacity-0 shadow-2xl shadow-slate-900/15 dark:shadow-black/85 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
+                            <div class="invisible absolute left-0 top-full min-w-60 translate-y-2 rounded-2xl border border-slate-200/80 dark:border-[#d4af37]/35 bg-white dark:bg-[#0b1b2b] p-3 opacity-0 shadow-2xl shadow-slate-900/15 dark:shadow-black/85 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100" data-dropdown-panel>
                                 <div class="flex flex-col gap-1">
                                     @foreach($item as $child => $href)
-                                        <a class="block rounded-lg px-4 py-3 text-[0.96rem] font-bold text-slate-800 dark:text-slate-100 hover:bg-teal-50 dark:hover:bg-[#15283a] hover:text-teal-800 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
+                                        <a class="bih-compact-dropdown-link flex items-center gap-3 rounded-xl px-3 py-2.5 text-[0.95rem] font-bold text-slate-800 dark:text-slate-100 hover:bg-teal-50 dark:hover:bg-[#15283a] hover:text-teal-800 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">
+                                            <span class="bih-dropdown-icon">
+                                                @include('partials.icon', ['name' => $bihDropdownIcons[$child] ?? 'target', 'size' => 'h-4 w-4'])
+                                            </span>
+                                            <span>{{ $child }}</span>
+                                        </a>
                                     @endforeach
                                 </div>
                             </div>

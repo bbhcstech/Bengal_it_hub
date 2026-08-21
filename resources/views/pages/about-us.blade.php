@@ -117,390 +117,97 @@
 @endphp
 
 @section('content')
-
-{{-- ======================================================
-     Page-scoped CSS — Bengal Signal Design System
-     About Us Page (Light & Dark Mode Support)
-     Scoped strictly under [data-about]
-     ====================================================== --}}
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
-
-/* ---------- Light mode (default) ---------- */
-[data-about] {
-    --bs-ink:         #0A1F28;
-    --bs-primary:     #1E4A5F;
-    --bs-primary-lt:  #2E7089;
-    --bs-gold:        #E8AA3D;
-    --bs-gold-lt:     #F5C978;
-    --bs-text:        #0F262E;
-    --bs-muted:       #52707A;
-    --bs-border:      #DCE6E8;
-    --bs-surface:     #FFFFFF;
-    --bs-surface-alt: #E8F0F1;
-    --bs-bg:          #F5F8F8;
-    --bs-tint:        #D8E9EC;
-    --bs-radius-sm:   8px;
-    --bs-radius-md:   16px;
-    --bs-radius-lg:   28px;
-    --bs-radius-pill: 999px;
-    --bs-shadow-sm:   0 1px 3px rgba(10,31,40,.08);
-    --bs-shadow-md:   0 12px 32px rgba(10,31,40,.10);
-    --bs-shadow-lg:   0 28px 64px rgba(10,31,40,.18);
-    font-family: 'Inter', sans-serif;
-    color: var(--bs-text);
-    background-color: var(--bs-bg);
-    transition: background-color 260ms ease, color 260ms ease;
-}
-
-/* ---------- Dark mode (when html.dark or [data-theme="dark"]) ---------- */
-html.dark [data-about],
-[data-theme="dark"] [data-about] {
-    --bs-ink:         #0A1F28;
-    --bs-primary:     #4F9BB8;
-    --bs-primary-lt:  #6FB6D0;
-    --bs-gold:        #E8AA3D;
-    --bs-gold-lt:     #F5C978;
-    --bs-text:        #EAF4F6;
-    --bs-muted:       #93B2BA;
-    --bs-border:      #21454F;
-    --bs-surface:     #123039;
-    --bs-surface-alt: #163944;
-    --bs-bg:          #0A1F28;
-    --bs-tint:        #16414C;
-    --bs-shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
-    --bs-shadow-md:   0 12px 32px rgba(0,0,0,0.5);
-    --bs-shadow-lg:   0 28px 64px rgba(0,0,0,0.6);
-    color-scheme: dark;
-}
-
-[data-about] * {
-    transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
-}
-
-/* ---------- marquee strip ---------- */
-[data-about] .bs-marquee-strip {
-    background-color: var(--bs-ink, #0A1F28);
-    overflow: hidden;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--bs-border, #DCE6E8);
-}
-[data-about] .bs-marquee-track {
-    display: flex;
-    width: max-content;
-    animation: bsAboutMarquee 32s linear infinite;
-}
-[data-about] .bs-marquee-track span {
-    font-family: 'Outfit', sans-serif;
-    font-weight: 700;
-    font-size: 0.84rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #9DC3CC;
-    padding: 0 28px;
-    display: inline-flex;
-    align-items: center;
-    gap: 28px;
-    white-space: nowrap;
-}
-[data-about] .bs-marquee-track span::after {
-    content: '✦';
-    color: var(--bs-gold, #E8AA3D);
-}
-@keyframes bsAboutMarquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* ---------- breadcrumb ---------- */
-[data-about] .bs-breadcrumb {
-    display: flex; align-items: center; gap: .5rem;
-    font-family: 'Outfit', sans-serif;
-    font-size: .82rem; color: var(--bs-muted);
-    margin-bottom: 1.5rem; flex-wrap: wrap;
-}
-[data-about] .bs-breadcrumb a { color: var(--bs-muted); transition: color .2s; text-decoration: none; }
-[data-about] .bs-breadcrumb a:hover { color: var(--bs-gold); }
-[data-about] .bs-breadcrumb .sep { opacity: .5; }
-[data-about] .bs-breadcrumb .current { color: var(--bs-text); font-weight: 700; }
-
-/* ---------- page-hero ---------- */
-[data-about] .bs-page-hero {
-    padding: 64px 0 52px;
-    position: relative; overflow: hidden;
-    background: var(--bs-bg);
-}
-[data-about] .bs-page-hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.1rem, 4.2vw, 3.2rem); font-weight: 600; line-height: 1.15;
-    letter-spacing: -.01em; max-width: 820px;
-    color: var(--bs-text); margin: 0 0 .5em;
-    position: relative; z-index: 1;
-}
-[data-about] .bs-page-hero p.lead {
-    max-width: 680px; margin-top: .875rem;
-    font-size: 1.1rem; line-height: 1.75; color: var(--bs-muted);
-    position: relative; z-index: 1;
-}
-
-/* ---------- eyebrow ---------- */
-[data-about] .bs-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Outfit', sans-serif;
-    font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--bs-primary); background: rgba(30,74,95,.08);
-    padding: 7px 16px 7px 12px; border-radius: var(--bs-radius-pill); margin-bottom: 20px;
-    border: 1px solid rgba(30,74,95,.18);
-    width: fit-content;
-    position: relative; z-index: 1;
-}
-[data-about] .bs-eyebrow .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background-color: var(--bs-gold);
-    box-shadow: 0 0 0 3px rgba(232,170,61,.28);
-    display: inline-block; flex-shrink: 0;
-}
-
-html.dark [data-about] .bs-eyebrow,
-[data-theme="dark"] [data-about] .bs-eyebrow {
-    color: var(--bs-gold-lt);
-    background: rgba(232, 170, 61, 0.1);
-    border-color: rgba(232, 170, 61, 0.25);
-}
-html.dark [data-about] .bs-eyebrow .dot,
-[data-theme="dark"] [data-about] .bs-eyebrow .dot {
-    background-color: var(--bs-gold);
-    box-shadow: 0 0 0 3px rgba(232, 170, 61, 0.25);
-}
-
-/* ---------- container & sections ---------- */
-[data-about] .bs-container {
-    width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 24px;
-}
-[data-about] .bs-section { padding: 60px 0 90px; position: relative; }
-[data-about] .bs-section-alt { background-color: var(--bs-surface-alt); padding: 80px 0; }
-
-[data-about] .bs-section-head {
-    max-width: 680px; margin: 0 auto 48px; text-align: center;
-}
-[data-about] .bs-section-head.left {
-    margin-left: 0; text-align: left;
-}
-[data-about] .bs-section-head h2 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(1.85rem,3.3vw,2.5rem); font-weight: 600;
-    color: var(--bs-text); margin: 0 0 .5em; line-height: 1.15; letter-spacing: -.01em;
-}
-[data-about] .bs-section-head p {
-    color: var(--bs-muted); font-size: 1.05rem; line-height: 1.7; margin: 0;
-}
-
-/* ---------- grid layouts ---------- */
-[data-about] .bs-grid { display: grid; gap: 20px; }
-[data-about] .bs-grid-2 { grid-template-columns: repeat(2, 1fr); }
-[data-about] .bs-grid-3 { grid-template-columns: repeat(3, 1fr); }
-[data-about] .bs-grid-4 { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 1024px) {
-    [data-about] .bs-grid-4 { grid-template-columns: repeat(2, 1fr); }
-    [data-about] .bs-grid-3 { grid-template-columns: repeat(2, 1fr); }
-    [data-about] .bs-grid-2 { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-    [data-about] .bs-grid-4,
-    [data-about] .bs-grid-3,
-    [data-about] .bs-grid-2 { grid-template-columns: 1fr; }
-}
-
-/* ---------- cards ---------- */
-[data-about] .bs-card {
-    background-color: var(--bs-surface); border: 1px solid var(--bs-border);
-    border-radius: var(--bs-radius-md); padding: 30px 24px;
-    box-shadow: var(--bs-shadow-sm); display: flex; flex-direction: column;
-    transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
-}
-[data-about] .bs-card:hover {
-    box-shadow: var(--bs-shadow-md); transform: translateY(-4px);
-    border-color: rgba(232, 170, 61, 0.45);
-}
-[data-about] .bs-card h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.22rem; font-weight: 600; color: var(--bs-text);
-    margin: 0 0 .5em; letter-spacing: -.01em; line-height: 1.25;
-}
-[data-about] .bs-card p {
-    font-size: .92rem; line-height: 1.75; color: var(--bs-muted); margin: 0; flex: 1;
-}
-
-/* ---------- icon badge ---------- */
-[data-about] .bs-icon-badge {
-    width: 52px; height: 52px; border-radius: var(--bs-radius-sm);
-    background: linear-gradient(135deg, rgba(30,74,95,.14), rgba(232,170,61,.14));
-    color: var(--bs-primary);
-    display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
-}
-html.dark [data-about] .bs-icon-badge,
-[data-theme="dark"] [data-about] .bs-icon-badge {
-    background: linear-gradient(135deg, rgba(79, 155, 184, 0.2), rgba(232, 170, 61, 0.2));
-    color: var(--bs-gold-lt);
-}
-[data-about] .bs-icon-badge svg { width: 22px; height: 22px; }
-
-/* ---------- badge tags ---------- */
-[data-about] .bs-badge-tag {
-    display: inline-block; background-color: var(--bs-gold); color: #12242B;
-    font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 800;
-    padding: 5px 12px; border-radius: var(--bs-radius-pill); margin-bottom: 12px;
-    width: fit-content;
-}
-[data-about] .bs-badge-outline {
-    display: inline-block; background: transparent;
-    border: 1.5px solid var(--bs-border); color: var(--bs-muted);
-    font-family: 'Outfit', sans-serif; font-size: 0.72rem; font-weight: 700;
-    padding: 4px 11px; border-radius: var(--bs-radius-pill);
-    width: fit-content;
-}
-html.dark [data-about] .bs-badge-outline,
-[data-theme="dark"] [data-about] .bs-badge-outline {
-    border-color: var(--bs-border); color: var(--bs-muted);
-}
-
-/* ---------- step cards ---------- */
-[data-about] .bs-step-card {
-    background-color: var(--bs-surface); border: 1px solid var(--bs-border);
-    border-radius: var(--bs-radius-md); padding: 26px 22px;
-    box-shadow: var(--bs-shadow-sm);
-    transition: transform .26s ease, box-shadow .26s ease;
-}
-[data-about] .bs-step-card:hover {
-    transform: translateY(-3px); box-shadow: var(--bs-shadow-md);
-}
-[data-about] .bs-step-num {
-    font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 2rem;
-    color: rgba(30,74,95,0.25); line-height: 1; margin-bottom: 12px;
-    display: block;
-}
-html.dark [data-about] .bs-step-num,
-[data-theme="dark"] [data-about] .bs-step-num {
-    color: rgba(232,170,61,0.3);
-}
-[data-about] .bs-step-card h4 {
-    font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600;
-    color: var(--bs-text); margin: 0 0 8px; line-height: 1.25;
-}
-[data-about] .bs-step-card p {
-    font-size: 0.9rem; line-height: 1.7; color: var(--bs-muted); margin: 0;
-}
-
-/* ---------- CTA Banner ---------- */
-[data-about] .bs-cta-banner {
-    background: linear-gradient(120deg, var(--bs-primary), #123544);
-    border-radius: var(--bs-radius-lg); padding: 56px 40px;
-    text-align: center; color: #ffffff; position: relative;
-    overflow: hidden; box-shadow: var(--bs-shadow-md);
-    max-width: 960px; margin: 0 auto;
-}
-[data-about] .bs-cta-banner::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, rgba(232,170,61,.18) 0%, transparent 70%);
-    pointer-events: none;
-}
-[data-about] .bs-cta-banner h2 {
-    font-family: 'Fraunces', serif; font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-    font-weight: 600; color: #ffffff; margin: 0 0 10px;
-    letter-spacing: -.01em; position: relative; z-index: 1;
-}
-[data-about] .bs-cta-banner p {
-    color: rgba(255,255,255,.82); font-size: 1.05rem; line-height: 1.7;
-    max-width: 620px; margin: 0 auto 24px; position: relative; z-index: 1;
-}
-
-/* ---------- Buttons ---------- */
-[data-about] .bs-btn-gold {
-    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background-color: var(--bs-gold); color: #12242B;
-    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .94rem;
-    padding: 14px 30px; border-radius: var(--bs-radius-pill);
-    border: 1.5px solid transparent; text-decoration: none; cursor: pointer;
-    transition: background .22s, box-shadow .22s, transform .22s;
-    position: relative; z-index: 1;
-}
-[data-about] .bs-btn-gold:hover {
-    background-color: var(--bs-gold-lt); box-shadow: 0 14px 34px rgba(232,170,61,.35);
-    transform: translateY(-2px);
-}
-[data-about] .bs-btn-outline {
-    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
-    background: transparent; border: 1.5px solid var(--bs-border); color: var(--bs-text);
-    font-family: 'Outfit', sans-serif; font-weight: 700; font-size: .92rem;
-    padding: 13px 26px; border-radius: var(--bs-radius-pill); text-decoration: none;
-    transition: border-color .22s, color .22s, transform .22s;
-}
-[data-about] .bs-btn-outline:hover {
-    border-color: var(--bs-primary); color: var(--bs-primary); transform: translateY(-2px);
-}
-html.dark [data-about] .bs-btn-outline,
-[data-theme="dark"] [data-about] .bs-btn-outline {
-    border-color: var(--bs-border); color: var(--bs-text);
-}
-html.dark [data-about] .bs-btn-outline:hover,
-[data-theme="dark"] [data-about] .bs-btn-outline:hover {
-    border-color: var(--bs-gold-lt); color: var(--bs-gold-lt);
-}
-
-/* ---------- Reveal Animation ---------- */
-[data-about] .reveal {
-    opacity: 0; transform: translateY(22px);
-    transition: opacity 700ms cubic-bezier(.2,.7,.3,1), transform 700ms cubic-bezier(.2,.7,.3,1);
-}
-[data-about] .reveal.in-view { opacity: 1; transform: translateY(0); }
-</style>
-
-<div data-about>
-    {{-- ── Marquee Strip ── --}}
-    <div class="bs-marquee-strip" aria-hidden="true">
-        <div class="bs-marquee-track">
-            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
-            <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
-        </div>
+<div class="bih-about-marquee" aria-hidden="true">
+    <div class="bih-about-marquee-track">
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
+        <span>AI Hackathon PRAGATI 2026</span><span>SaaS &amp; Cloud</span><span>Staff Augmentation</span><span>AI Marketing</span><span>Business Enablement</span><span>Vision 2030</span>
     </div>
+</div>
 
-    {{-- ── Breadcrumb ── --}}
-    <div class="bs-container" style="padding-top: 1.5rem; padding-bottom: 0;">
-        <nav class="bs-breadcrumb" aria-label="Breadcrumb">
+<div class="bih-about-breadcrumb-wrap">
+    <div class="bih-container">
+        <nav class="bih-about-breadcrumb" aria-label="Breadcrumb">
             <a href="{{ route('home') }}">Home</a>
             <span class="sep">/</span>
             <span class="current">About Us</span>
         </nav>
     </div>
+</div>
 
-    {{-- ── Page Hero ── --}}
-    <section class="bs-page-hero">
-        <div class="bs-container">
-            <span class="bs-eyebrow">
-                <span class="dot"></span>
-                Company
-            </span>
-            <h1>About Bengal IT Hub</h1>
-            <p class="lead">A technology-driven innovation center transforming businesses through advanced IT solutions, digital engineering, and talent empowerment.</p>
+<section class="bih-about-hero relative overflow-hidden bg-slate-950 text-white">
+    <img class="absolute inset-0 h-full w-full object-cover opacity-40" src="{{ $heroImage }}" alt="Bengal IT Hub team discussing IT strategy">
+    <div class="bih-about-hero-overlay absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/90 to-teal-950/60"></div>
+    <div class="bih-container relative grid min-h-[76vh] gap-10 py-16 lg:grid-cols-[1fr_.9fr] lg:items-center">
+        <div>
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">About Bengal IT Hub</p>
+            <h1 class="mt-4 max-w-4xl text-5xl font-black leading-tight text-white md:text-7xl">Technology that helps businesses move forward</h1>
+            <p class="bih-page-intro bih-on-dark mt-6">Bengal IT Hub is a future-focused IT company delivering software, cloud-ready platforms, AI-enabled growth, digital operations, and talent-driven innovation from Bengal.</p>
+            <p class="mt-4 max-w-3xl leading-8 text-white/82">We work with startups, institutions, MSMEs, and growing enterprises to turn business ideas into useful digital products, efficient systems, stronger online presence, and practical technology capability.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a class="bih-button" href="{{ route('contact') }}">Start a Project</a>
+                <a class="bih-button bih-button-light" href="{{ route('services.index') }}">Explore Services</a>
+            </div>
+        </div>
+
+        <div class="bih-about-hero-card overflow-hidden rounded-md border border-white/14 bg-white/10 shadow-2xl backdrop-blur">
+            <img class="h-80 w-full object-cover sm:h-[31rem]" src="{{ $officeImage }}" alt="Modern IT workspace for Bengal IT Hub">
+            <div class="grid gap-3 bg-white p-5 text-slate-950 sm:grid-cols-2">
+                @foreach($stats as $stat)
+                    <div class="rounded-md bg-slate-50 p-4">
+                        <p class="text-3xl font-black text-teal-700">{{ $stat['value'] }}</p>
+                        <p class="text-xs font-black uppercase text-slate-500">{{ $stat['label'] }}</p>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bih-about-section bg-white">
+    <div class="bih-container grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+        <div>
+            <p class="bih-eyebrow">Who We Are</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">An IT partner built for practical business impact</h2>
+            <p class="bih-page-intro mt-5">We combine digital engineering, business consulting, product thinking, and AI-first talent development so clients get more than a website or software build. They get a technology partner that understands growth.</p>
+            <p class="bih-copy mt-4">Our work spans custom web platforms, SaaS products, cloud systems, AI marketing, business enablement, corporate operations support, education technology programs, and innovation events such as The Bengal HackFest PRAGATI.</p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+            @foreach($capabilities as $capability)
+                <article class="bih-card bih-about-bento p-6">
+                    <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
+                        @include('partials.icon', ['name' => $capability['icon']])
+                    </span>
+                    <h3 class="bih-section-title mt-4 text-2xl">{{ $capability['title'] }}</h3>
+                    <p class="bih-copy mt-3">{{ $capability['body'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bih-about-section">
+    <div class="bih-container">
+        <div class="max-w-4xl">
+            <p class="bih-eyebrow">What We Build</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Complete technology services for modern businesses and creators</h2>
+            <p class="bih-page-intro mt-5">From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products that are practical, scalable, and ready for real users.</p>
         </div>
     </section>
 
-    {{-- ── Who We Are (2-Column Demo Style) ── --}}
-    <section class="bs-section" style="padding-top: 0;">
-        <div class="bs-container">
-            <div class="bs-grid bs-grid-2 reveal" style="align-items: center; margin-bottom: 56px;">
-                <div>
-                    <span class="bs-eyebrow"><span class="dot"></span> Who We Are</span>
-                    <h2 style="font-family: 'Fraunces', serif; font-size: clamp(1.85rem,3.2vw,2.5rem); font-weight: 600; color: var(--bs-text); margin: 8px 0 16px; line-height: 1.2;">An IT partner built for practical business impact</h2>
-                    <p style="font-size: 1.05rem; line-height: 1.75; color: var(--bs-muted); margin-bottom: 16px;">
-                        Bengal IT Hub is a technology-driven innovation center transforming businesses through advanced IT solutions, digital engineering, and talent empowerment &mdash; bridging global opportunities with Bengal's capabilities to innovate and succeed worldwide.
-                    </p>
-                    <p style="font-size: 1rem; line-height: 1.75; color: var(--bs-muted); margin-bottom: 24px;">
-                        We combine digital engineering, business consulting, product thinking, and AI-first talent development so clients get more than a website or software build. They get a technology partner that understands growth.
-                    </p>
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-                        <a href="{{ route('contact') }}" class="bs-btn-gold">Start a Conversation</a>
-                        <a href="{{ route('services.index') }}" class="bs-btn-outline">Explore Services</a>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            @foreach($buildServices as $service)
+                <article class="bih-card bih-image-card bih-about-image-card group overflow-hidden">
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="h-full w-full object-cover transition duration-500 group-hover:scale-105" src="{{ $service['image'] }}" alt="{{ $service['title'] }} service by Bengal IT Hub">
+                        <div class="absolute inset-0 bg-linear-to-t from-slate-950/76 via-slate-950/10 to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 grid h-11 w-11 place-items-center rounded-md bg-white text-teal-700 shadow-lg">
+                            @include('partials.icon', ['name' => $service['icon']])
+                        </span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="bih-section-title text-xl">{{ $service['title'] }}</h3>
+                        <p class="bih-copy mt-3 text-sm">{{ $service['body'] }}</p>
                     </div>
                 </div>
                 <div>
@@ -508,162 +215,165 @@ html.dark [data-about] .bs-btn-outline:hover,
                 </div>
             </div>
 
-            {{-- Mission, Vision, Positioning 3-Card Bento --}}
-            <div class="bs-grid bs-grid-3 reveal">
-                <div class="bs-card">
-                    <span class="bs-badge-tag">Mission</span>
-                    <h3 style="font-size: 1.2rem; margin-top: 6px;">Empowering Business Talent</h3>
-                    <p style="font-weight: 600; color: var(--bs-text);">To help businesses adopt useful technology while creating a stronger bridge between regional talent and global digital opportunity.</p>
-                </div>
-                <div class="bs-card">
-                    <span class="bs-badge-tag">Vision</span>
-                    <h3 style="font-size: 1.2rem; margin-top: 6px;">Global Tech Hub From Bengal</h3>
-                    <p style="font-weight: 600; color: var(--bs-text);">To build a global technology hub from Eastern India, driving India's first AI Gigafactory ecosystem by 2030.</p>
-                </div>
-                <div class="bs-card">
-                    <span class="bs-badge-tag">Positioning</span>
-                    <h3 style="font-size: 1.2rem; margin-top: 6px;">Strategic IT Powerhouse</h3>
-                    <p style="font-weight: 600; color: var(--bs-text);">A strategic IT powerhouse delivering dependable execution, modern UI, scalable software, and job-ready talent.</p>
-                </div>
+<section class="bih-section bih-about-section">
+    <div class="bih-container grid gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+        <div class="grid gap-4 sm:grid-cols-2">
+            <img class="h-72 w-full rounded-md object-cover shadow-xl sm:h-96" src="{{ $teamImage }}" alt="Technology team collaborating on software development">
+            <img class="h-72 w-full rounded-md object-cover shadow-xl sm:mt-12 sm:h-96" src="{{ $strategyImage }}" alt="Business strategy discussion with technology partners">
+        </div>
+        <div>
+            <p class="bih-eyebrow">Our Mission</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Build digital systems, talent, and opportunities from Bengal</h2>
+            <p class="bih-page-intro mt-5">Our mission is to help businesses adopt useful technology while creating a stronger bridge between regional talent and global digital opportunity.</p>
+            <div class="mt-7 grid gap-4">
+                @foreach($values as $value)
+                    <article class="bih-about-bento rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+                        <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                        <h3 class="text-xl font-black text-slate-950">{{ $value['title'] }}</h3>
+                        <p class="bih-copy mt-2">{{ $value['body'] }}</p>
+                    </article>
+                @endforeach
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    {{-- ── Core Capabilities ── --}}
-    <section class="bs-section bs-section-alt">
-        <div class="bs-container">
-            <div class="bs-section-head reveal">
-                <span class="bs-eyebrow"><span class="dot"></span> Core Capabilities</span>
-                <h2>What Sets Our Capability Apart</h2>
-                <p>From custom web platforms and SaaS to AI marketing and talent development programs.</p>
-            </div>
+<section class="bih-section bih-about-section bg-white">
+    <div class="bih-container">
+        <div class="max-w-3xl">
+            <p class="bih-eyebrow">Our People</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Roles That Power Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">Our team is organized around the work our clients and learners actually need — the roles below reflect the real capability behind our services, not just job titles.</p>
+        </div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach($teamRoles as $role)
+                <article class="bih-card bih-about-bento p-6">
+                    <span class="bih-about-index">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-50 text-teal-700">
+                        @include('partials.icon', ['name' => $role['icon']])
+                    </span>
+                    <h3 class="mt-4 text-lg font-black leading-snug text-slate-950">{{ $role['title'] }}</h3>
+                    <p class="bih-copy mt-3 text-sm">{{ $role['body'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
 
-            <div class="bs-grid bs-grid-4">
-                @foreach($capabilities as $capability)
-                    <div class="bs-card reveal">
-                        <div class="bs-icon-badge">
-                            @include('partials.icon', ['name' => $capability['icon']])
-                        </div>
-                        <h3>{{ $capability['title'] }}</h3>
-                        <p>{{ $capability['body'] }}</p>
+<section class="bih-about-dark bg-slate-950 py-16 text-white">
+    <div class="bih-container">
+        <div class="max-w-3xl">
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">How We Work</p>
+            <h2 class="mt-3 text-4xl font-black leading-tight text-white md:text-5xl">A clear delivery process from idea to scale</h2>
+            <p class="mt-5 leading-8 text-white/82">Every project needs clarity, pace, and ownership. Our process keeps business teams and technical teams aligned from the first conversation to post-launch improvement.</p>
+        </div>
+        <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            @foreach($process as $item)
+                <article class="bih-about-dark-card rounded-md border border-white/12 bg-white/8 p-6 shadow-xl">
+                    <p class="text-3xl font-black text-teal-300">{{ $item['step'] }}</p>
+                    <h3 class="mt-4 text-2xl font-black text-white">{{ $item['title'] }}</h3>
+                    <p class="mt-3 leading-7 text-white/78">{{ $item['body'] }}</p>
+                </article>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+<section class="bih-section bih-about-section bg-white">
+    <div class="bih-container grid gap-10 lg:grid-cols-[.88fr_1.12fr] lg:items-start">
+        <div>
+            <p class="bih-eyebrow">Why Choose Us</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">A compact team with a broad technology ecosystem</h2>
+            <p class="bih-page-intro mt-5">Bengal IT Hub is built for clients who need dependable execution, useful ideas, and a partner who can connect technology, marketing, operations, and talent.</p>
+            <a class="bih-button mt-8" href="{{ route('contact') }}">Talk to the Team</a>
+        </div>
+        <div class="bih-card bih-about-outcome-card p-6">
+            <div class="grid gap-4 sm:grid-cols-2">
+                @foreach($whyChoose as $point)
+                    <div class="bih-about-outcome flex items-start gap-3 rounded-md bg-slate-50 p-4">
+                        <span class="mt-0.5 grid h-6 w-6 flex-none place-items-center rounded-full bg-teal-700 text-white">
+                            @include('partials.icon', ['name' => 'check', 'size' => 'h-4 w-4'])
+                        </span>
+                        <p class="font-bold leading-7 text-slate-800">{{ $point }}</p>
                     </div>
                 @endforeach
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    {{-- ── What We Build ── --}}
-    <section class="bs-section">
-        <div class="bs-container">
-            <div class="bs-section-head reveal">
-                <span class="bs-eyebrow"><span class="dot"></span> What We Build</span>
-                <h2>Complete Technology Services for Modern Businesses</h2>
-                <p>From software platforms to AI agents, Bengal IT Hub helps clients plan, design, build, market, and improve digital products.</p>
+<section class="bih-section bih-about-section bg-slate-50">
+    <div class="bih-container grid gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+        <div>
+            <p class="bih-eyebrow">Visit Our Office</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Where To Find Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">{{ $officeAddress }}</p>
+            <p class="mt-3 flex items-center gap-2 text-sm font-bold text-slate-600">
+                @include('partials.icon', ['name' => 'chat', 'size' => 'h-4 w-4'])
+                {{ $officePhone }}
+            </p>
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a class="bih-button" href="{{ $officeMapDirectionsUrl }}" target="_blank" rel="noopener">Get Directions</a>
+                <a class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border-2 border-teal-700 px-4 py-3 font-extrabold text-teal-700 transition hover:bg-teal-700 hover:text-white" href="{{ $officeWhatsAppShareUrl }}" target="_blank" rel="noopener">
+                    Share via WhatsApp
+                </a>
             </div>
+        </div>
+        <div class="bih-about-map overflow-hidden rounded-md border border-slate-200 shadow-xl">
+            <iframe class="h-80 w-full sm:h-96" src="{{ $officeMapEmbedUrl }}" title="Bengal IT Hub office location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
 
-            <div class="bs-grid bs-grid-4">
-                @foreach($buildServices as $service)
-                    <div class="bs-card reveal" style="padding: 0; overflow: hidden;">
-                        <div style="height: 180px; overflow: hidden; position: relative;">
-                            <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease;" loading="lazy">
-                        </div>
-                        <div style="padding: 22px 20px; display: flex; flex-direction: column; flex: 1;">
-                            <span class="bs-badge-outline" style="font-size: 0.68rem; margin-bottom: 8px;">{{ $service['title'] }}</span>
-                            <h3 style="font-size: 1.12rem; margin-bottom: 8px;">{{ $service['title'] }}</h3>
-                            <p style="font-size: 0.88rem; line-height: 1.65;">{{ $service['body'] }}</p>
-                        </div>
+<section class="bih-section bih-about-section">
+    <div class="bih-container">
+        <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+            <div>
+                <p class="bih-eyebrow">Ecosystem</p>
+                <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Built with partners, mentors, institutions, and industry</h2>
+                <p class="bih-page-intro mt-5">Our ecosystem approach helps us serve both businesses and talent. That means more practical learning, better execution support, stronger hiring connections, and more opportunities for Bengal's technology community.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
+                @foreach($partners->isNotEmpty() ? $partners : collect(['Industry Experts', 'Academic Partners', 'Innovation Partners', 'Hiring Partners', 'Technology Partners', 'Community Partners']) as $partner)
+                    <div class="bih-about-partner rounded-md border border-slate-200 bg-white p-5 text-center font-extrabold shadow-sm">
+                        {{ is_string($partner) ? $partner : $partner->name }}
                     </div>
                 @endforeach
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    {{-- ── Roles That Power Bengal IT Hub ── --}}
-    <section class="bs-section bs-section-alt">
-        <div class="bs-container">
-            <div class="bs-section-head reveal">
-                <span class="bs-eyebrow"><span class="dot"></span> Our People</span>
-                <h2>Roles That Power Bengal IT Hub</h2>
-                <p>Our team is organized around the work our clients and learners actually need — reflecting real capability behind our services.</p>
-            </div>
-
-            <div class="bs-grid bs-grid-3">
-                @foreach($teamRoles as $role)
-                    <div class="bs-card reveal">
-                        <div class="bs-icon-badge">
-                            @include('partials.icon', ['name' => $role['icon']])
-                        </div>
-                        <h3>{{ $role['title'] }}</h3>
-                        <p>{{ $role['body'] }}</p>
-                    </div>
-                @endforeach
-            </div>
+<section class="bih-section bih-about-section bg-white">
+    <div class="bih-container">
+        <div class="max-w-3xl">
+            <p class="bih-eyebrow">Explore More</p>
+            <h2 class="bih-section-title mt-3 text-4xl md:text-5xl">Every Side of Bengal IT Hub</h2>
+            <p class="bih-page-intro mt-5">Dive deeper into what we build, who we build it for, and who we build it with.</p>
         </div>
-    </section>
-
-    {{-- ── How We Work (Process) ── --}}
-    <section class="bs-section">
-        <div class="bs-container">
-            <div class="bs-section-head reveal">
-                <span class="bs-eyebrow"><span class="dot"></span> How We Work</span>
-                <h2>A Clear Delivery Process from Idea to Scale</h2>
-                <p>Every project needs clarity, pace, and ownership. Our process keeps business teams and technical teams aligned.</p>
-            </div>
-
-            <div class="bs-grid bs-grid-4">
-                @foreach($process as $item)
-                    <div class="bs-step-card reveal">
-                        <span class="bs-step-num">{{ $item['step'] }}</span>
-                        <h4>{{ $item['title'] }}</h4>
-                        <p>{{ $item['body'] }}</p>
-                    </div>
-                @endforeach
-            </div>
+        <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            @foreach($exploreSections as $item)
+                <article class="bih-about-bento group relative flex flex-col overflow-hidden rounded-lg border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-teal-600/50 hover:shadow-xl">
+                    <span class="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-teal-600 via-sky-500 to-amber-400"></span>
+                    <span class="grid h-12 w-12 place-items-center rounded-md bg-teal-700 text-white">
+                        @include('partials.icon', ['name' => $item['icon']])
+                    </span>
+                    <p class="bih-eyebrow mt-4">{{ $item['eyebrow'] }}</p>
+                    <h3 class="mt-1 text-lg font-black leading-snug text-slate-950">{{ $item['title'] }}</h3>
+                    <p class="mt-3 flex-1 text-sm leading-7 text-slate-600">{{ $item['body'] }}</p>
+                    <a class="bih-button mt-5 inline-flex w-fit" href="{{ $item['href'] }}">{{ $item['cta'] }}</a>
+                </article>
+            @endforeach
         </div>
-    </section>
+    </div>
+</section>
 
-    {{-- ── Why Choose Us & Office Location ── --}}
-    <section class="bs-section bs-section-alt">
-        <div class="bs-container">
-            <div class="bs-grid bs-grid-2 reveal" style="align-items: center; margin-bottom: 56px;">
-                <div>
-                    <span class="bs-eyebrow"><span class="dot"></span> Why Choose Us</span>
-                    <h2 style="font-family: 'Fraunces', serif; font-size: clamp(1.85rem,3.2vw,2.5rem); font-weight: 600; color: var(--bs-text); margin: 8px 0 16px; line-height: 1.2;">A compact team with a broad technology ecosystem</h2>
-                    <p style="font-size: 1.05rem; line-height: 1.75; color: var(--bs-muted); margin-bottom: 24px;">Bengal IT Hub is built for clients who need dependable execution, useful ideas, and a partner who can connect technology, marketing, operations, and talent.</p>
-                    <div style="display: grid; gap: 12px;">
-                        @foreach($whyChoose as $point)
-                            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.94rem; font-weight: 600; color: var(--bs-text);">
-                                <span style="color: var(--bs-gold); font-weight: 800;">✦</span>
-                                {{ $point }}
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div>
-                    <div class="bs-card" style="padding: 0; overflow: hidden;">
-                        <iframe class="h-80 w-full sm:h-96" src="{{ $officeMapEmbedUrl }}" title="Bengal IT Hub office location on Google Maps" style="border: 0; width: 100%; height: 340px;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        <div style="padding: 20px 24px; background: var(--bs-surface);">
-                            <div style="font-weight: 700; font-family: 'Outfit', sans-serif; font-size: 1rem; color: var(--bs-text);">{{ $officeAddress }}</div>
-                            <div style="font-size: 0.88rem; color: var(--bs-muted); margin-top: 4px;">{{ $officePhone }}</div>
-                            <div style="margin-top: 14px; display: flex; gap: 12px;">
-                                <a href="{{ $officeMapDirectionsUrl }}" target="_blank" rel="noopener" class="bs-btn-gold" style="padding: 10px 20px; font-size: 0.84rem;">Get Directions</a>
-                                <a href="{{ $officeWhatsAppShareUrl }}" target="_blank" rel="noopener" class="bs-btn-outline" style="padding: 10px 20px; font-size: 0.84rem;">Share WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {{-- ── Bottom CTA Banner ── --}}
-    <section class="bs-section">
-        <div class="bs-container">
-            <div class="bs-cta-banner reveal">
-                <h2>Let's Build Together</h2>
-                <p>Have an idea, business challenge, or digital growth target? Tell us about your project and see how Bengal IT Hub can accelerate it.</p>
-                <a href="{{ route('contact') }}" class="bs-btn-gold">Contact Us Today</a>
-            </div>
+<section class="bih-about-final bg-slate-950 py-16 text-white">
+    <div class="bih-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+            <p class="bih-about-eyebrow text-sm font-black uppercase text-amber-300">Let's Build</p>
+            <h2 class="mt-3 max-w-4xl text-4xl font-black leading-tight text-white md:text-5xl">Have an idea, business challenge, or digital growth target?</h2>
+            <p class="mt-5 max-w-3xl leading-8 text-white/82">Bengal IT Hub can help you plan, design, build, launch, and improve the technology behind it.</p>
         </div>
     </section>
 </div>

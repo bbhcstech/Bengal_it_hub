@@ -42,6 +42,11 @@ return [
             'App Development' => '/products/app-development',
             'IoT Product Build' => '/products/iot-product-build',
         ],
+        'Tech Talk' => [
+            'TechBiz' => '/tech-biz',
+            'Tech Innovation Hub' => '/tech-innovation',
+            'Our Clients' => '/our-clients',
+        ],
         'Industries' => [
             'Real Estate' => '/industries/real-estate',
             'Health Care' => '/industries/health-care',
@@ -51,17 +56,16 @@ return [
             'Travel & Hospitality' => '/industries/travel-hospitality',
         ],
         'Insights' => [
-            'Tech Innovation Hub' => '/tech-innovation',
-            'TechBiz' => '/tech-biz',
             'Blog' => '/blog',
-            'Our Clients' => '/our-clients',
             'Awards & Recognition' => '/awards-recognition',
             'Our Partners' => '/our-partners',
             'About Us' => '/about-us',
             'FAQ' => '/faq',
             'Contact' => '/contact',
         ],
-        'HackFest 2026' => '/hackfest-2026',
+        'News & Event' => [
+            'HackFest 2026' => '/hackfest-2026',
+        ],
     ],
 
     'clients' => [

@@ -24,6 +24,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $seo['title'] ?? 'Bengal IT Hub' }}</title>
     <meta name="description" content="{{ $seo['description'] ?? 'Bengal IT Hub corporate website and HackFest platform.' }}">
     <link rel="canonical" href="{{ $bihCanonicalUrl }}">
@@ -87,8 +88,6 @@
     @if($bihShouldPreloadImage)
         <link rel="preload" as="image" href="{{ $bihPreloadImage }}" fetchpriority="high">
     @endif
-    <link rel="dns-prefetch" href="//images.unsplash.com">
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <link rel="prefetch" href="{{ route('contact') }}" as="document">
     <script type="application/ld+json">
         {!! json_encode([
@@ -180,6 +179,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/site.js'])
 </head>
 <body class="bih-shell min-h-screen">
@@ -229,7 +230,6 @@
                     ['label' => 'Our Partners', 'href' => '/our-partners', 'icon' => 'partners'],
                 ],
                 'Company' => [
-                    ['label' => 'About Us', 'href' => '/about-us', 'icon' => 'leadership'],
                     ['label' => 'FAQ', 'href' => '/faq', 'icon' => 'check'],
                     ['label' => 'Contact', 'href' => '/contact', 'icon' => 'chat'],
                 ],
@@ -253,8 +253,8 @@
             ];
         @endphp
         <div class="bih-header-brand">
-            <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Bengal IT Hub home">
-                <img class="bih-site-logo shrink-0" src="{{ $bihLogoUrl }}" alt="Bengal IT Hub logo" width="240" height="68" decoding="async" fetchpriority="high">
+            <a href="{{ route('home') }}" class="flex shrink-0 items-center" aria-label="Bengal IT Hub home" style="height: 68px;">
+                <img class="shrink-0 object-contain" src="{{ asset('assets/images/logo-square.jpg') }}" alt="Bengal IT Hub logo" style="height: 60px; max-height: 62px; width: auto; max-width: 240px; border-radius: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.12); transition: transform 0.2s ease;" height="60" decoding="async" fetchpriority="high">
             </a>
         </div>
         <nav class="bih-header-nav" aria-label="Primary">
@@ -455,73 +455,181 @@
     <button data-scroll-bottom class="bih-scroll-button" type="button" aria-label="Scroll to bottom" title="Scroll to bottom">&darr;</button>
 </div>
 
-<footer class="bih-footer border-t border-slate-800 bg-slate-950 py-12">
+<footer class="bih-footer border-t border-slate-800 bg-slate-950 py-14" style="background-color: #050b14; color: #cbd5e1;">
     <div class="bih-container bih-footer-grid">
+        {{-- Brand Column --}}
         <div class="bih-footer-brand">
-            <a href="{{ route('home') }}" class="bih-footer-brand-link" aria-label="Bengal IT Hub home">
-                <img class="bih-footer-logo" src="{{ $bihLogoUrl }}" alt="Bengal IT Hub logo" width="260" height="96" loading="lazy" decoding="async">
+            <a href="{{ route('home') }}" class="bih-footer-brand-link flex items-center gap-3" aria-label="Bengal IT Hub home">
+                <img class="bih-footer-logo" src="{{ asset('assets/images/logo-square.jpg') }}" alt="Bengal IT Hub logo" style="height: 52px; width: auto; max-width: 180px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); object-fit: contain;" height="52" loading="lazy" decoding="async">
                 <div class="bih-footer-wordmark">
-                    <div class="text-xl font-black">Bengal IT Hub</div>
-                    <div class="text-xs font-extrabold uppercase text-teal-300">{{ $siteBrand['tagline'] ?? config('bengalhub.brand.tagline') }}</div>
+                    <div class="text-xl font-black text-white" style="font-family: 'Outfit', sans-serif;">Bengal IT Hub</div>
+                    <div class="text-xs font-extrabold uppercase text-amber-400" style="letter-spacing: 0.05em;">{{ $siteBrand['tagline'] ?? config('bengalhub.brand.tagline') }}</div>
                 </div>
             </a>
-            <p class="mt-3 text-sm text-slate-300">{{ $siteBrand['address'] ?? config('bengalhub.brand.address') }}</p>
-        </div>
-        <div>
-            <h2 class="font-extrabold">About</h2>
-            <div class="mt-3 grid gap-2 text-sm">
-                <a href="/">Home</a><a href="/vision-2030">Vision 2030</a><a href="/about-us">About Us</a><a href="/faq">FAQ</a><a href="/contact">Contact</a>
+            <p class="mt-4 text-xs text-slate-400" style="line-height: 1.6;">{{ $siteBrand['address'] ?? config('bengalhub.brand.address') }}</p>
+            <div class="mt-4">
+                <h3 class="text-xs font-bold uppercase text-slate-400" style="letter-spacing: 0.08em; margin-bottom: 8px;">Let's Connect</h3>
+                <div class="flex flex-wrap gap-2">
+                    @foreach(($siteBrand['socials'] ?? config('bengalhub.brand.socials')) as $label => $href)
+                        <a class="bih-social-icon" href="{{ $href }}" target="_blank" rel="noopener" aria-label="{{ $label }}" title="{{ $label }}">
+                            @switch($label)
+                                @case('LinkedIn')
+                                    <span aria-hidden="true">in</span>
+                                    @break
+                                @case('Facebook')
+                                    <span aria-hidden="true">f</span>
+                                    @break
+                                @case('Instagram')
+                                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                                        <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="2"></rect>
+                                        <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2"></circle>
+                                        <circle cx="16.5" cy="7.5" r="1" fill="currentColor"></circle>
+                                    </svg>
+                                    @break
+                                @case('X')
+                                    <span aria-hidden="true">X</span>
+                                    @break
+                                @case('YouTube')
+                                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                                        <rect x="3.5" y="6.5" width="17" height="11" rx="3" stroke="currentColor" stroke-width="2"></rect>
+                                        <path d="M10 9.5L15 12L10 14.5V9.5Z" fill="currentColor"></path>
+                                    </svg>
+                                    @break
+                                @default
+                                    <span aria-hidden="true">{{ Str::substr($label, 0, 1) }}</span>
+                            @endswitch
+                        </a>
+                    @endforeach
+                </div>
             </div>
         </div>
+
+        {{-- Column 1: Company & Ecosystem --}}
         <div>
-            <h2 class="font-extrabold">Solutions</h2>
-            <div class="mt-3 grid gap-2 text-sm">
-                <a href="/services">Services</a><a href="/products">Products</a><a href="/industries">Industries</a><a href="/tech-innovation">Tech Innovation</a>
+            <h2 class="font-extrabold text-white text-sm uppercase tracking-wider mb-3">Company</h2>
+            <div class="grid gap-2 text-xs" style="color: #94a3b8;">
+                <a href="/" class="hover:text-amber-400 transition-colors">Home</a>
+                <a href="/vision-2030" class="hover:text-amber-400 transition-colors">Vision 2030</a>
+                <a href="/about-us" class="hover:text-amber-400 transition-colors">About Us</a>
+                <a href="/tech-biz" class="hover:text-amber-400 transition-colors">TechBiz Newsroom</a>
+                <a href="/tech-innovation" class="hover:text-amber-400 transition-colors">Tech Innovation Hub</a>
+                <a href="/our-clients" class="hover:text-amber-400 transition-colors">Our Clients</a>
+                <a href="/our-partners" class="hover:text-amber-400 transition-colors">Our Partners</a>
+                <a href="/awards-recognition" class="hover:text-amber-400 transition-colors">Awards & Recognition</a>
+                <a href="/faq" class="hover:text-amber-400 transition-colors">FAQ</a>
+                <a href="/contact" class="hover:text-amber-400 transition-colors">Contact Us</a>
             </div>
         </div>
+
+        {{-- Column 2: Services & Solutions --}}
         <div>
-            <h2 class="font-extrabold">Important Links</h2>
-            <div class="mt-3 grid gap-2 text-sm">
-                <a href="/blog">Blog</a><a href="/tech-biz">TechBiz</a><a href="/our-clients">Our Clients</a><a href="/our-partners">Partners</a><a href="/awards-recognition">Awards & Recognition</a><a href="/hackfest-2026">HackFest PRAGATI 2026</a><a href="/academic-partnership">Academic Partnership</a><a href="/terms-conditions">Terms & Conditions</a><a href="/privacy-policy">Privacy Policy</a><a href="/sitemap">HTML Sitemap</a><a href="/sitemap.xml">XML Sitemap</a>
+            <h2 class="font-extrabold text-white text-sm uppercase tracking-wider mb-3">Services</h2>
+            <div class="grid gap-2 text-xs" style="color: #94a3b8;">
+                <a href="/services" class="font-bold text-amber-400 hover:underline">All Services &rarr;</a>
+                <a href="/software-development" class="hover:text-amber-400 transition-colors">Software Development</a>
+                <a href="/web-development" class="hover:text-amber-400 transition-colors">Web Development</a>
+                <a href="/app-development" class="hover:text-amber-400 transition-colors">App Development</a>
+                <a href="/iot-product-build" class="hover:text-amber-400 transition-colors">IoT Product Build</a>
+                <a href="/ai-marketing" class="hover:text-amber-400 transition-colors">AI Marketing</a>
+                <a href="/groomify" class="hover:text-amber-400 transition-colors">Groomify Skilling</a>
+                <a href="/eduverse" class="hover:text-amber-400 transition-colors">Eduverse Ecosystem</a>
+                <a href="/biz-consultation" class="hover:text-amber-400 transition-colors">Biz Consultation</a>
             </div>
         </div>
+
+        {{-- Column 3: Industries & Products --}}
         <div>
-            <h2 class="font-extrabold">Let's Connect</h2>
-            <div class="mt-3 flex flex-wrap gap-2">
-                @foreach(($siteBrand['socials'] ?? config('bengalhub.brand.socials')) as $label => $href)
-                    <a class="bih-social-icon" href="{{ $href }}" target="_blank" rel="noopener" aria-label="{{ $label }}" title="{{ $label }}">
-                        @switch($label)
-                            @case('LinkedIn')
-                                <span aria-hidden="true">in</span>
-                                @break
-                            @case('Facebook')
-                                <span aria-hidden="true">f</span>
-                                @break
-                            @case('Instagram')
-                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-                                    <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" stroke-width="2"></rect>
-                                    <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="2"></circle>
-                                    <circle cx="16.5" cy="7.5" r="1" fill="currentColor"></circle>
-                                </svg>
-                                @break
-                            @case('X')
-                                <span aria-hidden="true">X</span>
-                                @break
-                            @case('YouTube')
-                                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
-                                    <rect x="3.5" y="6.5" width="17" height="11" rx="3" stroke="currentColor" stroke-width="2"></rect>
-                                    <path d="M10 9.5L15 12L10 14.5V9.5Z" fill="currentColor"></path>
-                                </svg>
-                                @break
-                            @default
-                                <span aria-hidden="true">{{ Str::substr($label, 0, 1) }}</span>
-                        @endswitch
-                    </a>
-                @endforeach
+            <h2 class="font-extrabold text-white text-sm uppercase tracking-wider mb-3">Industries</h2>
+            <div class="grid gap-2 text-xs" style="color: #94a3b8;">
+                <a href="/industries" class="font-bold text-amber-400 hover:underline">All Industries &rarr;</a>
+                <a href="/industries/real-estate" class="hover:text-amber-400 transition-colors">Real Estate</a>
+                <a href="/industries/health-care" class="hover:text-amber-400 transition-colors">Health Care</a>
+                <a href="/industries/edu-tech" class="hover:text-amber-400 transition-colors">EdTech</a>
+                <a href="/industries/manufacturing" class="hover:text-amber-400 transition-colors">Manufacturing</a>
+                <a href="/industries/logistics" class="hover:text-amber-400 transition-colors">Logistics</a>
+                <a href="/industries/travel-hospitality" class="hover:text-amber-400 transition-colors">Travel & Hospitality</a>
+                <a href="/industries/retail" class="hover:text-amber-400 transition-colors">Retail</a>
+                <a href="/products" class="font-bold text-amber-400 hover:underline mt-1">Our Products &rarr;</a>
+            </div>
+        </div>
+
+        {{-- Column 4: Events, SEO & Legal --}}
+        <div>
+            <h2 class="font-extrabold text-white text-sm uppercase tracking-wider mb-3">Events & SEO</h2>
+            <div class="grid gap-2 text-xs" style="color: #94a3b8;">
+                <a href="/hackfest-2026" class="hover:text-amber-400 transition-colors font-semibold text-white">HackFest 2026</a>
+                <a href="/academic-partnership" class="hover:text-amber-400 transition-colors">Academic Partnership</a>
+                <a href="/blog" class="hover:text-amber-400 transition-colors">Blog Insights</a>
+                <a href="{{ route('sitemap.html') }}" class="hover:text-amber-400 transition-colors">HTML Sitemap</a>
+                <a href="{{ route('sitemap') }}" target="_blank" class="hover:text-amber-400 transition-colors font-medium text-teal-300">XML Sitemap (SEO)</a>
+                <a href="{{ route('robots') }}" target="_blank" class="hover:text-amber-400 transition-colors">Robots.txt</a>
+                <a href="/terms-conditions" class="hover:text-amber-400 transition-colors mt-1">Terms & Conditions</a>
+                <a href="/privacy-policy" class="hover:text-amber-400 transition-colors">Privacy Policy</a>
             </div>
         </div>
     </div>
-    <div class="bih-container mt-10 text-sm text-white/70">Copyright 2026 Bengal IT Hub | {{ $siteBrand['company'] ?? config('bengalhub.brand.company') }} All rights reserved.</div>
+    <div class="bih-container mt-12 pt-6 border-t border-slate-800/80 flex flex-wrap justify-between items-center text-xs text-slate-400">
+        <div>Copyright &copy; 2026 Bengal IT Hub | {{ $siteBrand['company'] ?? config('bengalhub.brand.company') }} All rights reserved.</div>
+        <div class="flex gap-4 mt-2 sm:mt-0">
+            <a href="/privacy-policy" class="hover:text-amber-400 transition-colors">Privacy</a>
+            <a href="/terms-conditions" class="hover:text-amber-400 transition-colors">Terms</a>
+            <a href="{{ route('sitemap.html') }}" class="hover:text-amber-400 transition-colors">Sitemap</a>
+        </div>
+    </div>
 </footer>
+
+<script>
+    // Universal Frontend AJAX Form Interceptor & Automatic Fresh Refresh System
+    (function () {
+        if (!document.getElementById('bih-spin-style-fe')) {
+            var style = document.createElement('style');
+            style.id = 'bih-spin-style-fe';
+            style.innerHTML = '@keyframes bihSpinFE { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }';
+            document.head.appendChild(style);
+        }
+
+        document.addEventListener('submit', function (e) {
+            var form = e.target;
+
+            // Bypass AJAX if explicitly disabled or CSV/sitemap export
+            if (form.getAttribute('data-ajax') === 'false' || form.action.includes('/export') || form.action.includes('/sitemap')) {
+                return;
+            }
+
+            e.preventDefault();
+
+            var submitBtn = form.querySelector('button[type="submit"], input[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.75';
+                submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="animation:bihSpinFE 0.75s linear infinite;"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg> Submitting...</span>';
+            }
+
+            var formData = new FormData(form);
+            var fetchUrl = form.action || window.location.href;
+            var fetchMethod = (form.method || 'POST').toUpperCase();
+
+            fetch(fetchUrl, {
+                method: fetchMethod,
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || formData.get('_token') || ''
+                }
+            })
+            .then(function (response) {
+                if (response.redirected) {
+                    window.location.href = response.url;
+                } else {
+                    // Smooth reload page so fresh success state and data render cleanly without old state
+                    window.location.reload();
+                }
+            })
+            .catch(function () {
+                window.location.reload();
+            });
+        });
+    })();
+</script>
 </body>
 </html>

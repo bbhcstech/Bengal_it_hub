@@ -15,6 +15,7 @@ class IndustriesController extends Controller
                 'Bengal IT Hub builds technology solutions across Real Estate, Health Care, EdTech, Manufacturing, Logistics, Travel & Hospitality, Retail, Banking & Finance, Transportation, and Information Services.',
             ),
             'industries' => config('bengalhub.industries'),
+            'blocks' => \App\Models\ContentBlock::forPage('industries'),
         ]);
     }
 

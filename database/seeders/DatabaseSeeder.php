@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'hero_title' => 'Future Ready Bengal',
             'hero_highlight' => 'Bengal',
             'hero_intro' => 'Bengal IT Hub ignites Gen X innovation in Eastern India. We bridge fresh ideas to market reality through advanced IT solutions, digital engineering, talent empowerment, and The Bengal HackFest PRAGATI 2026.',
-            'hero_image' => 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85',
+            'hero_image' => '/assets/images/services/img_aa2ae4ff09.jpg',
             'device_eyebrow' => 'Grow Your Business Online',
             'device_title' => 'AI, SaaS, Cloud & Talent Delivery',
             'stats' => ['500+ Projects', '98% Client Satisfaction', '24/7 Support'],
@@ -135,7 +135,7 @@ class DatabaseSeeder extends Seeder
 
         $pages = [
             'vision' => ['Vision', 'Vision Section', 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.', [
-                'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                'image' => '/assets/images/partners/img_04c50eea96.jpg',
                 'image_alt' => 'Bengal IT Hub innovation workspace',
                 'cta_label' => 'Explore the vision',
                 'cta_url' => '/vision-2030',
@@ -148,7 +148,7 @@ class DatabaseSeeder extends Seeder
                 ],
             ]],
             'vision-2030' => ['Vision 2030', 'AI Powered Bengal', 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.', [
-                'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                'image' => '/assets/images/about/img_84ec28cf17.jpg',
                 'image_alt' => 'Digital technology lab representing Vision 2030',
                 'cta_label' => 'Open Vision 2030',
                 'cta_url' => '/vision-2030',
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
                 ],
             ]],
             'about-us' => ['About Us', 'About Our AI Talent Platform', 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.', [
-                'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                'image' => '/assets/images/about/img_47b8db1a52.jpg',
                 'image_alt' => 'Modern IT workspace for Bengal IT Hub',
                 'cta_label' => 'Read About Us',
                 'cta_url' => '/about-us',

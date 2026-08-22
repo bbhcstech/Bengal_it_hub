@@ -2,45 +2,45 @@
 
 @php
     $serviceImages = [
-        'tech-ed-fest' => 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80',
-        'educamp' => 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=80',
-        'eduverse-2' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=80',
-        'groomify' => 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80',
-        'ai-marketing' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
-        'biz-consultation' => 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80',
-        'biz-enablement' => 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80',
-        'e-collab-2' => 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=80',
-        'staff-augmentation' => 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80',
-        'corporate-operations-outsourcing' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80',
+        'tech-ed-fest' => '/assets/images/services/img_6d3bd52f03.jpg',
+        'educamp' => '/assets/images/services/img_ffe59e675e.jpg',
+        'eduverse-2' => '/assets/images/services/img_71d76adf03.jpg',
+        'groomify' => '/assets/images/services/img_f6c7c76565.jpg',
+        'ai-marketing' => '/assets/images/services/img_e08798fff8.jpg',
+        'biz-consultation' => '/assets/images/services/img_82361d5b1c.jpg',
+        'biz-enablement' => '/assets/images/partners/img_7b00bce70a.jpg',
+        'e-collab-2' => '/assets/images/partners/img_9e25d291af.jpg',
+        'staff-augmentation' => '/assets/images/services/img_7378e59f7c.jpg',
+        'corporate-operations-outsourcing' => '/assets/images/about/img_a7eac62f69.jpg',
     ];
 
     $impactCards = [
-        ['Scalable Cloud Solutions', 'Custom cloud-ready platforms designed for speed, security, and measurable business growth.', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=80'],
-        ['Tailored Software Platforms', 'SaaS products, web systems, and automation workflows aligned with real business operations.', 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=900&q=80'],
-        ['Driving Digital Growth', 'AI-led marketing, analytics, and digital strategy that helps brands scale with clarity.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80'],
-        ['Technology from Bengal', 'Global innovation powered by Bengal talent, industry collaboration, and future-ready execution.', 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80'],
+        ['Scalable Cloud Solutions', 'Custom cloud-ready platforms designed for speed, security, and measurable business growth.', '/assets/images/products/img_6c38a1de4a.jpg'],
+        ['Tailored Software Platforms', 'SaaS products, web systems, and automation workflows aligned with real business operations.', '/assets/images/products/img_1deef9ae99.jpg'],
+        ['Driving Digital Growth', 'AI-led marketing, analytics, and digital strategy that helps brands scale with clarity.', '/assets/images/services/img_e08798fff8.jpg'],
+        ['Technology from Bengal', 'Global innovation powered by Bengal talent, industry collaboration, and future-ready execution.', '/assets/images/services/img_82361d5b1c.jpg'],
     ];
 
     $industries = ['IT & Digital Services', 'SaaS & Cloud Solutions', 'FinTech', 'Healthcare', 'EdTech', 'Manufacturing', 'E-Commerce', 'Corporate Operations'];
     $stats = ['500+|Projects Done', '98%|Client Satisfaction', '24/7|Support', '10+|Team Members'];
     $hackfestImages = [
-        ['Tech Hackathon', 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80'],
-        ['Hackathon Fest', 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80'],
-        ['Hackathon India', 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=80'],
-        ['Hackathon Kolkata', 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=900&q=80'],
+        ['Tech Hackathon', '/assets/images/services/img_5e90cd0f7d.jpg'],
+        ['Hackathon Fest', '/assets/images/services/img_5a48d2b73f.jpg'],
+        ['Hackathon India', '/assets/images/services/img_7378e59f7c.jpg'],
+        ['Hackathon Kolkata', '/assets/images/services/img_fc087c8f44.jpg'],
     ];
 
     $ecosystemImages = [
-        ['Innovation Lab', 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85'],
-        ['Corporate Strategy', 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=85'],
-        ['Talent Development', 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=85'],
+        ['Innovation Lab', '/assets/images/partners/img_f6459c61e7.jpg'],
+        ['Corporate Strategy', '/assets/images/partners/img_e9c3de1c30.jpg'],
+        ['Talent Development', '/assets/images/services/img_9809f191ad.jpg'],
     ];
 
     $deliverySteps = [
-        ['Discover', 'We map goals, business needs, users, and growth opportunities before any build starts.', 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=85'],
-        ['Design', 'Clean product flows, UI planning, brand systems, and clear digital experiences for real users.', 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=85'],
-        ['Develop', 'Secure Laravel, SaaS, cloud, automation, and analytics systems built for performance.', 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85'],
-        ['Scale', 'Launch support, training, reporting, and growth campaigns that keep improving outcomes.', 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=900&q=85'],
+        ['Discover', 'We map goals, business needs, users, and growth opportunities before any build starts.', '/assets/images/partners/img_7b55a84bd4.jpg'],
+        ['Design', 'Clean product flows, UI planning, brand systems, and clear digital experiences for real users.', '/assets/images/services/img_255ae85c32.jpg'],
+        ['Develop', 'Secure Laravel, SaaS, cloud, automation, and analytics systems built for performance.', '/assets/images/services/img_3fbe52f220.jpg'],
+        ['Scale', 'Launch support, training, reporting, and growth campaigns that keep improving outcomes.', '/assets/images/services/img_c85dee0cb0.jpg'],
     ];
 
     $productCatalog = collect(config('bengalhub.products.items', []))->take(4);
@@ -71,7 +71,7 @@
             'blocks' => [
                 'eyebrow' => 'Vision Section',
                 'intro' => 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.',
-                'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                'image' => '/assets/images/partners/img_04c50eea96.jpg',
                 'image_alt' => 'Bengal IT Hub innovation workspace',
                 'cta_label' => 'Explore the vision',
                 'cta_url' => '/vision-2030',
@@ -89,7 +89,7 @@
             'blocks' => [
                 'eyebrow' => 'AI Powered Bengal',
                 'intro' => 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.',
-                'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                'image' => '/assets/images/about/img_84ec28cf17.jpg',
                 'image_alt' => 'Digital technology lab representing Vision 2030',
                 'cta_label' => 'Open Vision 2030',
                 'cta_url' => '/vision-2030',
@@ -107,7 +107,7 @@
             'blocks' => [
                 'eyebrow' => 'About Bengal IT Hub',
                 'intro' => 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.',
-                'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                'image' => '/assets/images/about/img_47b8db1a52.jpg',
                 'image_alt' => 'Modern IT workspace for Bengal IT Hub',
                 'cta_label' => 'Read About Us',
                 'cta_url' => '/about-us',
@@ -169,19 +169,17 @@
 
             {{-- Left: copy --}}
             <div>
-                <p class="bih-hp-eyebrow"><span class="bih-dot"></span>AI Hackathon | Bengal HackFest PRAGATI 2026</p>
+                <p class="bih-hp-eyebrow"><span class="bih-dot"></span>{{ $blocks['hero_eyebrow'] ?? 'AI Hackathon | Bengal HackFest PRAGATI 2026' }}</p>
                 <h1 class="bih-page-title">
-                    Future Ready<br>
-                    <em>Bengal</em> — Built<br>
-                    For The World
+                    {!! $blocks['hero_headline'] ?? ($home['hero_title'] ?? 'Future Ready<br><em>Bengal</em> — Built<br>For The World') !!}
                 </h1>
-                <p class="bih-lead mt-4">Bengal IT Hub ignites Zen X innovation in Eastern India. We bridge fresh ideas to market reality, exploring, incubating, and accelerating your future through technology, talent, and enterprise execution.</p>
+                <p class="bih-lead mt-4">{{ $blocks['hero_subheadline'] ?? ($home['hero_intro'] ?? 'Bengal IT Hub ignites Zen X innovation in Eastern India. We bridge fresh ideas to market reality, exploring, incubating, and accelerating your future through technology, talent, and enterprise execution.') }}</p>
                 <div class="bih-hero-cta">
-                    <a class="bih-hp-btn bih-hp-btn-primary" href="{{ route('contact') }}">
-                        Start a Conversation
+                    <a class="bih-hp-btn bih-hp-btn-primary" href="{{ $blocks['cta_primary_url'] ?? route('contact') }}">
+                        {{ $blocks['cta_primary_label'] ?? 'Start a Conversation' }}
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                    <a class="bih-hp-btn bih-hp-btn-outline" href="/hackfest-2026">HackFest PRAGATI 2026</a>
+                    <a class="bih-hp-btn bih-hp-btn-outline" href="{{ $blocks['cta_secondary_url'] ?? '/hackfest-2026' }}">{{ $blocks['cta_secondary_label'] ?? 'HackFest PRAGATI 2026' }}</a>
                     <a class="bih-hp-btn bih-hp-btn-outline" href="{{ route('services.index') }}">View Services</a>
                 </div>
             </div>
@@ -255,7 +253,7 @@
         {{-- Row 1: Mission --}}
         <div class="bih-zigzag-row bih-reveal">
             <div class="bih-zigzag-media">
-                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85"
+                <img src="/assets/images/services/img_f4f157ba2f.jpg"
                      alt="Bengal IT Hub mission — technology workspace"
                      width="900" height="675" loading="lazy" decoding="async">
             </div>
@@ -274,7 +272,7 @@
         {{-- Row 2: Vision (reversed) --}}
         <div class="bih-zigzag-row bih-reverse bih-reveal">
             <div class="bih-zigzag-media">
-                <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=85"
+                <img src="/assets/images/about/img_d2c14e0b2d.jpg"
                      alt="Vision 2030 — digital technology lab"
                      width="900" height="675" loading="lazy" decoding="async">
             </div>
@@ -303,22 +301,79 @@
             <p>Custom software, SaaS products, cloud services, and AI-driven insights — faster delivery, lower costs, and measurable results.</p>
         </div>
 
-        <div class="bih-svc-carousel bih-reveal">
-            @foreach($services as $slug => $service)
-                <a href="/{{ $slug }}" class="bih-svc-card" style="text-decoration: none;">
-                    <div class="bih-num-tag">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
-                    <h3>{{ $service['title'] }}</h3>
-                    <p>{{ $service['summary'] }}</p>
-                    <span style="font-family: var(--bih-font-heading); font-size: 0.82rem; font-weight: 700; color: var(--bih-brand); display: inline-flex; align-items: center; gap: 6px;">
-                        Learn more
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </span>
-                </a>
-            @endforeach
+        {{-- Swiper Automatic Service Carousel --}}
+        <div class="swiper bih-services-swiper bih-reveal" style="padding-bottom: 50px; position: relative;">
+            <div class="swiper-wrapper">
+                @foreach($services as $slug => $service)
+                    <div class="swiper-slide" style="height: auto;">
+                        <a href="/{{ $slug }}" class="bih-svc-card" style="text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 290px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 32px 26px; box-shadow: 0 4px 20px rgba(11,31,58,0.04); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+                            <div>
+                                <div class="bih-num-tag" style="font-family: var(--bih-font-display); font-size: 1.8rem; font-style: italic; font-weight: 700; color: #d4af37; margin-bottom: 14px;">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
+                                <h3 style="font-family: var(--bih-font-display); font-size: 1.28rem; font-weight: 700; color: #0b1f3a; margin: 0 0 12px; line-height: 1.35;">{{ $service['title'] }}</h3>
+                                <p style="font-family: var(--bih-font-body); font-size: 0.9rem; color: #475569; line-height: 1.65; margin: 0 0 20px;">{{ $service['summary'] }}</p>
+                            </div>
+                            <span style="font-family: var(--bih-font-heading); font-size: 0.85rem; font-weight: 700; color: #0f766e; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
+                                Learn more
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+            {{-- Swiper Pagination Dots --}}
+            <div class="swiper-pagination bih-svc-pagination" style="bottom: 8px;"></div>
         </div>
-        <p class="bih-carousel-hint">← Scroll to explore more services →</p>
+
+        {{-- Hint Text & Explore All Services CTA --}}
+        <div style="margin-top: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+            <p class="bih-carousel-hint" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 600; color: #475569; margin: 0; padding: 10px 24px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #cbd5e1; border-radius: 9999px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); backdrop-filter: blur(8px);">
+                <span>&larr;</span> Scroll or auto-play to explore more services <span>&rarr;</span>
+            </p>
+            <div>
+                <a class="bih-hp-btn bih-hp-btn-primary" href="{{ route('services.index') }}" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <span>Explore All Services</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof Swiper !== 'undefined') {
+            new Swiper('.bih-services-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 24,
+                loop: true,
+                speed: 800,
+                autoplay: {
+                    delay: 2800,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true
+                },
+                pagination: {
+                    el: '.bih-svc-pagination',
+                    clickable: true
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 24
+                    },
+                    992: {
+                        slidesPerView: 3,
+                        spaceBetween: 24
+                    },
+                    1200: {
+                        slidesPerView: 4,
+                        spaceBetween: 28
+                    }
+                }
+            });
+        }
+    });
+</script>
 
 {{-- ═══════════════════════════════════════════════════════════
      6. VISION 2030 DARK BAND — RING STATS
@@ -490,9 +545,9 @@
         {{-- Tech Innovation panel --}}
         <div class="bih-eco-panel bih-hp-grid-3" data-bih-eco-panel="tech">
             @foreach([
-                ['AI & Automation', 'Track practical AI, automation workflows, and new product ideas shaping business growth.', 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85'],
-                ['Cloud & Software', 'Read updates on scalable platforms, SaaS architecture, developer tools, and modern engineering practices.', 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85'],
-                ['Security & Digital Growth', 'Stay close to cybersecurity, analytics, digital strategy, and operational technology trends.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85'],
+                ['AI & Automation', 'Track practical AI, automation workflows, and new product ideas shaping business growth.', '/assets/images/products/img_3917871bb8.jpg'],
+                ['Cloud & Software', 'Read updates on scalable platforms, SaaS architecture, developer tools, and modern engineering practices.', '/assets/images/products/img_302b049826.jpg'],
+                ['Security & Digital Growth', 'Stay close to cybersecurity, analytics, digital strategy, and operational technology trends.', '/assets/images/services/img_6a795e7946.jpg'],
             ] as [$title, $body, $img])
                 <a href="{{ route('tech-innovation.index') }}" class="bih-hp-card" style="display:block; text-decoration:none;">
                     <img src="{{ $img }}" alt="{{ $title }}"
@@ -579,8 +634,8 @@
 
                 <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
                     <a class="bih-hp-btn bih-hp-btn-primary" href="/hackfest-2026/register">Register for HackFest 2026</a>
+                    <a class="bih-hp-btn bih-hp-btn-outline" href="/hackfest-2026">Explore HackFest 2026 &rarr;</a>
                     <a class="bih-hp-btn bih-hp-btn-outline" href="/sponsor-hackfest-2026">Partner With Us</a>
-                    <a class="bih-hp-btn bih-hp-btn-outline" href="/sponsor-form-hackfest-2026">Sponsors Request Meeting</a>
                 </div>
             </div>
 
@@ -608,24 +663,39 @@
         </div>
 
         <div class="bih-hp-grid-2 bih-reveal">
-            <a class="bih-hp-card" href="/tech-biz" style="display:block; text-decoration:none; overflow:hidden;">
-                <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=80"
-                     alt="TechBiz — business technology news" width="900" height="600"
-                     style="width:100%; height:200px; object-fit:cover; border-radius: var(--bih-radius-sm); margin-bottom:18px; display:block;"
-                     loading="lazy" decoding="async">
-                <div class="bih-badge-tag">TechBiz</div>
-                <h3>Business Technology Stories</h3>
-                <p>Business technology stories, innovation, and ecosystem updates from Bengal IT Hub's media channel.</p>
+            <a class="bih-hp-card" href="/tech-biz" style="display:flex; flex-direction:column; justify-space-between; text-decoration:none; overflow:hidden;">
+                <div>
+                    <img src="/assets/images/blog/img_a0de735bff.jpg"
+                         alt="TechBiz — business technology news" width="900" height="600"
+                         style="width:100%; height:200px; object-fit:cover; border-radius: var(--bih-radius-sm); margin-bottom:18px; display:block;"
+                         loading="lazy" decoding="async">
+                    <div class="bih-badge-tag">TechBiz</div>
+                    <h3>Business Technology Stories</h3>
+                    <p>Business technology stories, innovation, and ecosystem updates from Bengal IT Hub's media channel.</p>
+                </div>
+                <span style="margin-top: 16px; font-family: var(--bih-font-heading); font-size: 0.85rem; font-weight: 700; color: var(--bih-brand); display: inline-flex; align-items: center; gap: 5px;">
+                    Explore TechBiz Newsroom &rarr;
+                </span>
             </a>
-            <a class="bih-hp-card" href="{{ route('tech-innovation.index') }}" style="display:block; text-decoration:none; overflow:hidden;">
-                <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=900&q=80"
-                     alt="Tech Innovation — future technology insights" width="900" height="600"
-                     style="width:100%; height:200px; object-fit:cover; border-radius: var(--bih-radius-sm); margin-bottom:18px; display:block;"
-                     loading="lazy" decoding="async">
-                <div class="bih-badge-tag">Tech Innovation</div>
-                <h3>Emerging Technology & AI Insights</h3>
-                <p>Emerging technology, AI, cloud, cybersecurity, and future-ready ideas continuously updated.</p>
+            <a class="bih-hp-card" href="{{ route('tech-innovation.index') }}" style="display:flex; flex-direction:column; justify-space-between; text-decoration:none; overflow:hidden;">
+                <div>
+                    <img src="/assets/images/blog/img_6137e2ece3.jpg"
+                         alt="Tech Innovation — future technology insights" width="900" height="600"
+                         style="width:100%; height:200px; object-fit:cover; border-radius: var(--bih-radius-sm); margin-bottom:18px; display:block;"
+                         loading="lazy" decoding="async">
+                    <div class="bih-badge-tag">Tech Innovation</div>
+                    <h3>Emerging Technology &amp; AI Insights</h3>
+                    <p>Emerging technology, AI, cloud, cybersecurity, and future-ready ideas continuously updated.</p>
+                </div>
+                <span style="margin-top: 16px; font-family: var(--bih-font-heading); font-size: 0.85rem; font-weight: 700; color: var(--bih-brand); display: inline-flex; align-items: center; gap: 5px;">
+                    Explore Tech Innovation Hub &rarr;
+                </span>
             </a>
+        </div>
+
+        <div style="text-align:center; margin-top: 32px;" class="bih-reveal">
+            <a class="bih-hp-btn bih-hp-btn-primary" href="/tech-biz">Explore TechBiz</a>
+            <a class="bih-hp-btn bih-hp-btn-outline" style="margin-left: 12px;" href="{{ route('tech-innovation.index') }}">Explore Tech Innovation</a>
         </div>
     </div>
 </section>
@@ -648,9 +718,14 @@
                 ['FAQ', '/faq', 'Answers about services, events, partnerships, and contact options.'],
                 ['Blogs', route('blog.index'), 'Insights, announcements, and future Bengal IT Hub stories.'],
             ] as [$title, $href, $body])
-                <a href="{{ $href }}" class="bih-hp-card" style="display:block; text-decoration:none;">
-                    <h3>{{ $title }}</h3>
-                    <p>{{ $body }}</p>
+                <a href="{{ $href }}" class="bih-hp-card" style="display:flex; flex-direction:column; justify-content:space-between; text-decoration:none; height:100%;">
+                    <div>
+                        <h3>{{ $title }}</h3>
+                        <p>{{ $body }}</p>
+                    </div>
+                    <span style="margin-top:16px; font-family: var(--bih-font-heading); font-size:0.85rem; font-weight:700; color: var(--bih-brand); display:inline-flex; align-items:center; gap:5px;">
+                        Explore {{ $title }} &rarr;
+                    </span>
                 </a>
             @endforeach
         </div>
@@ -658,24 +733,140 @@
 </section>
 
 {{-- ═══════════════════════════════════════════════════════════
-     15. CONTACT CTA — Zig-zag
+     15. CONTACT FORM & GOOGLE MAPS OFFICE LOCATION
      ═══════════════════════════════════════════════════════════ --}}
-<section class="bih-hp-section bih-hp-section-alt">
+<section class="bih-hp-section bih-hp-section-alt" id="contact">
     <div class="bih-hp-container">
-        <div class="bih-zigzag-row bih-reveal">
-            <div>
-                <div class="bih-hp-eyebrow"><span class="bih-dot"></span>Let's Connect</div>
-                <h2 style="font-family: var(--bih-font-display); font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight:600; color:var(--bih-text-primary); margin:0 0 0.5em; line-height:1.2;">Ready to Grow Your Business?</h2>
-                <p style="color: var(--bih-text-secondary); font-family:var(--bih-font-body); line-height:1.75;">{{ $siteBrand['address'] ?? config('bengalhub.brand.address') }}</p>
-                <p style="margin-top: 12px; font-family:var(--bih-font-heading); font-weight:800; color: var(--bih-text-primary); font-size: 1.1rem;">{{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}</p>
-                <div style="margin-top: 24px; display:flex; gap:12px; flex-wrap:wrap;">
-                    <a class="bih-hp-btn bih-hp-btn-primary" href="{{ route('contact') }}">Contact Us Today</a>
-                    <a class="bih-hp-btn bih-hp-btn-outline" href="tel:{{ preg_replace('/[^0-9+]/', '', $siteBrand['phone'] ?? config('bengalhub.brand.phone')) }}">Call Now</a>
+        <div class="bih-hp-section-head bih-reveal">
+            <div class="bih-hp-eyebrow"><span class="bih-dot"></span>Let's Connect</div>
+            <h2>Ready to Grow Your Business? Contact Us Today</h2>
+            <p>Share your project goals, explore partnerships, or visit our office in Kolkata. Use the map below to get instant Google Maps directions.</p>
+        </div>
+
+        <div style="display: grid; gap: 32px; grid-template-columns: 1fr;" class="bih-reveal">
+            <div class="bih-hp-grid-2" style="gap: 32px; align-items: start;">
+                {{-- Form Card --}}
+                <div class="bih-hp-card" style="padding: 32px; border-radius: 20px;">
+                    <form method="POST" action="{{ route('leads.store') }}">
+                        @csrf
+                        <input type="hidden" name="form_type" value="contact">
+
+                        <div style="display: grid; gap: 18px;">
+                            <div>
+                                <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">What are you looking for?</label>
+                                <select name="subject" class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem;">
+                                    <option value="Software / Web / App Development">Software / Web / App Development</option>
+                                    <option value="Staff Augmentation">Staff Augmentation</option>
+                                    <option value="AI Marketing">AI Marketing</option>
+                                    <option value="Business Consultation">Business Consultation</option>
+                                    <option value="Partnership">Partnership</option>
+                                    <option value="HackFest PRAGATI 2026">HackFest PRAGATI 2026</option>
+                                    <option value="Something Else">Something Else</option>
+                                </select>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                                <div>
+                                    <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">Full Name *</label>
+                                    <input type="text" name="name" required placeholder="Your full name" class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem;">
+                                </div>
+                                <div>
+                                    <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">Email Address *</label>
+                                    <input type="email" name="email" required placeholder="you@company.com" class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem;">
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                                <div>
+                                    <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">Phone</label>
+                                    <input type="text" name="phone" placeholder="+91 ..." class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem;">
+                                </div>
+                                <div>
+                                    <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">Company / Organization</label>
+                                    <input type="text" name="company" placeholder="Company name" class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem;">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label style="display:block; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 700; color: var(--bih-text-primary); margin-bottom: 6px;">Tell us more about your project</label>
+                                <textarea name="message" rows="4" placeholder="What are you trying to achieve?" class="bih-field" style="width:100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--bih-border); background: var(--bih-surface); color: var(--bih-text-primary); font-size: 0.92rem; resize: vertical;"></textarea>
+                            </div>
+
+                            {{-- Google reCAPTCHA Security Check --}}
+                            <div>
+                                <label style="display:inline-flex; align-items:center; gap:6px; font-family: var(--bih-font-heading); font-size: 0.82rem; font-weight: 700; color: var(--bih-text-secondary); margin-bottom: 8px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                                    Security Verification
+                                </label>
+                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                                @error('g-recaptcha-response')
+                                    <p style="color: #ef4444; font-size: 0.82rem; font-weight: 600; margin-top: 6px;">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <button type="submit" class="bih-hp-btn bih-hp-btn-primary" style="width:100%; justify-content:center; padding: 14px 28px; font-size: 1rem;">
+                                Send Message Today &rarr;
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                {{-- Office & Social Info Card --}}
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                    <div class="bih-hp-card" style="padding: 28px; border-radius: 20px;">
+                        <h3 style="font-family: var(--bih-font-display); font-size: 1.25rem; font-weight: 700; color: var(--bih-text-primary); margin: 0 0 12px;">Kolkata Headquarters</h3>
+                        <p style="font-family: var(--bih-font-body); font-size: 0.94rem; color: var(--bih-text-secondary); line-height: 1.65; margin: 0 0 16px;">
+                            {{ $siteBrand['address'] ?? config('bengalhub.brand.address') }}
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 8px; font-family: var(--bih-font-heading); font-size: 0.9rem; font-weight: 700;">
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteBrand['phone'] ?? config('bengalhub.brand.phone')) }}" style="color: var(--bih-brand); text-decoration: none;">
+                                Phone: {{ $siteBrand['phone'] ?? config('bengalhub.brand.phone') }}
+                            </a>
+                            <a href="mailto:{{ config('bengalhub.brand.email') }}" style="color: var(--bih-brand); text-decoration: none;">
+                                Email: {{ config('bengalhub.brand.email') }}
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="bih-hp-card" style="padding: 28px; border-radius: 20px;">
+                        <h3 style="font-family: var(--bih-font-display); font-size: 1.15rem; font-weight: 700; color: var(--bih-text-primary); margin: 0 0 8px;">Connect With Us</h3>
+                        <p style="font-family: var(--bih-font-body); font-size: 0.88rem; color: var(--bih-text-secondary); margin: 0 0 16px;">Follow Bengal IT Hub across social media channels for updates and announcements.</p>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                            @foreach(($siteBrand['socials'] ?? config('bengalhub.brand.socials')) as $label => $href)
+                                <a class="bih-social-icon" href="{{ $href }}" target="_blank" rel="noopener" aria-label="{{ $label }}" title="{{ $label }}">
+                                    <span>{{ Str::substr($label, 0, 2) }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="bih-zigzag-media">
-                <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=85"
-                     alt="Contact Bengal IT Hub team" width="900" height="675" loading="lazy" decoding="async">
+
+            {{-- Google Map Embed with Directions Button --}}
+            <div class="bih-hp-card" style="padding: 24px; border-radius: 20px; background: var(--bih-surface); border: 1px solid var(--bih-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+                    <div>
+                        <h3 style="font-family: var(--bih-font-display); font-size: 1.15rem; font-weight: 700; color: var(--bih-text-primary); margin: 0 0 4px;">Office Location Map</h3>
+                        <p style="font-size: 0.88rem; color: var(--bih-text-secondary); margin: 0;">3rd Floor, Satavisha Bldg, 11 Hospital Link Road, Santoshpur, Kolkata 700075</p>
+                    </div>
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=11+Hospital+Link+Road,+Santoshpur,+Kolkata,+West+Bengal+700075" target="_blank" rel="noopener" class="bih-hp-btn bih-hp-btn-primary" style="font-size: 0.85rem; padding: 10px 20px; display: inline-flex; align-items: center; gap: 8px;">
+                        <span>Get Directions on Google Maps</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                    </a>
+                </div>
+                <div style="width: 100%; height: 360px; border-radius: 12px; overflow: hidden; border: 1px solid var(--bih-border);">
+                    <iframe
+                        title="Bengal IT Hub Office Location Map"
+                        src="https://maps.google.com/maps?q=11+Hospital+Link+Road,+Santoshpur,+Kolkata,+West+Bengal+700075&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
@@ -704,6 +895,11 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+
+        <div style="text-align:center; margin-top: 36px;" class="bih-reveal">
+            <a class="bih-hp-btn bih-hp-btn-primary" href="/faq">Browse All FAQs &rarr;</a>
+            <a class="bih-hp-btn bih-hp-btn-outline" style="margin-left: 12px;" href="{{ route('contact') }}">Contact Us &rarr;</a>
         </div>
     </div>
 </section>

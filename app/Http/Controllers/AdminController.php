@@ -21,6 +21,7 @@ use App\Services\RssImportService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -39,6 +40,11 @@ class AdminController extends Controller
                 'services' => Service::count(),
                 'events' => Event::count(),
                 'posts' => BlogPost::count(),
+                'products' => \App\Models\Product::count(),
+                'portfolio' => \App\Models\PortfolioProject::count(),
+                'team' => \App\Models\TeamMember::count(),
+                'testimonials' => \App\Models\Testimonial::count(),
+                'seo' => \App\Models\SeoMeta::count(),
             ],
         ]);
     }
@@ -210,7 +216,7 @@ class AdminController extends Controller
                 'blocks' => [
                     'eyebrow' => 'Vision Section',
                     'intro' => 'Two focused pathways introduce the long-term Bengal IT Hub direction and the company behind it.',
-                    'image' => 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=88',
+                    'image' => '/assets/images/partners/img_04c50eea96.jpg',
                     'image_alt' => 'Bengal IT Hub innovation workspace',
                     'cta_label' => 'Explore the vision',
                     'cta_url' => '/vision-2030',
@@ -228,7 +234,7 @@ class AdminController extends Controller
                 'blocks' => [
                     'eyebrow' => 'AI Powered Bengal',
                     'intro' => 'Vision 2030 positions Bengal IT Hub as Bengal AI Gigafactory, transforming local talent into globally deployable AI professionals through industrial-scale skilling, staff augmentation, and enterprise collaboration.',
-                    'image' => 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=900&q=88',
+                    'image' => '/assets/images/about/img_84ec28cf17.jpg',
                     'image_alt' => 'Digital technology lab representing Vision 2030',
                     'cta_label' => 'Open Vision 2030',
                     'cta_url' => '/vision-2030',
@@ -246,7 +252,7 @@ class AdminController extends Controller
                 'blocks' => [
                     'eyebrow' => 'About Bengal IT Hub',
                     'intro' => 'Bengal IT Hub delivers globally deployable AI and technology talent through industry-aligned skilling, real-world experience, and enterprise-ready execution.',
-                    'image' => 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=88',
+                    'image' => '/assets/images/about/img_47b8db1a52.jpg',
                     'image_alt' => 'Modern IT workspace for Bengal IT Hub',
                     'cta_label' => 'Read About Us',
                     'cta_url' => '/about-us',
@@ -383,6 +389,17 @@ class AdminController extends Controller
     {
         $query = Lead::with('event')->latest();
 
+        if ($request->filled('search')) {
+            $search = $request->string('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('subject', 'like', "%{$search}%")
+                  ->orWhere('message', 'like', "%{$search}%");
+            });
+        }
+
         if ($request->filled('form_type')) {
             $query->where('form_type', $request->string('form_type'));
         }
@@ -391,33 +408,121 @@ class AdminController extends Controller
             $query->where('status', $request->string('status'));
         }
 
+        $perPage = (int) $request->input('per_page', 25);
+        if (!in_array($perPage, [10, 25, 50, 100], true)) {
+            $perPage = 25;
+        }
+
         return view('admin.leads.index', [
-            'leads' => $query->paginate(20)->withQueryString(),
+            'leads' => $query->paginate($perPage)->withQueryString(),
             'formTypes' => Lead::select('form_type')->distinct()->pluck('form_type'),
+            'totalCount' => Lead::count(),
+            'newCount' => Lead::where('status', 'new')->count(),
+            'contactedCount' => Lead::where('status', 'contacted')->count(),
+            'closedCount' => Lead::where('status', 'closed')->count(),
+            'archivedCount' => Lead::where('status', 'archived')->count(),
         ]);
     }
 
     public function updateLead(Request $request, Lead $lead): RedirectResponse
     {
         $data = $request->validate([
-            'status' => ['required', 'in:new,contacted,closed'],
+            'status' => ['required', 'in:new,contacted,archived,closed'],
             'notes' => ['nullable', 'string'],
         ]);
 
         $lead->update($data);
         $this->log('updated', $lead);
 
-        return back()->with('status', 'Lead updated.');
+        return back()->with('status', 'Lead updated successfully.');
     }
 
-    public function exportLeads(): StreamedResponse
+    public function deleteLead(Lead $lead): RedirectResponse
     {
-        return response()->streamDownload(function () {
+        $this->log('deleted', $lead, ['name' => $lead->name, 'email' => $lead->email]);
+        $lead->delete();
+
+        return back()->with('status', 'Lead entry deleted.');
+    }
+
+    public function bulkLeadAction(Request $request)
+    {
+        $action = $request->input('action');
+        $ids = array_filter((array) $request->input('ids', []));
+
+        if (empty($ids)) {
+            return back()->with('error', 'Please select at least one item from the table.');
+        }
+
+        if ($action === 'export') {
+            return response()->streamDownload(function () use ($ids) {
+                $out = fopen('php://output', 'w');
+                fputcsv($out, ['ID', 'Form Type', 'Name', 'Email', 'Phone', 'Subject', 'Message', 'Status', 'Notes', 'Created At']);
+                Lead::whereIn('id', $ids)->orderBy('id')->chunk(200, function ($leads) use ($out) {
+                    foreach ($leads as $lead) {
+                        fputcsv($out, [$lead->id, $lead->form_type, $lead->name, $lead->email, $lead->phone, $lead->subject, $lead->message, $lead->status, $lead->notes, $lead->created_at]);
+                    }
+                });
+                fclose($out);
+            }, 'bengal-it-hub-selected-leads.csv');
+        }
+
+        if ($action === 'delete') {
+            Lead::whereIn('id', $ids)->delete();
+            return back()->with('status', count($ids) . ' leads deleted successfully.');
+        }
+
+        if (in_array($action, ['new', 'contacted', 'archived', 'closed'], true)) {
+            Lead::whereIn('id', $ids)->update(['status' => $action]);
+            return back()->with('status', count($ids) . ' leads updated to ' . Str::headline($action) . '.');
+        }
+
+        return back()->with('error', 'Invalid bulk action.');
+    }
+
+    public function replyLead(Request $request, Lead $lead): RedirectResponse
+    {
+        $data = $request->validate([
+            'reply_subject' => ['required', 'string', 'max:200'],
+            'reply_message' => ['required', 'string'],
+        ]);
+
+        if ($lead->email) {
+            try {
+                Mail::raw($data['reply_message'], function ($m) use ($lead, $data) {
+                    $m->to($lead->email, $lead->name)->subject($data['reply_subject']);
+                });
+            } catch (\Throwable $e) {
+                // Ignore mail sending failure on unconfigured local environments
+            }
+        }
+
+        $lead->update([
+            'status' => 'contacted',
+            'notes' => trim(($lead->notes ? $lead->notes . "\n\n" : '') . '[' . now()->format('d M Y H:i') . ' Email Reply]: ' . $data['reply_message']),
+        ]);
+
+        return back()->with('status', 'Email reply recorded and sent to ' . $lead->email . '.');
+    }
+
+    public function exportLeads(Request $request): StreamedResponse
+    {
+        $query = Lead::latest();
+
+        if ($request->filled('form_type')) {
+            $query->where('form_type', $request->string('form_type'));
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->string('status'));
+        }
+
+        return response()->streamDownload(function () use ($query) {
             $out = fopen('php://output', 'w');
-            fputcsv($out, ['ID', 'Type', 'Name', 'Email', 'Phone', 'Status', 'Subject', 'Message', 'Created']);
-            Lead::orderBy('id')->chunk(200, function ($leads) use ($out) {
+            fputcsv($out, ['ID', 'Form Type', 'Name', 'Email', 'Phone', 'Subject', 'Message', 'Status', 'Notes', 'Created At']);
+            $query->chunk(200, function ($leads) use ($out) {
                 foreach ($leads as $lead) {
-                    fputcsv($out, [$lead->id, $lead->form_type, $lead->name, $lead->email, $lead->phone, $lead->status, $lead->subject, $lead->message, $lead->created_at]);
+                    fputcsv($out, [$lead->id, $lead->form_type, $lead->name, $lead->email, $lead->phone, $lead->subject, $lead->message, $lead->status, $lead->notes, $lead->created_at]);
                 }
             });
             fclose($out);

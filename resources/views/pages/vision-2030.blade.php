@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @php
-    $heroImage = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1400&q=88';
-    $labImage = 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1200&q=88';
-    $talentImage = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=88';
-    $startupImage = 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=900&q=88';
+    $heroImage = '/assets/images/partners/img_2839c3b186.jpg';
+    $labImage = '/assets/images/about/img_fc813def9f.jpg';
+    $talentImage = '/assets/images/services/img_1980b63e07.jpg';
+    $startupImage = '/assets/images/services/img_38cfcd2839.jpg';
 
     $goals = [
         ['icon' => 'graduation', 'value' => '100,000+', 'label' => 'AI-ready professionals', 'note' => 'Students, graduates, and working professionals trained for real industry roles.'],
@@ -28,18 +28,18 @@
     ];
 
     $focusAreas = [
-        ['title' => 'Artificial Intelligence', 'body' => 'Intelligent systems that help businesses predict, automate, personalize, and make better decisions.', 'image' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Machine Learning', 'body' => 'Model-driven solutions for classification, forecasting, recommendations, analytics, and pattern discovery.', 'image' => 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Generative AI', 'body' => 'AI content systems, copilots, chat interfaces, document automation, and knowledge-driven workflows.', 'image' => 'https://images.unsplash.com/photo-1674027444485-cec3da58eef4?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Data Science', 'body' => 'Dashboards, data pipelines, insights, analytics models, and business intelligence for practical decisions.', 'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Cloud Computing', 'body' => 'Cloud-ready architecture, scalable hosting, integrations, APIs, deployment support, and secure operations.', 'image' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Cybersecurity', 'body' => 'Security awareness, secure development practices, risk reduction, monitoring, and protection-first systems.', 'image' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Robotics', 'body' => 'Automation concepts, robotics learning, prototyping pathways, and intelligent machine interaction.', 'image' => 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'IoT', 'body' => 'Connected devices, sensors, data dashboards, monitoring products, and automation workflows.', 'image' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Quantum Computing', 'body' => 'Foundational learning, emerging research awareness, future computing readiness, and experimentation culture.', 'image' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'AR/VR', 'body' => 'Immersive learning, virtual experiences, simulations, product visualization, and interactive digital environments.', 'image' => 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Product Engineering', 'body' => 'MVP planning, UX flows, software architecture, build cycles, testing, and launch-ready product systems.', 'image' => 'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=88'],
-        ['title' => 'Digital Transformation', 'body' => 'Modern tools, business process automation, digital strategy, operational platforms, and growth systems.', 'image' => 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=88'],
+        ['title' => 'Artificial Intelligence', 'body' => 'Intelligent systems that help businesses predict, automate, personalize, and make better decisions.', 'image' => '/assets/images/products/img_492dbbb829.jpg'],
+        ['title' => 'Machine Learning', 'body' => 'Model-driven solutions for classification, forecasting, recommendations, analytics, and pattern discovery.', 'image' => '/assets/images/services/img_08aed8e613.jpg'],
+        ['title' => 'Generative AI', 'body' => 'AI content systems, copilots, chat interfaces, document automation, and knowledge-driven workflows.', 'image' => '/assets/images/services/img_a071cf3d6d.jpg'],
+        ['title' => 'Data Science', 'body' => 'Dashboards, data pipelines, insights, analytics models, and business intelligence for practical decisions.', 'image' => '/assets/images/services/img_06107bce75.jpg'],
+        ['title' => 'Cloud Computing', 'body' => 'Cloud-ready architecture, scalable hosting, integrations, APIs, deployment support, and secure operations.', 'image' => '/assets/images/products/img_5a8c80620d.jpg'],
+        ['title' => 'Cybersecurity', 'body' => 'Security awareness, secure development practices, risk reduction, monitoring, and protection-first systems.', 'image' => '/assets/images/services/img_6ca91fafdb.jpg'],
+        ['title' => 'Robotics', 'body' => 'Automation concepts, robotics learning, prototyping pathways, and intelligent machine interaction.', 'image' => '/assets/images/services/img_483c3c1480.jpg'],
+        ['title' => 'IoT', 'body' => 'Connected devices, sensors, data dashboards, monitoring products, and automation workflows.', 'image' => '/assets/images/services/img_434e697d1d.jpg'],
+        ['title' => 'Quantum Computing', 'body' => 'Foundational learning, emerging research awareness, future computing readiness, and experimentation culture.', 'image' => '/assets/images/services/img_00e22fc1f0.jpg'],
+        ['title' => 'AR/VR', 'body' => 'Immersive learning, virtual experiences, simulations, product visualization, and interactive digital environments.', 'image' => '/assets/images/services/img_94f7583cb7.jpg'],
+        ['title' => 'Product Engineering', 'body' => 'MVP planning, UX flows, software architecture, build cycles, testing, and launch-ready product systems.', 'image' => '/assets/images/services/img_4e2b1a575e.jpg'],
+        ['title' => 'Digital Transformation', 'body' => 'Modern tools, business process automation, digital strategy, operational platforms, and growth systems.', 'image' => '/assets/images/partners/img_5a330f6608.jpg'],
     ];
 
     $outcomes = [

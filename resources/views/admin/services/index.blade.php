@@ -1,37 +1,65 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-page-header">
+<div class="page-header" style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
     <div>
-        <p class="text-sm font-black uppercase text-teal-700">Content Modules</p>
-        <h1>Services</h1>
+        <h1 style="margin:0;">Services Management</h1>
+        <p style="margin:4px 0 0;color:var(--a-text-muted);font-size:0.88rem;">Manage IT services, kicker subtitles, service features, and SEO metadata.</p>
     </div>
-    <a class="rounded bg-teal-700 px-4 py-2 font-bold text-white" href="{{ route('admin.services.create') }}">Add Service</a>
+    <a href="{{ route('admin.services.create') }}" class="btn btn-gold">+ Add Service</a>
 </div>
 
-<div class="overflow-hidden rounded-md bg-white shadow-sm">
-    <table class="w-full text-left text-sm">
-        <thead class="bg-slate-100">
+<div class="a-card">
+    <table class="a-table">
+        <thead>
             <tr>
-                <th class="p-4">Title</th>
-                <th class="p-4">Status</th>
-                <th class="p-4">Featured</th>
-                <th class="p-4">Order</th>
-                <th class="p-4"></th>
+                <th style="width:70px;">Order</th>
+                <th>Service Title</th>
+                <th>Kicker Subtitle</th>
+                <th>Featured</th>
+                <th>Status</th>
+                <th style="text-align:right;">Actions</th>
             </tr>
         </thead>
         <tbody>
-        @foreach($services as $service)
-            <tr class="border-t border-slate-200">
-                <td class="p-4 font-black">{{ $service->title }}<div class="text-xs font-normal text-slate-500">/{{ $service->slug }}</div></td>
-                <td class="p-4"><span class="rounded-full bg-teal-50 px-3 py-1 text-xs font-black uppercase text-teal-800">{{ $service->status }}</span></td>
-                <td class="p-4">{{ $service->is_featured ? 'Yes' : 'No' }}</td>
-                <td class="p-4">{{ $service->sort_order }}</td>
-                <td class="p-4 text-right">
-                    <a class="font-bold text-teal-700" href="{{ route('admin.services.edit', $service) }}">Edit</a>
+        @forelse($services as $service)
+            <tr>
+                <td><strong>#{{ $service->sort_order }}</strong></td>
+                <td>
+                    <strong>{{ $service->title }}</strong>
+                    <div style="font-size:0.78rem;color:var(--a-text-muted);">/services/{{ $service->slug }}</div>
+                </td>
+                <td>{{ $service->kicker ?: '—' }}</td>
+                <td>
+                    @if($service->is_featured)
+                        <span class="badge badge-gold">Featured</span>
+                    @else
+                        <span style="color:var(--a-text-muted);">&mdash;</span>
+                    @endif
+                </td>
+                <td>
+                    @if($service->status === 'published')
+                        <span class="badge badge-success">Published</span>
+                    @else
+                        <span class="badge badge-muted">Draft</span>
+                    @endif
+                </td>
+                <td style="text-align:right;">
+                    <div style="display:inline-flex;gap:6px;">
+                        <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline btn-sm">Edit</a>
+                        <form method="POST" action="{{ route('admin.services.delete', $service) }}" onsubmit="return confirm('Delete this service?');" style="margin:0;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr>
+                <td colspan="6" style="text-align:center;padding:30px;color:var(--a-text-muted);">No services created yet.</td>
+            </tr>
+        @endforelse
         </tbody>
     </table>
 </div>

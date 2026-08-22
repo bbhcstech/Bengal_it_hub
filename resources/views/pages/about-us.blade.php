@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @php
-    $heroImage = 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1500&q=88';
-    $officeImage = 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=88';
-    $teamImage = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=88';
-    $strategyImage = 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=88';
+    $heroImage = '/assets/images/services/img_8b29a90932.jpg';
+    $officeImage = '/assets/images/about/img_f6a814501d.jpg';
+    $teamImage = '/assets/images/services/img_e46522408f.jpg';
+    $strategyImage = '/assets/images/partners/img_5a330f6608.jpg';
 
     $stats = [
         ['value' => '500+', 'label' => 'Projects delivered'],
@@ -24,49 +24,49 @@
         [
             'title' => 'Software Development',
             'body' => 'Custom business software, CRM tools, admin panels, automation systems, SaaS platforms, and secure internal applications.',
-            'image' => 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_d5e6ae98ce.jpg',
             'icon' => 'chip',
         ],
         [
             'title' => 'Web Development',
             'body' => 'Fast, responsive, SEO-ready websites, Laravel applications, company portals, landing pages, and high-converting digital experiences.',
-            'image' => 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_ab94acd68f.jpg',
             'icon' => 'globe',
         ],
         [
             'title' => 'App Development',
             'body' => 'Mobile-first product planning, customer apps, business apps, dashboards, booking systems, and connected digital workflows.',
-            'image' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_7d4c76a2b6.jpg',
             'icon' => 'rocket',
         ],
         [
             'title' => 'IoT Product Build',
             'body' => 'Connected device concepts, sensor dashboards, monitoring systems, automation prototypes, and data-driven IoT product workflows.',
-            'image' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_434e697d1d.jpg',
             'icon' => 'flask',
         ],
         [
             'title' => 'Digital Marketing',
             'body' => 'Performance marketing, SEO, social campaigns, brand content, analytics, lead generation, and AI-assisted growth strategy.',
-            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_06107bce75.jpg',
             'icon' => 'target',
         ],
         [
             'title' => 'Personal Product Build',
             'body' => 'Founder MVPs, portfolio products, creator platforms, personal brand websites, learning products, and launch-ready prototypes.',
-            'image' => 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_156006035a.jpg',
             'icon' => 'briefcase',
         ],
         [
             'title' => 'Generative AI',
             'body' => 'AI content tools, chat interfaces, workflow assistants, document automation, knowledge systems, and business AI integrations.',
-            'image' => 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/products/img_492dbbb829.jpg',
             'icon' => 'chip',
         ],
         [
             'title' => 'Agentic AI',
             'body' => 'AI agents that can plan, call tools, support operations, automate tasks, qualify leads, and assist teams with repeatable workflows.',
-            'image' => 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=88',
+            'image' => '/assets/images/services/img_483c3c1480.jpg',
             'icon' => 'target',
         ],
     ];

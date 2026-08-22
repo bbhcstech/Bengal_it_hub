@@ -9,6 +9,19 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\SeoController;
 use App\Http\Controllers\TechInnovationController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\DifferentiatorController;
+use App\Http\Controllers\Admin\ProcessStepController;
+use App\Http\Controllers\Admin\PortfolioProjectController;
+use App\Http\Controllers\Admin\TeamMemberController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TechStackController;
+use App\Http\Controllers\Admin\ChatbotQaController;
+use App\Http\Controllers\Admin\ContentBlockController;
+use App\Http\Controllers\Admin\SeoMetaController;
+use App\Http\Controllers\Admin\RedirectController;
+use App\Http\Controllers\Admin\TemplateEditorController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -102,6 +115,9 @@ Route::middleware('admin')->prefix('bih-console')->name('admin.')->group(functio
         Route::get('/leads', [AdminController::class, 'leads'])->name('leads');
         Route::get('/leads/export', [AdminController::class, 'exportLeads'])->name('leads.export');
         Route::put('/leads/{lead}', [AdminController::class, 'updateLead'])->name('leads.update');
+        Route::delete('/leads/{lead}', [AdminController::class, 'deleteLead'])->name('leads.delete');
+        Route::post('/leads/bulk', [AdminController::class, 'bulkLeadAction'])->name('leads.bulk');
+        Route::post('/leads/{lead}/reply', [AdminController::class, 'replyLead'])->name('leads.reply');
     });
 
     Route::middleware('admin:settings')->group(function () {
@@ -119,6 +135,30 @@ Route::middleware('admin')->prefix('bih-console')->name('admin.')->group(functio
         Route::post('/rss-sources/{rssSource}/sync', [AdminController::class, 'syncRssSource'])->name('rss-sources.sync');
         Route::post('/rss-sources/sync-all', [AdminController::class, 'syncAllRssSources'])->name('rss-sources.sync-all');
     });
+
+    // Sibiri Innovation Integrated Modules
+    Route::resource('products', AdminProductController::class)->except('show');
+    Route::resource('differentiators', DifferentiatorController::class)->except('show');
+    Route::resource('process-steps', ProcessStepController::class)->except('show')->parameters(['process-steps' => 'processStep']);
+    Route::resource('portfolio', PortfolioProjectController::class)->except('show')->parameters(['portfolio' => 'portfolio']);
+    Route::resource('team', TeamMemberController::class)->except('show')->parameters(['team' => 'team']);
+    Route::resource('testimonials', TestimonialController::class)->except('show');
+    Route::resource('tech-stack', TechStackController::class)->except('show')->parameters(['tech-stack' => 'techStack']);
+    Route::resource('chatbot', ChatbotQaController::class)->except('show');
+
+    Route::get('/content/{page?}', [ContentBlockController::class, 'index'])->name('content.index');
+    Route::put('/content/{page}', [ContentBlockController::class, 'update'])->name('content.update');
+    Route::get('/content/{page}/create', [ContentBlockController::class, 'create'])->name('content.create');
+    Route::post('/content/{page}', [ContentBlockController::class, 'store'])->name('content.store');
+    Route::delete('/content-block/{block}', [ContentBlockController::class, 'destroy'])->name('content.destroy');
+
+    Route::get('/template-editor', [TemplateEditorController::class, 'index'])->name('template-editor.index');
+    Route::put('/template-editor', [TemplateEditorController::class, 'update'])->name('template-editor.update');
+
+    Route::resource('seo', SeoMetaController::class)->except('show');
+    Route::resource('redirects', RedirectController::class)->except('show');
+    Route::resource('users', AdminUserController::class)->except(['show', 'edit', 'update']);
 });
 
 Route::get('/{slug}', [PageController::class, 'showBySlug'])->name('content.show');
+

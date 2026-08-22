@@ -551,7 +551,7 @@
         <div class="blob blob-3"></div>
 
         <a href="{{ route('home') }}" class="login-brand-top" aria-label="Bengal IT Hub home">
-            <img src="{{ asset('logo_bengal_it_hub.svg') }}" alt="Bengal IT Hub logo" width="92" height="92">
+            <img src="{{ asset('assets/images/logo-square.jpg') }}" alt="Bengal IT Hub logo" style="border-radius: 16px; object-fit: cover;" width="92" height="92">
         </a>
 
         <div class="login-brand-mid">
@@ -577,7 +577,7 @@
 
         <div class="login-form-inner">
             <a href="{{ route('home') }}" class="mobile-logo" aria-label="Bengal IT Hub home">
-                <img src="{{ asset('logo_bengal_it_hub.svg') }}" alt="Bengal IT Hub logo" width="72" height="72">
+                <img src="{{ asset('assets/images/logo-square.jpg') }}" alt="Bengal IT Hub logo" style="border-radius: 14px; object-fit: cover;" width="72" height="72">
             </a>
 
             <span class="kicker">Welcome Back</span>

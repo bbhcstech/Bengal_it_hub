@@ -1,72 +1,76 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-page-header">
+<div class="page-header" style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
     <div>
-        <p class="text-sm font-black uppercase text-teal-700">Tech Innovation</p>
-        <h1>RSS Sources</h1>
+        <h1 style="margin:0;">RSS Feeds &amp; News Sources</h1>
+        <p style="margin:4px 0 0;color:var(--a-text-muted);font-size:0.88rem;">Manage external tech news RSS feeds for automated news aggregation on the Tech Innovation portal.</p>
     </div>
-    <div class="flex gap-2">
-        <form method="POST" action="{{ route('admin.rss-sources.sync-all') }}">
+    <div style="display:flex;gap:8px;">
+        <form method="POST" action="{{ route('admin.rss-sources.sync-all') }}" style="margin:0;">
             @csrf
-            <button class="rounded bg-slate-950 px-4 py-2 font-bold text-white" type="submit">Sync All Now</button>
+            <button class="btn btn-outline" type="submit">Sync All Feeds Now</button>
         </form>
-        <a class="rounded bg-teal-700 px-4 py-2 font-bold text-white" href="{{ route('admin.rss-sources.create') }}">Add RSS Source</a>
+        <a href="{{ route('admin.rss-sources.create') }}" class="btn btn-gold">+ Add RSS Source</a>
     </div>
 </div>
 
-<div class="overflow-x-auto rounded-md bg-white shadow-sm">
-    <table class="w-full text-left text-sm">
-        <thead class="bg-slate-100">
+<div class="a-card">
+    <table class="a-table">
+        <thead>
             <tr>
-                <th class="p-4">Source</th>
-                <th class="p-4">Category</th>
-                <th class="p-4">Status</th>
-                <th class="p-4">Last Sync</th>
-                <th class="p-4">Result</th>
-                <th class="p-4"></th>
+                <th>Source Name</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Last Sync</th>
+                <th>Sync Result</th>
+                <th style="text-align:right;">Actions</th>
             </tr>
         </thead>
         <tbody>
         @forelse($sources as $source)
-            <tr class="border-t border-slate-200">
-                <td class="p-4 font-black">
-                    {{ $source->name }}
-                    <div class="text-xs font-normal text-slate-500">{{ $source->feed_url }}</div>
+            <tr>
+                <td>
+                    <strong>{{ $source->name }}</strong>
+                    <div style="font-size:0.78rem;color:var(--a-text-muted);">{{ \Illuminate\Support\Str::limit($source->feed_url, 45) }}</div>
                 </td>
-                <td class="p-4">{{ $source->category?->name ?? '—' }}</td>
-                <td class="p-4">
-                    <span class="rounded-full px-3 py-1 text-xs font-black uppercase {{ $source->is_active ? 'bg-teal-50 text-teal-800' : 'bg-slate-100 text-slate-500' }}">
-                        {{ $source->is_active ? 'Enabled' : 'Disabled' }}
-                    </span>
-                </td>
-                <td class="p-4">{{ $source->last_synced_at?->diffForHumans() ?? 'Never synced' }}</td>
-                <td class="p-4">
-                    @if($source->last_sync_status)
-                        <span class="rounded-full px-3 py-1 text-xs font-black uppercase {{ $source->last_sync_status === 'success' ? 'bg-teal-50 text-teal-800' : 'bg-red-50 text-red-700' }}">
-                            {{ $source->last_sync_status }}
-                        </span>
-                        <div class="mt-1 max-w-xs text-xs text-slate-500">{{ Str::limit($source->last_sync_message, 90) }}</div>
+                <td><span class="badge badge-purple">{{ $source->category?->name ?? 'General' }}</span></td>
+                <td>
+                    @if($source->is_active)
+                        <span class="badge badge-success">Enabled</span>
                     @else
-                        <span class="text-xs text-slate-500">Not synced yet</span>
+                        <span class="badge badge-muted">Disabled</span>
                     @endif
                 </td>
-                <td class="p-4 text-right">
-                    <div class="flex items-center justify-end gap-3">
-                        <form method="POST" action="{{ route('admin.rss-sources.sync', $source) }}">
+                <td>{{ $source->last_synced_at ? $source->last_synced_at->diffForHumans() : 'Never' }}</td>
+                <td>
+                    @if($source->last_sync_status === 'success')
+                        <span class="badge badge-success">Success</span>
+                    @elseif($source->last_sync_status)
+                        <span class="badge badge-gold">{{ $source->last_sync_status }}</span>
+                    @else
+                        <span style="color:var(--a-text-muted);">&mdash;</span>
+                    @endif
+                </td>
+                <td style="text-align:right;">
+                    <div style="display:inline-flex;gap:6px;">
+                        <form method="POST" action="{{ route('admin.rss-sources.sync', $source) }}" style="margin:0;">
                             @csrf
-                            <button class="font-bold text-teal-700" type="submit">Sync Now</button>
+                            <button class="btn btn-gold btn-sm" type="submit">Sync Now</button>
                         </form>
-                        <a class="font-bold text-slate-700" href="{{ route('admin.rss-sources.edit', $source) }}">Edit</a>
-                        <form method="POST" action="{{ route('admin.rss-sources.delete', $source) }}" onsubmit="return confirm('Delete this RSS source? Imported articles will remain.');">
-                            @csrf @method('DELETE')
-                            <button class="font-bold text-red-600" type="submit">Delete</button>
+                        <a href="{{ route('admin.rss-sources.edit', $source) }}" class="btn btn-outline btn-sm">Edit</a>
+                        <form method="POST" action="{{ route('admin.rss-sources.delete', $source) }}" onsubmit="return confirm('Delete this RSS feed?');" style="margin:0;">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                         </form>
                     </div>
                 </td>
             </tr>
         @empty
-            <tr><td class="p-4 text-slate-500" colspan="6">No RSS sources yet. Add your first source to start building the Tech Innovation feed.</td></tr>
+            <tr>
+                <td colspan="6" style="text-align:center;padding:30px;color:var(--a-text-muted);">No RSS feed sources registered. Click "+ Add RSS Source" to start.</td>
+            </tr>
         @endforelse
         </tbody>
     </table>

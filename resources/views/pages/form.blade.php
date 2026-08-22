@@ -545,6 +545,19 @@ html.dark [data-contact] .bs-alert-error,
                                 <textarea class="bs-field" id="message" name="message" placeholder="What are you trying to achieve?">{{ old('message') }}</textarea>
                             </div>
 
+                            {{-- Google reCAPTCHA Security Check --}}
+                            <div class="bs-form-group" style="margin-bottom: 20px;">
+                                <label style="font-size: 0.82rem; font-weight: 700; color: var(--bs-muted); display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                                    Security Verification
+                                </label>
+                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
+                                @error('g-recaptcha-response')
+                                    <p class="bs-alert-error" role="alert" style="margin-top: 6px;">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             <button class="bs-btn-primary" type="submit">Get Your Place</button>
                         </form>
                     @endif
@@ -576,6 +589,26 @@ html.dark [data-contact] .bs-alert-error,
                             <a class="bs-social-link" href="https://www.instagram.com/bengalithub/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
                             <a class="bs-social-link" href="https://x.com/bengalithub" target="_blank" rel="noopener" aria-label="X (Twitter)">x</a>
                             <a class="bs-social-link" href="https://www.youtube.com/@bengalithub" target="_blank" rel="noopener" aria-label="YouTube">yt</a>
+                        </div>
+                    </div>
+
+                    <div class="bs-card">
+                        <h3>Office Map</h3>
+                        <p style="font-size: 0.86rem; margin-bottom: 12px;">3rd Floor, Satavisha Bldg, 11 Hospital Link Road, Santoshpur, Kolkata 700075</p>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=11+Hospital+Link+Road,+Santoshpur,+Kolkata,+West+Bengal+700075" target="_blank" rel="noopener" class="bs-btn-gold" style="display: inline-flex; width: 100%; justify-content: center; margin-bottom: 14px; font-size: 0.85rem; padding: 10px 18px;">
+                            <span>Get Directions on Google Maps &rarr;</span>
+                        </a>
+                        <div style="width: 100%; height: 200px; border-radius: 10px; overflow: hidden; border: 1px solid var(--bs-border);">
+                            <iframe
+                                title="Bengal IT Hub Office Location Map"
+                                src="https://maps.google.com/maps?q=11+Hospital+Link+Road,+Santoshpur,+Kolkata,+West+Bengal+700075&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                                width="100%"
+                                height="100%"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </div>
                 </div>

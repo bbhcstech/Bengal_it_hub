@@ -409,33 +409,116 @@
                 </span>
             </button>
             <a class="bih-header-cta hidden sm:inline-flex" href="{{ route('contact') }}">Get in Touch</a>
-            <a class="bih-admin-nav-link" href="{{ route('admin.login') }}" aria-label="Admin login" title="Admin login">
+            <a class="bih-admin-nav-link hidden sm:inline-grid" href="{{ route('admin.login') }}" aria-label="Admin login" title="Admin login">
                 @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
             </a>
-            <button data-menu-button class="bih-menu-button" aria-label="Open menu" aria-expanded="false">Menu</button>
+            <button data-menu-button class="bih-menu-button" aria-label="Open menu" aria-expanded="false" aria-controls="bih-mobile-menu">
+                <svg class="bih-menu-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </button>
         </div>
     </div>
-    <nav data-mobile-menu class="bih-container hidden pb-5 xl:hidden border-t border-slate-200 dark:border-[#d4af37]/20 bg-white dark:bg-[#0b1724]" aria-label="Mobile">
-        @foreach($siteNav as $label => $item)
-            <div class="border-t border-slate-200 dark:border-[#d4af37]/15 py-3">
-                @if(is_array($item))
-                    <p class="font-extrabold text-teal-800 dark:text-[#f3e5ab] text-sm tracking-wide uppercase px-2">{{ $label }}</p>
-                    <div class="mt-2 grid gap-1.5 pl-3">
-                        @foreach($item as $child => $href)
-                            <a class="py-1.5 px-2 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-teal-700 dark:hover:text-[#f3e5ab] transition-colors" href="{{ $href }}">{{ $child }}</a>
-                        @endforeach
-                    </div>
-                @else
-                    <a class="px-2 font-extrabold text-slate-800 dark:text-slate-100 hover:text-teal-700 dark:hover:text-[#f3e5ab] transition-colors block text-base" href="{{ $item }}">{{ $label }}</a>
-                @endif
+    <div id="bih-mobile-backdrop" data-mobile-backdrop class="fixed inset-0 z-[65] bg-slate-950/65 backdrop-blur-sm hidden transition-opacity duration-200 xl:hidden" aria-hidden="true"></div>
+    <nav id="bih-mobile-menu" data-mobile-menu class="hidden xl:hidden" aria-label="Mobile Navigation">
+        <div class="bih-mobile-menu-head">
+            <div class="flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full bg-[#d4af37]"></span>
+                <span>Menu</span>
             </div>
-        @endforeach
-        <div class="border-t border-slate-200 dark:border-[#d4af37]/20 pt-3 pb-1 flex items-center justify-between">
-            <a class="inline-flex items-center gap-2 font-extrabold text-teal-800 dark:text-[#f3e5ab] hover:text-teal-900 dark:hover:text-white px-2 py-1 transition-colors" href="{{ route('admin.login') }}">
-                @include('partials.icon', ['name' => 'admin', 'size' => 'h-5 w-5'])
+            <button type="button" class="bih-mobile-menu-close" data-menu-close aria-label="Close menu" title="Close menu">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="bih-mobile-menu-scroll">
+            @foreach($siteNav as $label => $item)
+                <section class="bih-mobile-menu-section">
+                    @if(is_array($item))
+                        <div class="bih-mobile-menu-section-title">
+                            <span>{{ $label }}</span>
+                        </div>
+
+                        @if($label === 'Services')
+                            <a class="bih-mobile-menu-link bih-mobile-menu-link-featured" href="/services">
+                                <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => 'briefcase', 'size' => 'h-4 w-4'])</span>
+                                <span>All Services</span>
+                            </a>
+                            @foreach($bihServiceMegaMenu as $group => $services)
+                                <div class="bih-mobile-menu-subgroup">
+                                    <p>{{ $group }}</p>
+                                    @foreach($services as $service)
+                                        <a class="bih-mobile-menu-link" href="{{ $service['href'] }}">
+                                            <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $service['icon'], 'size' => 'h-4 w-4'])</span>
+                                            <span>{{ $service['label'] }}</span>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        @elseif($label === 'Industries')
+                            <a class="bih-mobile-menu-link bih-mobile-menu-link-featured" href="/industries">
+                                <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => 'globe', 'size' => 'h-4 w-4'])</span>
+                                <span>All Industries</span>
+                            </a>
+                            @foreach($bihIndustriesMegaMenu as $group => $industries)
+                                <div class="bih-mobile-menu-subgroup">
+                                    <p>{{ $group }}</p>
+                                    @foreach($industries as $industry)
+                                        <a class="bih-mobile-menu-link" href="{{ $industry['href'] }}">
+                                            <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $industry['icon'], 'size' => 'h-4 w-4'])</span>
+                                            <span>{{ $industry['label'] }}</span>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        @elseif($label === 'Insights')
+                            @foreach($bihInsightsMegaMenu as $group => $links)
+                                <div class="bih-mobile-menu-subgroup">
+                                    <p>{{ $group }}</p>
+                                    @foreach($links as $link)
+                                        <a class="bih-mobile-menu-link" href="{{ $link['href'] }}">
+                                            <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $link['icon'], 'size' => 'h-4 w-4'])</span>
+                                            <span>{{ $link['label'] }}</span>
+                                        </a>
+                                    @endforeach
+                                </div>
+                            @endforeach
+                        @elseif($label === 'Products')
+                            <a class="bih-mobile-menu-link bih-mobile-menu-link-featured" href="/products">
+                                <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => 'layers', 'size' => 'h-4 w-4'])</span>
+                                <span>All Products</span>
+                            </a>
+                            @foreach($item as $child => $href)
+                                <a class="bih-mobile-menu-link" href="{{ $href }}">
+                                    <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $bihDropdownIcons[$child] ?? 'target', 'size' => 'h-4 w-4'])</span>
+                                    <span>{{ $child }}</span>
+                                </a>
+                            @endforeach
+                        @else
+                            @foreach($item as $child => $href)
+                                <a class="bih-mobile-menu-link" href="{{ $href }}">
+                                    <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $bihDropdownIcons[$child] ?? 'target', 'size' => 'h-4 w-4'])</span>
+                                    <span>{{ $child }}</span>
+                                </a>
+                            @endforeach
+                        @endif
+                    @else
+                        <a class="bih-mobile-menu-link bih-mobile-menu-link-featured" href="{{ $item }}">
+                            <span class="bih-mobile-menu-link-icon">@include('partials.icon', ['name' => $bihDropdownIcons[$label] ?? 'target', 'size' => 'h-4 w-4'])</span>
+                            <span>{{ $label }}</span>
+                        </a>
+                    @endif
+                </section>
+            @endforeach
+        </div>
+        <div class="bih-mobile-menu-footer">
+            <a class="inline-flex items-center gap-2 font-extrabold text-teal-800 dark:text-[#f3e5ab] hover:text-teal-900 dark:hover:text-white px-2 py-1 transition-colors text-sm" href="{{ route('admin.login') }}">
+                @include('partials.icon', ['name' => 'admin', 'size' => 'h-4 w-4'])
                 <span>Admin Login</span>
             </a>
-            <a class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 px-2" href="tel:+919230653975">
+            <a class="inline-flex items-center gap-2 text-sm font-bold text-slate-700 dark:text-slate-300 px-2 hover:text-[#d4af37] transition-colors" href="tel:+919230653975">
+                @include('partials.icon', ['name' => 'chat', 'size' => 'h-4 w-4'])
                 <span>+91 92306 53975</span>
             </a>
         </div>
@@ -446,9 +529,11 @@
     @yield('content')
 </main>
 
+@unless(request()->routeIs('home'))
 <div class="fixed left-5 z-40" style="position: fixed; top: 165px; left: 20px; z-index: 9999;">
     <button data-back-button class="bih-scroll-button" type="button" aria-label="Go back to previous page" title="Go back">&larr;</button>
 </div>
+@endunless
 
 <div class="fixed bottom-5 right-5 z-50 grid gap-2">
     <button data-scroll-top class="bih-scroll-button" type="button" aria-label="Scroll to top" title="Scroll to top">&uarr;</button>
@@ -456,6 +541,107 @@
 </div>
 
 <footer class="bih-footer border-t border-slate-800 bg-slate-950 py-14" style="background-color: #050b14; color: #cbd5e1;">
+    {{-- ═══════════════════════════════════════════════════════════
+         UPPER FOOTER — SEO KEYWORD DIRECTORY (GOOGLE OPTIMIZATION)
+         ═══════════════════════════════════════════════════════════ --}}
+    <div class="bih-container mb-12 pb-10 border-b border-slate-800/80">
+        <div class="mb-6 flex items-center justify-between flex-wrap gap-3">
+            <h2 class="text-xs font-black uppercase text-amber-400 tracking-widest flex items-center gap-2" style="font-family: 'Outfit', sans-serif;">
+                <span class="inline-block w-2 h-2 rounded-full bg-amber-400"></span>
+                Popular Searches &amp; IT Solutions Directory
+            </h2>
+            <span class="text-[11px] text-slate-400 font-medium">Bengal IT Hub &mdash; Empowering Digital Growth in Eastern India &amp; Globally</span>
+        </div>
+
+        <div class="grid gap-6 text-[11px] leading-relaxed text-slate-400">
+            {{-- Group 1: Core IT & Software Services Kolkata --}}
+            <div>
+                <h3 class="text-[11px] font-bold uppercase text-slate-300 mb-2 flex items-center gap-1.5">
+                    <span class="text-amber-400">✦</span> IT &amp; Software Services Kolkata &amp; India:
+                </h3>
+                <p class="bih-seo-links">
+                    <a href="/about-us" class="hover:text-amber-300 transition-colors">IT company in Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/software-development" class="hover:text-amber-300 transition-colors">Software development company Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services" class="hover:text-amber-300 transition-colors">Best IT services company in Eastern India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/tech-innovation" class="hover:text-amber-300 transition-colors">AI development company Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/products" class="hover:text-amber-300 transition-colors">SaaS development company India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/web-development" class="hover:text-amber-300 transition-colors">Web development agency Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/app-development" class="hover:text-amber-300 transition-colors">App development company Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/software-development" class="hover:text-amber-300 transition-colors">Custom software development India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/about-us" class="hover:text-amber-300 transition-colors">IT solutions provider West Bengal</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/products" class="hover:text-amber-300 transition-colors">Enterprise software company Kolkata</a>
+                </p>
+            </div>
+
+            {{-- Group 2: AI & Trending 2026 Terms --}}
+            <div>
+                <h3 class="text-[11px] font-bold uppercase text-slate-300 mb-2 flex items-center gap-1.5">
+                    <span class="text-amber-400">✦</span> AI &amp; Next-Gen Tech Innovation 2026:
+                </h3>
+                <p class="bih-seo-links">
+                    <a href="/tech-innovation" class="hover:text-amber-300 transition-colors">Agentic AI development services</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/tech-innovation" class="hover:text-amber-300 transition-colors">Generative AI solutions for business</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/ai-marketing" class="hover:text-amber-300 transition-colors">AI marketing agency India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/ai-marketing" class="hover:text-amber-300 transition-colors">AI-powered digital marketing</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services" class="hover:text-amber-300 transition-colors">AI automation for enterprises</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/groomify" class="hover:text-amber-300 transition-colors">AI talent development platform</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/vision-2030" class="hover:text-amber-300 transition-colors">AI Gigafactory India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/educamp" class="hover:text-amber-300 transition-colors">AI skilling and workforce training</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/hackfest-2026" class="hover:text-amber-300 transition-colors">AI hackathon India 2026</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/vision-2030" class="hover:text-amber-300 transition-colors">Future ready AI professionals</a>
+                </p>
+            </div>
+
+            {{-- Group 3: Service-Specific & Outsourcing --}}
+            <div>
+                <h3 class="text-[11px] font-bold uppercase text-slate-300 mb-2 flex items-center gap-1.5">
+                    <span class="text-amber-400">✦</span> Staff Augmentation &amp; Enterprise Services:
+                </h3>
+                <p class="bih-seo-links">
+                    <a href="/services/staff-augmentation" class="hover:text-amber-300 transition-colors">Staff augmentation company India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services/staff-augmentation" class="hover:text-amber-300 transition-colors">IT staff augmentation services</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services/corporate-operations-outsourcing" class="hover:text-amber-300 transition-colors">Corporate operations outsourcing</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/biz-consultation" class="hover:text-amber-300 transition-colors">Business consultation services India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services" class="hover:text-amber-300 transition-colors">Cloud solutions for enterprises</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/products" class="hover:text-amber-300 transition-colors">SaaS product development company</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/iot-product-build" class="hover:text-amber-300 transition-colors">IoT product development India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services/corporate-operations-outsourcing" class="hover:text-amber-300 transition-colors">Business process outsourcing Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/biz-consultation" class="hover:text-amber-300 transition-colors">Technology consulting firm India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/services" class="hover:text-amber-300 transition-colors">End-to-end digital transformation services</a>
+                </p>
+            </div>
+
+            {{-- Group 4: Events, Talent & Industry Solutions --}}
+            <div>
+                <h3 class="text-[11px] font-bold uppercase text-slate-300 mb-2 flex items-center gap-1.5">
+                    <span class="text-amber-400">✦</span> HackFest 2026, EdTech &amp; Industry Vertical Solutions:
+                </h3>
+                <p class="bih-seo-links">
+                    <a href="/hackfest-2026" class="hover:text-amber-300 transition-colors">Bengal HackFest PRAGATI 2026</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/hackfest-2026" class="hover:text-amber-300 transition-colors">AI hackathon Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/hackfest-2026" class="hover:text-amber-300 transition-colors">Student hackathon Jadavpur University</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/sponsor-hackfest-2026" class="hover:text-amber-300 transition-colors">Corporate hackathon sponsorship India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/hackfest-2026" class="hover:text-amber-300 transition-colors">Tech fest Kolkata 2026</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/hackfest-2026/register" class="hover:text-amber-300 transition-colors">Hackathon registration India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/educamp" class="hover:text-amber-300 transition-colors">Industry-ready talent training India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/eduverse" class="hover:text-amber-300 transition-colors">Corporate bootcamp training</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/groomify" class="hover:text-amber-300 transition-colors">Skill development platform India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/educamp" class="hover:text-amber-300 transition-colors">Campus to corporate training program</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/groomify" class="hover:text-amber-300 transition-colors">Mentor-led tech training Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/health-care" class="hover:text-amber-300 transition-colors">Healthcare software development India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/real-estate" class="hover:text-amber-300 transition-colors">Real estate CRM development</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/edu-tech" class="hover:text-amber-300 transition-colors">EdTech platform development company</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/logistics" class="hover:text-amber-300 transition-colors">Logistics software solutions India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/manufacturing" class="hover:text-amber-300 transition-colors">Manufacturing ERP software India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/industries/travel-hospitality" class="hover:text-amber-300 transition-colors">Travel and hospitality booking platform development</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/contact" class="hover:text-amber-300 transition-colors">Best software company for startups in Kolkata</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/web-development" class="hover:text-amber-300 transition-colors">Affordable web development company India</a> <span class="mx-3 text-slate-500 font-bold select-none">|</span>
+                    <a href="/contact" class="hover:text-amber-300 transition-colors">Hire dedicated developers India</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="bih-container bih-footer-grid">
         {{-- Brand Column --}}
         <div class="bih-footer-brand">

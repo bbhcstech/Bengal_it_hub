@@ -306,13 +306,13 @@
             <div class="swiper-wrapper">
                 @foreach($services as $slug => $service)
                     <div class="swiper-slide" style="height: auto;">
-                        <a href="/{{ $slug }}" class="bih-svc-card" style="text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 290px; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 32px 26px; box-shadow: 0 4px 20px rgba(11,31,58,0.04); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
+                        <a href="/{{ $slug }}" class="bih-svc-card" style="text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; height: 100%; min-height: 290px; border-radius: 20px; padding: 32px 26px; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;">
                             <div>
-                                <div class="bih-num-tag" style="font-family: var(--bih-font-display); font-size: 1.8rem; font-style: italic; font-weight: 700; color: #d4af37; margin-bottom: 14px;">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
-                                <h3 style="font-family: var(--bih-font-display); font-size: 1.28rem; font-weight: 700; color: #0b1f3a; margin: 0 0 12px; line-height: 1.35;">{{ $service['title'] }}</h3>
-                                <p style="font-family: var(--bih-font-body); font-size: 0.9rem; color: #475569; line-height: 1.65; margin: 0 0 20px;">{{ $service['summary'] }}</p>
+                                <div class="bih-num-tag" style="font-family: var(--bih-font-display); font-size: 1.8rem; font-style: italic; font-weight: 700; margin-bottom: 14px;">{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
+                                <h3 class="bih-svc-title" style="font-family: var(--bih-font-display); font-size: 1.28rem; font-weight: 700; margin: 0 0 12px; line-height: 1.35;">{{ $service['title'] }}</h3>
+                                <p class="bih-svc-desc" style="font-family: var(--bih-font-body); font-size: 0.9rem; line-height: 1.65; margin: 0 0 20px;">{{ $service['summary'] }}</p>
                             </div>
-                            <span style="font-family: var(--bih-font-heading); font-size: 0.85rem; font-weight: 700; color: #0f766e; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
+                            <span class="bih-svc-link" style="font-family: var(--bih-font-heading); font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-top: auto;">
                                 Learn more
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </span>
@@ -326,7 +326,7 @@
 
         {{-- Hint Text & Explore All Services CTA --}}
         <div style="margin-top: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
-            <p class="bih-carousel-hint" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 600; color: #475569; margin: 0; padding: 10px 24px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #cbd5e1; border-radius: 9999px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); backdrop-filter: blur(8px);">
+            <p class="bih-carousel-hint" style="display: inline-flex; align-items: center; gap: 8px; font-family: var(--bih-font-heading); font-size: 0.88rem; font-weight: 600; margin: 0; padding: 10px 24px; border-radius: 9999px; backdrop-filter: blur(8px);">
                 <span>&larr;</span> Scroll or auto-play to explore more services <span>&rarr;</span>
             </p>
             <div>

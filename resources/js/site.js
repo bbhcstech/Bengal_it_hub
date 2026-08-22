@@ -39,10 +39,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const button = document.querySelector('[data-menu-button]');
     const menu = document.querySelector('[data-mobile-menu]');
+    const closeButton = document.querySelector('[data-menu-close]');
+    const backdrop = document.querySelector('[data-mobile-backdrop]');
+
+    function setMobileMenu(open) {
+        if (!menu || !button) return;
+
+        menu.classList.toggle('hidden', !open);
+        if (backdrop) {
+            backdrop.classList.toggle('hidden', !open);
+        }
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.classList.toggle('bih-mobile-menu-open', open);
+
+        if (open) {
+            closeButton?.focus({ preventScroll: true });
+        }
+    }
 
     button?.addEventListener('click', () => {
-        menu?.classList.toggle('hidden');
-        button.setAttribute('aria-expanded', String(!menu?.classList.contains('hidden')));
+        setMobileMenu(menu?.classList.contains('hidden') ?? true);
+    });
+
+    closeButton?.addEventListener('click', () => setMobileMenu(false));
+    backdrop?.addEventListener('click', () => setMobileMenu(false));
+
+    menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMobileMenu(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            setMobileMenu(false);
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 1280px)').matches) {
+            setMobileMenu(false);
+        }
     });
 
     document.querySelector('[data-back-button]')?.addEventListener('click', () => {

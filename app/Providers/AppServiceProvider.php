@@ -62,6 +62,43 @@ class AppServiceProvider extends ServiceProvider
                         $nav[$key] = is_array($nav[$key] ?? null) ? array_merge($val, $nav[$key]) : $val;
                     }
                 }
+
+                $techTalkLinks = [
+                    'TechBiz' => '/tech-biz',
+                    'Tech Innovation Hub' => '/tech-innovation',
+                    'Our Clients' => '/our-clients',
+                ];
+
+                $nav['Tech Talk'] = array_merge(
+                    $techTalkLinks,
+                    array_diff_key(is_array($nav['Tech Talk'] ?? null) ? $nav['Tech Talk'] : [], $techTalkLinks)
+                );
+
+                if (is_array($nav['Insights'] ?? null)) {
+                    $nav['Insights'] = array_diff_key($nav['Insights'], $techTalkLinks);
+                }
+
+                unset(
+                    $nav['HackFest 2026'],
+                    $nav['Our Partners'],
+                    $nav['our-partners'],
+                    $nav['Our partners'],
+                    $nav['News & Events'],
+                    $nav['news & events'],
+                    $nav['News & events'],
+                    $nav['News and Events']
+                );
+                $nav['News & Event'] = is_array($nav['News & Event'] ?? null) ? $nav['News & Event'] : [];
+                $nav['News & Event']['HackFest 2026'] = '/hackfest-2026';
+
+                $orderedNav = [];
+                foreach (array_keys($defaultNav) as $key) {
+                    if (array_key_exists($key, $nav)) {
+                        $orderedNav[$key] = $nav[$key];
+                    }
+                }
+
+                $nav = $orderedNav;
             } else {
                 $nav = $defaultNav;
             }

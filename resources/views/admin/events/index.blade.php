@@ -1,20 +1,51 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-page-header">
+<div class="page-header" style="margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;">
     <div>
-        <p class="text-sm font-black uppercase text-teal-700">Event Manager</p>
-        <h1>Events</h1>
+        <h1 style="margin:0;">Events &amp; HackFest 2026 Management</h1>
+        <p style="margin:4px 0 0;color:var(--a-text-muted);font-size:0.88rem;">Manage hackathons, chief guests, speakers, venue info, gallery items, and timeline schedules.</p>
     </div>
-    <a class="rounded bg-teal-700 px-4 py-2 font-bold text-white" href="{{ route('admin.events.create') }}">Add Event</a>
+    <a href="{{ route('admin.events.create') }}" class="btn btn-gold">+ Add Event</a>
 </div>
 
-<div class="grid gap-4">
-    @foreach($events as $event)
-        <a class="rounded-md bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-teal-300" href="{{ route('admin.events.edit', $event) }}">
-            <p class="text-xl font-black">{{ $event->name }}</p>
-            <p class="text-sm text-slate-600">/{{ $event->slug }} &middot; {{ $event->status }}</p>
-        </a>
-    @endforeach
+<div class="a-card">
+    <table class="a-table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>URL Slug</th>
+                <th>Venue</th>
+                <th>Status</th>
+                <th style="text-align:right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @forelse($events as $event)
+            <tr>
+                <td>
+                    <strong>{{ $event->name }}</strong>
+                    <div style="font-size:0.78rem;color:var(--a-text-muted);">{{ $event->tagline ?: 'HackFest Event' }}</div>
+                </td>
+                <td><code>/{{ $event->slug }}</code></td>
+                <td>{{ $event->venue ?: '—' }}</td>
+                <td>
+                    @if($event->status === 'published')
+                        <span class="badge badge-success">Published</span>
+                    @else
+                        <span class="badge badge-muted">{{ Str::headline($event->status) }}</span>
+                    @endif
+                </td>
+                <td style="text-align:right;">
+                    <a href="{{ route('admin.events.edit', $event) }}" class="btn btn-outline btn-sm">Edit Event Details</a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="5" style="text-align:center;padding:30px;color:var(--a-text-muted);">No events registered. Click "+ Add Event" to create HackFest 2026.</td>
+            </tr>
+        @endforelse
+        </tbody>
+    </table>
 </div>
 @endsection

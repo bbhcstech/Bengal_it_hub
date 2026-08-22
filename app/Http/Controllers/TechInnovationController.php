@@ -52,6 +52,7 @@ class TechInnovationController extends Controller
             'trending' => TechNews::trending()->take(5)->get(),
             'mostViewed' => TechNews::mostViewed()->take(5)->get(),
             'filters' => $request->only(['q', 'category', 'source', 'sort']),
+            'blocks' => \App\Models\ContentBlock::forPage('tech-innovation'),
         ]);
     }
 

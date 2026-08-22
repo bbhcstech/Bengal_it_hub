@@ -1,42 +1,106 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-page-header">
-    <div>
-        <p class="text-sm font-black uppercase text-teal-700">Event Editor</p>
-        <h1>{{ $event->exists ? 'Edit Event' : 'Add Event' }}</h1>
-    </div>
+<div class="page-header" style="margin-bottom:20px;">
+    <h1>{{ $event->exists ? 'Edit Event: '.$event->name : 'Add New Event' }}</h1>
 </div>
-<form method="POST" action="{{ $event->exists ? route('admin.events.update', $event) : route('admin.events.store') }}" class="grid gap-5 rounded-md bg-white p-6 shadow-sm">
+
+<form method="POST" action="{{ $event->exists ? route('admin.events.update', $event) : route('admin.events.store') }}">
     @csrf
     @if($event->exists) @method('PUT') @endif
-    <div class="grid gap-5 md:grid-cols-2">
-        <label class="font-bold">Name<input class="mt-2 w-full rounded border p-3" name="name" value="{{ old('name', $event->name) }}" required></label>
-        <label class="font-bold">Slug<input class="mt-2 w-full rounded border p-3" name="slug" value="{{ old('slug', $event->slug) }}"></label>
-        <label class="font-bold">Venue<input class="mt-2 w-full rounded border p-3" name="venue" value="{{ old('venue', $event->venue) }}"></label>
-        <label class="font-bold">Finale<input class="mt-2 w-full rounded border p-3" name="finale" value="{{ old('finale', $event->finale) }}"></label>
-        <label class="font-bold">Status<select class="mt-2 w-full rounded border p-3" name="status"><option @selected(old('status', $event->status ?: 'published') === 'published')>published</option><option @selected(old('status', $event->status) === 'draft')>draft</option><option @selected(old('status', $event->status) === 'archived')>archived</option></select></label>
-    </div>
-    <label class="font-bold">Tagline<textarea class="mt-2 min-h-24 w-full rounded border p-3" name="tagline">{{ old('tagline', $event->tagline) }}</textarea></label>
-    <label class="font-bold">Counters, one per line as Label|Value<textarea class="mt-2 min-h-28 w-full rounded border p-3" name="counters_text">{{ old('counters_text', collect($event->counters ?? [])->map(fn($v,$k)=>$k.'|'.$v)->implode("\n")) }}</textarea></label>
-    <label class="font-bold">Timeline rows, one per line as Label|Date<textarea class="mt-2 min-h-32 w-full rounded border p-3" name="timeline_text">{{ old('timeline_text', $event->timelines?->map(fn($t)=>$t->label.'|'.$t->date)->implode("\n")) }}</textarea></label>
-    <label class="font-bold">People rows, one per line as Role|Name|Bio<textarea class="mt-2 min-h-32 w-full rounded border p-3" name="people_text">{{ old('people_text', $event->people?->map(fn($p)=>$p->role_type.'|'.$p->name.'|'.$p->bio)->implode("\n")) }}</textarea></label>
-    <label class="font-bold">Gallery rows, one per line as Type (image or video)|Title|URL|Thumbnail (optional, video only)
-        <textarea class="mt-2 min-h-32 w-full rounded border p-3" name="gallery_text" placeholder="image|Opening Ceremony|https://example.com/photo.jpg|&#10;video|Grand Finale Highlights|https://www.youtube.com/watch?v=XXXXXXXXXXX|https://example.com/thumb.jpg">{{ old('gallery_text', $event->galleryItems?->map(fn($g)=>$g->type.'|'.$g->title.'|'.$g->url.'|'.$g->thumbnail)->implode("\n")) }}</textarea>
-        <span class="mt-1 block text-sm font-normal text-slate-500">Leave empty until you have real photos/videos from the event — the public Gallery page shows an honest "coming soon" state rather than fake placeholders.</span>
-    </label>
-    <div class="grid gap-5 md:grid-cols-2">
-        <label class="font-bold">SEO Title<input class="mt-2 w-full rounded border p-3" name="meta_title" value="{{ old('meta_title', $event->meta_title) }}"></label>
-        <label class="font-bold">SEO Description<textarea class="mt-2 w-full rounded border p-3" name="meta_description">{{ old('meta_description', $event->meta_description) }}</textarea></label>
-        <label class="font-bold">SEO Keywords <span class="font-normal text-slate-500">(comma separated)</span><input class="mt-2 w-full rounded border p-3" name="meta_keywords" value="{{ old('meta_keywords', $event->meta_keywords) }}"></label>
-        <label class="font-bold">Robots Tag
-            <select class="mt-2 w-full rounded border p-3" name="meta_robots">
-                @foreach(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'] as $robots)
-                    <option value="{{ $robots }}" @selected(old('meta_robots', $event->meta_robots ?: 'index, follow') === $robots)>{{ $robots }}</option>
-                @endforeach
+
+    <div class="a-card" style="margin-bottom:20px;max-width:850px;">
+        <h3 style="margin-top:0;margin-bottom:16px;">Event Details</h3>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Event Name *</label>
+                <input type="text" class="a-input" name="name" value="{{ old('name', $event->name) }}" required style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">URL Slug</label>
+                <input type="text" class="a-input" name="slug" value="{{ old('slug', $event->slug) }}" placeholder="hackfest-2026" style="width:100%;">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Venue Location</label>
+                <input type="text" class="a-input" name="venue" value="{{ old('venue', $event->venue) }}" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Finale Date / Info</label>
+                <input type="text" class="a-input" name="finale" value="{{ old('finale', $event->finale) }}" style="width:100%;">
+            </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Tagline</label>
+            <textarea class="a-textarea" name="tagline" rows="2" style="width:100%;">{{ old('tagline', $event->tagline) }}</textarea>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Counters (one per line as Label|Value)</label>
+            <textarea class="a-textarea" name="counters_text" rows="3" placeholder="Registrations|642&#10;Colleges|40+" style="width:100%;">{{ old('counters_text', collect($event->counters ?? [])->map(fn($v,$k)=>$k.'|'.$v)->implode("\n")) }}</textarea>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Timeline Rows (one per line as Label|Date)</label>
+            <textarea class="a-textarea" name="timeline_text" rows="3" placeholder="Registration Opens|Jan 15, 2026&#10;Grand Finale|Mar 28, 2026" style="width:100%;">{{ old('timeline_text', $event->timelines?->map(fn($t)=>$t->label.'|'.$t->date)->implode("\n")) }}</textarea>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">People / Speakers Rows (one per line as Role|Name|Bio)</label>
+            <textarea class="a-textarea" name="people_text" rows="3" placeholder="Chief Guest|Dr. APJ Speaker|Renowned Technologist" style="width:100%;">{{ old('people_text', $event->people?->map(fn($p)=>$p->role_type.'|'.$p->name.'|'.$p->bio)->implode("\n")) }}</textarea>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Gallery Rows (one per line as Type|Title|URL|Thumbnail)</label>
+            <textarea class="a-textarea" name="gallery_text" rows="3" placeholder="image|Opening Ceremony|https://example.com/photo.jpg|" style="width:100%;">{{ old('gallery_text', $event->galleryItems?->map(fn($g)=>$g->type.'|'.$g->title.'|'.$g->url.'|'.$g->thumbnail)->implode("\n")) }}</textarea>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Status *</label>
+            <select class="a-select" name="status" style="width:100%;">
+                <option value="published" @selected(old('status', $event->status ?: 'published') === 'published')>Published</option>
+                <option value="draft" @selected(old('status', $event->status) === 'draft')>Draft</option>
+                <option value="archived" @selected(old('status', $event->status) === 'archived')>Archived</option>
             </select>
-        </label>
+        </div>
     </div>
-    <button class="w-fit rounded bg-teal-700 px-5 py-3 font-black text-white">Save Event</button>
+
+    <div class="a-card" style="margin-bottom:20px;max-width:850px;">
+        <h3 style="margin-top:0;margin-bottom:16px;">Google SEO Metadata</h3>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">SEO Meta Title</label>
+            <input type="text" class="a-input" name="meta_title" value="{{ old('meta_title', $event->meta_title) }}" style="width:100%;">
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">SEO Meta Description</label>
+            <textarea class="a-textarea" name="meta_description" rows="3" style="width:100%;">{{ old('meta_description', $event->meta_description) }}</textarea>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">SEO Keywords</label>
+                <input type="text" class="a-input" name="meta_keywords" value="{{ old('meta_keywords', $event->meta_keywords) }}" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.88rem;">Robots Directive Tag</label>
+                <select class="a-select" name="meta_robots" style="width:100%;">
+                    @foreach(['index, follow', 'noindex, follow', 'index, nofollow', 'noindex, nofollow'] as $robots)
+                        <option value="{{ $robots }}" @selected(old('meta_robots', $event->meta_robots ?: 'index, follow') === $robots)>{{ $robots }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div style="display:flex;gap:10px;">
+        <button type="submit" class="btn btn-gold">Save Event &amp; SEO Meta</button>
+        <a href="{{ route('admin.events') }}" class="btn btn-outline">Cancel</a>
+    </div>
 </form>
 @endsection

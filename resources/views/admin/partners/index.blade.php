@@ -1,69 +1,115 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="admin-page-header">
-    <div>
-        <p class="text-sm font-black uppercase text-teal-700">Partner Network</p>
-        <h1>Partners</h1>
-    </div>
+<div class="page-header" style="margin-bottom:20px;">
+    <h1>Partners &amp; Ecosystem Network</h1>
+    <p style="margin:4px 0 0;color:var(--a-text-muted);font-size:0.88rem;">Manage industry partner profiles, company details, logos, projects, and partner pages.</p>
 </div>
-<form method="POST" action="{{ route('admin.partners.store') }}" class="grid gap-4 rounded-md bg-white p-5 shadow-sm">
-    @csrf
-    <div class="grid gap-4 md:grid-cols-3">
-        <input class="rounded border p-3" name="name" placeholder="Company name" required>
-        <input class="rounded border p-3" name="slug" placeholder="Slug (optional, auto-generated)">
-        <input class="rounded border p-3" name="logo" placeholder="Logo URL/path">
+
+<div class="a-card" style="margin-bottom:24px;">
+    <h3 style="margin-top:0;margin-bottom:16px;">Add New Partner</h3>
+    <form method="POST" action="{{ route('admin.partners.store') }}">
+        @csrf
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Company Name *</label>
+                <input type="text" class="a-input" name="name" placeholder="Company Name" required style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">URL Slug</label>
+                <input type="text" class="a-input" name="slug" placeholder="auto-generated" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Logo Image URL/Path</label>
+                <input type="text" class="a-input" name="logo" placeholder="/assets/images/..." style="width:100%;">
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Location / Address</label>
+                <input type="text" class="a-input" name="address" placeholder="Kolkata, India" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Website / Link URL</label>
+                <input type="url" class="a-input" name="link_url" placeholder="https://..." style="width:100%;">
+            </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Partner Description</label>
+            <textarea class="a-textarea" name="description" rows="3" placeholder="Overview of partner capabilities..." style="width:100%;"></textarea>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Clients Count</label>
+                <input type="text" class="a-input" name="clients_count" placeholder="500+" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Employees Count</label>
+                <input type="text" class="a-input" name="employees_count" placeholder="200+" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Scope</label>
+                <input type="text" class="a-input" name="scope" value="home" style="width:100%;">
+            </div>
+            <div>
+                <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Sort Order</label>
+                <input type="number" class="a-input" name="sort_order" value="0" style="width:100%;">
+            </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+            <label style="display:block;margin-bottom:6px;font-weight:600;font-size:0.85rem;">Status</label>
+            <select class="a-select" name="status" style="width:100%;">
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-gold">+ Add Partner</button>
+    </form>
+</div>
+
+<div class="a-card">
+    <h3 style="margin-top:0;margin-bottom:16px;">Registered Partners ({{ $partners->count() }})</h3>
+    <div style="display:flex;flex-direction:column;gap:16px;">
+        @forelse($partners as $partner)
+            <form method="POST" action="{{ route('admin.partners.update', $partner) }}" style="padding:16px;background:var(--a-bg);border:1px solid var(--a-border);border-radius:10px;">
+                @csrf
+                @method('PUT')
+
+                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;">
+                    <div>
+                        <label style="display:block;margin-bottom:4px;font-size:0.78rem;color:var(--a-text-muted);">Company Name</label>
+                        <input type="text" class="a-input" name="name" value="{{ $partner->name }}" required style="width:100%;font-weight:600;">
+                    </div>
+                    <div>
+                        <label style="display:block;margin-bottom:4px;font-size:0.78rem;color:var(--a-text-muted);">Slug</label>
+                        <input type="text" class="a-input" name="slug" value="{{ $partner->slug }}" style="width:100%;">
+                    </div>
+                    <div>
+                        <label style="display:block;margin-bottom:4px;font-size:0.78rem;color:var(--a-text-muted);">Logo Image</label>
+                        <input type="text" class="a-input" name="logo" value="{{ $partner->logo }}" style="width:100%;">
+                    </div>
+                </div>
+
+                <div style="margin-bottom:12px;">
+                    <textarea class="a-textarea" name="description" rows="2" style="width:100%;">{{ $partner->description }}</textarea>
+                </div>
+
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <button type="submit" class="btn btn-outline btn-sm">Save Partner</button>
+                    @if($partner->slug)
+                        <a href="{{ route('our-partners.show', $partner->slug) }}" target="_blank" style="color:var(--a-primary);font-size:0.82rem;">View Partner Page &rarr;</a>
+                    @endif
+                </div>
+            </form>
+        @empty
+            <p style="color:var(--a-text-muted);margin:0;">No partners registered.</p>
+        @endforelse
     </div>
-    <div class="grid gap-4 md:grid-cols-2">
-        <input class="rounded border p-3" name="address" placeholder="Location / address">
-        <input class="rounded border p-3" name="link_url" placeholder="Website / link URL">
-    </div>
-    <textarea class="rounded border p-3" name="description" rows="3" placeholder="What this partner works on"></textarea>
-    <div class="grid gap-4 md:grid-cols-2">
-        <textarea class="rounded border p-3" name="projects_text" rows="3" placeholder="Projects (one per line)"></textarea>
-        <textarea class="rounded border p-3" name="products_text" rows="3" placeholder="Products (one per line)"></textarea>
-    </div>
-    <div class="grid gap-4 md:grid-cols-4">
-        <input class="rounded border p-3" name="clients_count" placeholder="Total clients (e.g. 500+)">
-        <input class="rounded border p-3" name="employees_count" placeholder="Total employees (e.g. 200+)">
-        <input class="rounded border p-3" name="scope" value="home" placeholder="Scope">
-        <input class="rounded border p-3" type="number" name="sort_order" value="0" placeholder="Sort order">
-    </div>
-    <select class="rounded border p-3" name="status"><option>published</option><option>draft</option></select>
-    <button class="w-fit rounded bg-teal-700 px-4 py-2 font-bold text-white">Add Partner</button>
-</form>
-<div class="mt-6 grid gap-4">
-    @foreach($partners as $partner)
-        <form method="POST" action="{{ route('admin.partners.update', $partner) }}" class="grid gap-3 rounded-md bg-white p-5 shadow-sm">
-            @csrf @method('PUT')
-            <div class="grid gap-3 md:grid-cols-3">
-                <input class="rounded border p-3" name="name" value="{{ $partner->name }}" required>
-                <input class="rounded border p-3" name="slug" value="{{ $partner->slug }}" placeholder="Slug">
-                <input class="rounded border p-3" name="logo" value="{{ $partner->logo }}" placeholder="Logo URL/path">
-            </div>
-            <div class="grid gap-3 md:grid-cols-2">
-                <input class="rounded border p-3" name="address" value="{{ $partner->address }}" placeholder="Location / address">
-                <input class="rounded border p-3" name="link_url" value="{{ $partner->link_url }}" placeholder="Website / link URL">
-            </div>
-            <textarea class="rounded border p-3" name="description" rows="3" placeholder="What this partner works on">{{ $partner->description }}</textarea>
-            <div class="grid gap-3 md:grid-cols-2">
-                <textarea class="rounded border p-3" name="projects_text" rows="3" placeholder="Projects (one per line)">{{ implode("\n", $partner->projects ?? []) }}</textarea>
-                <textarea class="rounded border p-3" name="products_text" rows="3" placeholder="Products (one per line)">{{ implode("\n", $partner->products ?? []) }}</textarea>
-            </div>
-            <div class="grid gap-3 md:grid-cols-4">
-                <input class="rounded border p-3" name="clients_count" value="{{ $partner->clients_count }}" placeholder="Total clients (e.g. 500+)">
-                <input class="rounded border p-3" name="employees_count" value="{{ $partner->employees_count }}" placeholder="Total employees (e.g. 200+)">
-                <input class="rounded border p-3" name="scope" value="{{ $partner->scope }}" placeholder="Scope">
-                <input class="rounded border p-3" type="number" name="sort_order" value="{{ $partner->sort_order }}" placeholder="Sort order">
-            </div>
-            <select class="rounded border p-3" name="status"><option @selected($partner->status === 'published')>published</option><option @selected($partner->status === 'draft')>draft</option></select>
-            <div class="flex items-center justify-between gap-3">
-                <button class="w-fit rounded bg-slate-950 px-4 py-2 font-bold text-white">Save</button>
-                @if($partner->slug)
-                    <a class="text-sm font-bold text-teal-700" href="{{ route('our-partners.show', $partner->slug) }}" target="_blank" rel="noopener">View Public Page &rarr;</a>
-                @endif
-            </div>
-        </form>
-    @endforeach
 </div>
 @endsection

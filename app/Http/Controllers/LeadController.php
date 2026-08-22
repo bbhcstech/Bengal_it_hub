@@ -6,12 +6,30 @@ use App\Models\Event;
 use App\Models\Lead;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 
 class LeadController extends Controller
 {
     public function store(Request $request): RedirectResponse
     {
+        $recaptchaSecret = config('services.recaptcha.secret_key');
+        if (!empty($recaptchaSecret)) {
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            if (empty($recaptchaResponse)) {
+                return back()->withInput()->withErrors(['g-recaptcha-response' => 'Please complete the Google reCAPTCHA security check.']);
+            }
+
+            $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                'secret' => $recaptchaSecret,
+                'response' => $recaptchaResponse,
+                'remoteip' => $request->ip(),
+            ]);
+
+            if (!$verify->json('success')) {
+                return back()->withInput()->withErrors(['g-recaptcha-response' => 'Google reCAPTCHA security verification failed. Please try again.']);
+            }
+        }
         $validated = $request->validate([
             'form_type' => ['required', 'string', 'max:50'],
             'name' => ['required', 'string', 'max:120'],
